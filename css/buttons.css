@@ -1,330 +1,125 @@
 /* ================================================================
-   PROJECTKART
-   BUTTONS
+   PROJECTKART — BUTTONS
 ================================================================ */
 
+.button,
 .btn {
     position: relative;
-
-    min-height: 44px;
-
     display: inline-flex;
     align-items: center;
     justify-content: center;
-
-    gap: 9px;
-
-    padding:
-        0 18px;
-
-    border:
-        1px solid transparent;
-
-    border-radius:
-        var(--radius-sm);
-
-    font-family:
-        inherit;
-
-    font-size: 13px;
-    font-weight: 700;
-
-    line-height: 1;
-
-    text-decoration: none;
-
-    cursor: pointer;
-
-    white-space: nowrap;
-
-    transition:
-        transform var(--transition-fast),
-        background var(--transition-fast),
-        border-color var(--transition-fast),
-        color var(--transition-fast),
-        box-shadow var(--transition-fast);
-}
-
-
-.btn:hover {
-    transform:
-        translateY(-1px);
-}
-
-
-.btn:active {
-    transform:
-        translateY(0);
-}
-
-
-/* ----------------------------------------------------------------
-   Primary
----------------------------------------------------------------- */
-
-.btn-primary {
-    background:
-        var(--color-primary);
-
-    border-color:
-        var(--color-primary);
-
-    color:
-        #fff;
-
-    box-shadow:
-        0 8px 24px
-        rgba(40, 120, 255, 0.18);
-}
-
-
-.btn-primary:hover {
-    background:
-        var(--color-primary-light);
-
-    border-color:
-        var(--color-primary-light);
-
-    color:
-        #fff;
-
-    box-shadow:
-        0 12px 32px
-        rgba(40, 120, 255, 0.28);
-}
-
-
-/* ----------------------------------------------------------------
-   Secondary
----------------------------------------------------------------- */
-
-.btn-secondary {
-    background:
-        var(--color-surface);
-
-    border-color:
-        var(--color-border-light);
-
-    color:
-        var(--color-text);
-}
-
-
-.btn-secondary:hover {
-    background:
-        var(--color-surface-hover);
-
-    border-color:
-        var(--color-border-strong);
-
-    color:
-        var(--color-white);
-}
-
-
-/* ----------------------------------------------------------------
-   Ghost
----------------------------------------------------------------- */
-
-.btn-ghost {
-    background:
-        transparent;
-
-    border-color:
-        transparent;
-
-    color:
-        var(--color-text-soft);
-}
-
-
-.btn-ghost:hover {
-    background:
-        rgba(255, 255, 255, 0.05);
-
-    color:
-        var(--color-white);
-}
-
-
-/* ----------------------------------------------------------------
-   Outline
----------------------------------------------------------------- */
-
-.btn-outline {
-    background:
-        transparent;
-
-    border-color:
-        var(--color-primary-border);
-
-    color:
-        var(--color-primary-light);
-}
-
-
-.btn-outline:hover {
-    background:
-        var(--color-primary-soft);
-
-    border-color:
-        var(--color-primary);
-}
-
-
-/* ----------------------------------------------------------------
-   Danger
----------------------------------------------------------------- */
-
-.btn-danger {
-    background:
-        var(--color-danger);
-
-    border-color:
-        var(--color-danger);
-
-    color:
-        #fff;
-}
-
-
-.btn-danger:hover {
-    filter:
-        brightness(1.08);
-}
-
-
-/* ----------------------------------------------------------------
-   Large
----------------------------------------------------------------- */
-
-.btn-large {
-    min-height: 52px;
-
-    padding:
-        0 24px;
-
+    gap: 8px;
+    min-height: 48px;
+    padding: 0 20px;
+    border: 1px solid transparent;
+    border-radius: 999px;
     font-size: 14px;
-
-    border-radius:
-        var(--radius-md);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    text-decoration: none;
+    transition:
+        transform 180ms ease,
+        background-color 180ms ease,
+        border-color 180ms ease,
+        box-shadow 180ms ease;
 }
 
-
-/* ----------------------------------------------------------------
-   Small
----------------------------------------------------------------- */
-
-.btn-small {
-    min-height: 36px;
-
-    padding:
-        0 13px;
-
-    font-size: 12px;
-
-    border-radius:
-        var(--radius-xs);
+.button:hover,
+.btn:hover {
+    transform: translateY(-1px);
 }
 
-
-/* ----------------------------------------------------------------
-   Full Width
----------------------------------------------------------------- */
-
-.btn-full {
-    width: 100%;
-}
-
-
-/* ----------------------------------------------------------------
-   Icon Button
----------------------------------------------------------------- */
-
-.btn-icon {
-    width: 42px;
-    height: 42px;
-
-    padding: 0;
-
-    border-radius:
-        var(--radius-sm);
-}
-
-
-.btn-icon svg,
-.btn-icon img {
+.button svg,
+.btn svg {
     width: 18px;
     height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
 }
 
-
-/* ----------------------------------------------------------------
-   Disabled
----------------------------------------------------------------- */
-
-.btn:disabled,
-.btn-disabled {
-    opacity: 0.45;
-
-    cursor:
-        not-allowed;
-
-    pointer-events:
-        none;
-
-    box-shadow:
-        none;
+.button-primary,
+.btn-primary {
+    background: var(--color-primary);
+    color: #fff;
+    box-shadow: 0 10px 24px rgba(40, 120, 255, 0.28);
 }
 
-
-/* ----------------------------------------------------------------
-   Loading
----------------------------------------------------------------- */
-
-.btn.is-loading {
-    cursor:
-        wait;
-
-    pointer-events:
-        none;
+.button-primary:hover,
+.btn-primary:hover {
+    background: var(--color-primary-hover);
 }
 
+.button-secondary,
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.12);
+    color: #fff;
+}
 
-.btn-loader {
-    width: 16px;
-    height: 16px;
+.button-secondary:hover,
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
 
-    border:
-        2px solid rgba(255, 255, 255, 0.35);
+.button-light {
+    background: #fff;
+    color: #111827;
+}
 
-    border-top-color:
-        currentColor;
+.button-light:hover {
+    background: #f3f6fb;
+}
 
+.button-arrow {
+    font-size: 16px;
+    line-height: 1;
+}
+
+.product-add-button {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-
-    animation:
-        buttonSpin 0.7s linear infinite;
+    background: var(--color-primary);
+    color: #fff;
+    font-size: 22px;
+    font-weight: 500;
+    box-shadow: 0 8px 18px rgba(40, 120, 255, 0.28);
 }
 
-
-@keyframes buttonSpin {
-    to {
-        transform:
-            rotate(360deg);
-    }
+.product-add-button:hover {
+    background: var(--color-primary-hover);
+    transform: translateY(-1px);
 }
 
+.scroll-top-button {
+    position: fixed;
+    left: 50%;
+    bottom: 18px;
+    z-index: 80;
+    display: grid;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    transform: translateX(-50%) translateY(20px);
+    opacity: 0;
+    pointer-events: none;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 50%;
+    background: rgba(12, 16, 24, 0.92);
+    color: #fff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
 
-/* ----------------------------------------------------------------
-   Button Group
----------------------------------------------------------------- */
-
-.btn-group {
-    display: flex;
-    align-items: center;
-
-    gap: 10px;
-
-    flex-wrap: wrap;
+.scroll-top-button.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
 }

@@ -1,0 +1,150 @@
+/*
+================================================================
+PROJECTKART — FIREBASE STORAGE RULES
+Product, category and kit image protection
+================================================================
+*/
+
+rules_version = '2';
+
+service firebase.storage {
+
+  match /b/{bucket}/o {
+
+    /* ============================================================
+       HELPER FUNCTIONS
+    ============================================================ */
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isSignedIn()
+        && firestore.exists(
+          /databases/(default)/documents/admins/$(request.auth.uid)
+        );
+    }
+
+    /* ============================================================
+       PRODUCT IMAGES
+       
+       Public users can view product images.
+       Only admins can upload, replace or delete them.
+    ============================================================ */
+
+    match /products/{fileName} {
+
+      allow read: if true;
+
+      allow write: if isAdmin()
+        && (
+          request.resource == null
+          || (
+            request.resource.size < 10 * 1024 * 1024
+            && request.resource.contentType.matches(
+              'image/.*'
+            )
+          )
+        );
+    }
+
+    /* ============================================================
+       CATEGORY IMAGES
+    ============================================================ */
+
+    match /categories/{fileName} {
+
+      allow read: if true;
+
+      allow write: if isAdmin()
+        && (
+          request.resource == null
+          || (
+            request.resource.size < 10 * 1024 * 1024
+            && request.resource.contentType.matches(
+              'image/.*'
+            )
+          )
+        );
+    }
+
+    /* ============================================================
+       PROJECT KIT IMAGES
+    ============================================================ */
+
+    match /kits/{fileName} {
+
+      allow read: if true;
+
+      allow write: if isAdmin()
+        && (
+          request.resource == null
+          || (
+            request.resource.size < 10 * 1024 * 1024
+            && request.resource.contentType.matches(
+              'image/.*'
+            )
+          )
+        );
+    }
+
+    /* ============================================================
+       GENERAL SITE ASSETS
+       
+       Useful for homepage banners, logos and other admin-managed
+       website images.
+    ============================================================ */
+
+    match /site/{fileName} {
+
+      allow read: if true;
+
+      allow write: if isAdmin()
+        && (
+          request.resource == null
+          || (
+            request.resource.size < 15 * 1024 * 1024
+            && request.resource.contentType.matches(
+              'image/.*'
+            )
+          )
+        );
+    }
+
+    /* ============================================================
+       USER PROFILE IMAGES
+       
+       A user may manage their own profile image.
+       Admins can manage all profile images.
+    ============================================================ */
+
+    match /users/{userId}/{fileName} {
+
+      allow read: if true;
+
+      allow write: if isAdmin()
+        || (
+          isSignedIn()
+          && request.auth.uid == userId
+          && (
+            request.resource == null
+            || (
+              request.resource.size < 5 * 1024 * 1024
+              && request.resource.contentType.matches(
+                'image/.*'
+              )
+            )
+          )
+        );
+    }
+
+    /* ============================================================
+       DEFAULT DENY
+    ============================================================ */
+
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

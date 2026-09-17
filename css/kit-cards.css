@@ -1,202 +1,91 @@
 /* ================================================================
-   PROJECTKART
-   PROJECT KIT CARDS
+   PROJECTKART — KIT CARDS
 ================================================================ */
-
-.kit-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, minmax(0, 1fr));
-
-    gap: 20px;
-}
-
 
 .kit-card {
     position: relative;
-
-    display: flex;
-    flex-direction: column;
-
-    min-width: 0;
-
-    border:
-        1px solid var(--color-border);
-
-    border-radius:
-        var(--radius-lg);
-
-    background:
-        var(--color-surface);
-
+    display: block;
+    min-height: 280px;
     overflow: hidden;
-
-    text-decoration: none;
-
-    transition:
-        transform var(--transition-normal),
-        border-color var(--transition-normal),
-        box-shadow var(--transition-normal);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    isolation: isolate;
+    transition: transform 240ms ease, border-color 240ms ease;
 }
 
+.kit-card--large {
+    min-height: 320px;
+}
 
 .kit-card:hover {
-    transform:
-        translateY(-6px);
-
-    border-color:
-        var(--color-border-light);
-
-    box-shadow:
-        var(--shadow-lg);
+    transform: translateY(-4px);
+    border-color: rgba(40, 120, 255, 0.3);
 }
 
-
-/* ----------------------------------------------------------------
-   Image
----------------------------------------------------------------- */
-
-.kit-card-image {
-    position: relative;
-
-    aspect-ratio:
-        16 / 10;
-
-    overflow: hidden;
-
-    background:
-        var(--color-surface-light);
-}
-
-
-.kit-card-image::after {
-    content: "";
-
+.kit-card__image,
+.kit-card__image img {
     position: absolute;
-
     inset: 0;
-
-    background:
-        linear-gradient(
-            to top,
-            rgba(7, 9, 13, 0.4),
-            transparent 55%
-        );
-
-    pointer-events: none;
-}
-
-
-.kit-card-image img {
     width: 100%;
     height: 100%;
-
-    display: block;
-
     object-fit: cover;
-
-    transition:
-        transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
-
-.kit-card:hover
-.kit-card-image img {
-    transform:
-        scale(1.075);
+.kit-card__image img {
+    transform: scale(1.02);
+    transition: transform 700ms ease;
 }
 
-
-/* ----------------------------------------------------------------
-   Content
----------------------------------------------------------------- */
-
-.kit-card-content {
-    padding:
-        20px;
+.kit-card:hover .kit-card__image img {
+    transform: scale(1.08);
 }
 
-
-.kit-card-difficulty {
-    display: inline-flex;
-
-    padding:
-        5px 8px;
-
-    border:
-        1px solid var(--color-primary-border);
-
-    border-radius:
-        999px;
-
+.kit-card__overlay {
+    position: absolute;
+    inset: 0;
     background:
-        var(--color-primary-soft);
-
-    color:
-        var(--color-primary-light);
-
-    font-size: 9px;
-    font-weight: 800;
-
-    letter-spacing:
-        0.08em;
-
-    text-transform:
-        uppercase;
+        linear-gradient(
+            180deg,
+            rgba(7, 9, 13, 0.08) 10%,
+            rgba(7, 9, 13, 0.78) 100%
+        );
 }
 
+.kit-card__content {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    padding: 20px 20px 18px;
+}
 
-.kit-card-content h3 {
-    margin:
-        14px 0 0;
+.kit-card__difficulty {
+    display: inline-block;
+    margin-bottom: 8px;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+}
 
-    color:
-        var(--color-white);
-
-    font-size: 18px;
+.kit-card h3 {
+    color: #fff;
+    font-size: 22px;
     font-weight: 750;
-
-    line-height:
-        1.25;
-
-    letter-spacing:
-        -0.025em;
+    letter-spacing: -0.04em;
 }
 
-
-.kit-card-content p {
-    display: -webkit-box;
-
-    margin:
-        9px 0 0;
-
-    overflow: hidden;
-
-    color:
-        var(--color-text-muted);
-
-    font-size: 13px;
-
-    line-height:
-        1.6;
-
-    -webkit-box-orient:
-        vertical;
-
-    -webkit-line-clamp:
-        2;
+.kit-card__link {
+    display: inline-block;
+    margin-top: 10px;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 14px;
 }
 
-
-.kit-card-content > strong {
-    display: block;
-
-    margin-top: 18px;
-
-    color:
-        var(--color-white);
-
-    font-size: 16px;
-    font-weight: 800;
+@media (max-width: 800px) {
+    .kit-card,
+    .kit-card--large {
+        min-height: 240px;
+    }
 }

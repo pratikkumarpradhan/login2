@@ -10,7 +10,7 @@
 
     <meta
         name="description"
-        content="View product details, pricing, availability and specifications at ProjectKart."
+        content="View detailed product information, specifications and availability on ProjectKart."
     >
 
     <meta name="theme-color" content="#07090d">
@@ -18,1111 +18,357 @@
     <title>Product — ProjectKart</title>
 
     <!-- =========================================================
-         STYLES
+         GLOBAL CSS
     ========================================================== -->
 
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/typography.css">
+
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/mobile-menu.css">
     <link rel="stylesheet" href="css/buttons.css">
     <link rel="stylesheet" href="css/forms.css">
+
     <link rel="stylesheet" href="css/product-page.css">
     <link rel="stylesheet" href="css/product-cards.css">
     <link rel="stylesheet" href="css/sections.css">
-    <link rel="stylesheet" href="css/footer.css">
+
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/responsive.css">
 </head>
 
-<body>
+<body class="page-product">
 
-<!-- =========================================================
-     NAVBAR
-========================================================== -->
+    <!-- =========================================================
+         PAGE LOADER
+    ========================================================== -->
 
-<header class="site-navbar" id="site-navbar">
-
-    <div class="container navbar-container">
-
-        <!-- Logo -->
-
-        <a
-            href="index.html"
-            class="navbar-logo"
-            aria-label="ProjectKart Home"
-        >
-
-            <span class="navbar-logo-mark">
-                PK
-            </span>
-
-            <span class="navbar-logo-text">
-                Project<span>Kart</span>
-            </span>
-
-        </a>
+    <div
+        class="page-loader"
+        id="pageLoader"
+        aria-hidden="true"
+    >
+        <div class="page-loader__inner">
+            <span class="page-loader__mark">PK</span>
+            <span class="page-loader__line"></span>
+        </div>
+    </div>
 
 
-        <!-- Desktop Navigation -->
+    <!-- =========================================================
+         NAVBAR
+    ========================================================== -->
+
+    <header class="site-header" id="siteHeader">
 
         <nav
-            class="navbar-nav"
+            class="navbar"
             aria-label="Main navigation"
         >
 
+            <!-- BRAND -->
+
             <a
                 href="index.html"
-                class="navbar-link"
+                class="navbar__brand"
+                aria-label="ProjectKart home"
             >
-                Home
+
+                <span class="navbar__logo">
+                    PK
+                </span>
+
+                <span class="navbar__brand-name">
+                    <span class="navbar__brand-project">
+                        Project
+                    </span>
+
+                    <span class="navbar__brand-kart">
+                        Kart
+                    </span>
+                </span>
+
+                <span class="navbar__version">
+                    /01
+                </span>
+
             </a>
 
-            <a
-                href="shop.html"
-                class="navbar-link"
-            >
-                Shop
-            </a>
 
-            <a
-                href="categories.html"
-                class="navbar-link"
-            >
-                Categories
-            </a>
+            <!-- DESKTOP NAV -->
 
-            <a
-                href="project-kits.html"
-                class="navbar-link"
-            >
-                Project Kits
-            </a>
+            <div class="navbar__nav">
 
-            <a
-                href="about.html"
-                class="navbar-link"
-            >
-                About
-            </a>
-
-            <a
-                href="contact.html"
-                class="navbar-link"
-            >
-                Contact
-            </a>
-
-        </nav>
-
-
-        <!-- Navbar Actions -->
-
-        <div class="navbar-actions">
-
-            <!-- Search -->
-
-            <div class="navbar-search">
-
-                <form
-                    data-search-form
-                    action="shop.html"
-                    method="get"
-                    class="navbar-search-form"
+                <a
+                    href="index.html"
+                    class="navbar__link"
                 >
+                    Home
+                </a>
 
-                    <input
-                        type="search"
-                        name="search"
-                        data-search-input
-                        placeholder="Search components..."
-                        autocomplete="off"
-                        aria-label="Search products"
-                    >
+                <a
+                    href="shop.html"
+                    class="navbar__link is-active"
+                >
+                    Shop
+                </a>
 
-                    <button
-                        type="submit"
-                        class="navbar-search-button"
-                        aria-label="Search"
-                    >
-                        ⌕
-                    </button>
+                <a
+                    href="categories.html"
+                    class="navbar__link"
+                >
+                    Categories
+                </a>
 
-                </form>
+                <a
+                    href="project-kits.html"
+                    class="navbar__link"
+                >
+                    Project Kits
+                </a>
 
+                <a
+                    href="#"
+                    class="navbar__link"
+                    data-coming-soon
+                >
+                    Deals
+                </a>
 
-                <div
-                    class="search-results"
-                    data-search-results
-                ></div>
+                <a
+                    href="about.html"
+                    class="navbar__link"
+                >
+                    About
+                </a>
+
+                <a
+                    href="contact.html"
+                    class="navbar__link"
+                >
+                    Contact
+                </a>
 
             </div>
 
 
-            <!-- Account -->
+            <!-- NAV ACTIONS -->
 
-            <div class="navbar-account">
+            <div class="navbar__actions">
+
+                <!-- SEARCH -->
 
                 <button
+                    class="navbar-search"
+                    id="navbarSearchButton"
                     type="button"
-                    class="navbar-action"
-                    data-account-toggle
-                    aria-label="Account"
+                    aria-label="Search components"
+                    aria-expanded="false"
                 >
 
-                    <span class="navbar-action-icon">
-                        ◯
+                    <span class="navbar-search__icon">
+
+                        <svg
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                        >
+                            <circle
+                                cx="11"
+                                cy="11"
+                                r="6.5"
+                            ></circle>
+
+                            <path d="M16 16l5 5"></path>
+                        </svg>
+
+                    </span>
+
+                    <span class="navbar-search__text">
+                        Search components
                     </span>
 
                 </button>
 
 
-                <div
-                    class="account-dropdown"
-                    data-account-dropdown
+                <!-- ACCOUNT -->
+
+                <a
+                    href="account.html"
+                    class="navbar__icon-button"
+                    aria-label="Account"
                 >
 
-                    <div
-                        class="account-dropdown-user"
-                        data-account-user
+                    <svg
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
                     >
+                        <circle
+                            cx="12"
+                            cy="8"
+                            r="3.2"
+                        ></circle>
 
-                        <span
-                            class="account-dropdown-avatar"
-                            data-navbar-avatar
-                        >
-                            U
-                        </span>
+                        <path
+                            d="M5.5 20c.8-3.2 3-5 6.5-5s5.7 1.8 6.5 5"
+                        ></path>
+                    </svg>
 
-                        <div>
-
-                            <strong data-user-name>
-                                Account
-                            </strong>
-
-                            <small data-user-email>
-                                Sign in to your account
-                            </small>
-
-                        </div>
-
-                    </div>
+                </a>
 
 
-                    <div class="account-dropdown-divider"></div>
+                <!-- CART -->
 
+                <a
+                    href="cart.html"
+                    class="navbar__icon-button navbar-cart"
+                    aria-label="Shopping cart"
+                >
 
-                    <a
-                        href="account.html"
-                        class="account-dropdown-link"
+                    <svg
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
                     >
-                        My Account
-                    </a>
+                        <path
+                            d="M5 8h14l-1 11H6L5 8Z"
+                        ></path>
 
-                    <a
-                        href="account.html#orders"
-                        class="account-dropdown-link"
+                        <path
+                            d="M9 8V6.5a3 3 0 0 1 6 0V8"
+                        ></path>
+                    </svg>
+
+                    <span
+                        class="navbar-cart__count"
+                        id="cartCount"
                     >
-                        My Orders
-                    </a>
+                        0
+                    </span>
 
-                    <a
-                        href="login.html"
-                        class="account-dropdown-link"
-                        data-auth-action="login"
-                    >
-                        Sign In
-                    </a>
+                </a>
 
-                    <button
-                        type="button"
-                        class="account-dropdown-link account-dropdown-logout"
-                        data-logout
-                        data-auth-action="logout"
-                    >
-                        Sign Out
-                    </button>
 
-                </div>
+                <!-- MOBILE TOGGLE -->
+
+                <button
+                    class="navbar__menu-toggle"
+                    id="mobileMenuToggle"
+                    type="button"
+                    aria-label="Open navigation menu"
+                    aria-expanded="false"
+                    aria-controls="mobileMenu"
+                >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
 
             </div>
-
-
-            <!-- Cart -->
-
-            <a
-                href="cart.html"
-                class="navbar-action navbar-cart"
-                aria-label="Shopping cart"
-            >
-
-                <span class="navbar-action-icon">
-                    🛒
-                </span>
-
-                <span
-                    class="navbar-cart-badge"
-                    data-cart-count
-                >
-                    0
-                </span>
-
-            </a>
-
-
-            <!-- Mobile Menu Button -->
-
-            <button
-                type="button"
-                class="navbar-mobile-button"
-                data-menu-toggle
-                aria-label="Open navigation menu"
-                aria-expanded="false"
-            >
-
-                <span></span>
-                <span></span>
-                <span></span>
-
-            </button>
-
-        </div>
-
-    </div>
-
-</header>
-
-
-<!-- =========================================================
-     MOBILE MENU
-========================================================== -->
-
-<div
-    class="mobile-menu-overlay"
-    data-mobile-overlay
-></div>
-
-
-<aside
-    class="mobile-menu"
-    data-mobile-menu
-    aria-hidden="true"
->
-
-    <div class="mobile-menu-header">
-
-        <a
-            href="index.html"
-            class="navbar-logo"
-        >
-
-            <span class="navbar-logo-mark">
-                PK
-            </span>
-
-            <span class="navbar-logo-text">
-                Project<span>Kart</span>
-            </span>
-
-        </a>
-
-
-        <button
-            type="button"
-            class="mobile-menu-close"
-            data-menu-close
-            aria-label="Close navigation menu"
-        >
-            ×
-        </button>
-
-    </div>
-
-
-    <nav class="mobile-nav">
-
-        <a
-            href="index.html"
-            class="mobile-nav-link"
-        >
-            Home
-        </a>
-
-        <a
-            href="shop.html"
-            class="mobile-nav-link"
-        >
-            Shop
-        </a>
-
-        <a
-            href="categories.html"
-            class="mobile-nav-link"
-        >
-            Categories
-        </a>
-
-        <a
-            href="project-kits.html"
-            class="mobile-nav-link"
-        >
-            Project Kits
-        </a>
-
-        <a
-            href="about.html"
-            class="mobile-nav-link"
-        >
-            About
-        </a>
-
-        <a
-            href="contact.html"
-            class="mobile-nav-link"
-        >
-            Contact
-        </a>
-
-    </nav>
-
-
-    <div class="mobile-menu-actions">
-
-        <a
-            href="account.html"
-            class="btn btn-outline btn-full"
-        >
-            My Account
-        </a>
-
-        <a
-            href="cart.html"
-            class="btn btn-primary btn-full"
-        >
-            View Cart
-        </a>
-
-    </div>
-
-</aside>
-
-
-<main>
-
-<!-- =========================================================
-     PRODUCT PAGE
-========================================================== -->
-
-<section class="page-section product-page-section">
-
-    <div class="container">
-
-
-        <!-- Breadcrumb -->
-
-        <nav
-            class="product-breadcrumb"
-            aria-label="Breadcrumb"
-        >
-
-            <a href="index.html">
-                Home
-            </a>
-
-            <span>
-                /
-            </span>
-
-            <a href="shop.html">
-                Shop
-            </a>
-
-            <span>
-                /
-            </span>
-
-            <span data-product-breadcrumb>
-                Product
-            </span>
 
         </nav>
 
+    </header>
 
-        <!-- Product Detail -->
+
+    <!-- =========================================================
+         MOBILE MENU
+    ========================================================== -->
+
+    <div
+        class="mobile-menu"
+        id="mobileMenu"
+        aria-hidden="true"
+    >
 
         <div
-            class="product-detail"
-            data-product-detail
-        >
+            class="mobile-menu__backdrop"
+            data-mobile-close
+        ></div>
 
+        <div class="mobile-menu__panel">
 
-            <!-- =================================================
-                 PRODUCT GALLERY
-            ================================================== -->
-
-            <div class="product-gallery">
-
-                <div class="product-main-image">
-
-                    <div
-                        class="product-image-badge"
-                        data-product-badge
-                        hidden
-                    >
-                        Featured
-                    </div>
-
-
-                    <img
-                        src="assets/images/placeholders/product-placeholder.jpg"
-                        alt="Product"
-                        data-product-image
-                    >
-
-                </div>
-
-
-                <!-- Optional gallery thumbnails -->
-
-                <div
-                    class="product-thumbnails"
-                    data-product-thumbnails
-                ></div>
-
-            </div>
-
-
-            <!-- =================================================
-                 PRODUCT INFORMATION
-            ================================================== -->
-
-            <div class="product-info">
-
-
-                <!-- Category -->
-
-                <a
-                    href="#"
-                    class="product-category"
-                    data-product-category
-                >
-                    Electronics
-                </a>
-
-
-                <!-- Product Name -->
-
-                <h1
-                    class="product-title"
-                    data-product-name
-                >
-                    Loading product...
-                </h1>
-
-
-                <!-- Rating -->
-
-                <div
-                    class="product-rating"
-                    data-product-rating
-                >
-
-                    <span class="rating-stars">
-                        ★★★★★
-                    </span>
-
-                    <span class="rating-text">
-                        Product details
-                    </span>
-
-                </div>
-
-
-                <!-- Price -->
-
-                <div class="product-price-wrapper">
-
-                    <span
-                        class="product-price"
-                        data-product-price
-                    >
-                        ₹0
-                    </span>
-
-
-                    <span
-                        class="product-old-price"
-                        data-product-old-price
-                        hidden
-                    >
-                        ₹0
-                    </span>
-
-                </div>
-
-
-                <!-- Stock -->
-
-                <div
-                    class="product-stock"
-                    data-product-stock
-                >
-                    Checking availability...
-                </div>
-
-
-                <!-- Divider -->
-
-                <div class="divider"></div>
-
-
-                <!-- Description -->
-
-                <div class="product-description">
-
-                    <h2>
-                        Description
-                    </h2>
-
-                    <div
-                        data-product-description
-                    >
-                        Loading product information...
-                    </div>
-
-                </div>
-
-
-                <!-- Purchase -->
-
-                <div class="product-purchase">
-
-
-                    <!-- Quantity -->
-
-                    <div class="product-quantity">
-
-                        <span class="quantity-label">
-                            Quantity
-                        </span>
-
-
-                        <div class="quantity-control">
-
-                            <button
-                                type="button"
-                                data-product-quantity-minus
-                                aria-label="Decrease quantity"
-                            >
-                                −
-                            </button>
-
-
-                            <input
-                                type="number"
-                                value="1"
-                                min="1"
-                                step="1"
-                                data-product-quantity
-                                aria-label="Product quantity"
-                            >
-
-
-                            <button
-                                type="button"
-                                data-product-quantity-plus
-                                aria-label="Increase quantity"
-                            >
-                                +
-                            </button>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- Add To Cart -->
-
-                    <button
-                        type="button"
-                        class="btn btn-primary btn-large product-add-to-cart"
-                        data-product-add-to-cart
-                    >
-                        <span>
-                            Add to Cart
-                        </span>
-
-                        <span>
-                            →
-                        </span>
-                    </button>
-
-                </div>
-
-
-                <!-- Product Features -->
-
-                <div class="product-features">
-
-                    <div class="product-feature">
-
-                        <span class="product-feature-icon">
-                            ✓
-                        </span>
-
-                        <div>
-
-                            <strong>
-                                Quality Components
-                            </strong>
-
-                            <span>
-                                Selected for makers and builders
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="product-feature">
-
-                        <span class="product-feature-icon">
-                            ⚡
-                        </span>
-
-                        <div>
-
-                            <strong>
-                                Project Ready
-                            </strong>
-
-                            <span>
-                                Suitable for electronics projects
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="product-feature">
-
-                        <span class="product-feature-icon">
-                            ↗
-                        </span>
-
-                        <div>
-
-                            <strong>
-                                Need Help?
-                            </strong>
-
-                            <span>
-                                <a href="contact.html">
-                                    Contact our team
-                                </a>
-                            </span>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- =====================================================
-             PRODUCT DETAILS
-        ====================================================== -->
-
-        <div class="product-extra-content">
-
-            <div class="product-extra-panel">
-
-                <div class="section-header">
-
-                    <div class="section-header-content">
-
-                        <span class="eyebrow">
-                            Product Information
-                        </span>
-
-                        <h2 class="section-title">
-                            Build With Confidence
-                        </h2>
-
-                    </div>
-
-                </div>
-
-
-                <div class="product-info-grid">
-
-                    <div class="product-info-block">
-
-                        <span>
-                            Category
-                        </span>
-
-                        <strong data-product-info-category>
-                            —
-                        </strong>
-
-                    </div>
-
-
-                    <div class="product-info-block">
-
-                        <span>
-                            Availability
-                        </span>
-
-                        <strong data-product-info-stock>
-                            —
-                        </strong>
-
-                    </div>
-
-
-                    <div class="product-info-block">
-
-                        <span>
-                            Product ID
-                        </span>
-
-                        <strong data-product-id>
-                            —
-                        </strong>
-
-                    </div>
-
-
-                    <div class="product-info-block">
-
-                        <span>
-                            Suitable For
-                        </span>
-
-                        <strong>
-                            Electronics Projects
-                        </strong>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     RELATED PRODUCTS
-========================================================== -->
-
-<section class="page-section section-soft">
-
-    <div class="container">
-
-        <div class="section-header">
-
-            <div class="section-header-content">
-
-                <span class="eyebrow">
-                    You May Also Like
-                </span>
-
-                <h2 class="section-title">
-                    Related Products
-                </h2>
-
-                <p class="section-description">
-                    More components that can work well with
-                    this product.
-                </p>
-
-            </div>
-
-            <a
-                href="shop.html"
-                class="section-link"
-            >
-                View all →
-            </a>
-
-        </div>
-
-
-        <div
-            class="product-grid"
-            data-related-products
-        >
-
-            <div class="product-card skeleton">
-
-                <div class="skeleton-image"></div>
-
-                <div class="skeleton-content"></div>
-
-            </div>
-
-
-            <div class="product-card skeleton">
-
-                <div class="skeleton-image"></div>
-
-                <div class="skeleton-content"></div>
-
-            </div>
-
-
-            <div class="product-card skeleton">
-
-                <div class="skeleton-image"></div>
-
-                <div class="skeleton-content"></div>
-
-            </div>
-
-
-            <div class="product-card skeleton">
-
-                <div class="skeleton-image"></div>
-
-                <div class="skeleton-content"></div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     PRODUCT NOT FOUND
-========================================================== -->
-
-<section
-    class="page-section"
-    data-product-not-found
-    hidden
->
-
-    <div class="container">
-
-        <div class="empty-state">
-
-            <div class="empty-state-icon">
-                ?
-            </div>
-
-            <h2>
-                Product Not Found
-            </h2>
-
-            <p>
-                The product you're looking for may have been
-                removed or is no longer available.
-            </p>
-
-            <a
-                href="shop.html"
-                class="btn btn-primary"
-            >
-                Back to Shop
-            </a>
-
-        </div>
-
-    </div>
-
-</section>
-
-</main>
-
-
-<!-- =========================================================
-     FOOTER
-========================================================== -->
-
-<footer class="site-footer">
-
-    <div class="container">
-
-        <div class="footer-main">
-
-
-            <!-- Brand -->
-
-            <div class="footer-brand">
+            <div class="mobile-menu__top">
 
                 <a
                     href="index.html"
-                    class="navbar-logo"
+                    class="mobile-menu__brand"
                 >
 
-                    <span class="navbar-logo-mark">
+                    <span class="mobile-menu__logo">
                         PK
                     </span>
 
-                    <span class="navbar-logo-text">
-                        Project<span>Kart</span>
+                    <span>
+                        <strong>Project</strong><span>Kart</span>
                     </span>
 
                 </a>
 
-
-                <p>
-                    Components, tools and project kits for
-                    students, makers, engineers and creators.
-                </p>
-
-
-                <div class="footer-socials">
-
-                    <a
-                        href="#"
-                        class="footer-social"
-                        aria-label="Instagram"
-                    >
-                        IG
-                    </a>
-
-                    <a
-                        href="#"
-                        class="footer-social"
-                        aria-label="Facebook"
-                    >
-                        FB
-                    </a>
-
-                    <a
-                        href="#"
-                        class="footer-social"
-                        aria-label="YouTube"
-                    >
-                        YT
-                    </a>
-
-                </div>
+                <button
+                    type="button"
+                    class="mobile-menu__close"
+                    id="mobileMenuClose"
+                    aria-label="Close menu"
+                >
+                    ×
+                </button>
 
             </div>
 
 
-            <!-- Shop -->
+            <div class="mobile-menu__links">
 
-            <div class="footer-column">
+                <a href="index.html">
+                    <span>01</span>
+                    Home
+                </a>
 
-                <h3>
+                <a
+                    href="shop.html"
+                    class="is-active"
+                >
+                    <span>02</span>
                     Shop
-                </h3>
-
-                <a href="shop.html">
-                    All Products
                 </a>
 
                 <a href="categories.html">
+                    <span>03</span>
                     Categories
                 </a>
 
                 <a href="project-kits.html">
+                    <span>04</span>
                     Project Kits
                 </a>
 
-                <a href="shop.html?search=arduino">
-                    Arduino
+                <a href="#">
+                    <span>05</span>
+                    Deals
                 </a>
-
-                <a href="shop.html?search=sensors">
-                    Sensors
-                </a>
-
-            </div>
-
-
-            <!-- Company -->
-
-            <div class="footer-column">
-
-                <h3>
-                    Company
-                </h3>
 
                 <a href="about.html">
-                    About Us
+                    <span>06</span>
+                    About
                 </a>
 
                 <a href="contact.html">
+                    <span>07</span>
                     Contact
                 </a>
 
-                <a href="#">
-                    Shipping
-                </a>
-
-                <a href="#">
-                    Returns
-                </a>
-
             </div>
 
 
-            <!-- Account -->
-
-            <div class="footer-column">
-
-                <h3>
-                    Account
-                </h3>
-
-                <a href="login.html">
-                    Sign In
-                </a>
-
-                <a href="register.html">
-                    Create Account
-                </a>
+            <div class="mobile-menu__bottom">
 
                 <a href="account.html">
-                    My Account
+                    Account
                 </a>
 
                 <a href="cart.html">
-                    Shopping Cart
-                </a>
-
-            </div>
-
-        </div>
-
-
-        <div class="footer-bottom">
-
-            <p>
-                © 2026 ProjectKart. All rights reserved.
-            </p>
-
-
-            <div class="footer-bottom-links">
-
-                <a href="#">
-                    Privacy Policy
-                </a>
-
-                <a href="#">
-                    Terms
+                    Cart
+                    <span id="mobileCartCount">0</span>
                 </a>
 
             </div>
@@ -1131,27 +377,1127 @@
 
     </div>
 
-</footer>
+
+    <!-- =========================================================
+         SEARCH OVERLAY
+    ========================================================== -->
+
+    <div
+        class="search-overlay"
+        id="searchOverlay"
+        aria-hidden="true"
+    >
+
+        <div
+            class="search-overlay__backdrop"
+            data-search-close
+        ></div>
+
+        <div class="search-overlay__panel">
+
+            <div class="search-overlay__header">
+
+                <span class="eyebrow">
+                    PROJECTKART / SEARCH
+                </span>
+
+                <button
+                    type="button"
+                    class="search-overlay__close"
+                    id="searchOverlayClose"
+                    aria-label="Close search"
+                >
+                    ×
+                </button>
+
+            </div>
 
 
-<!-- =========================================================
-     JAVASCRIPT
-========================================================== -->
+            <div class="search-overlay__input-wrap">
 
-<script
-    type="module"
-    src="js/navbar.js"
-></script>
+                <svg
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                >
+                    <circle
+                        cx="11"
+                        cy="11"
+                        r="6.5"
+                    ></circle>
 
-<script
-    type="module"
-    src="js/search.js"
-></script>
+                    <path d="M16 16l5 5"></path>
+                </svg>
 
-<script
-    type="module"
-    src="js/product-page.js"
-></script>
+                <input
+                    type="search"
+                    id="globalSearchInput"
+                    placeholder="Search Arduino, sensors, modules..."
+                    autocomplete="off"
+                >
+
+                <span class="search-overlay__shortcut">
+                    ESC
+                </span>
+
+            </div>
+
+
+            <div
+                class="search-overlay__results"
+                id="globalSearchResults"
+            >
+
+                <div class="search-overlay__empty">
+
+                    <span>⌕</span>
+
+                    <p>
+                        Search across ProjectKart components.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         MAIN
+    ========================================================== -->
+
+    <main id="mainContent">
+
+
+        <!-- =====================================================
+             PRODUCT BREADCRUMB
+        ====================================================== -->
+
+        <section class="product-breadcrumb-section">
+
+            <div class="container">
+
+                <nav
+                    class="product-breadcrumb"
+                    aria-label="Breadcrumb"
+                >
+
+                    <a href="index.html">
+                        Home
+                    </a>
+
+                    <span>/</span>
+
+                    <a href="shop.html">
+                        Shop
+                    </a>
+
+                    <span>/</span>
+
+                    <a
+                        href="#"
+                        id="productCategoryBreadcrumb"
+                    >
+                        Components
+                    </a>
+
+                    <span>/</span>
+
+                    <span
+                        id="productBreadcrumbName"
+                        class="product-breadcrumb__current"
+                    >
+                        Product
+                    </span>
+
+                </nav>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             PRODUCT DETAIL
+        ====================================================== -->
+
+        <section class="product-detail section">
+
+            <div class="container">
+
+                <div class="product-detail__grid">
+
+
+                    <!-- =================================================
+                         PRODUCT MEDIA
+                    ================================================== -->
+
+                    <div
+                        class="product-gallery reveal"
+                        data-reveal
+                    >
+
+                        <div class="product-gallery__main">
+
+                            <!-- BADGE -->
+
+                            <div
+                                class="product-gallery__badge"
+                                id="productBadge"
+                                hidden
+                            >
+                                NEW
+                            </div>
+
+
+                            <!-- IMAGE -->
+
+                            <div class="product-gallery__image-wrap">
+
+                                <img
+                                    id="productMainImage"
+                                    class="product-gallery__image"
+                                    src="assets/images/placeholders/product-placeholder.jpg"
+                                    alt="Product"
+                                >
+
+                            </div>
+
+
+                            <!-- IMAGE ZOOM -->
+
+                            <button
+                                type="button"
+                                class="product-gallery__zoom"
+                                id="productImageZoom"
+                                aria-label="Zoom product image"
+                            >
+
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    aria-hidden="true"
+                                >
+
+                                    <circle
+                                        cx="10.5"
+                                        cy="10.5"
+                                        r="5.5"
+                                    ></circle>
+
+                                    <path
+                                        d="M15 15l5 5"
+                                    ></path>
+
+                                    <path
+                                        d="M10.5 8v5M8 10.5h5"
+                                    ></path>
+
+                                </svg>
+
+                            </button>
+
+                        </div>
+
+
+                        <!-- THUMBNAILS -->
+
+                        <div
+                            class="product-gallery__thumbs"
+                            id="productThumbnails"
+                        >
+
+                            <button
+                                type="button"
+                                class="product-gallery__thumb is-active"
+                                data-image-index="0"
+                                aria-label="Product image 1"
+                            >
+
+                                <img
+                                    src="assets/images/placeholders/product-placeholder.jpg"
+                                    alt=""
+                                >
+
+                            </button>
+
+                        </div>
+
+
+                        <!-- TECHNICAL LABEL -->
+
+                        <div class="product-gallery__technical">
+
+                            <span>
+                                PROJECTKART / COMPONENT_01
+                            </span>
+
+                            <span>
+                                MAKER-GRADE
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         PRODUCT INFORMATION
+                    ================================================== -->
+
+                    <div
+                        class="product-info reveal reveal-delay-1"
+                        data-reveal
+                    >
+
+                        <div class="product-info__top">
+
+                            <span
+                                class="product-info__category"
+                                id="productCategory"
+                            >
+                                COMPONENT
+                            </span>
+
+                            <span
+                                class="product-info__stock"
+                                id="productStock"
+                            >
+
+                                <span class="product-info__stock-dot"></span>
+
+                                <span>
+                                    In stock
+                                </span>
+
+                            </span>
+
+                        </div>
+
+
+                        <h1
+                            class="product-info__title"
+                            id="productName"
+                        >
+                            Loading product...
+                        </h1>
+
+
+                        <p
+                            class="product-info__description"
+                            id="productDescription"
+                        >
+                            Product information is loading.
+                        </p>
+
+
+                        <!-- PRICE -->
+
+                        <div class="product-info__pricing">
+
+                            <span
+                                class="product-info__price"
+                                id="productPrice"
+                            >
+                                ₹0
+                            </span>
+
+                            <span
+                                class="product-info__old-price"
+                                id="productOldPrice"
+                                hidden
+                            >
+                                ₹0
+                            </span>
+
+                            <span
+                                class="product-info__save"
+                                id="productSave"
+                                hidden
+                            >
+                                SAVE
+                            </span>
+
+                        </div>
+
+
+                        <!-- STOCK MESSAGE -->
+
+                        <div
+                            class="product-stock-message"
+                            id="productStockMessage"
+                        >
+
+                            <svg
+                                viewBox="0 0 24 24"
+                                aria-hidden="true"
+                            >
+                                <path
+                                    d="M12 3v18M3 12h18"
+                                ></path>
+                            </svg>
+
+                            <span>
+                                Available for ordering
+                            </span>
+
+                        </div>
+
+
+                        <!-- PURCHASE -->
+
+                        <div class="product-purchase">
+
+                            <div class="quantity-control">
+
+                                <button
+                                    type="button"
+                                    class="quantity-control__button"
+                                    id="quantityMinus"
+                                    aria-label="Decrease quantity"
+                                >
+                                    −
+                                </button>
+
+                                <input
+                                    type="number"
+                                    id="productQuantity"
+                                    class="quantity-control__input"
+                                    value="1"
+                                    min="1"
+                                    max="99"
+                                    aria-label="Quantity"
+                                >
+
+                                <button
+                                    type="button"
+                                    class="quantity-control__button"
+                                    id="quantityPlus"
+                                    aria-label="Increase quantity"
+                                >
+                                    +
+                                </button>
+
+                            </div>
+
+
+                            <button
+                                type="button"
+                                class="button button--primary product-add-button"
+                                id="addToCartButton"
+                            >
+
+                                <span>
+                                    Add to cart
+                                </span>
+
+                                <span class="button__arrow">
+                                    →
+                                </span>
+
+                            </button>
+
+                        </div>
+
+
+                        <!-- BUY NOW -->
+
+                        <button
+                            type="button"
+                            class="product-buy-now"
+                            id="buyNowButton"
+                        >
+                            Buy now
+                            <span>↗</span>
+                        </button>
+
+
+                        <!-- PRODUCT NOTES -->
+
+                        <div class="product-info__notes">
+
+                            <div class="product-note">
+
+                                <span class="product-note__icon">
+                                    ✓
+                                </span>
+
+                                <div>
+
+                                    <strong>
+                                        Quality checked
+                                    </strong>
+
+                                    <p>
+                                        Carefully selected for
+                                        maker projects.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="product-note">
+
+                                <span class="product-note__icon">
+                                    ⌁
+                                </span>
+
+                                <div>
+
+                                    <strong>
+                                        Project ready
+                                    </strong>
+
+                                    <p>
+                                        Suitable for prototypes,
+                                        learning and builds.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="product-note">
+
+                                <span class="product-note__icon">
+                                    ↗
+                                </span>
+
+                                <div>
+
+                                    <strong>
+                                        Need help?
+                                    </strong>
+
+                                    <p>
+                                        <a href="contact.html">
+                                            Ask about this component.
+                                        </a>
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             PRODUCT INFORMATION TABS
+        ====================================================== -->
+
+        <section class="product-information section">
+
+            <div class="container">
+
+                <div class="product-information__wrapper">
+
+                    <div
+                        class="product-tabs"
+                        role="tablist"
+                        aria-label="Product information"
+                    >
+
+                        <button
+                            type="button"
+                            class="product-tab is-active"
+                            id="descriptionTab"
+                            data-tab="description"
+                            role="tab"
+                            aria-selected="true"
+                            aria-controls="descriptionPanel"
+                        >
+                            Description
+                        </button>
+
+                        <button
+                            type="button"
+                            class="product-tab"
+                            id="specificationsTab"
+                            data-tab="specifications"
+                            role="tab"
+                            aria-selected="false"
+                            aria-controls="specificationsPanel"
+                        >
+                            Specifications
+                        </button>
+
+                        <button
+                            type="button"
+                            class="product-tab"
+                            id="shippingTab"
+                            data-tab="shipping"
+                            role="tab"
+                            aria-selected="false"
+                            aria-controls="shippingPanel"
+                        >
+                            Shipping
+                        </button>
+
+                    </div>
+
+
+                    <!-- DESCRIPTION -->
+
+                    <div
+                        class="product-tab-panel is-active"
+                        id="descriptionPanel"
+                        data-panel="description"
+                        role="tabpanel"
+                        aria-labelledby="descriptionTab"
+                    >
+
+                        <div class="product-tab-panel__content">
+
+                            <span class="eyebrow">
+                                ABOUT THIS COMPONENT
+                            </span>
+
+                            <h2>
+                                Built for the next idea.
+                            </h2>
+
+                            <p id="productLongDescription">
+                                A dependable component for prototyping,
+                                experimentation and real-world maker
+                                projects.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- SPECIFICATIONS -->
+
+                    <div
+                        class="product-tab-panel"
+                        id="specificationsPanel"
+                        data-panel="specifications"
+                        role="tabpanel"
+                        aria-labelledby="specificationsTab"
+                        hidden
+                    >
+
+                        <div class="product-specifications">
+
+                            <div class="spec-row">
+
+                                <span>
+                                    Category
+                                </span>
+
+                                <strong id="specCategory">
+                                    —
+                                </strong>
+
+                            </div>
+
+                            <div class="spec-row">
+
+                                <span>
+                                    Availability
+                                </span>
+
+                                <strong id="specAvailability">
+                                    —
+                                </strong>
+
+                            </div>
+
+                            <div class="spec-row">
+
+                                <span>
+                                    Product ID
+                                </span>
+
+                                <strong id="specProductId">
+                                    —
+                                </strong>
+
+                            </div>
+
+                            <div class="spec-row">
+
+                                <span>
+                                    Stock
+                                </span>
+
+                                <strong id="specStock">
+                                    —
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- SHIPPING -->
+
+                    <div
+                        class="product-tab-panel"
+                        id="shippingPanel"
+                        data-panel="shipping"
+                        role="tabpanel"
+                        aria-labelledby="shippingTab"
+                        hidden
+                    >
+
+                        <div class="product-tab-panel__content">
+
+                            <span class="eyebrow">
+                                DELIVERY
+                            </span>
+
+                            <h2>
+                                Simple ordering.
+                            </h2>
+
+                            <p>
+                                Orders are prepared after confirmation.
+                                For offline or direct ordering assistance,
+                                contact the ProjectKart team.
+                            </p>
+
+                            <a
+                                href="contact.html"
+                                class="text-link"
+                            >
+                                Contact ProjectKart
+                                <span>→</span>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             RELATED PRODUCTS
+        ====================================================== -->
+
+        <section class="related-products section">
+
+            <div class="container">
+
+                <div
+                    class="section-heading section-heading--split reveal"
+                    data-reveal
+                >
+
+                    <div>
+
+                        <span class="eyebrow">
+                            KEEP BUILDING
+                        </span>
+
+                        <h2>
+                            You may also need.
+                        </h2>
+
+                        <p>
+                            More components that work naturally
+                            with your next build.
+                        </p>
+
+                    </div>
+
+                    <a
+                        href="shop.html"
+                        class="section-heading__link"
+                    >
+                        Shop all components
+                        <span>→</span>
+                    </a>
+
+                </div>
+
+
+                <div
+                    class="product-grid product-grid--related"
+                    id="relatedProducts"
+                >
+
+                    <!-- JS INSERTS RELATED PRODUCTS -->
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             MAKER CTA
+        ====================================================== -->
+
+        <section class="product-cta section">
+
+            <div class="container">
+
+                <div
+                    class="product-cta__card reveal"
+                    data-reveal
+                >
+
+                    <div>
+
+                        <span class="eyebrow">
+                            FOR THE FULL BUILD
+                        </span>
+
+                        <h2>
+                            Need more than one component?
+                        </h2>
+
+                        <p>
+                            Explore curated project kits or tell us
+                            what you're building and we'll help you
+                            find the right parts.
+                        </p>
+
+                    </div>
+
+
+                    <div class="product-cta__actions">
+
+                        <a
+                            href="project-kits.html"
+                            class="button button--primary"
+                        >
+                            Explore project kits
+                            <span class="button__arrow">
+                                →
+                            </span>
+                        </a>
+
+                        <a
+                            href="contact.html"
+                            class="button button--secondary"
+                        >
+                            Ask for help
+                            <span class="button__arrow">
+                                ↗
+                            </span>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================================================
+         IMAGE ZOOM MODAL
+    ========================================================== -->
+
+    <div
+        class="product-image-modal"
+        id="productImageModal"
+        aria-hidden="true"
+    >
+
+        <div
+            class="product-image-modal__backdrop"
+            data-product-modal-close
+        ></div>
+
+        <div class="product-image-modal__content">
+
+            <button
+                type="button"
+                class="product-image-modal__close"
+                id="productImageModalClose"
+                aria-label="Close image"
+            >
+                ×
+            </button>
+
+            <img
+                id="productZoomImage"
+                src=""
+                alt="Product enlarged"
+            >
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
+
+    <footer class="site-footer">
+
+        <div class="container">
+
+            <div class="site-footer__main">
+
+
+                <!-- BRAND -->
+
+                <div class="site-footer__brand">
+
+                    <a
+                        href="index.html"
+                        class="footer-brand"
+                    >
+
+                        <span class="footer-brand__logo">
+                            PK
+                        </span>
+
+                        <span class="footer-brand__name">
+                            <span>Project</span>
+                            <strong>Kart</strong>
+                        </span>
+
+                    </a>
+
+                    <p>
+                        Build. Create. Innovate.
+                    </p>
+
+                    <p>
+                        A considered component store for
+                        people who make things real.
+                    </p>
+
+                    <div class="footer-status">
+
+                        <span class="footer-status__dot"></span>
+
+                        <span>
+                            Online + offline maker hub
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SHOP -->
+
+                <div class="site-footer__column">
+
+                    <span class="site-footer__heading">
+                        SHOP
+                    </span>
+
+                    <a href="category.html?category=arduino">
+                        Arduino &amp; Boards
+                    </a>
+
+                    <a href="category.html?category=sensors">
+                        Sensors
+                    </a>
+
+                    <a href="category.html?category=modules">
+                        Modules
+                    </a>
+
+                    <a href="category.html?category=batteries">
+                        Batteries
+                    </a>
+
+                    <a href="project-kits.html">
+                        Project Kits
+                    </a>
+
+                </div>
+
+
+                <!-- COMPANY -->
+
+                <div class="site-footer__column">
+
+                    <span class="site-footer__heading">
+                        COMPANY
+                    </span>
+
+                    <a href="about.html">
+                        About Us
+                    </a>
+
+                    <a href="contact.html">
+                        Contact
+                    </a>
+
+                    <a href="contact.html#faq">
+                        Help &amp; FAQ
+                    </a>
+
+                    <a href="contact.html#shipping">
+                        Shipping
+                    </a>
+
+                    <a href="contact.html#returns">
+                        Returns
+                    </a>
+
+                </div>
+
+
+                <!-- HELP -->
+
+                <div class="site-footer__help">
+
+                    <span class="site-footer__heading">
+                        NEED A HAND?
+                    </span>
+
+                    <h3>
+                        Tell us what you're
+                        <span>building.</span>
+                    </h3>
+
+                    <p>
+                        We'll help you find the right
+                        starting point.
+                    </p>
+
+                    <a
+                        href="contact.html"
+                        class="footer-help-link"
+                    >
+                        Get project help
+                        <span>↗</span>
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- FOOTER BOTTOM -->
+
+            <div class="site-footer__bottom">
+
+                <p>
+                    © 2024 ProjectKart. Demo storefront —
+                    replace business details before launch.
+                </p>
+
+                <div class="site-footer__legal">
+
+                    <a href="#">
+                        Privacy
+                    </a>
+
+                    <a href="#">
+                        Terms
+                    </a>
+
+                    <a href="contact.html">
+                        <span>⌖</span>
+                        Visit us offline
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================================================
+         BACK TO TOP
+    ========================================================== -->
+
+    <button
+        type="button"
+        class="back-to-top"
+        id="backToTop"
+        aria-label="Back to top"
+    >
+
+        <svg
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+        >
+            <path d="M7 14l5-5 5 5"></path>
+        </svg>
+
+    </button>
+
+
+    <!-- =========================================================
+         TOAST
+    ========================================================== -->
+
+    <div
+        class="toast"
+        id="toast"
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+    >
+
+        <span class="toast__icon">
+            ✓
+        </span>
+
+        <span
+            class="toast__message"
+            id="toastMessage"
+        >
+            Added to cart
+        </span>
+
+    </div>
+
+
+    <!-- =========================================================
+         FIREBASE / APPLICATION JS
+    ========================================================== -->
+
+    <script type="module" src="js/firebase.js"></script>
+
+    <script type="module" src="js/auth.js"></script>
+
+    <script type="module" src="js/user.js"></script>
+
+    <script type="module" src="js/products.js"></script>
+
+    <script type="module" src="js/categories.js"></script>
+
+    <script type="module" src="js/cart.js"></script>
+
+    <script type="module" src="js/search.js"></script>
+
+    <script type="module" src="js/navbar.js"></script>
+
+    <script type="module" src="js/product-page.js"></script>
+
+    <script type="module" src="js/utils.js"></script>
 
 </body>
 </html>

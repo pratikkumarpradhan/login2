@@ -3,414 +3,163 @@
    Homepage
    ========================================================= */
 
-   import {
-    getProducts,
-    getFeaturedProducts
-} from "./products.js";
-
-import {
-    getCategories
-} from "./categories.js";
-
-import {
-    getFeaturedKits
-} from "./kits.js";
-
-import {
-    escapeHTML,
-    formatPrice
-} from "./utils.js";
+import { addToCart, initCart, updateCartCount } from "./cart.js";
+import { showToast } from "./utils.js";
 
 
-/*
-|--------------------------------------------------------------------------
-| Initialize Homepage
-|--------------------------------------------------------------------------
-*/
+document.addEventListener("DOMContentLoaded", () => {
+    initHome();
+});
 
-export async function initHome() {
 
-    await Promise.allSettled([
-
-        loadCategories(),
-
-        loadFeaturedProducts(),
-
-        loadPopularProducts(),
-
-        loadFeaturedKits()
-
-    ]);
+export function initHome() {
+    initCart();
+    hidePageLoader();
+    setupHeaderState();
+    setupHeroScrollCue();
+    setupScrollTop();
+    setupNavbarSearch();
+    setupWishlistButtons();
+    setupAddToCartButtons();
+    setupQuickArrows();
+    updateCartCount();
 }
 
 
-/*
-|--------------------------------------------------------------------------
-| Category Cards
-|--------------------------------------------------------------------------
-*/
+function hidePageLoader() {
+    const loader = document.getElementById("pageLoader");
 
-async function loadCategories() {
+    window.setTimeout(() => {
+        if (!loader) {
+            return;
+        }
 
-    const container =
-        document.querySelector(
-            "[data-home-categories]"
-        );
-
-
-    if (!container) {
-        return;
-    }
-
-
-    try {
-
-        const categories =
-            await getCategories();
-
-
-        container.innerHTML =
-            categories
-                .slice(
-                    0,
-                    8
-                )
-                .map(
-                    category => `
-
-                        <a
-                            class="category-card"
-                            href="category.html?id=${encodeURIComponent(category.id)}"
-                        >
-
-                            <div class="category-card-image">
-
-                                <img
-                                    src="${escapeHTML(category.image || "assets/images/placeholders/category.png")}"
-                                    alt="${escapeHTML(category.name)}"
-                                    loading="lazy"
-                                >
-
-                            </div>
-
-
-                            <div class="category-card-content">
-
-                                <h3>
-                                    ${escapeHTML(category.name)}
-                                </h3>
-
-                                <span>
-                                    Explore
-                                    <span aria-hidden="true">→</span>
-                                </span>
-
-                            </div>
-
-                        </a>
-
-                    `
-                )
-                .join("");
-
-
-    } catch (error) {
-
-        console.error(
-            "Unable to load categories:",
-            error
-        );
-    }
+        loader.classList.add("is-hidden");
+        loader.setAttribute("aria-hidden", "true");
+    }, 450);
 }
 
 
-/*
-|--------------------------------------------------------------------------
-| Featured Products
-|--------------------------------------------------------------------------
-*/
+function setupHeaderState() {
+    const header = document.getElementById("siteHeader");
 
-async function loadFeaturedProducts() {
-
-    const container =
-        document.querySelector(
-            "[data-featured-products]"
-        );
-
-
-    if (!container) {
+    if (!header) {
         return;
     }
 
+    const onScroll = () => {
+        header.classList.toggle("is-scrolled", window.scrollY > 12);
+    };
 
-    try {
-
-        const products =
-            await getFeaturedProducts(
-                8
-            );
-
-
-        renderProducts(
-            container,
-            products
-        );
-
-
-    } catch (error) {
-
-        console.error(
-            "Unable to load featured products:",
-            error
-        );
-    }
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
 }
 
 
-/*
-|--------------------------------------------------------------------------
-| Popular Products
-|--------------------------------------------------------------------------
-*/
+function setupHeroScrollCue() {
+    const cue = document.getElementById("heroScrollCue");
+    const next = document.getElementById("exploreComponents");
 
-async function loadPopularProducts() {
-
-    const container =
-        document.querySelector(
-            "[data-popular-products]"
-        );
-
-
-    if (!container) {
+    if (!cue) {
         return;
     }
 
-
-    try {
-
-        const products =
-            await getProducts();
-
-
-        renderProducts(
-
-            container,
-
-            products.slice(
-                0,
-                8
-            )
-        );
-
-
-    } catch (error) {
-
-        console.error(
-            "Unable to load popular products:",
-            error
-        );
-    }
+    cue.addEventListener("click", () => {
+        (next || document.getElementById("mainContent"))?.scrollIntoView({
+            behavior: "smooth"
+        });
+    });
 }
 
 
-/*
-|--------------------------------------------------------------------------
-| Project Kits
-|--------------------------------------------------------------------------
-*/
+function setupScrollTop() {
+    const button = document.getElementById("scrollTopButton");
 
-async function loadFeaturedKits() {
-
-    const container =
-        document.querySelector(
-            "[data-featured-kits]"
-        );
-
-
-    if (!container) {
+    if (!button) {
         return;
     }
 
+    const onScroll = () => {
+        button.classList.toggle("is-visible", window.scrollY > 480);
+    };
 
-    try {
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
 
-        const kits =
-            await getFeaturedKits(
-                6
-            );
-
-
-        container.innerHTML =
-            kits.map(
-                kit => `
-
-                    <a
-                        class="kit-card"
-                        href="project-kits.html"
-                    >
-
-                        <div class="kit-card-image">
-
-                            <img
-                                src="${escapeHTML(kit.image || "assets/images/placeholders/kit.png")}"
-                                alt="${escapeHTML(kit.name)}"
-                                loading="lazy"
-                            >
-
-                        </div>
-
-
-                        <div class="kit-card-content">
-
-                            <span class="kit-card-difficulty">
-                                ${escapeHTML(kit.difficulty || "Beginner")}
-                            </span>
-
-                            <h3>
-                                ${escapeHTML(kit.name)}
-                            </h3>
-
-                            <p>
-                                ${escapeHTML(kit.description || "")}
-                            </p>
-
-                            <strong>
-                                ${formatPrice(kit.price)}
-                            </strong>
-
-                        </div>
-
-                    </a>
-
-                `
-            ).join("");
-
-
-    } catch (error) {
-
-        console.error(
-            "Unable to load kits:",
-            error
-        );
-    }
+    button.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
 }
 
 
-/*
-|--------------------------------------------------------------------------
-| Product Renderer
-|--------------------------------------------------------------------------
-*/
+function setupNavbarSearch() {
+    const form = document.getElementById("navbarSearch");
+    const input = document.getElementById("globalSearchInput");
 
-function renderProducts(
-    container,
-    products
-) {
-
-    if (!products.length) {
-
-        container.innerHTML = `
-            <div class="empty-state">
-                No products available right now.
-            </div>
-        `;
-
+    if (!form || !input) {
         return;
     }
 
+    form.addEventListener("submit", event => {
+        event.preventDefault();
+        const query = input.value.trim();
 
-    container.innerHTML =
-        products.map(
-            product => `
+        if (!query) {
+            window.location.href = "shop.html";
+            return;
+        }
 
-                <article
-                    class="product-card"
-                    data-product-id="${escapeHTML(product.id)}"
-                >
-
-                    <a
-                        class="product-card-image"
-                        href="product.html?id=${encodeURIComponent(product.id)}"
-                    >
-
-                        ${
-                            product.badge
-                            ?
-                            `
-                            <span class="product-badge">
-                                ${escapeHTML(product.badge)}
-                            </span>
-                            `
-                            :
-                            ""
-                        }
+        window.location.href = `shop.html?search=${encodeURIComponent(query)}`;
+    });
+}
 
 
-                        <img
-                            src="${escapeHTML(product.image || "assets/images/placeholders/product.png")}"
-                            alt="${escapeHTML(product.name)}"
-                            loading="lazy"
-                        >
-
-                    </a>
-
-
-                    <div class="product-card-content">
-
-                        <span class="product-category">
-                            ${escapeHTML(product.categoryName || "Components")}
-                        </span>
+function setupWishlistButtons() {
+    document.querySelectorAll("[data-wishlist]").forEach(button => {
+        button.addEventListener("click", event => {
+            event.preventDefault();
+            event.stopPropagation();
+            button.classList.toggle("is-active");
+        });
+    });
+}
 
 
-                        <h3 class="product-name">
+function setupAddToCartButtons() {
+    document.querySelectorAll("[data-add-cart]").forEach(button => {
+        button.addEventListener("click", event => {
+            event.preventDefault();
+            event.stopPropagation();
 
-                            <a
-                                href="product.html?id=${encodeURIComponent(product.id)}"
-                            >
-                                ${escapeHTML(product.name)}
-                            </a>
+            const card = button.closest(".product-card");
+            const id = button.getAttribute("data-add-cart");
+            const name = card?.querySelector(".product-card__title")?.textContent?.trim() || "Component";
+            const priceText = card?.querySelector(".product-price strong")?.textContent || "0";
+            const price = Number(priceText.replace(/[^\d]/g, "")) || 0;
+            const image = card?.querySelector("img")?.getAttribute("src") || "";
 
-                        </h3>
-
-
-                        <div class="product-card-bottom">
-
-                            <div class="product-price">
-
-                                <strong>
-                                    ${formatPrice(product.price)}
-                                </strong>
-
-                                ${
-                                    Number(product.oldPrice) > Number(product.price)
-                                    ?
-                                    `
-                                    <del>
-                                        ${formatPrice(product.oldPrice)}
-                                    </del>
-                                    `
-                                    :
-                                    ""
-                                }
-
-                            </div>
+            addToCart({ id, name, price, image });
+            showToast(`${name} added to cart`);
+        });
+    });
+}
 
 
-                            <a
-                                class="product-card-arrow"
-                                href="product.html?id=${encodeURIComponent(product.id)}"
-                                aria-label="View ${escapeHTML(product.name)}"
-                            >
-                                →
-                            </a>
+function setupQuickArrows() {
+    document.querySelectorAll(".product-card").forEach(card => {
+        if (card.querySelector(".product-card__quick-arrow")) {
+            return;
+        }
 
-                        </div>
+        const media = card.querySelector(".product-card__media");
 
-                    </div>
+        if (!media) {
+            return;
+        }
 
-                </article>
-
-            `
-        )
-        .join("");
+        const arrow = document.createElement("span");
+        arrow.className = "product-card__quick-arrow";
+        arrow.textContent = "↗";
+        media.appendChild(arrow);
+    });
 }

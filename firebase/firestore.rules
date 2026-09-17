@@ -1,0 +1,162 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    /* ============================================================
+       HELPER FUNCTIONS
+    ============================================================ */
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isSignedIn()
+        && exists(
+          /databases/$(database)/documents/admins/$(request.auth.uid)
+        );
+    }
+
+    function isOwner(userId) {
+      return isSignedIn()
+        && request.auth.uid == userId;
+    }
+
+    /* ============================================================
+       ADMINS
+       Only existing admins can read/write admin records.
+    ============================================================ */
+
+    match /admins/{adminId} {
+      allow read: if isAdmin();
+      allow create, update, delete: if isAdmin();
+    }
+
+    /* ============================================================
+       USERS
+       Users can access their own profile.
+       Admins can manage all users.
+    ============================================================ */
+
+    match /users/{userId} {
+      allow read: if isAdmin() || isOwner(userId);
+
+      allow create: if isOwner(userId);
+
+      allow update: if isAdmin()
+        || (
+          isOwner(userId)
+          && request.resource.data.diff(resource.data).affectedKeys()
+            .hasOnly([
+              'name',
+              'phone',
+              'photoURL',
+              'address',
+              'updatedAt'
+            ])
+        );
+
+      allow delete: if isAdmin();
+    }
+
+    /* ============================================================
+       PRODUCTS
+       Public users can only read active products.
+       Admins have complete CRUD access.
+    ============================================================ */
+
+    match /products/{productId} {
+      allow read: if isAdmin()
+        || (
+          resource.data.active == true
+        );
+
+      allow create, update, delete: if isAdmin();
+    }
+
+    /* ============================================================
+       CATEGORIES
+       Public users can only read active categories.
+    ============================================================ */
+
+    match /categories/{categoryId} {
+      allow read: if isAdmin()
+        || (
+          resource.data.active == true
+        );
+
+      allow create, update, delete: if isAdmin();
+    }
+
+    /* ============================================================
+       PROJECT KITS
+       Public users can only read active kits.
+    ============================================================ */
+
+    match /kits/{kitId} {
+      allow read: if isAdmin()
+        || (
+          resource.data.active == true
+        );
+
+      allow create, update, delete: if isAdmin();
+    }
+
+    /* ============================================================
+       ORDERS
+       Users can create/read their own orders.
+       Admins can manage all orders.
+    ============================================================ */
+
+    match /orders/{orderId} {
+
+      allow create: if isSignedIn()
+        && request.resource.data.userId == request.auth.uid;
+
+      allow read: if isAdmin()
+        || (
+          isSignedIn()
+          && resource.data.userId == request.auth.uid
+        );
+
+      /*
+       * Customers cannot change sensitive order fields.
+       * Admins can update anything.
+       */
+      allow update: if isAdmin()
+        || (
+          isSignedIn()
+          && resource.data.userId == request.auth.uid
+          && request.resource.data.diff(resource.data).affectedKeys()
+            .hasOnly([
+              'shippingAddress',
+              'phone',
+              'updatedAt'
+            ])
+        );
+
+      allow delete: if isAdmin();
+    }
+
+    /* ============================================================
+       SITE SETTINGS / HOMEPAGE
+       Public users can read homepage content.
+       Only admins can modify it.
+    ============================================================ */
+
+    match /site/{documentId} {
+      allow read: if isSignedIn() || !isSignedIn();
+      allow create, update, delete: if isAdmin();
+    }
+
+    /* ============================================================
+       DEFAULT DENY
+       Anything not explicitly listed above is inaccessible.
+    ============================================================ */
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

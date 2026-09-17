@@ -214,7 +214,7 @@ export function showToast(
 
     let container =
         document.querySelector(
-            "#toast-container"
+            "#toast-container, #toastContainer"
         );
 
 

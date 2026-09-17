@@ -1,191 +1,263 @@
-/* =========================================================
-   PROJECTKART
-   Global Design Variables
-   ========================================================= */
+/* ================================================================
+   PROJECTKART — GLOBAL DESIGN TOKENS
+   Reference UI: premium dark electronics storefront
+================================================================ */
 
-   :root {
+/* ================================================================
+   ROOT
+================================================================ */
 
-    /* -----------------------------------------------------
-       COLORS
-       ----------------------------------------------------- */
+:root {
+
+    /* ------------------------------------------------------------
+       COLORS — BACKGROUND
+    ------------------------------------------------------------ */
 
     --color-bg:
         #07090d;
 
-    --color-bg-soft:
-        #0b0e14;
+    --color-bg-primary:
+        #07090d;
 
-    --color-bg-section:
-        #090c11;
+    --color-bg-secondary:
+        #0a0d12;
+
+    --color-bg-tertiary:
+        #0e1218;
 
     --color-surface:
-        #111520;
+        #0d1117;
 
-    --color-surface-light:
-        #161b27;
+    --color-surface-2:
+        #11161d;
+
+    --color-surface-3:
+        #151b23;
 
     --color-surface-hover:
-        #1b2130;
+        #171e27;
 
-    --color-white:
-        #ffffff;
+
+    /* ------------------------------------------------------------
+       COLORS — TEXT
+    ------------------------------------------------------------ */
 
     --color-text:
         #f5f7fb;
 
-    --color-text-soft:
-        #c2cad8;
+    --color-text-primary:
+        #f5f7fb;
+
+    --color-text-secondary:
+        #a5b0c2;
 
     --color-text-muted:
-        #71819a;
+        #718096;
 
-    --color-text-dim:
-        #536177;
+    --color-text-subtle:
+        #526074;
+
+    --color-text-disabled:
+        #3e4959;
 
 
-    /* -----------------------------------------------------
-       BRAND BLUE
-       ----------------------------------------------------- */
+    /* ------------------------------------------------------------
+       COLORS — BRAND BLUE
+    ------------------------------------------------------------ */
 
     --color-primary:
         #2878ff;
 
-    --color-primary-light:
-        #4595ff;
+    --color-primary-hover:
+        #3b86ff;
 
-    --color-primary-dark:
-        #155ddd;
+    --color-primary-active:
+        #1768ed;
 
     --color-primary-soft:
         rgba(40, 120, 255, 0.12);
 
+    --color-primary-softer:
+        rgba(40, 120, 255, 0.07);
+
     --color-primary-border:
-        rgba(69, 149, 255, 0.28);
+        rgba(40, 120, 255, 0.35);
 
     --color-primary-glow:
         rgba(40, 120, 255, 0.24);
 
 
-    /* -----------------------------------------------------
-       STATUS COLORS
-       ----------------------------------------------------- */
+    /* ------------------------------------------------------------
+       COLORS — ACCENTS
+    ------------------------------------------------------------ */
 
     --color-success:
-        #00d68f;
+        #18d39a;
 
     --color-success-soft:
-        rgba(0, 214, 143, 0.12);
-
-    --color-danger:
-        #ff5d68;
-
-    --color-danger-soft:
-        rgba(255, 93, 104, 0.12);
+        rgba(24, 211, 154, 0.12);
 
     --color-warning:
-        #ffc400;
+        #f5b83d;
 
     --color-warning-soft:
-        rgba(255, 196, 0, 0.12);
+        rgba(245, 184, 61, 0.12);
+
+    --color-danger:
+        #ff5c69;
+
+    --color-danger-soft:
+        rgba(255, 92, 105, 0.12);
 
 
-    /* -----------------------------------------------------
+    /* ------------------------------------------------------------
        BORDERS
-       ----------------------------------------------------- */
+    ------------------------------------------------------------ */
 
-    --border:
-        rgba(255, 255, 255, 0.075);
+    --border-color:
+        rgba(255, 255, 255, 0.085);
 
-    --border-light:
-        rgba(255, 255, 255, 0.11);
+    --border-color-light:
+        rgba(255, 255, 255, 0.12);
 
-    --border-strong:
+    --border-color-strong:
         rgba(255, 255, 255, 0.16);
 
-    --border-blue:
-        rgba(69, 149, 255, 0.35);
+    --border-primary:
+        rgba(40, 120, 255, 0.38);
 
 
-    /* -----------------------------------------------------
-       RADIUS
-       ----------------------------------------------------- */
+    /* ------------------------------------------------------------
+       NAVBAR
+    ------------------------------------------------------------ */
 
-    --radius-xs:
-        7px;
+    --navbar-height:
+        84px;
 
-    --radius-sm:
-        10px;
+    --navbar-bg:
+        rgba(7, 9, 13, 0.94);
 
-    --radius-md:
-        14px;
+    --navbar-border:
+        rgba(255, 255, 255, 0.075);
 
-    --radius-lg:
+    --navbar-blur:
         18px;
 
+
+    /* ------------------------------------------------------------
+       CONTAINER
+    ------------------------------------------------------------ */
+
+    --container-width:
+        1440px;
+
+    --container-padding:
+        38px;
+
+    --container-padding-mobile:
+        20px;
+
+
+    /* ------------------------------------------------------------
+       SPACING
+    ------------------------------------------------------------ */
+
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 20px;
+    --space-6: 24px;
+    --space-7: 28px;
+    --space-8: 32px;
+    --space-9: 40px;
+    --space-10: 48px;
+    --space-11: 56px;
+    --space-12: 64px;
+    --space-13: 72px;
+    --space-14: 80px;
+    --space-15: 96px;
+    --space-16: 120px;
+
+
+    /* ------------------------------------------------------------
+       BORDER RADIUS
+    ------------------------------------------------------------ */
+
+    --radius-xs:
+        6px;
+
+    --radius-sm:
+        8px;
+
+    --radius-md:
+        12px;
+
+    --radius-lg:
+        16px;
+
     --radius-xl:
-        24px;
+        20px;
 
     --radius-2xl:
+        24px;
+
+    --radius-3xl:
         30px;
 
-    --radius-round:
+    --radius-pill:
         999px;
 
 
-    /* -----------------------------------------------------
+    /* ------------------------------------------------------------
        SHADOWS
-       ----------------------------------------------------- */
+    ------------------------------------------------------------ */
+
+    --shadow-xs:
+        0 2px 8px rgba(0, 0, 0, 0.18);
 
     --shadow-sm:
-        0 8px 24px rgba(0, 0, 0, 0.18);
+        0 6px 20px rgba(0, 0, 0, 0.24);
 
     --shadow-md:
-        0 18px 55px rgba(0, 0, 0, 0.28);
+        0 12px 36px rgba(0, 0, 0, 0.32);
 
     --shadow-lg:
-        0 30px 90px rgba(0, 0, 0, 0.38);
+        0 20px 60px rgba(0, 0, 0, 0.42);
 
-    --shadow-blue:
-        0 18px 60px rgba(40, 120, 255, 0.14);
-
-
-    /* -----------------------------------------------------
-       LAYOUT
-       ----------------------------------------------------- */
-
-    --container-width:
-        1680px;
-
-    --container-padding:
-        40px;
-
-    --navbar-height:
-        80px;
+    --shadow-xl:
+        0 30px 90px rgba(0, 0, 0, 0.52);
 
 
-    /* -----------------------------------------------------
-       TRANSITIONS
-       ----------------------------------------------------- */
+    /* ------------------------------------------------------------
+       BLUE GLOW
+    ------------------------------------------------------------ */
 
-    --transition-fast:
-        150ms ease;
+    --shadow-primary:
+        0 10px 35px rgba(40, 120, 255, 0.20);
 
-    --transition:
-        250ms ease;
-
-    --transition-slow:
-        450ms cubic-bezier(0.2, 0.8, 0.2, 1);
-
-    --transition-image:
-        700ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    --shadow-primary-hover:
+        0 14px 42px rgba(40, 120, 255, 0.30);
 
 
-    /* -----------------------------------------------------
+    /* ------------------------------------------------------------
        TYPOGRAPHY
-       ----------------------------------------------------- */
+    ------------------------------------------------------------ */
 
-    --font-primary:
+    --font-sans:
         Inter,
+        ui-sans-serif,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+
+    --font-display:
+        Inter,
+        ui-sans-serif,
         -apple-system,
         BlinkMacSystemFont,
         "Segoe UI",
@@ -201,29 +273,60 @@
         monospace;
 
 
-    /* -----------------------------------------------------
+    /* ------------------------------------------------------------
        FONT WEIGHTS
-       ----------------------------------------------------- */
+    ------------------------------------------------------------ */
 
-    --weight-regular:
+    --font-weight-regular:
         400;
 
-    --weight-medium:
+    --font-weight-medium:
         500;
 
-    --weight-semibold:
+    --font-weight-semibold:
         600;
 
-    --weight-bold:
+    --font-weight-bold:
         700;
 
-    --weight-extrabold:
+    --font-weight-extrabold:
         800;
 
 
-    /* -----------------------------------------------------
-       Z INDEX
-       ----------------------------------------------------- */
+    /* ------------------------------------------------------------
+       TRANSITIONS
+    ------------------------------------------------------------ */
+
+    --transition-fast:
+        150ms ease;
+
+    --transition-base:
+        220ms ease;
+
+    --transition-medium:
+        320ms cubic-bezier(0.2, 0.8, 0.2, 1);
+
+    --transition-smooth:
+        450ms cubic-bezier(0.2, 0.8, 0.2, 1);
+
+    --transition-slow:
+        650ms cubic-bezier(0.16, 1, 0.3, 1);
+
+
+    /* ------------------------------------------------------------
+       EASING
+    ------------------------------------------------------------ */
+
+    --ease-out:
+        cubic-bezier(0.16, 1, 0.3, 1);
+
+    --ease-smooth:
+        cubic-bezier(0.2, 0.8, 0.2, 1);
+
+
+    /* ------------------------------------------------------------
+       Z-INDEX
+    ------------------------------------------------------------ */
 
     --z-base:
         1;
@@ -231,11 +334,17 @@
     --z-card:
         10;
 
-    --z-navbar:
-        1000;
+    --z-header:
+        100;
 
     --z-dropdown:
-        1100;
+        500;
+
+    --z-mobile-menu:
+        900;
+
+    --z-overlay:
+        1000;
 
     --z-modal:
         2000;
@@ -244,25 +353,167 @@
         3000;
 
 
-    /* -----------------------------------------------------
-       PRODUCT CARD
-       ----------------------------------------------------- */
+    /* ------------------------------------------------------------
+       CONTENT WIDTHS
+    ------------------------------------------------------------ */
+
+    --content-narrow:
+        760px;
+
+    --content-medium:
+        980px;
+
+    --content-wide:
+        1200px;
+
+
+    /* ------------------------------------------------------------
+       HERO
+    ------------------------------------------------------------ */
+
+    --hero-min-height:
+        calc(100vh - var(--navbar-height));
+
+    --hero-title-size:
+        clamp(4rem, 7vw, 7rem);
+
+    --hero-title-line-height:
+        0.92;
+
+    --hero-title-spacing:
+        -0.065em;
+
+
+    /* ------------------------------------------------------------
+       PRODUCT IMAGE
+    ------------------------------------------------------------ */
 
     --product-image-ratio:
         1 / 1;
 
-    --product-card-radius:
-        16px;
+    --product-image-scale:
+        1.075;
 
 
-    /* -----------------------------------------------------
-       ADMIN
-       ----------------------------------------------------- */
+    /* ------------------------------------------------------------
+       MOBILE BREAKPOINTS
+    ------------------------------------------------------------ */
 
-    --admin-sidebar-width:
-        250px;
+    --breakpoint-xs:
+        480px;
 
-    --admin-header-height:
-        72px;
+    --breakpoint-sm:
+        640px;
 
+    --breakpoint-md:
+        768px;
+
+    --breakpoint-lg:
+        1024px;
+
+    --breakpoint-xl:
+        1280px;
+
+    --breakpoint-2xl:
+        1440px;
+
+
+    /* ------------------------------------------------------------
+       ALIASES — keep HTML, shop pages and older CSS in sync
+    ------------------------------------------------------------ */
+
+    --color-brand-primary: var(--color-primary);
+    --color-brand-hover: var(--color-primary-hover);
+    --color-brand-active: var(--color-primary-active);
+    --color-brand-border: var(--color-primary-border);
+    --color-border: var(--border-color);
+    --color-border-strong: var(--border-color-strong);
+    --container-max-width: var(--container-width);
+    --font-family-sans: var(--font-sans);
+    --font-family-body: var(--font-sans);
+    --font-family-display: var(--font-display);
+    --font-family-mono: var(--font-mono);
+    --font-weight-400: var(--font-weight-regular);
+    --font-weight-500: var(--font-weight-medium);
+    --font-weight-600: var(--font-weight-semibold);
+    --font-weight-700: var(--font-weight-bold);
+    --font-weight-800: var(--font-weight-extrabold);
+    --transition-normal: var(--transition-base);
+    --z-navbar: var(--z-header);
+    --shadow-card: var(--shadow-md);
+    --space-20: 160px;
+    --space-24: 192px;
+    --space-32: 256px;
+    --space-40: 320px;
+}
+
+
+/* ================================================================
+   LIGHTLY SHARED GRADIENTS
+================================================================ */
+
+:root {
+
+    --gradient-primary:
+        linear-gradient(
+            135deg,
+            #2878ff 0%,
+            #1768ed 100%
+        );
+
+    --gradient-surface:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.045),
+            rgba(255, 255, 255, 0.012)
+        );
+
+    --gradient-hero:
+        linear-gradient(
+            90deg,
+            #07090d 0%,
+            rgba(7, 9, 13, 0.98) 32%,
+            rgba(7, 9, 13, 0.72) 58%,
+            rgba(7, 9, 13, 0.18) 100%
+        );
+
+    --gradient-image-bottom:
+        linear-gradient(
+            to top,
+            rgba(7, 9, 13, 0.92),
+            rgba(7, 9, 13, 0) 60%
+        );
+
+    --gradient-blue-glow:
+        radial-gradient(
+            circle,
+            rgba(40, 120, 255, 0.16),
+            transparent 68%
+        );
+}
+
+
+/* ================================================================
+   SELECTION
+================================================================ */
+
+::selection {
+    background: rgba(40, 120, 255, 0.35);
+    color: #ffffff;
+}
+
+
+/* ================================================================
+   REDUCED MOTION
+================================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    :root {
+        --transition-fast: 0ms;
+        --transition-base: 0ms;
+        --transition-medium: 0ms;
+        --transition-smooth: 0ms;
+        --transition-slow: 0ms;
+    }
 }

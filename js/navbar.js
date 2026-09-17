@@ -35,6 +35,10 @@ export function initNavbar() {
     updateCartCount();
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+    initNavbar();
+});
+
 
 /*
 |--------------------------------------------------------------------------
@@ -46,14 +50,31 @@ function setupMobileMenu() {
 
     const button =
         document.querySelector(
-            "[data-mobile-menu-button]"
+            "[data-mobile-menu-button], #mobileMenuToggle"
         );
 
 
     const menu =
         document.querySelector(
-            "[data-mobile-menu]"
+            "[data-mobile-menu], #mobileMenu"
         );
+
+    const closeButton =
+        document.querySelector(
+            "#mobileMenuClose"
+        );
+
+    closeButton?.addEventListener("click", () => {
+        menu?.classList.remove("is-open");
+        button?.classList.remove("is-open");
+        document.body.classList.remove("no-scroll");
+        button?.setAttribute("aria-expanded", "false");
+        menu?.setAttribute("aria-hidden", "true");
+    });
+
+    menu?.querySelector(".mobile-menu__backdrop")?.addEventListener("click", () => {
+        closeButton?.click();
+    });
 
 
     if (!button || !menu) {
@@ -81,6 +102,9 @@ function setupMobileMenu() {
                 "no-scroll",
                 isOpen
             );
+
+            button.setAttribute("aria-expanded", String(isOpen));
+            menu.setAttribute("aria-hidden", String(!isOpen));
         }
     );
 

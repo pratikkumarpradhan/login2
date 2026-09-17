@@ -368,7 +368,7 @@ export function updateCartCount() {
 
    const elements =
        document.querySelectorAll(
-           "[data-cart-count]"
+           "[data-cart-count], #cartCount, #mobileCartCount"
        );
 
 
@@ -380,6 +380,11 @@ export function updateCartCount() {
 
            element.classList.toggle(
                "hidden",
+               count === 0
+           );
+
+           element.classList.toggle(
+               "is-empty",
                count === 0
            );
        }

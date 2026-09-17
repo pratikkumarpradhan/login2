@@ -1,9 +1,30 @@
-/* =========================================================
-   PROJECTKART
-   Animations
-   ========================================================= */
+/* ================================================================
+   PROJECTKART — ANIMATIONS
+   Premium, controlled motion system
+   ================================================================ */
 
-   @keyframes fadeIn {
+
+/* ================================================================
+   GLOBAL MOTION TOKENS
+   ================================================================ */
+
+   :root {
+    --pk-motion-fast: 160ms;
+    --pk-motion-base: 280ms;
+    --pk-motion-slow: 520ms;
+    --pk-motion-reveal: 700ms;
+
+    --pk-ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+    --pk-ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+    --pk-ease-enter: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+
+/* ================================================================
+   KEYFRAMES — BASIC
+   ================================================================ */
+
+@keyframes pk-fade-in {
     from {
         opacity: 0;
     }
@@ -13,142 +34,1227 @@
     }
 }
 
+@keyframes pk-fade-out {
+    from {
+        opacity: 1;
+    }
 
-@keyframes fadeUp {
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes pk-fade-up {
     from {
         opacity: 0;
-
-        transform:
-            translateY(24px);
+        transform: translateY(24px);
     }
 
     to {
         opacity: 1;
-
-        transform:
-            translateY(0);
+        transform: translateY(0);
     }
 }
 
-
-@keyframes fadeDown {
+@keyframes pk-fade-down {
     from {
         opacity: 0;
-
-        transform:
-            translateY(-20px);
+        transform: translateY(-18px);
     }
 
     to {
         opacity: 1;
-
-        transform:
-            translateY(0);
+        transform: translateY(0);
     }
 }
 
-
-@keyframes scaleIn {
+@keyframes pk-fade-left {
     from {
         opacity: 0;
-
-        transform:
-            scale(0.96);
+        transform: translateX(24px);
     }
 
     to {
         opacity: 1;
+        transform: translateX(0);
+    }
+}
 
-        transform:
-            scale(1);
+@keyframes pk-fade-right {
+    from {
+        opacity: 0;
+        transform: translateX(-24px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes pk-scale-in {
+    from {
+        opacity: 0;
+        transform: scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes pk-scale-up {
+    from {
+        opacity: 0;
+        transform: scale(0.92);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
     }
 }
 
 
-@keyframes pulse {
+/* ================================================================
+   HERO / PAGE ENTRANCE
+   ================================================================ */
+
+@keyframes pk-hero-content {
+    from {
+        opacity: 0;
+        transform: translateY(28px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pk-hero-image {
+    from {
+        opacity: 0;
+        transform: translateX(34px) scale(0.975);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+@keyframes pk-hero-glow {
     0%,
     100% {
-        opacity: 1;
+        opacity: 0.42;
+        transform: scale(1);
     }
 
     50% {
-        opacity: 0.55;
+        opacity: 0.65;
+        transform: scale(1.06);
     }
 }
 
-
-@keyframes blueGlow {
+@keyframes pk-hero-float {
     0%,
     100% {
-        box-shadow:
-            0 0 0 rgba(40, 120, 255, 0);
+        transform: translate3d(0, 0, 0);
     }
 
     50% {
-        box-shadow:
-            0 0 30px rgba(40, 120, 255, 0.18);
+        transform: translate3d(0, -7px, 0);
     }
 }
 
+
+/* ================================================================
+   TECHNICAL MOTION
+   ================================================================ */
+
+@keyframes pk-pulse {
+    0%,
+    100% {
+        opacity: 0.45;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes pk-status-pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(48, 209, 88, 0.35);
+    }
+
+    70% {
+        box-shadow: 0 0 0 7px rgba(48, 209, 88, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(48, 209, 88, 0);
+    }
+}
+
+@keyframes pk-blue-pulse {
+    0%,
+    100% {
+        box-shadow: 0 0 0 rgba(40, 120, 255, 0);
+    }
+
+    50% {
+        box-shadow: 0 0 26px rgba(40, 120, 255, 0.16);
+    }
+}
+
+@keyframes pk-blink {
+    0%,
+    45% {
+        opacity: 1;
+    }
+
+    46%,
+    100% {
+        opacity: 0.25;
+    }
+}
+
+
+/* ================================================================
+   LOADING
+   ================================================================ */
+
+@keyframes pk-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pk-spin-reverse {
+    to {
+        transform: rotate(-360deg);
+    }
+}
+
+@keyframes pk-shimmer {
+    from {
+        background-position: -900px 0;
+    }
+
+    to {
+        background-position: 900px 0;
+    }
+}
+
+@keyframes pk-skeleton {
+    from {
+        background-position: -700px 0;
+    }
+
+    to {
+        background-position: 700px 0;
+    }
+}
+
+@keyframes pk-progress {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(100%);
+    }
+}
+
+
+/* ================================================================
+   BUTTON / INTERACTION MOTION
+   ================================================================ */
+
+@keyframes pk-button-pop {
+    0% {
+        transform: scale(1);
+    }
+
+    45% {
+        transform: scale(0.97);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes pk-success-pop {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    70% {
+        opacity: 1;
+        transform: scale(1.08);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes pk-arrow-slide {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(4px);
+    }
+}
+
+
+/* ================================================================
+   CART MOTION
+   ================================================================ */
+
+@keyframes pk-cart-bounce {
+    0% {
+        transform: scale(1);
+    }
+
+    25% {
+        transform: scale(1.16);
+    }
+
+    50% {
+        transform: scale(0.94);
+    }
+
+    75% {
+        transform: scale(1.06);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes pk-cart-count {
+    0% {
+        opacity: 0;
+        transform: scale(0.6);
+    }
+
+    70% {
+        opacity: 1;
+        transform: scale(1.12);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes pk-add-to-cart {
+    0% {
+        transform: translateY(0);
+    }
+
+    30% {
+        transform: translateY(-2px);
+    }
+
+    60% {
+        transform: translateY(1px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+
+/* ================================================================
+   TOAST / NOTIFICATIONS
+   ================================================================ */
+
+@keyframes pk-toast-in {
+    from {
+        opacity: 0;
+        transform: translateY(14px) translateX(10px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) translateX(0) scale(1);
+    }
+}
+
+@keyframes pk-toast-out {
+    from {
+        opacity: 1;
+        transform: translateY(0) translateX(0) scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(8px) translateX(10px) scale(0.98);
+    }
+}
+
+
+/* ================================================================
+   MODAL / DRAWER MOTION
+   ================================================================ */
+
+@keyframes pk-backdrop-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes pk-modal-in {
+    from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes pk-drawer-right {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes pk-drawer-left {
+    from {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes pk-menu-drop {
+    from {
+        opacity: 0;
+        transform: translateY(-7px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+/* ================================================================
+   IMAGE / MEDIA MOTION
+   ================================================================ */
+
+@keyframes pk-image-reveal {
+    from {
+        opacity: 0;
+        transform: scale(1.035);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes pk-image-zoom {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.075);
+    }
+}
+
+
+/* ================================================================
+   ACCORDION
+   ================================================================ */
+
+@keyframes pk-accordion-in {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ================================================================
+   REVEAL SYSTEM
+   ================================================================ */
+
+.reveal,
+[data-reveal] {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+        opacity var(--pk-motion-reveal) var(--pk-ease-standard),
+        transform var(--pk-motion-reveal) var(--pk-ease-standard);
+}
+
+.reveal.is-visible,
+[data-reveal].is-visible,
+.reveal.revealed,
+[data-reveal="visible"] {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* Reveal directions */
+
+.reveal-left {
+    opacity: 0;
+    transform: translateX(-28px);
+    transition:
+        opacity var(--pk-motion-reveal) var(--pk-ease-standard),
+        transform var(--pk-motion-reveal) var(--pk-ease-standard);
+}
+
+.reveal-left.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.reveal-right {
+    opacity: 0;
+    transform: translateX(28px);
+    transition:
+        opacity var(--pk-motion-reveal) var(--pk-ease-standard),
+        transform var(--pk-motion-reveal) var(--pk-ease-standard);
+}
+
+.reveal-right.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.reveal-scale {
+    opacity: 0;
+    transform: scale(0.96);
+    transition:
+        opacity var(--pk-motion-reveal) var(--pk-ease-standard),
+        transform var(--pk-motion-reveal) var(--pk-ease-standard);
+}
+
+.reveal-scale.is-visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+
+/* ================================================================
+   STAGGERED REVEALS
+   ================================================================ */
+
+.stagger > * {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+        opacity 520ms var(--pk-ease-standard),
+        transform 520ms var(--pk-ease-standard);
+}
+
+.stagger.is-visible > * {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.stagger.is-visible > *:nth-child(1) {
+    transition-delay: 40ms;
+}
+
+.stagger.is-visible > *:nth-child(2) {
+    transition-delay: 80ms;
+}
+
+.stagger.is-visible > *:nth-child(3) {
+    transition-delay: 120ms;
+}
+
+.stagger.is-visible > *:nth-child(4) {
+    transition-delay: 160ms;
+}
+
+.stagger.is-visible > *:nth-child(5) {
+    transition-delay: 200ms;
+}
+
+.stagger.is-visible > *:nth-child(6) {
+    transition-delay: 240ms;
+}
+
+.stagger.is-visible > *:nth-child(7) {
+    transition-delay: 280ms;
+}
+
+.stagger.is-visible > *:nth-child(8) {
+    transition-delay: 320ms;
+}
+
+.stagger.is-visible > *:nth-child(n + 9) {
+    transition-delay: 360ms;
+}
+
+
+/* ================================================================
+   UTILITY ANIMATION CLASSES
+   ================================================================ */
 
 .animate-fade-in {
     animation:
-        fadeIn 0.6s ease both;
+        pk-fade-in 500ms var(--pk-ease-enter) both;
 }
-
 
 .animate-fade-up {
     animation:
-        fadeUp 0.7s cubic-bezier(.2,.8,.2,1) both;
+        pk-fade-up 600ms var(--pk-ease-standard) both;
 }
 
+.animate-fade-down {
+    animation:
+        pk-fade-down 500ms var(--pk-ease-standard) both;
+}
+
+.animate-fade-left {
+    animation:
+        pk-fade-left 600ms var(--pk-ease-standard) both;
+}
+
+.animate-fade-right {
+    animation:
+        pk-fade-right 600ms var(--pk-ease-standard) both;
+}
 
 .animate-scale-in {
     animation:
-        scaleIn 0.6s cubic-bezier(.2,.8,.2,1) both;
+        pk-scale-in 500ms var(--pk-ease-standard) both;
 }
 
+.animate-scale-up {
+    animation:
+        pk-scale-up 550ms var(--pk-ease-standard) both;
+}
+
+
+/* ================================================================
+   DELAY UTILITIES
+   ================================================================ */
 
 .delay-1 {
-    animation-delay: 80ms;
+    animation-delay: 60ms;
 }
-
 
 .delay-2 {
-    animation-delay: 160ms;
+    animation-delay: 120ms;
 }
 
-
 .delay-3 {
+    animation-delay: 180ms;
+}
+
+.delay-4 {
     animation-delay: 240ms;
 }
 
-
-.delay-4 {
-    animation-delay: 320ms;
-}
-
-
 .delay-5 {
-    animation-delay: 400ms;
+    animation-delay: 300ms;
+}
+
+.delay-6 {
+    animation-delay: 360ms;
+}
+
+.delay-7 {
+    animation-delay: 420ms;
+}
+
+.delay-8 {
+    animation-delay: 480ms;
 }
 
 
-/* ---------------------------------------------------------
-   REDUCED MOTION
-   --------------------------------------------------------- */
+/* ================================================================
+   CONTINUOUS MOTION
+   ================================================================ */
+
+.animate-float {
+    animation:
+        pk-hero-float 4.5s ease-in-out infinite;
+}
+
+.animate-pulse {
+    animation:
+        pk-pulse 2.4s ease-in-out infinite;
+}
+
+.animate-blue-pulse {
+    animation:
+        pk-blue-pulse 3s ease-in-out infinite;
+}
+
+.animate-spin {
+    animation:
+        pk-spin 900ms linear infinite;
+}
+
+.animate-spin-slow {
+    animation:
+        pk-spin 1.8s linear infinite;
+}
+
+.animate-blink {
+    animation:
+        pk-blink 1.3s steps(1, end) infinite;
+}
+
+
+/* ================================================================
+   LOADING HELPERS
+   ================================================================ */
+
+.is-loading {
+    position: relative;
+    pointer-events: none;
+    user-select: none;
+}
+
+.is-loading::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    border-radius: inherit;
+    background:
+        linear-gradient(
+            100deg,
+            transparent 20%,
+            rgba(255, 255, 255, 0.035) 40%,
+            rgba(255, 255, 255, 0.075) 50%,
+            rgba(255, 255, 255, 0.035) 60%,
+            transparent 80%
+        );
+    background-size: 200% 100%;
+    animation:
+        pk-shimmer 1.5s linear infinite;
+}
+
+
+/* ================================================================
+   SKELETON
+   ================================================================ */
+
+.skeleton {
+    position: relative;
+    overflow: hidden;
+    background:
+        linear-gradient(
+            90deg,
+            var(--color-surface) 20%,
+            var(--color-surface-2) 40%,
+            var(--color-surface) 60%
+        );
+    background-size: 300% 100%;
+    animation:
+        pk-skeleton 1.5s linear infinite;
+}
+
+.skeleton--text {
+    height: 12px;
+    border-radius: var(--radius-sm);
+}
+
+.skeleton--title {
+    height: 22px;
+    border-radius: var(--radius-sm);
+}
+
+.skeleton--image {
+    min-height: 180px;
+    border-radius: var(--radius-md);
+}
+
+
+/* ================================================================
+   HOVER MOTION HELPERS
+   ================================================================ */
+
+.hover-lift {
+    transition:
+        transform var(--pk-motion-base) var(--pk-ease-standard),
+        box-shadow var(--pk-motion-base) var(--pk-ease-standard);
+}
+
+.hover-lift:hover {
+    transform: translateY(-5px);
+}
+
+.hover-scale {
+    transition:
+        transform var(--pk-motion-base) var(--pk-ease-standard);
+}
+
+.hover-scale:hover {
+    transform: scale(1.025);
+}
+
+.hover-glow {
+    transition:
+        box-shadow var(--pk-motion-base) var(--pk-ease-standard),
+        border-color var(--pk-motion-fast);
+}
+
+.hover-glow:hover {
+    box-shadow:
+        0 0 0 1px rgba(40, 120, 255, 0.04),
+        0 16px 50px rgba(0, 0, 0, 0.28),
+        0 0 32px rgba(40, 120, 255, 0.08);
+}
+
+
+/* ================================================================
+   BUTTON MICROINTERACTION
+   ================================================================ */
+
+.btn:hover .btn-arrow,
+.btn:hover .button-arrow,
+.btn:hover .arrow {
+    animation:
+        pk-arrow-slide 260ms var(--pk-ease-standard) both;
+}
+
+.btn:active {
+    animation:
+        pk-button-pop 180ms ease-out;
+}
+
+
+/* ================================================================
+   PRODUCT / CATEGORY IMAGE ZOOM
+   ================================================================ */
+
+.product-card__image img,
+.category-card__image img,
+.kit-card__image img,
+.product-media__main img {
+    transition:
+        transform 650ms var(--pk-ease-standard);
+}
+
+.product-card:hover .product-card__image img,
+.category-card:hover .category-card__image img,
+.kit-card:hover .kit-card__image img {
+    transform: scale(1.075);
+}
+
+.product-media__main:hover img {
+    transform: scale(1.035);
+}
+
+
+/* ================================================================
+   NAVBAR MOTION
+   ================================================================ */
+
+.site-navbar {
+    transition:
+        background var(--pk-motion-base) var(--pk-ease-standard),
+        border-color var(--pk-motion-base) var(--pk-ease-standard),
+        box-shadow var(--pk-motion-base) var(--pk-ease-standard);
+}
+
+.navbar-nav a::after {
+    transition:
+        transform var(--pk-motion-base) var(--pk-ease-standard);
+}
+
+.navbar-search-panel {
+    animation:
+        pk-menu-drop 240ms var(--pk-ease-standard) both;
+}
+
+.account-dropdown,
+.navbar-dropdown {
+    transform-origin: top center;
+}
+
+
+/* ================================================================
+   CARD CONTENT MOTION
+   ================================================================ */
+
+.product-card,
+.category-card,
+.kit-card {
+    transition:
+        transform var(--pk-motion-base) var(--pk-ease-standard),
+        border-color var(--pk-motion-fast),
+        box-shadow var(--pk-motion-base) var(--pk-ease-standard);
+}
+
+.product-card:hover,
+.category-card:hover,
+.kit-card:hover {
+    transform: translateY(-4px);
+}
+
+
+/* ================================================================
+   FORM MOTION
+   ================================================================ */
+
+.form-control,
+.form-select,
+.form-textarea,
+input,
+select,
+textarea {
+    transition:
+        border-color var(--pk-motion-fast),
+        box-shadow var(--pk-motion-fast),
+        background var(--pk-motion-fast);
+}
+
+.form-control:focus,
+.form-select:focus,
+.form-textarea:focus,
+input:focus,
+select:focus,
+textarea:focus {
+    animation:
+        pk-blue-pulse 1.1s ease-out;
+}
+
+
+/* ================================================================
+   STATUS MOTION
+   ================================================================ */
+
+.status-dot--live,
+.footer-status-dot,
+.status-dot.success {
+    animation:
+        pk-status-pulse 2.2s ease-out infinite;
+}
+
+
+/* ================================================================
+   CART UPDATE STATE
+   ================================================================ */
+
+.cart-count.is-updated {
+    animation:
+        pk-cart-count 360ms var(--pk-ease-standard) both;
+}
+
+.cart-icon.is-updated {
+    animation:
+        pk-cart-bounce 420ms var(--pk-ease-standard) both;
+}
+
+.add-to-cart.is-added {
+    animation:
+        pk-add-to-cart 360ms var(--pk-ease-standard) both;
+}
+
+
+/* ================================================================
+   TOAST STATES
+   ================================================================ */
+
+.toast.is-entering,
+.toast.toast-enter {
+    animation:
+        pk-toast-in 320ms var(--pk-ease-standard) both;
+}
+
+.toast.is-leaving,
+.toast.toast-leave {
+    animation:
+        pk-toast-out 240ms var(--pk-ease-standard) both;
+}
+
+
+/* ================================================================
+   MODAL STATES
+   ================================================================ */
+
+.modal-backdrop.is-open,
+.modal-overlay.is-open {
+    animation:
+        pk-backdrop-in 220ms ease-out both;
+}
+
+.modal.is-open,
+.modal-dialog.is-open {
+    animation:
+        pk-modal-in 360ms var(--pk-ease-standard) both;
+}
+
+
+/* ================================================================
+   MOBILE MENU
+   ================================================================ */
+
+.mobile-menu.is-open .mobile-menu__drawer,
+.mobile-menu.open .mobile-menu__drawer {
+    animation:
+        pk-drawer-right 340ms var(--pk-ease-standard) both;
+}
+
+.mobile-menu.is-open .mobile-menu__backdrop,
+.mobile-menu.open .mobile-menu__backdrop {
+    animation:
+        pk-backdrop-in 280ms ease-out both;
+}
+
+
+/* ================================================================
+   HERO ENTRANCE
+   ================================================================ */
+
+.hero--animated .hero__eyebrow {
+    animation:
+        pk-fade-up 550ms var(--pk-ease-standard) 80ms both;
+}
+
+.hero--animated .hero__title {
+    animation:
+        pk-fade-up 650ms var(--pk-ease-standard) 150ms both;
+}
+
+.hero--animated .hero__description {
+    animation:
+        pk-fade-up 650ms var(--pk-ease-standard) 230ms both;
+}
+
+.hero--animated .hero__actions {
+    animation:
+        pk-fade-up 650ms var(--pk-ease-standard) 310ms both;
+}
+
+.hero--animated .hero__meta {
+    animation:
+        pk-fade-up 650ms var(--pk-ease-standard) 390ms both;
+}
+
+.hero--animated .hero__media {
+    animation:
+        pk-hero-image 850ms var(--pk-ease-standard) 180ms both;
+}
+
+.hero--animated .hero__glow {
+    animation:
+        pk-hero-glow 5s ease-in-out infinite;
+}
+
+.hero--animated .hero__floating-card {
+    animation:
+        pk-fade-up 650ms var(--pk-ease-standard) 520ms both,
+        pk-hero-float 4.5s ease-in-out 1.2s infinite;
+}
+
+
+/* ================================================================
+   PAGE LOADER
+   ================================================================ */
+
+.page-loader.is-active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.page-loader.is-complete {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+        opacity 450ms var(--pk-ease-standard),
+        visibility 450ms;
+}
+
+.page-loader__spinner {
+    animation:
+        pk-spin 850ms linear infinite;
+}
+
+
+/* ================================================================
+   ACCORDION / EXPANDABLE CONTENT
+   ================================================================ */
+
+.accordion-content.is-opening,
+.dropdown-content.is-opening {
+    animation:
+        pk-accordion-in 260ms var(--pk-ease-standard) both;
+}
+
+
+/* ================================================================
+   LIGHTBOX
+   ================================================================ */
+
+.lightbox.is-open {
+    animation:
+        pk-backdrop-in 220ms ease-out both;
+}
+
+.lightbox.is-open .lightbox-content {
+    animation:
+        pk-scale-in 320ms var(--pk-ease-standard) both;
+}
+
+
+/* ================================================================
+   IMAGE REVEAL
+   ================================================================ */
+
+.image-reveal {
+    overflow: hidden;
+}
+
+.image-reveal img {
+    opacity: 0;
+    transform: scale(1.035);
+    transition:
+        opacity 650ms ease,
+        transform 900ms var(--pk-ease-standard);
+}
+
+.image-reveal.is-loaded img,
+.image-reveal img.is-loaded {
+    opacity: 1;
+    transform: scale(1);
+}
+
+
+/* ================================================================
+   FOCUS TRANSITION
+   ================================================================ */
+
+.focus-ring {
+    transition:
+        outline-color var(--pk-motion-fast),
+        box-shadow var(--pk-motion-fast);
+}
+
+.focus-ring:focus-visible {
+    box-shadow:
+        0 0 0 3px rgba(40, 120, 255, 0.12),
+        0 0 24px rgba(40, 120, 255, 0.08);
+}
+
+
+/* ================================================================
+   PERFORMANCE HELPERS
+   ================================================================ */
+
+.will-animate {
+    will-change: transform, opacity;
+}
+
+.will-transform {
+    will-change: transform;
+}
+
+.will-fade {
+    will-change: opacity;
+}
+
+.gpu-layer {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+
+/* ================================================================
+   DISABLE MOTION WHEN REQUESTED
+   ================================================================ */
 
 @media (prefers-reduced-motion: reduce) {
-
     *,
     *::before,
     *::after {
-        animation-duration: 0.01ms !important;
-
+        animation-duration: 0.001ms !important;
         animation-iteration-count: 1 !important;
-
-        transition-duration: 0.01ms !important;
-
         scroll-behavior: auto !important;
+        transition-duration: 0.001ms !important;
+    }
+
+    .reveal,
+    [data-reveal],
+    .reveal-left,
+    .reveal-right,
+    .reveal-scale,
+    .stagger > * {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    .animate-float,
+    .animate-pulse,
+    .animate-blue-pulse,
+    .animate-spin,
+    .animate-spin-slow,
+    .animate-blink {
+        animation: none !important;
+    }
+}
+
+
+/* ================================================================
+   MOBILE MOTION — KEEP CONTROLLED
+   ================================================================ */
+
+@media (max-width: 600px) {
+    .product-card:hover,
+    .category-card:hover,
+    .kit-card:hover {
+        transform: translateY(-2px);
+    }
+
+    .hover-lift:hover {
+        transform: translateY(-2px);
+    }
+
+    .product-card:hover .product-card__image img,
+    .category-card:hover .category-card__image img,
+    .kit-card:hover .kit-card__image img {
+        transform: scale(1.045);
     }
 }

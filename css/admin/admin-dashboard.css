@@ -1,0 +1,1622 @@
+/* ================================================================
+   PROJECTKART — ADMIN DASHBOARD
+   Premium dark analytics & management dashboard
+================================================================ */
+
+/* ----------------------------------------------------------------
+   DASHBOARD ROOT
+---------------------------------------------------------------- */
+
+.admin-dashboard {
+    width: 100%;
+}
+
+.admin-dashboard__content {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+
+/* ----------------------------------------------------------------
+   WELCOME / OVERVIEW HEADER
+---------------------------------------------------------------- */
+
+.admin-dashboard__welcome {
+    position: relative;
+
+    padding: 28px 30px;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 18px;
+
+    background:
+        radial-gradient(
+            circle at 85% 20%,
+            rgba(40, 120, 255, 0.12),
+            transparent 32%
+        ),
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.035),
+            rgba(255, 255, 255, 0.015)
+        );
+}
+
+.admin-dashboard__welcome::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(255, 255, 255, 0.025) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.025) 1px,
+            transparent 1px
+        );
+
+    background-size: 32px 32px;
+
+    opacity: 0.28;
+
+    mask-image:
+        linear-gradient(
+            90deg,
+            transparent,
+            black 55%,
+            transparent
+        );
+
+    pointer-events: none;
+}
+
+.admin-dashboard__welcome-content {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.admin-dashboard__welcome-copy {
+    min-width: 0;
+}
+
+.admin-dashboard__welcome-eyebrow {
+    margin-bottom: 9px;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    color: #6098ff;
+
+    font-size: 9px;
+    font-weight: 750;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+}
+
+.admin-dashboard__welcome-eyebrow::before {
+    content: "";
+
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: #2878ff;
+
+    box-shadow: 0 0 9px rgba(40, 120, 255, 0.55);
+}
+
+.admin-dashboard__welcome-title {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: clamp(23px, 2.3vw, 34px);
+    line-height: 1.05;
+    font-weight: 760;
+    letter-spacing: -0.045em;
+}
+
+.admin-dashboard__welcome-title span {
+    color: #2878ff;
+}
+
+.admin-dashboard__welcome-description {
+    max-width: 620px;
+    margin: 10px 0 0;
+
+    color: rgba(255, 255, 255, 0.42);
+
+    font-size: 11px;
+    line-height: 1.65;
+}
+
+.admin-dashboard__welcome-meta {
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.admin-dashboard__welcome-meta-item {
+    min-height: 34px;
+    padding: 0 10px;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    border: 1px solid rgba(255, 255, 255, 0.065);
+    border-radius: 8px;
+
+    background: rgba(0, 0, 0, 0.12);
+
+    color: rgba(255, 255, 255, 0.38);
+
+    font-size: 8px;
+    font-weight: 650;
+    letter-spacing: 0.04em;
+}
+
+.admin-dashboard__welcome-meta-dot {
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: #36d98a;
+    box-shadow: 0 0 8px rgba(54, 217, 138, 0.45);
+}
+
+
+/* ----------------------------------------------------------------
+   METRIC GRID
+---------------------------------------------------------------- */
+
+.admin-dashboard__metrics {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 14px;
+}
+
+
+/* ----------------------------------------------------------------
+   METRIC CARD
+---------------------------------------------------------------- */
+
+.admin-dashboard__metric {
+    position: relative;
+
+    min-width: 0;
+    min-height: 148px;
+
+    padding: 19px;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(255, 255, 255, 0.065);
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.038),
+            rgba(255, 255, 255, 0.012)
+        );
+
+    transition:
+        border-color var(--transition-normal, 220ms) ease,
+        background-color var(--transition-normal, 220ms) ease,
+        transform var(--transition-normal, 220ms) ease,
+        box-shadow var(--transition-normal, 220ms) ease;
+}
+
+.admin-dashboard__metric::after {
+    content: "";
+
+    position: absolute;
+    right: -45px;
+    top: -55px;
+
+    width: 130px;
+    height: 130px;
+
+    border-radius: 50%;
+
+    background: rgba(40, 120, 255, 0.06);
+
+    filter: blur(20px);
+
+    pointer-events: none;
+}
+
+.admin-dashboard__metric:hover {
+    transform: translateY(-2px);
+
+    border-color: rgba(40, 120, 255, 0.18);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.05),
+            rgba(255, 255, 255, 0.016)
+        );
+
+    box-shadow:
+        0 14px 35px rgba(0, 0, 0, 0.15);
+}
+
+.admin-dashboard__metric-top {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.admin-dashboard__metric-icon {
+    width: 34px;
+    height: 34px;
+
+    display: grid;
+    place-items: center;
+
+    border: 1px solid rgba(40, 120, 255, 0.15);
+    border-radius: 9px;
+
+    background: rgba(40, 120, 255, 0.08);
+
+    color: #649cff;
+}
+
+.admin-dashboard__metric-icon svg,
+.admin-dashboard__metric-icon img {
+    width: 16px;
+    height: 16px;
+
+    object-fit: contain;
+}
+
+.admin-dashboard__metric-period {
+    color: rgba(255, 255, 255, 0.25);
+
+    font-size: 8px;
+    font-weight: 600;
+}
+
+.admin-dashboard__metric-label {
+    position: relative;
+    z-index: 1;
+
+    margin-top: 17px;
+
+    color: rgba(255, 255, 255, 0.36);
+
+    font-size: 9px;
+    font-weight: 650;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+
+.admin-dashboard__metric-value {
+    position: relative;
+    z-index: 1;
+
+    margin-top: 5px;
+
+    color: #ffffff;
+
+    font-size: 26px;
+    line-height: 1;
+    font-weight: 760;
+    letter-spacing: -0.04em;
+}
+
+.admin-dashboard__metric-bottom {
+    position: relative;
+    z-index: 1;
+
+    margin-top: 10px;
+
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.admin-dashboard__metric-change {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+
+    font-size: 8px;
+    line-height: 1;
+    font-weight: 700;
+}
+
+.admin-dashboard__metric-change--up {
+    color: #55dc99;
+}
+
+.admin-dashboard__metric-change--down {
+    color: #ff8585;
+}
+
+.admin-dashboard__metric-change svg {
+    width: 10px;
+    height: 10px;
+}
+
+.admin-dashboard__metric-caption {
+    color: rgba(255, 255, 255, 0.24);
+
+    font-size: 8px;
+}
+
+
+/* ----------------------------------------------------------------
+   MAIN ANALYTICS GRID
+---------------------------------------------------------------- */
+
+.admin-dashboard__analytics {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.65fr)
+        minmax(300px, 0.95fr);
+
+    gap: 16px;
+}
+
+
+/* ----------------------------------------------------------------
+   ANALYTICS CARD
+---------------------------------------------------------------- */
+
+.admin-dashboard__analytics-card {
+    min-width: 0;
+
+    padding: 20px;
+
+    border: 1px solid rgba(255, 255, 255, 0.065);
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.032),
+            rgba(255, 255, 255, 0.012)
+        );
+}
+
+.admin-dashboard__card-header {
+    min-height: 32px;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.admin-dashboard__card-heading {
+    min-width: 0;
+}
+
+.admin-dashboard__card-title {
+    margin: 0;
+
+    color: rgba(255, 255, 255, 0.9);
+
+    font-size: 12px;
+    line-height: 1.2;
+    font-weight: 680;
+    letter-spacing: -0.015em;
+}
+
+.admin-dashboard__card-description {
+    margin: 5px 0 0;
+
+    color: rgba(255, 255, 255, 0.28);
+
+    font-size: 8px;
+    line-height: 1.4;
+}
+
+.admin-dashboard__card-action {
+    flex-shrink: 0;
+
+    color: #6098ff;
+
+    font-size: 8px;
+    font-weight: 650;
+
+    text-decoration: none;
+
+    transition: color var(--transition-fast, 150ms) ease;
+}
+
+.admin-dashboard__card-action:hover {
+    color: #8bb5ff;
+}
+
+
+/* ----------------------------------------------------------------
+   CHART
+---------------------------------------------------------------- */
+
+.admin-dashboard__chart {
+    position: relative;
+
+    height: 270px;
+
+    margin-top: 20px;
+
+    overflow: hidden;
+}
+
+.admin-dashboard__chart-grid {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    pointer-events: none;
+}
+
+.admin-dashboard__chart-grid-line {
+    width: 100%;
+    height: 1px;
+
+    background: rgba(255, 255, 255, 0.045);
+}
+
+.admin-dashboard__chart-y-axis {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+
+    width: 36px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    padding: 2px 0;
+}
+
+.admin-dashboard__chart-y-label {
+    color: rgba(255, 255, 255, 0.2);
+
+    font-size: 7px;
+    font-family: var(--font-mono, monospace);
+}
+
+.admin-dashboard__chart-area {
+    position: absolute;
+    left: 45px;
+    right: 0;
+    top: 0;
+    bottom: 24px;
+}
+
+.admin-dashboard__chart-svg {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    overflow: visible;
+}
+
+.admin-dashboard__chart-line {
+    fill: none;
+
+    stroke: var(--color-brand-primary, #2878ff);
+    stroke-width: 2.3;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+
+    filter:
+        drop-shadow(
+            0 0 6px rgba(40, 120, 255, 0.3)
+        );
+}
+
+.admin-dashboard__chart-area-fill {
+    fill:
+        url("#dashboardChartGradient");
+}
+
+.admin-dashboard__chart-point {
+    fill: #0b111a;
+
+    stroke: #2878ff;
+    stroke-width: 2;
+}
+
+.admin-dashboard__chart-x-axis {
+    position: absolute;
+    left: 45px;
+    right: 0;
+    bottom: 0;
+
+    height: 18px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.admin-dashboard__chart-x-label {
+    color: rgba(255, 255, 255, 0.2);
+
+    font-size: 7px;
+    font-family: var(--font-mono, monospace);
+}
+
+
+/* ----------------------------------------------------------------
+   CHART LEGEND
+---------------------------------------------------------------- */
+
+.admin-dashboard__chart-legend {
+    margin-top: 10px;
+
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.admin-dashboard__chart-legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    color: rgba(255, 255, 255, 0.34);
+
+    font-size: 8px;
+}
+
+.admin-dashboard__chart-legend-dot {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #2878ff;
+
+    box-shadow: 0 0 7px rgba(40, 120, 255, 0.35);
+}
+
+.admin-dashboard__chart-legend-dot--muted {
+    background: rgba(255, 255, 255, 0.22);
+    box-shadow: none;
+}
+
+
+/* ----------------------------------------------------------------
+   SALES SUMMARY
+---------------------------------------------------------------- */
+
+.admin-dashboard__sales-summary {
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-dashboard__sales-total {
+    margin-top: 18px;
+
+    color: #ffffff;
+
+    font-size: 28px;
+    line-height: 1;
+    font-weight: 760;
+    letter-spacing: -0.045em;
+}
+
+.admin-dashboard__sales-sub {
+    margin-top: 6px;
+
+    color: rgba(255, 255, 255, 0.26);
+
+    font-size: 8px;
+}
+
+.admin-dashboard__sales-bars {
+    height: 165px;
+
+    margin-top: 22px;
+
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.admin-dashboard__sales-bar-item {
+    min-width: 0;
+    flex: 1;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 7px;
+}
+
+.admin-dashboard__sales-bar {
+    position: relative;
+
+    width: 100%;
+    height: var(--bar-height, 50%);
+
+    min-height: 7px;
+
+    border-radius: 6px 6px 3px 3px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(40, 120, 255, 0.8),
+            rgba(40, 120, 255, 0.2)
+        );
+
+    box-shadow:
+        0 0 14px rgba(40, 120, 255, 0.08);
+
+    transition:
+        height var(--transition-slow, 350ms) ease,
+        opacity var(--transition-fast, 150ms) ease;
+}
+
+.admin-dashboard__sales-bar:hover {
+    opacity: 0.8;
+}
+
+.admin-dashboard__sales-bar-value {
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 5px);
+
+    transform: translateX(-50%);
+
+    color: rgba(255, 255, 255, 0.42);
+
+    font-size: 7px;
+    font-family: var(--font-mono, monospace);
+
+    white-space: nowrap;
+}
+
+.admin-dashboard__sales-bar-label {
+    text-align: center;
+
+    color: rgba(255, 255, 255, 0.22);
+
+    font-size: 7px;
+}
+
+
+/* ----------------------------------------------------------------
+   QUICK STATS
+---------------------------------------------------------------- */
+
+.admin-dashboard__quick-stats {
+    margin-top: 20px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 8px;
+}
+
+.admin-dashboard__quick-stat {
+    min-height: 68px;
+    padding: 11px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    border: 1px solid rgba(255, 255, 255, 0.055);
+    border-radius: 9px;
+
+    background: rgba(255, 255, 255, 0.018);
+}
+
+.admin-dashboard__quick-stat-label {
+    color: rgba(255, 255, 255, 0.27);
+
+    font-size: 7px;
+    font-weight: 650;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.admin-dashboard__quick-stat-value {
+    margin-top: 5px;
+
+    color: rgba(255, 255, 255, 0.85);
+
+    font-size: 15px;
+    font-weight: 720;
+}
+
+
+/* ----------------------------------------------------------------
+   LOWER GRID
+---------------------------------------------------------------- */
+
+.admin-dashboard__lower {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.2fr)
+        minmax(0, 1fr);
+
+    gap: 16px;
+}
+
+
+/* ----------------------------------------------------------------
+   RECENT ORDERS
+---------------------------------------------------------------- */
+
+.admin-dashboard__orders {
+    min-width: 0;
+
+    padding: 20px;
+
+    border: 1px solid rgba(255, 255, 255, 0.065);
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.032),
+            rgba(255, 255, 255, 0.012)
+        );
+}
+
+.admin-dashboard__order-list {
+    margin-top: 14px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-dashboard__order {
+    min-height: 62px;
+    padding: 9px 0;
+
+    display: flex;
+    align-items: center;
+    gap: 11px;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.045);
+}
+
+.admin-dashboard__order:last-child {
+    border-bottom: 0;
+}
+
+.admin-dashboard__order-image {
+    width: 40px;
+    height: 40px;
+
+    flex: 0 0 40px;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 8px;
+
+    background: #101720;
+}
+
+.admin-dashboard__order-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+.admin-dashboard__order-info {
+    min-width: 0;
+    flex: 1;
+}
+
+.admin-dashboard__order-id {
+    color: rgba(255, 255, 255, 0.32);
+
+    font-size: 7px;
+    font-family: var(--font-mono, monospace);
+}
+
+.admin-dashboard__order-product {
+    margin-top: 3px;
+
+    overflow: hidden;
+
+    color: rgba(255, 255, 255, 0.72);
+
+    font-size: 9px;
+    font-weight: 600;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.admin-dashboard__order-customer {
+    margin-top: 2px;
+
+    overflow: hidden;
+
+    color: rgba(255, 255, 255, 0.23);
+
+    font-size: 7px;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.admin-dashboard__order-price {
+    flex-shrink: 0;
+
+    color: rgba(255, 255, 255, 0.72);
+
+    font-size: 9px;
+    font-weight: 680;
+}
+
+.admin-dashboard__order-status {
+    min-width: 54px;
+    height: 22px;
+    padding: 0 6px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 999px;
+
+    font-size: 7px;
+    font-weight: 700;
+
+    flex-shrink: 0;
+}
+
+.admin-dashboard__order-status--completed {
+    border: 1px solid rgba(54, 217, 138, 0.18);
+    background: rgba(54, 217, 138, 0.07);
+    color: #5be09b;
+}
+
+.admin-dashboard__order-status--pending {
+    border: 1px solid rgba(255, 190, 75, 0.18);
+    background: rgba(255, 190, 75, 0.07);
+    color: #f5c86a;
+}
+
+.admin-dashboard__order-status--processing {
+    border: 1px solid rgba(40, 120, 255, 0.18);
+    background: rgba(40, 120, 255, 0.07);
+    color: #6da0ff;
+}
+
+.admin-dashboard__order-status--cancelled {
+    border: 1px solid rgba(255, 92, 92, 0.18);
+    background: rgba(255, 92, 92, 0.07);
+    color: #ff8b8b;
+}
+
+
+/* ----------------------------------------------------------------
+   TOP PRODUCTS
+---------------------------------------------------------------- */
+
+.admin-dashboard__products {
+    min-width: 0;
+
+    padding: 20px;
+
+    border: 1px solid rgba(255, 255, 255, 0.065);
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.032),
+            rgba(255, 255, 255, 0.012)
+        );
+}
+
+.admin-dashboard__product-list {
+    margin-top: 14px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.admin-dashboard__product {
+    min-height: 55px;
+    padding: 8px;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    border: 1px solid transparent;
+    border-radius: 9px;
+
+    transition:
+        background-color var(--transition-fast, 150ms) ease,
+        border-color var(--transition-fast, 150ms) ease;
+}
+
+.admin-dashboard__product:hover {
+    background: rgba(255, 255, 255, 0.025);
+    border-color: rgba(255, 255, 255, 0.05);
+}
+
+.admin-dashboard__product-image {
+    width: 39px;
+    height: 39px;
+
+    flex: 0 0 39px;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 8px;
+
+    background: #101720;
+}
+
+.admin-dashboard__product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.admin-dashboard__product-info {
+    min-width: 0;
+    flex: 1;
+}
+
+.admin-dashboard__product-name {
+    overflow: hidden;
+
+    color: rgba(255, 255, 255, 0.68);
+
+    font-size: 9px;
+    font-weight: 620;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.admin-dashboard__product-meta {
+    margin-top: 3px;
+
+    color: rgba(255, 255, 255, 0.24);
+
+    font-size: 7px;
+}
+
+.admin-dashboard__product-sales {
+    flex-shrink: 0;
+
+    text-align: right;
+}
+
+.admin-dashboard__product-sales-value {
+    color: rgba(255, 255, 255, 0.72);
+
+    font-size: 9px;
+    font-weight: 680;
+}
+
+.admin-dashboard__product-sales-label {
+    margin-top: 2px;
+
+    color: rgba(255, 255, 255, 0.22);
+
+    font-size: 7px;
+}
+
+
+/* ----------------------------------------------------------------
+   ACTIVITY FEED
+---------------------------------------------------------------- */
+
+.admin-dashboard__activity {
+    min-width: 0;
+
+    padding: 20px;
+
+    border: 1px solid rgba(255, 255, 255, 0.065);
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.032),
+            rgba(255, 255, 255, 0.012)
+        );
+}
+
+.admin-dashboard__activity-list {
+    position: relative;
+
+    margin-top: 16px;
+    padding-left: 18px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-dashboard__activity-list::before {
+    content: "";
+
+    position: absolute;
+    left: 4px;
+    top: 5px;
+    bottom: 5px;
+
+    width: 1px;
+
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.admin-dashboard__activity-item {
+    position: relative;
+
+    padding: 0 0 17px 12px;
+}
+
+.admin-dashboard__activity-item:last-child {
+    padding-bottom: 0;
+}
+
+.admin-dashboard__activity-dot {
+    position: absolute;
+    left: -18px;
+    top: 4px;
+
+    width: 9px;
+    height: 9px;
+
+    border: 2px solid #0d131d;
+    border-radius: 50%;
+
+    background: #2878ff;
+
+    box-shadow:
+        0 0 0 1px rgba(40, 120, 255, 0.2),
+        0 0 8px rgba(40, 120, 255, 0.25);
+}
+
+.admin-dashboard__activity-dot--success {
+    background: #36d98a;
+    box-shadow: 0 0 8px rgba(54, 217, 138, 0.25);
+}
+
+.admin-dashboard__activity-dot--warning {
+    background: #f0bd59;
+    box-shadow: 0 0 8px rgba(240, 189, 89, 0.2);
+}
+
+.admin-dashboard__activity-text {
+    color: rgba(255, 255, 255, 0.54);
+
+    font-size: 8px;
+    line-height: 1.5;
+}
+
+.admin-dashboard__activity-text strong {
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 650;
+}
+
+.admin-dashboard__activity-time {
+    margin-top: 4px;
+
+    color: rgba(255, 255, 255, 0.2);
+
+    font-size: 7px;
+}
+
+
+/* ----------------------------------------------------------------
+   INVENTORY OVERVIEW
+---------------------------------------------------------------- */
+
+.admin-dashboard__inventory {
+    margin-top: 14px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.admin-dashboard__inventory-row {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.admin-dashboard__inventory-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.admin-dashboard__inventory-label {
+    color: rgba(255, 255, 255, 0.42);
+
+    font-size: 8px;
+    font-weight: 600;
+}
+
+.admin-dashboard__inventory-value {
+    color: rgba(255, 255, 255, 0.65);
+
+    font-size: 8px;
+    font-weight: 650;
+}
+
+.admin-dashboard__inventory-track {
+    width: 100%;
+    height: 5px;
+
+    overflow: hidden;
+
+    border-radius: 999px;
+
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.admin-dashboard__inventory-fill {
+    width: var(--inventory-value, 50%);
+    height: 100%;
+
+    border-radius: inherit;
+
+    background:
+        linear-gradient(
+            90deg,
+            #2878ff,
+            #5b99ff
+        );
+
+    box-shadow:
+        0 0 8px rgba(40, 120, 255, 0.18);
+}
+
+.admin-dashboard__inventory-fill--warning {
+    background:
+        linear-gradient(
+            90deg,
+            #c9922e,
+            #f0bd59
+        );
+
+    box-shadow:
+        0 0 8px rgba(240, 189, 89, 0.15);
+}
+
+.admin-dashboard__inventory-fill--danger {
+    background:
+        linear-gradient(
+            90deg,
+            #c74c4c,
+            #ff8585
+        );
+
+    box-shadow:
+        0 0 8px rgba(255, 92, 92, 0.15);
+}
+
+
+/* ----------------------------------------------------------------
+   DASHBOARD CTA
+---------------------------------------------------------------- */
+
+.admin-dashboard__cta {
+    position: relative;
+
+    min-height: 130px;
+    padding: 22px 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(40, 120, 255, 0.15);
+    border-radius: 15px;
+
+    background:
+        radial-gradient(
+            circle at 85% 50%,
+            rgba(40, 120, 255, 0.15),
+            transparent 36%
+        ),
+        rgba(40, 120, 255, 0.035);
+}
+
+.admin-dashboard__cta::after {
+    content: "";
+
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    width: 45%;
+    height: 100%;
+
+    background-image:
+        linear-gradient(
+            rgba(40, 120, 255, 0.08) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(40, 120, 255, 0.08) 1px,
+            transparent 1px
+        );
+
+    background-size: 24px 24px;
+
+    opacity: 0.25;
+
+    mask-image:
+        linear-gradient(
+            90deg,
+            transparent,
+            black
+        );
+
+    pointer-events: none;
+}
+
+.admin-dashboard__cta-copy {
+    position: relative;
+    z-index: 1;
+}
+
+.admin-dashboard__cta-title {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.admin-dashboard__cta-description {
+    max-width: 570px;
+    margin: 6px 0 0;
+
+    color: rgba(255, 255, 255, 0.32);
+
+    font-size: 8px;
+    line-height: 1.5;
+}
+
+.admin-dashboard__cta-action {
+    position: relative;
+    z-index: 1;
+
+    flex-shrink: 0;
+}
+
+
+/* ----------------------------------------------------------------
+   EMPTY STATE
+---------------------------------------------------------------- */
+
+.admin-dashboard__empty {
+    min-height: 180px;
+    padding: 30px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    border: 1px dashed rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.012);
+}
+
+.admin-dashboard__empty-icon {
+    width: 40px;
+    height: 40px;
+
+    display: grid;
+    place-items: center;
+
+    border: 1px solid rgba(40, 120, 255, 0.12);
+    border-radius: 10px;
+
+    background: rgba(40, 120, 255, 0.06);
+
+    color: #548fff;
+}
+
+.admin-dashboard__empty-title {
+    margin-top: 10px;
+
+    color: rgba(255, 255, 255, 0.65);
+
+    font-size: 10px;
+    font-weight: 650;
+}
+
+.admin-dashboard__empty-description {
+    max-width: 300px;
+    margin-top: 5px;
+
+    color: rgba(255, 255, 255, 0.25);
+
+    font-size: 8px;
+    line-height: 1.5;
+}
+
+
+/* ----------------------------------------------------------------
+   RESPONSIVE — 1200
+---------------------------------------------------------------- */
+
+@media (max-width: 1200px) {
+
+    .admin-dashboard__metrics {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .admin-dashboard__analytics {
+        grid-template-columns:
+            minmax(0, 1.4fr)
+            minmax(270px, 0.9fr);
+    }
+}
+
+
+/* ----------------------------------------------------------------
+   RESPONSIVE — 1024
+---------------------------------------------------------------- */
+
+@media (max-width: 1024px) {
+
+    .admin-dashboard__analytics,
+    .admin-dashboard__lower {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-dashboard__welcome-content {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    .admin-dashboard__welcome-meta {
+        width: 100%;
+    }
+}
+
+
+/* ----------------------------------------------------------------
+   RESPONSIVE — 768
+---------------------------------------------------------------- */
+
+@media (max-width: 768px) {
+
+    .admin-dashboard__content {
+        gap: 20px;
+    }
+
+    .admin-dashboard__welcome {
+        padding: 22px;
+    }
+
+    .admin-dashboard__metrics {
+        gap: 10px;
+    }
+
+    .admin-dashboard__metric {
+        min-height: 135px;
+        padding: 16px;
+    }
+
+    .admin-dashboard__metric-value {
+        font-size: 23px;
+    }
+
+    .admin-dashboard__analytics-card,
+    .admin-dashboard__orders,
+    .admin-dashboard__products,
+    .admin-dashboard__activity {
+        padding: 16px;
+    }
+
+    .admin-dashboard__chart {
+        height: 230px;
+    }
+
+    .admin-dashboard__cta {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+
+/* ----------------------------------------------------------------
+   RESPONSIVE — 600
+---------------------------------------------------------------- */
+
+@media (max-width: 600px) {
+
+    .admin-dashboard__metrics {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .admin-dashboard__welcome-title {
+        font-size: 23px;
+    }
+
+    .admin-dashboard__welcome-description {
+        font-size: 10px;
+    }
+
+    .admin-dashboard__welcome-meta {
+        flex-wrap: wrap;
+    }
+
+    .admin-dashboard__metric {
+        min-height: 128px;
+    }
+
+    .admin-dashboard__metric-period {
+        display: none;
+    }
+
+    .admin-dashboard__chart {
+        height: 210px;
+    }
+
+    .admin-dashboard__sales-bars {
+        height: 145px;
+    }
+
+    .admin-dashboard__order {
+        gap: 8px;
+    }
+
+    .admin-dashboard__order-status {
+        min-width: 48px;
+    }
+}
+
+
+/* ----------------------------------------------------------------
+   RESPONSIVE — 480
+---------------------------------------------------------------- */
+
+@media (max-width: 480px) {
+
+    .admin-dashboard__metrics {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-dashboard__welcome {
+        padding: 18px;
+        border-radius: 14px;
+    }
+
+    .admin-dashboard__welcome-title {
+        font-size: 21px;
+    }
+
+    .admin-dashboard__welcome-meta-item {
+        flex: 1;
+        justify-content: center;
+    }
+
+    .admin-dashboard__metric {
+        min-height: 118px;
+    }
+
+    .admin-dashboard__chart {
+        height: 190px;
+    }
+
+    .admin-dashboard__chart-y-axis {
+        width: 28px;
+    }
+
+    .admin-dashboard__chart-area,
+    .admin-dashboard__chart-x-axis {
+        left: 34px;
+    }
+
+    .admin-dashboard__order-price {
+        display: none;
+    }
+
+    .admin-dashboard__order-status {
+        min-width: 45px;
+    }
+
+    .admin-dashboard__cta {
+        padding: 18px;
+    }
+}
+
+
+/* ----------------------------------------------------------------
+   TOUCH DEVICES
+---------------------------------------------------------------- */
+
+@media (hover: none) and (pointer: coarse) {
+
+    .admin-dashboard__metric:hover {
+        transform: none;
+    }
+
+    .admin-dashboard__product:hover {
+        background: transparent;
+        border-color: transparent;
+    }
+
+    .admin-dashboard__sales-bar:hover {
+        opacity: 1;
+    }
+}
+
+
+/* ----------------------------------------------------------------
+   REDUCED MOTION
+---------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .admin-dashboard__metric,
+    .admin-dashboard__product,
+    .admin-dashboard__sales-bar {
+        transition: none !important;
+    }
+}

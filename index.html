@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
     <meta
         name="viewport"
         content="width=device-width, initial-scale=1.0"
@@ -9,1150 +10,3070 @@
 
     <meta
         name="description"
-        content="ProjectKart — Arduino, sensors, electronic components, development boards, project kits and everything you need to build your next project."
+        content="ProjectKart — maker-grade electronics components, sensors, modules, boards and project kits."
     >
 
     <meta
-        name="keywords"
-        content="Arduino, electronics components, sensors, project kits, development boards, robotics, IoT, ProjectKart"
+        name="theme-color"
+        content="#07090d"
     >
 
-    <meta name="theme-color" content="#07090d">
+    <title>ProjectKart — Build. Create. Innovate.</title>
 
-    <title>ProjectKart — Build Something Amazing</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
 
     <!-- =========================================================
-         STYLES
+         GLOBAL CSS
     ========================================================== -->
 
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/typography.css">
+
+    <!-- =========================================================
+         NAVIGATION
+    ========================================================== -->
+
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/mobile-menu.css">
+
+    <!-- =========================================================
+         UI
+    ========================================================== -->
+
     <link rel="stylesheet" href="css/buttons.css">
     <link rel="stylesheet" href="css/forms.css">
+
+    <!-- =========================================================
+         HOMEPAGE
+    ========================================================== -->
+
     <link rel="stylesheet" href="css/hero.css">
     <link rel="stylesheet" href="css/sections.css">
     <link rel="stylesheet" href="css/category-cards.css">
     <link rel="stylesheet" href="css/product-cards.css">
     <link rel="stylesheet" href="css/kit-cards.css">
+
+    <!-- =========================================================
+         FOOTER / ANIMATION / RESPONSIVE
+    ========================================================== -->
+
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/responsive.css">
 </head>
 
-<body>
+<body class="home-page">
 
-<!-- =========================================================
-     NAVBAR
-========================================================== -->
+    <!-- =========================================================
+         PAGE LOADER
+    ========================================================== -->
 
-<header class="site-navbar" id="site-navbar">
+    <div
+        class="page-loader"
+        id="pageLoader"
+        aria-hidden="true"
+    >
+        <div class="page-loader__inner">
+            <div class="page-loader__logo">PK</div>
 
-    <div class="container navbar-container">
-
-        <!-- Logo -->
-        <a
-            href="index.html"
-            class="navbar-logo"
-            aria-label="ProjectKart Home"
-        >
-            <span class="navbar-logo-mark">
-                PK
-            </span>
-
-            <span class="navbar-logo-text">
-                Project<span>Kart</span>
-            </span>
-        </a>
+            <div class="page-loader__line">
+                <span></span>
+            </div>
+        </div>
+    </div>
 
 
-        <!-- Desktop Navigation -->
-        <nav
-            class="navbar-nav"
-            aria-label="Main navigation"
-        >
+    <!-- =========================================================
+         SITE HEADER
+    ========================================================== -->
+
+    <header
+        class="site-header"
+        id="siteHeader"
+    >
+
+        <div class="navbar">
+
+            <!-- -------------------------------------------------
+                 BRAND
+            -------------------------------------------------- -->
 
             <a
                 href="index.html"
-                class="navbar-link active"
-            >
-                Home
-            </a>
-
-            <a
-                href="shop.html"
-                class="navbar-link"
-            >
-                Shop
-            </a>
-
-            <a
-                href="categories.html"
-                class="navbar-link"
-            >
-                Categories
-            </a>
-
-            <a
-                href="project-kits.html"
-                class="navbar-link"
-            >
-                Project Kits
-            </a>
-
-            <a
-                href="about.html"
-                class="navbar-link"
-            >
-                About
-            </a>
-
-            <a
-                href="contact.html"
-                class="navbar-link"
-            >
-                Contact
-            </a>
-
-        </nav>
-
-
-        <!-- Navbar Actions -->
-        <div class="navbar-actions">
-
-            <!-- Search -->
-            <div class="navbar-search">
-
-                <form
-                    data-search-form
-                    action="shop.html"
-                    method="get"
-                    class="navbar-search-form"
-                >
-
-                    <input
-                        type="search"
-                        name="search"
-                        data-search-input
-                        placeholder="Search components..."
-                        autocomplete="off"
-                        aria-label="Search products"
-                    >
-
-                    <button
-                        type="submit"
-                        class="navbar-search-button"
-                        aria-label="Search"
-                    >
-                        <span>⌕</span>
-                    </button>
-
-                </form>
-
-                <div
-                    class="search-results"
-                    data-search-results
-                ></div>
-
-            </div>
-
-
-            <!-- Account -->
-            <div class="navbar-account">
-
-                <button
-                    type="button"
-                    class="navbar-action"
-                    data-account-toggle
-                    aria-label="Account"
-                >
-                    <span class="navbar-action-icon">
-                        ◯
-                    </span>
-                </button>
-
-                <div
-                    class="account-dropdown"
-                    data-account-dropdown
-                >
-
-                    <div
-                        class="account-dropdown-user"
-                        data-account-user
-                    >
-
-                        <span
-                            class="account-dropdown-avatar"
-                            data-navbar-avatar
-                        >
-                            U
-                        </span>
-
-                        <div>
-                            <strong data-user-name>
-                                Account
-                            </strong>
-
-                            <small data-user-email>
-                                Sign in to your account
-                            </small>
-                        </div>
-
-                    </div>
-
-                    <div class="account-dropdown-divider"></div>
-
-                    <a
-                        href="account.html"
-                        class="account-dropdown-link"
-                    >
-                        My Account
-                    </a>
-
-                    <a
-                        href="account.html#orders"
-                        class="account-dropdown-link"
-                    >
-                        My Orders
-                    </a>
-
-                    <a
-                        href="login.html"
-                        class="account-dropdown-link"
-                        data-auth-action="login"
-                    >
-                        Sign In
-                    </a>
-
-                    <button
-                        type="button"
-                        class="account-dropdown-link account-dropdown-logout"
-                        data-logout
-                        data-auth-action="logout"
-                    >
-                        Sign Out
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <!-- Cart -->
-            <a
-                href="cart.html"
-                class="navbar-action navbar-cart"
-                aria-label="Shopping cart"
+                class="brand"
+                aria-label="ProjectKart Home"
             >
 
-                <span class="navbar-action-icon">
-                    🛒
+                <span class="brand__mark">
+                    PK
                 </span>
 
-                <span
-                    class="navbar-cart-badge"
-                    data-cart-count
-                >
-                    0
+                <span class="brand__name">
+                    <span class="brand__project">Project</span><span class="brand__kart">Kart</span>
                 </span>
+
+                <sup class="brand__version">
+                    /01
+                </sup>
 
             </a>
 
 
-            <!-- Mobile Menu -->
-            <button
-                type="button"
-                class="navbar-mobile-button"
-                data-menu-toggle
-                aria-label="Open navigation menu"
-                aria-expanded="false"
+            <!-- -------------------------------------------------
+                 DESKTOP NAVIGATION
+            -------------------------------------------------- -->
+
+            <nav
+                class="main-navigation"
+                id="mainNavigation"
+                aria-label="Primary navigation"
             >
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
 
-        </div>
-
-    </div>
-
-</header>
-
-
-<!-- =========================================================
-     MOBILE MENU
-========================================================== -->
-
-<div
-    class="mobile-menu-overlay"
-    data-mobile-overlay
-></div>
-
-<aside
-    class="mobile-menu"
-    data-mobile-menu
-    aria-hidden="true"
->
-
-    <div class="mobile-menu-header">
-
-        <a
-            href="index.html"
-            class="navbar-logo"
-        >
-            <span class="navbar-logo-mark">
-                PK
-            </span>
-
-            <span class="navbar-logo-text">
-                Project<span>Kart</span>
-            </span>
-        </a>
-
-        <button
-            type="button"
-            class="mobile-menu-close"
-            data-menu-close
-            aria-label="Close navigation menu"
-        >
-            ×
-        </button>
-
-    </div>
-
-
-    <nav class="mobile-nav">
-
-        <a
-            href="index.html"
-            class="mobile-nav-link active"
-        >
-            Home
-        </a>
-
-        <a
-            href="shop.html"
-            class="mobile-nav-link"
-        >
-            Shop
-        </a>
-
-        <a
-            href="categories.html"
-            class="mobile-nav-link"
-        >
-            Categories
-        </a>
-
-        <a
-            href="project-kits.html"
-            class="mobile-nav-link"
-        >
-            Project Kits
-        </a>
-
-        <a
-            href="about.html"
-            class="mobile-nav-link"
-        >
-            About
-        </a>
-
-        <a
-            href="contact.html"
-            class="mobile-nav-link"
-        >
-            Contact
-        </a>
-
-    </nav>
-
-
-    <div class="mobile-menu-actions">
-
-        <a
-            href="account.html"
-            class="btn btn-outline btn-full"
-        >
-            My Account
-        </a>
-
-        <a
-            href="cart.html"
-            class="btn btn-primary btn-full"
-        >
-            View Cart
-        </a>
-
-    </div>
-
-</aside>
-
-
-<main>
-
-<!-- =========================================================
-     HERO
-========================================================== -->
-
-<section class="hero">
-
-    <div class="hero-background-grid"></div>
-
-    <div class="hero-glow hero-glow-one"></div>
-    <div class="hero-glow hero-glow-two"></div>
-
-    <div class="container hero-container">
-
-        <!-- Hero Content -->
-        <div class="hero-content animate-fade-up">
-
-            <div class="hero-eyebrow">
-                <span class="hero-eyebrow-dot"></span>
-                ELECTRONICS • ROBOTICS • IoT
-            </div>
-
-
-            <h1 class="hero-title">
-
-                Build.
-
-                <span class="hero-title-highlight">
-                    Create.
-                </span>
-
-                Innovate.
-
-            </h1>
-
-
-            <p class="hero-description">
-
-                Everything you need to turn your ideas into
-                real-world projects. Explore development boards,
-                sensors, modules, components and ready-to-build
-                project kits.
-
-            </p>
-
-
-            <div class="hero-actions">
+                <a
+                    href="index.html"
+                    class="nav-link active"
+                    data-page="home"
+                >
+                    Home
+                </a>
 
                 <a
                     href="shop.html"
-                    class="btn btn-primary btn-large"
+                    class="nav-link"
+                    data-page="shop"
                 >
-                    Explore Products
-                    <span>→</span>
+                    Shop
+                </a>
+
+                <a
+                    href="categories.html"
+                    class="nav-link"
+                    data-page="categories"
+                >
+                    Categories
                 </a>
 
                 <a
                     href="project-kits.html"
-                    class="btn btn-outline btn-large"
+                    class="nav-link"
+                    data-page="project-kits"
                 >
-                    View Project Kits
-                </a>
-
-            </div>
-
-
-            <!-- Hero Stats -->
-            <div class="hero-stats">
-
-                <div class="hero-stat">
-
-                    <strong>
-                        500+
-                    </strong>
-
-                    <span>
-                        Components
-                    </span>
-
-                </div>
-
-
-                <div class="hero-stat">
-
-                    <strong>
-                        50+
-                    </strong>
-
-                    <span>
-                        Project Kits
-                    </span>
-
-                </div>
-
-
-                <div class="hero-stat">
-
-                    <strong>
-                        100%
-                    </strong>
-
-                    <span>
-                        Builder Focused
-                    </span>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- Hero Visual -->
-        <div class="hero-visual animate-scale-in">
-
-            <div class="hero-product-showcase">
-
-                <div class="hero-showcase-glow"></div>
-
-                <div class="hero-board">
-
-                    <div class="hero-board-header">
-                        <span>PROJECTKART</span>
-                        <span>01</span>
-                    </div>
-
-                    <div class="hero-board-circuit">
-
-                        <div class="circuit-line circuit-line-one"></div>
-                        <div class="circuit-line circuit-line-two"></div>
-                        <div class="circuit-line circuit-line-three"></div>
-
-                        <div class="circuit-node node-one"></div>
-                        <div class="circuit-node node-two"></div>
-                        <div class="circuit-node node-three"></div>
-                        <div class="circuit-node node-four"></div>
-
-                    </div>
-
-                    <div class="hero-board-chip">
-                        <span>MCU</span>
-                    </div>
-
-                </div>
-
-
-                <!-- Floating Product Card -->
-                <div class="hero-floating-card hero-floating-card-one">
-
-                    <div class="floating-card-icon">
-                        ⚡
-                    </div>
-
-                    <div>
-                        <strong>
-                            Development Boards
-                        </strong>
-
-                        <span>
-                            Ready to build
-                        </span>
-                    </div>
-
-                </div>
-
-
-                <div class="hero-floating-card hero-floating-card-two">
-
-                    <div class="floating-card-icon">
-                        ◈
-                    </div>
-
-                    <div>
-                        <strong>
-                            Sensors & Modules
-                        </strong>
-
-                        <span>
-                            Explore possibilities
-                        </span>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     CATEGORIES
-========================================================== -->
-
-<section class="page-section">
-
-    <div class="container">
-
-        <div class="section-header">
-
-            <div class="section-header-content">
-
-                <span class="eyebrow">
-                    Explore
-                </span>
-
-                <h2 class="section-title">
-                    Shop by Category
-                </h2>
-
-                <p class="section-description">
-                    Find the right components for your next
-                    electronics, robotics or IoT project.
-                </p>
-
-            </div>
-
-            <a
-                href="categories.html"
-                class="section-link"
-            >
-                View all categories →
-            </a>
-
-        </div>
-
-
-        <div
-            class="category-grid"
-            data-home-categories
-        >
-
-            <!-- Categories are loaded from Firebase -->
-
-            <div class="category-card skeleton">
-                <div class="skeleton-image"></div>
-                <div class="skeleton-content"></div>
-            </div>
-
-            <div class="category-card skeleton">
-                <div class="skeleton-image"></div>
-                <div class="skeleton-content"></div>
-            </div>
-
-            <div class="category-card skeleton">
-                <div class="skeleton-image"></div>
-                <div class="skeleton-content"></div>
-            </div>
-
-            <div class="category-card skeleton">
-                <div class="skeleton-image"></div>
-                <div class="skeleton-content"></div>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     FEATURED PRODUCTS
-========================================================== -->
-
-<section class="page-section section-soft">
-
-    <div class="container">
-
-        <div class="section-header">
-
-            <div class="section-header-content">
-
-                <span class="eyebrow">
-                    Featured
-                </span>
-
-                <h2 class="section-title">
-                    Popular Components
-                </h2>
-
-                <p class="section-description">
-                    Popular components selected for makers,
-                    students, engineers and creators.
-                </p>
-
-            </div>
-
-            <a
-                href="shop.html"
-                class="section-link"
-            >
-                Browse all products →
-            </a>
-
-        </div>
-
-
-        <div
-            class="product-grid"
-            data-featured-products
-        >
-
-            <!-- Firebase products -->
-
-            <div class="product-card skeleton">
-                <div class="skeleton-image"></div>
-                <div class="skeleton-content"></div>
-            </div>
-
-            <div class="product-card skeleton">
-                <div class="skeleton-image"></div>
-                <div class="skeleton-content"></div>
-            </div>
-
-            <div class="product-card skeleton">
-                <div class="skeleton-image"></div>
-                <div class="skeleton-content"></div>
-            </div>
-
-            <div class="product-card skeleton">
-                <div class="skeleton-image"></div>
-                <div class="skeleton-content"></div>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     PROJECT KITS
-========================================================== -->
-
-<section class="page-section">
-
-    <div class="container">
-
-        <div class="section-header">
-
-            <div class="section-header-content">
-
-                <span class="eyebrow">
-                    Build Faster
-                </span>
-
-                <h2 class="section-title">
                     Project Kits
-                </h2>
-
-                <p class="section-description">
-                    Complete kits designed to help you start
-                    building without hunting for every component.
-                </p>
-
-            </div>
-
-            <a
-                href="project-kits.html"
-                class="section-link"
-            >
-                Explore kits →
-            </a>
-
-        </div>
-
-
-        <div
-            class="kit-grid"
-            data-home-kits
-        >
-
-            <!-- Firebase kits -->
-
-            <div class="kit-card skeleton">
-                <div class="skeleton-image"></div>
-                <div class="skeleton-content"></div>
-            </div>
-
-            <div class="kit-card skeleton">
-                <div class="skeleton-image"></div>
-                <div class="skeleton-content"></div>
-            </div>
-
-            <div class="kit-card skeleton">
-                <div class="skeleton-image"></div>
-                <div class="skeleton-content"></div>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     WHY PROJECTKART
-========================================================== -->
-
-<section class="page-section section-soft">
-
-    <div class="container">
-
-        <div class="section-header centered">
-
-            <div class="section-header-content">
-
-                <span class="eyebrow">
-                    Why ProjectKart
-                </span>
-
-                <h2 class="section-title">
-                    Made for People Who Build
-                </h2>
-
-                <p class="section-description">
-                    From your first Arduino project to your next
-                    serious prototype, ProjectKart is built around
-                    the way makers actually work.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="feature-grid">
-
-            <article class="feature-card">
-
-                <div class="feature-card-icon">
-                    ⚙
-                </div>
-
-                <h3>
-                    Quality Components
-                </h3>
-
-                <p>
-                    Carefully selected boards, sensors, modules
-                    and electronic components for your projects.
-                </p>
-
-            </article>
-
-
-            <article class="feature-card">
-
-                <div class="feature-card-icon">
-                    ⚡
-                </div>
-
-                <h3>
-                    Build Faster
-                </h3>
-
-                <p>
-                    Find the components you need without spending
-                    hours searching through unrelated products.
-                </p>
-
-            </article>
-
-
-            <article class="feature-card">
-
-                <div class="feature-card-icon">
-                    ◈
-                </div>
-
-                <h3>
-                    Made for Learning
-                </h3>
-
-                <p>
-                    Perfect for students, hobbyists, makers and
-                    anyone learning electronics and embedded systems.
-                </p>
-
-            </article>
-
-
-            <article class="feature-card">
-
-                <div class="feature-card-icon">
-                    ↗
-                </div>
-
-                <h3>
-                    Keep Creating
-                </h3>
-
-                <p>
-                    Start with an idea and turn it into something
-                    real with the right tools and components.
-                </p>
-
-            </article>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     CTA
-========================================================== -->
-
-<section class="page-section">
-
-    <div class="container">
-
-        <div class="cta-section">
-
-            <div class="cta-content">
-
-                <span class="eyebrow">
-                    Ready to build?
-                </span>
-
-                <h2>
-                    Your next project
-                    starts here.
-                </h2>
-
-                <p>
-                    Explore our collection of electronics
-                    components and start building today.
-                </p>
-
-                <div class="cta-actions">
-
-                    <a
-                        href="shop.html"
-                        class="btn btn-primary btn-large"
-                    >
-                        Start Shopping
-                        <span>→</span>
-                    </a>
-
-                    <a
-                        href="contact.html"
-                        class="btn btn-outline btn-large"
-                    >
-                        Need Help?
-                    </a>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-</main>
-
-
-<!-- =========================================================
-     FOOTER
-========================================================== -->
-
-<footer class="site-footer">
-
-    <div class="container">
-
-        <div class="footer-main">
-
-            <!-- Brand -->
-            <div class="footer-brand">
+                </a>
 
                 <a
-                    href="index.html"
-                    class="navbar-logo"
+                    href="shop.html?deal=true"
+                    class="nav-link"
+                    data-page="deals"
                 >
-
-                    <span class="navbar-logo-mark">
-                        PK
-                    </span>
-
-                    <span class="navbar-logo-text">
-                        Project<span>Kart</span>
-                    </span>
-
+                    Deals
                 </a>
 
-                <p>
-                    Components, tools and project kits for
-                    students, makers, engineers and creators.
-                </p>
-
-
-                <div class="footer-socials">
-
-                    <a
-                        href="#"
-                        aria-label="Instagram"
-                        class="footer-social"
-                    >
-                        IG
-                    </a>
-
-                    <a
-                        href="#"
-                        aria-label="Facebook"
-                        class="footer-social"
-                    >
-                        FB
-                    </a>
-
-                    <a
-                        href="#"
-                        aria-label="YouTube"
-                        class="footer-social"
-                    >
-                        YT
-                    </a>
-
-                </div>
-
-            </div>
-
-
-            <!-- Shop -->
-            <div class="footer-column">
-
-                <h3>
-                    Shop
-                </h3>
-
-                <a href="shop.html">
-                    All Products
+                <a
+                    href="about.html"
+                    class="nav-link"
+                    data-page="about"
+                >
+                    About
                 </a>
 
-                <a href="categories.html">
-                    Categories
-                </a>
-
-                <a href="project-kits.html">
-                    Project Kits
-                </a>
-
-                <a href="shop.html?search=arduino">
-                    Arduino
-                </a>
-
-                <a href="shop.html?search=sensors">
-                    Sensors
-                </a>
-
-            </div>
-
-
-            <!-- Company -->
-            <div class="footer-column">
-
-                <h3>
-                    Company
-                </h3>
-
-                <a href="about.html">
-                    About Us
-                </a>
-
-                <a href="contact.html">
+                <a
+                    href="contact.html"
+                    class="nav-link"
+                    data-page="contact"
+                >
                     Contact
                 </a>
 
-                <a href="#">
-                    Shipping
+            </nav>
+
+
+            <!-- -------------------------------------------------
+                 RIGHT NAVIGATION
+            -------------------------------------------------- -->
+
+            <div class="navbar__actions">
+
+                <!-- Search -->
+
+                <form
+                    class="navbar-search"
+                    id="navbarSearch"
+                    role="search"
+                >
+
+                    <button
+                        type="submit"
+                        class="navbar-search__button"
+                        aria-label="Search"
+                    >
+
+                        <svg
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                        >
+                            <circle
+                                cx="11"
+                                cy="11"
+                                r="6.5"
+                            ></circle>
+
+                            <path
+                                d="M16 16L21 21"
+                            ></path>
+                        </svg>
+
+                    </button>
+
+                    <input
+                        type="search"
+                        id="globalSearchInput"
+                        name="search"
+                        placeholder="Search components"
+                        autocomplete="off"
+                    >
+
+                </form>
+
+
+                <!-- Account -->
+
+                <a
+                    href="account.html"
+                    class="navbar-icon-button"
+                    aria-label="Account"
+                >
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                    >
+
+                        <circle
+                            cx="12"
+                            cy="8"
+                            r="3.2"
+                        ></circle>
+
+                        <path
+                            d="M5.5 20c.8-3.3 3-5 6.5-5s5.7 1.7 6.5 5"
+                        ></path>
+
+                    </svg>
+
                 </a>
 
-                <a href="#">
-                    Returns
+
+                <!-- Cart -->
+
+                <a
+                    href="cart.html"
+                    class="navbar-icon-button navbar-cart"
+                    aria-label="Shopping cart"
+                >
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                    >
+
+                        <path
+                            d="M5 8.5h14l-1 11H6l-1-11Z"
+                        ></path>
+
+                        <path
+                            d="M8.5 9V6.8a3.5 3.5 0 0 1 7 0V9"
+                        ></path>
+
+                    </svg>
+
+                    <span
+                        class="cart-count"
+                        id="cartCount"
+                        data-cart-count
+                        aria-label="Cart items"
+                    >
+                        0
+                    </span>
+
                 </a>
+
+
+                <!-- Mobile menu -->
+
+                <button
+                    class="mobile-menu-toggle"
+                    id="mobileMenuToggle"
+                    type="button"
+                    data-mobile-menu-button
+                    aria-label="Open navigation menu"
+                    aria-expanded="false"
+                    aria-controls="mobileMenu"
+                >
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================================================
+         MOBILE MENU
+    ========================================================== -->
+
+    <div
+        class="mobile-menu"
+        id="mobileMenu"
+        data-mobile-menu
+        aria-hidden="true"
+    >
+
+        <div class="mobile-menu__backdrop"></div>
+
+        <aside class="mobile-menu__panel">
+
+            <div class="mobile-menu__top">
+
+                <a
+                    href="index.html"
+                    class="mobile-menu__brand"
+                >
+
+                    <span class="brand__mark">
+                        PK
+                    </span>
+
+                    <span class="brand__name">
+                        <span class="brand__project">Project</span><span class="brand__kart">Kart</span>
+                    </span>
+
+                </a>
+
+                <button
+                    type="button"
+                    class="mobile-menu__close"
+                    id="mobileMenuClose"
+                    aria-label="Close navigation"
+                >
+                    ×
+                </button>
 
             </div>
 
 
-            <!-- Account -->
-            <div class="footer-column">
+            <nav
+                class="mobile-navigation"
+                aria-label="Mobile navigation"
+            >
 
-                <h3>
-                    Account
-                </h3>
-
-                <a href="login.html">
-                    Sign In
+                <a
+                    href="index.html"
+                    class="mobile-nav-link active"
+                >
+                    <span>Home</span>
+                    <span>01</span>
                 </a>
 
-                <a href="register.html">
-                    Create Account
+                <a
+                    href="shop.html"
+                    class="mobile-nav-link"
+                >
+                    <span>Shop</span>
+                    <span>02</span>
                 </a>
+
+                <a
+                    href="categories.html"
+                    class="mobile-nav-link"
+                >
+                    <span>Categories</span>
+                    <span>03</span>
+                </a>
+
+                <a
+                    href="project-kits.html"
+                    class="mobile-nav-link"
+                >
+                    <span>Project Kits</span>
+                    <span>04</span>
+                </a>
+
+                <a
+                    href="shop.html?deal=true"
+                    class="mobile-nav-link"
+                >
+                    <span>Deals</span>
+                    <span>05</span>
+                </a>
+
+                <a
+                    href="about.html"
+                    class="mobile-nav-link"
+                >
+                    <span>About</span>
+                    <span>06</span>
+                </a>
+
+                <a
+                    href="contact.html"
+                    class="mobile-nav-link"
+                >
+                    <span>Contact</span>
+                    <span>07</span>
+                </a>
+
+            </nav>
+
+
+            <div class="mobile-menu__bottom">
 
                 <a href="account.html">
-                    My Account
+                    Account
                 </a>
 
                 <a href="cart.html">
-                    Shopping Cart
+                    Cart
+                    <span id="mobileCartCount" data-cart-count>0</span>
                 </a>
 
             </div>
 
-        </div>
-
-
-        <div class="footer-bottom">
-
-            <p>
-                © 2026 ProjectKart. All rights reserved.
-            </p>
-
-            <div class="footer-bottom-links">
-
-                <a href="#">
-                    Privacy Policy
-                </a>
-
-                <a href="#">
-                    Terms
-                </a>
-
-            </div>
-
-        </div>
+        </aside>
 
     </div>
 
-</footer>
+
+    <!-- =========================================================
+         MAIN CONTENT
+    ========================================================== -->
+
+    <main id="mainContent">
 
 
-<!-- =========================================================
-     JAVASCRIPT
-========================================================== -->
+        <!-- =====================================================
+             HERO
+        ====================================================== -->
 
-<script
-    type="module"
-    src="js/navbar.js"
-></script>
+        <section
+            class="hero-section"
+            id="hero"
+        >
 
-<script
-    type="module"
-    src="js/search.js"
-></script>
+            <div class="hero-section__background">
 
-<script
-    type="module"
-    src="js/home.js"
-></script>
+                <img
+                    src="assets/images/hero/hero-workspace.jpg"
+                    alt=""
+                    class="hero-section__background-image"
+                    aria-hidden="true"
+                >
+
+                <div class="hero-section__background-overlay"></div>
+
+            </div>
+
+
+            <div class="hero-section__container">
+
+
+                <!-- -------------------------------------------------
+                     HERO CONTENT
+                -------------------------------------------------- -->
+
+                <div class="hero-content">
+
+                    <div class="eyebrow hero-eyebrow">
+
+                        <span class="eyebrow__dot"></span>
+
+                        <span>
+                            MAKER-GRADE COMPONENTS, THOUGHTFULLY SOURCED
+                        </span>
+
+                    </div>
+
+
+                    <h1 class="hero-title">
+
+                        <span>Build.</span>
+
+                        <span class="hero-title__accent">
+                            Create.
+                        </span>
+
+                        <span>Innovate.</span>
+
+                    </h1>
+
+
+                    <p class="hero-lead">
+                        Everything you need to turn your ideas into
+                        real-world projects.
+                    </p>
+
+
+                    <p class="hero-description">
+                        Explore boards, sensors, modules, batteries,
+                        motors, displays and complete DIY project kits
+                        — all in one place.
+                    </p>
+
+
+                    <div class="hero-actions">
+
+                        <a
+                            href="shop.html"
+                            class="button button-primary hero-primary-button"
+                        >
+
+                            <span>
+                                Shop Components
+                            </span>
+
+                            <span class="button-arrow">
+                                →
+                            </span>
+
+                        </a>
+
+
+                        <a
+                            href="project-kits.html"
+                            class="button button-secondary hero-secondary-button"
+                        >
+
+                            <span>
+                                Explore Project Kits
+                            </span>
+
+                            <span class="button-arrow">
+                                ↗
+                            </span>
+
+                        </a>
+
+                    </div>
+
+
+                    <div class="hero-meta">
+
+                        <div class="hero-meta__item">
+
+                            <span class="hero-meta__status"></span>
+
+                            <span>
+                                Demo catalogue is live
+                            </span>
+
+                        </div>
+
+                        <span class="hero-meta__divider"></span>
+
+                        <div class="hero-meta__item">
+                            Online + offline ordering
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- -------------------------------------------------
+                     HERO VISUAL
+                -------------------------------------------------- -->
+
+                <div class="hero-visual">
+
+                    <div class="hero-visual__technical-label">
+                        PROJECTKART / WORKSPACE_01
+                    </div>
+
+
+                    <div class="hero-image-frame">
+
+                        <div class="hero-image-frame__image-wrap">
+
+                            <img
+                                src="assets/images/hero/hero-workspace.jpg"
+                                alt="Electronics components and development boards arranged on a workspace"
+                                class="hero-image"
+                            >
+
+                        </div>
+
+
+                        <div class="hero-image-frame__gradient"></div>
+
+
+                        <div class="hero-image-frame__caption">
+                            Build the next idea.
+                        </div>
+
+
+                        <div class="hero-ready-indicator">
+
+                            <span></span>
+
+                            READY TO BUILD
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Floating hero information card -->
+
+                    <div class="hero-signal-card">
+
+                        <div class="hero-signal-card__icon">
+
+                            <svg
+                                viewBox="0 0 24 24"
+                                aria-hidden="true"
+                            >
+
+                                <rect
+                                    x="6"
+                                    y="6"
+                                    width="12"
+                                    height="12"
+                                    rx="2"
+                                ></rect>
+
+                                <rect
+                                    x="9"
+                                    y="9"
+                                    width="6"
+                                    height="6"
+                                    rx="1"
+                                ></rect>
+
+                                <path
+                                    d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M18 9h3M3 15h3M18 15h3"
+                                ></path>
+
+                            </svg>
+
+                        </div>
+
+
+                        <div class="hero-signal-card__content">
+
+                            <span class="hero-signal-card__label">
+                                CURATED SIGNAL
+                            </span>
+
+                            <strong>
+                                Boards · sensors · modules
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Hero bottom scroll cue -->
+
+            <button
+                class="hero-scroll-cue"
+                id="heroScrollCue"
+                type="button"
+                aria-label="Scroll down"
+            >
+
+                <span>⌄</span>
+
+            </button>
+
+        </section>
+
+
+        <!-- =====================================================
+             FEATURE STRIP
+        ====================================================== -->
+
+        <section
+            class="feature-strip"
+            aria-label="ProjectKart benefits"
+        >
+
+            <div class="feature-strip__item">
+
+                <div class="feature-strip__icon">
+
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+
+                        <path
+                            d="M12 3 20 6v5c0 5-3.4 8.7-8 10-4.6-1.3-8-5-8-10V6l8-3Z"
+                        ></path>
+
+                        <path
+                            d="m8.5 12 2.2 2.2 4.8-5"
+                        ></path>
+
+                    </svg>
+
+                </div>
+
+                <div>
+
+                    <h3>
+                        Quality Components
+                    </h3>
+
+                    <p>
+                        Carefully selected electronics components.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="feature-strip__item">
+
+                <div class="feature-strip__icon">
+
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+
+                        <path
+                            d="M12 3v5M12 16v5M3 12h5M16 12h5"
+                        ></path>
+
+                        <path
+                            d="m6 6 3 3M15 15l3 3M18 6l-3 3M9 15l-3 3"
+                        ></path>
+
+                    </svg>
+
+                </div>
+
+                <div>
+
+                    <h3>
+                        Made for Makers
+                    </h3>
+
+                    <p>
+                        For students, engineers and hobbyists.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="feature-strip__item">
+
+                <div class="feature-strip__icon">
+
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+
+                        <path
+                            d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"
+                        ></path>
+
+                    </svg>
+
+                </div>
+
+                <div>
+
+                    <h3>
+                        Fast Ordering
+                    </h3>
+
+                    <p>
+                        Simple online and direct ordering.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="feature-strip__item">
+
+                <div class="feature-strip__icon">
+
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+
+                        <path
+                            d="M12 21s7-6.1 7-12A7 7 0 0 0 5 9c0 5.9 7 12 7 12Z"
+                        ></path>
+
+                        <circle
+                            cx="12"
+                            cy="9"
+                            r="2.2"
+                        ></circle>
+
+                    </svg>
+
+                </div>
+
+                <div>
+
+                    <h3>
+                        Online + Offline
+                    </h3>
+
+                    <p>
+                        Discover online or contact the store.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             CATEGORY SECTION
+        ====================================================== -->
+
+        <section
+            class="home-section categories-section"
+            id="exploreComponents"
+        >
+
+            <div class="section-container">
+
+
+                <div class="section-heading-row">
+
+                    <div class="section-heading">
+
+                        <span class="section-eyebrow">
+                            START WITH A SIGNAL
+                        </span>
+
+                        <h2>
+                            Explore components
+                        </h2>
+
+                        <p>
+                            From a first blink to a fully connected
+                            machine, find the building blocks that
+                            move your project forward.
+                        </p>
+
+                    </div>
+
+
+                    <a
+                        href="categories.html"
+                        class="section-link"
+                    >
+
+                        <span>
+                            View all categories
+                        </span>
+
+                        <span>
+                            ›
+                        </span>
+
+                    </a>
+
+                </div>
+
+
+                <!-- -------------------------------------------------
+                     CATEGORY GRID
+                -------------------------------------------------- -->
+
+                <div
+                    class="category-grid"
+                    id="homeCategoryGrid"
+                >
+
+
+                    <!-- Category 01 -->
+
+                    <a
+                        href="category.html?category=arduino-boards"
+                        class="category-card category-card--large"
+                    >
+
+                        <div class="category-card__image">
+
+                            <img
+                                src="assets/images/categories/arduino-boards.jpg"
+                                alt="Arduino and development boards"
+                                loading="lazy"
+                            >
+
+                        </div>
+
+                        <div class="category-card__overlay"></div>
+
+                        <div class="category-card__number">
+                            01
+                        </div>
+
+                        <div class="category-card__content">
+
+                            <h3>
+                                Arduino &amp; Boards
+                            </h3>
+
+                            <p>
+                                Microcontrollers and connected brains
+                                for every build.
+                            </p>
+
+                            <span class="category-card__link">
+                                Explore
+                                <span>›</span>
+                            </span>
+
+                        </div>
+
+                    </a>
+
+
+                    <!-- Category 02 -->
+
+                    <a
+                        href="category.html?category=sensors"
+                        class="category-card"
+                    >
+
+                        <div class="category-card__image">
+
+                            <img
+                                src="assets/images/categories/sensors.jpg"
+                                alt="Electronics sensors"
+                                loading="lazy"
+                            >
+
+                        </div>
+
+                        <div class="category-card__overlay"></div>
+
+                        <div class="category-card__number">
+                            02
+                        </div>
+
+                        <div class="category-card__content">
+
+                            <h3>
+                                Sensors
+                            </h3>
+
+                            <p>
+                                Give your projects the ability to
+                                sense the world.
+                            </p>
+
+                            <span class="category-card__link">
+                                Explore
+                                <span>›</span>
+                            </span>
+
+                        </div>
+
+                    </a>
+
+
+                    <!-- Category 03 -->
+
+                    <a
+                        href="category.html?category=modules"
+                        class="category-card"
+                    >
+
+                        <div class="category-card__image">
+
+                            <img
+                                src="assets/images/categories/modules.jpg"
+                                alt="Electronics modules"
+                                loading="lazy"
+                            >
+
+                        </div>
+
+                        <div class="category-card__overlay"></div>
+
+                        <div class="category-card__number">
+                            03
+                        </div>
+
+                        <div class="category-card__content">
+
+                            <h3>
+                                Modules
+                            </h3>
+
+                            <p>
+                                Plug-and-play building blocks for
+                                fast prototypes.
+                            </p>
+
+                            <span class="category-card__link">
+                                Explore
+                                <span>›</span>
+                            </span>
+
+                        </div>
+
+                    </a>
+
+
+                    <!-- Category 04 -->
+
+                    <a
+                        href="category.html?category=batteries-power"
+                        class="category-card category-card--wide"
+                    >
+
+                        <div class="category-card__image">
+
+                            <img
+                                src="assets/images/categories/batteries-power.jpg"
+                                alt="Batteries and power electronics"
+                                loading="lazy"
+                            >
+
+                        </div>
+
+                        <div class="category-card__overlay"></div>
+
+                        <div class="category-card__number">
+                            04
+                        </div>
+
+                        <div class="category-card__content">
+
+                            <h3>
+                                Batteries &amp; Power
+                            </h3>
+
+                            <p>
+                                Reliable power options for portable
+                                and embedded ideas.
+                            </p>
+
+                            <span class="category-card__link">
+                                Explore
+                                <span>›</span>
+                            </span>
+
+                        </div>
+
+                    </a>
+
+
+                    <!-- Category 05 -->
+
+                    <a
+                        href="category.html?category=motors-robotics"
+                        class="category-card"
+                    >
+
+                        <div class="category-card__image">
+
+                            <img
+                                src="assets/images/categories/motors-robotics.jpg"
+                                alt="Motors and robotics components"
+                                loading="lazy"
+                            >
+
+                        </div>
+
+                        <div class="category-card__overlay"></div>
+
+                        <div class="category-card__number">
+                            05
+                        </div>
+
+                        <div class="category-card__content">
+
+                            <h3>
+                                Motors &amp; Robotics
+                            </h3>
+
+                            <p>
+                                Movement, mechanisms and the parts
+                                that make robots go.
+                            </p>
+
+                            <span class="category-card__link">
+                                Explore
+                                <span>›</span>
+                            </span>
+
+                        </div>
+
+                    </a>
+
+
+                    <!-- Category 06 -->
+
+                    <a
+                        href="category.html?category=displays"
+                        class="category-card"
+                    >
+
+                        <div class="category-card__image">
+
+                            <img
+                                src="assets/images/categories/displays.jpg"
+                                alt="Electronics displays"
+                                loading="lazy"
+                            >
+
+                        </div>
+
+                        <div class="category-card__overlay"></div>
+
+                        <div class="category-card__number">
+                            06
+                        </div>
+
+                        <div class="category-card__content">
+
+                            <h3>
+                                Displays
+                            </h3>
+
+                            <p>
+                                Make data visible with bright,
+                                compact interfaces.
+                            </p>
+
+                            <span class="category-card__link">
+                                Explore
+                                <span>›</span>
+                            </span>
+
+                        </div>
+
+                    </a>
+
+
+                    <!-- Category 07 -->
+
+                    <a
+                        href="category.html?category=wires-connectors"
+                        class="category-card"
+                    >
+
+                        <div class="category-card__image">
+
+                            <img
+                                src="assets/images/categories/wires-connectors.jpg"
+                                alt="Wires and connectors"
+                                loading="lazy"
+                            >
+
+                        </div>
+
+                        <div class="category-card__overlay"></div>
+
+                        <div class="category-card__number">
+                            07
+                        </div>
+
+                        <div class="category-card__content">
+
+                            <h3>
+                                Wires &amp; Connectors
+                            </h3>
+
+                            <p>
+                                The small essentials that connect
+                                your whole system.
+                            </p>
+
+                            <span class="category-card__link">
+                                Explore
+                                <span>›</span>
+                            </span>
+
+                        </div>
+
+                    </a>
+
+
+                    <!-- Category 08 -->
+
+                    <a
+                        href="category.html?category=prototyping"
+                        class="category-card"
+                    >
+
+                        <div class="category-card__image">
+
+                            <img
+                                src="assets/images/categories/prototyping.jpg"
+                                alt="Prototyping electronics"
+                                loading="lazy"
+                            >
+
+                        </div>
+
+                        <div class="category-card__overlay"></div>
+
+                        <div class="category-card__number">
+                            08
+                        </div>
+
+                        <div class="category-card__content">
+
+                            <h3>
+                                Prototyping
+                            </h3>
+
+                            <p>
+                                Breadboards and boards that make
+                                iteration effortless.
+                            </p>
+
+                            <span class="category-card__link">
+                                Explore
+                                <span>›</span>
+                            </span>
+
+                        </div>
+
+                    </a>
+
+
+                    <!-- Category 09 -->
+
+                    <a
+                        href="category.html?category=components"
+                        class="category-card"
+                    >
+
+                        <div class="category-card__image">
+
+                            <img
+                                src="assets/images/categories/components.jpg"
+                                alt="Electronic components"
+                                loading="lazy"
+                            >
+
+                        </div>
+
+                        <div class="category-card__overlay"></div>
+
+                        <div class="category-card__number">
+                            09
+                        </div>
+
+                        <div class="category-card__content">
+
+                            <h3>
+                                Components
+                            </h3>
+
+                            <p>
+                                Resistors, LEDs, switches and the
+                                essential building blocks.
+                            </p>
+
+                            <span class="category-card__link">
+                                Explore
+                                <span>›</span>
+                            </span>
+
+                        </div>
+
+                    </a>
+
+
+                    <!-- Category 10 -->
+
+                    <a
+                        href="project-kits.html"
+                        class="category-card category-card--featured"
+                    >
+
+                        <div class="category-card__image">
+
+                            <img
+                                src="assets/images/categories/project-kits.jpg"
+                                alt="Project kits"
+                                loading="lazy"
+                            >
+
+                        </div>
+
+                        <div class="category-card__overlay"></div>
+
+                        <div class="category-card__number">
+                            010
+                        </div>
+
+                        <div class="category-card__content">
+
+                            <h3>
+                                Project Kits
+                            </h3>
+
+                            <p>
+                                Curated starting points for
+                                real-world projects.
+                            </p>
+
+                            <span class="category-card__link">
+                                Explore
+                                <span>›</span>
+                            </span>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             POPULAR COMPONENTS
+        ====================================================== -->
+
+        <section
+            class="home-section products-section"
+            id="popularComponents"
+        >
+
+            <div class="section-container">
+
+
+                <div class="section-heading-row">
+
+                    <div class="section-heading">
+
+                        <span class="section-eyebrow">
+                            THE ESSENTIALS
+                        </span>
+
+                        <h2>
+                            Popular components
+                        </h2>
+
+                        <p>
+                            The reliable starting points makers reach
+                            for again and again.
+                        </p>
+
+                    </div>
+
+
+                    <a
+                        href="shop.html"
+                        class="section-link"
+                    >
+
+                        <span>
+                            Shop all components
+                        </span>
+
+                        <span>
+                            ›
+                        </span>
+
+                    </a>
+
+                </div>
+
+
+                <!-- -------------------------------------------------
+                     PRODUCT GRID
+                -------------------------------------------------- -->
+
+                <div
+                    class="product-grid"
+                    id="popularProductsGrid"
+                >
+
+
+                    <!-- Product 01 -->
+
+                    <article
+                        class="product-card"
+                        data-product-id="arduino-uno-r3"
+                    >
+
+                        <div class="product-card__media">
+
+                            <a
+                                href="product.html?id=arduino-uno-r3"
+                                class="product-card__image-link"
+                            >
+
+                                <img
+                                    src="assets/images/products/arduino-uno-r3.jpg"
+                                    alt="Arduino UNO R3"
+                                    class="product-card__image"
+                                    loading="lazy"
+                                >
+
+                            </a>
+
+
+                            <span class="product-badge product-badge--blue">
+                                POPULAR
+                            </span>
+
+
+                            <button
+                                class="product-card__wishlist"
+                                type="button"
+                                aria-label="Add Arduino UNO R3 to wishlist"
+                                data-wishlist="arduino-uno-r3"
+                            >
+
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    aria-hidden="true"
+                                >
+
+                                    <path
+                                        d="M20.8 8.8c0 5-8.8 10.2-8.8 10.2S3.2 13.8 3.2 8.8A4.6 4.6 0 0 1 12 6.1a4.6 4.6 0 0 1 8.8 2.7Z"
+                                    ></path>
+
+                                </svg>
+
+                            </button>
+
+                        </div>
+
+
+                        <div class="product-card__body">
+
+                            <div class="product-card__topline">
+
+                                <span class="product-card__category">
+                                    ARDUINO
+                                </span>
+
+                                <span class="product-stock product-stock--available">
+
+                                    <span></span>
+
+                                    In stock
+
+                                </span>
+
+                            </div>
+
+
+                            <a
+                                href="product.html?id=arduino-uno-r3"
+                                class="product-card__title"
+                            >
+                                Arduino UNO R3
+                            </a>
+
+
+                            <p class="product-card__description">
+                                The dependable starting point for
+                                prototypes, classroom builds and
+                                maker experiments.
+                            </p>
+
+
+                            <div class="product-card__bottom">
+
+                                <div class="product-price">
+
+                                    <strong>
+                                        ₹699
+                                    </strong>
+
+                                    <del>
+                                        ₹799
+                                    </del>
+
+                                </div>
+
+
+                                <button
+                                    class="product-add-button"
+                                    type="button"
+                                    data-add-cart="arduino-uno-r3"
+                                    aria-label="Add Arduino UNO R3 to cart"
+                                >
+                                    +
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- Product 02 -->
+
+                    <article
+                        class="product-card product-card--active-hover"
+                        data-product-id="arduino-nano"
+                    >
+
+                        <div class="product-card__media">
+
+                            <a
+                                href="product.html?id=arduino-nano"
+                                class="product-card__image-link"
+                            >
+
+                                <img
+                                    src="assets/images/products/arduino-nano.jpg"
+                                    alt="Arduino Nano"
+                                    class="product-card__image"
+                                    loading="lazy"
+                                >
+
+                            </a>
+
+
+                            <button
+                                class="product-card__wishlist"
+                                type="button"
+                                aria-label="Add Arduino Nano to wishlist"
+                                data-wishlist="arduino-nano"
+                            >
+
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    aria-hidden="true"
+                                >
+
+                                    <path
+                                        d="M20.8 8.8c0 5-8.8 10.2-8.8 10.2S3.2 13.8 3.2 8.8A4.6 4.6 0 0 1 12 6.1a4.6 4.6 0 0 1 8.8 2.7Z"
+                                    ></path>
+
+                                </svg>
+
+                            </button>
+
+
+                            <span class="product-card__quick-arrow">
+                                ↗
+                            </span>
+
+                        </div>
+
+
+                        <div class="product-card__body">
+
+                            <div class="product-card__topline">
+
+                                <span class="product-card__category">
+                                    ARDUINO
+                                </span>
+
+                                <span class="product-stock product-stock--available">
+
+                                    <span></span>
+
+                                    In stock
+
+                                </span>
+
+                            </div>
+
+
+                            <a
+                                href="product.html?id=arduino-nano"
+                                class="product-card__title"
+                            >
+                                Arduino Nano
+                            </a>
+
+
+                            <p class="product-card__description">
+                                A compact ATmega328P board for projects
+                                where every millimetre matters.
+                            </p>
+
+
+                            <div class="product-card__bottom">
+
+                                <div class="product-price">
+
+                                    <strong>
+                                        ₹449
+                                    </strong>
+
+                                </div>
+
+
+                                <button
+                                    class="product-add-button"
+                                    type="button"
+                                    data-add-cart="arduino-nano"
+                                    aria-label="Add Arduino Nano to cart"
+                                >
+                                    +
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- Product 03 -->
+
+                    <article
+                        class="product-card"
+                        data-product-id="esp32"
+                    >
+
+                        <div class="product-card__media">
+
+                            <a
+                                href="product.html?id=esp32"
+                                class="product-card__image-link"
+                            >
+
+                                <img
+                                    src="assets/images/products/esp32.jpg"
+                                    alt="ESP32 Wi-Fi and Bluetooth development board"
+                                    class="product-card__image"
+                                    loading="lazy"
+                                >
+
+                            </a>
+
+
+                            <span class="product-badge product-badge--blue">
+                                NEW
+                            </span>
+
+
+                            <button
+                                class="product-card__wishlist"
+                                type="button"
+                                aria-label="Add ESP32 to wishlist"
+                                data-wishlist="esp32"
+                            >
+
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    aria-hidden="true"
+                                >
+
+                                    <path
+                                        d="M20.8 8.8c0 5-8.8 10.2-8.8 10.2S3.2 13.8 3.2 8.8A4.6 4.6 0 0 1 12 6.1a4.6 4.6 0 0 1 8.8 2.7Z"
+                                    ></path>
+
+                                </svg>
+
+                            </button>
+
+                        </div>
+
+
+                        <div class="product-card__body">
+
+                            <div class="product-card__topline">
+
+                                <span class="product-card__category">
+                                    IOT BOARDS
+                                </span>
+
+                                <span class="product-stock product-stock--available">
+
+                                    <span></span>
+
+                                    In stock
+
+                                </span>
+
+                            </div>
+
+
+                            <a
+                                href="product.html?id=esp32"
+                                class="product-card__title"
+                            >
+                                ESP32 Wi-Fi + Bluetooth
+                            </a>
+
+
+                            <p class="product-card__description">
+                                A versatile dual-core board for connected
+                                devices, automation and IoT prototypes.
+                            </p>
+
+
+                            <div class="product-card__bottom">
+
+                                <div class="product-price">
+
+                                    <strong>
+                                        ₹549
+                                    </strong>
+
+                                    <del>
+                                        ₹649
+                                    </del>
+
+                                </div>
+
+
+                                <button
+                                    class="product-add-button"
+                                    type="button"
+                                    data-add-cart="esp32"
+                                    aria-label="Add ESP32 to cart"
+                                >
+                                    +
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- Product 04 -->
+
+                    <article
+                        class="product-card"
+                        data-product-id="hc-sr04"
+                    >
+
+                        <div class="product-card__media">
+
+                            <a
+                                href="product.html?id=hc-sr04"
+                                class="product-card__image-link"
+                            >
+
+                                <img
+                                    src="assets/images/products/hc-sr04.jpg"
+                                    alt="HC-SR04 ultrasonic sensor"
+                                    class="product-card__image"
+                                    loading="lazy"
+                                >
+
+                            </a>
+
+
+                            <span class="product-badge product-badge--yellow">
+                                SALE
+                            </span>
+
+
+                            <button
+                                class="product-card__wishlist"
+                                type="button"
+                                aria-label="Add HC-SR04 to wishlist"
+                                data-wishlist="hc-sr04"
+                            >
+
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    aria-hidden="true"
+                                >
+
+                                    <path
+                                        d="M20.8 8.8c0 5-8.8 10.2-8.8 10.2S3.2 13.8 3.2 8.8A4.6 4.6 0 0 1 12 6.1a4.6 4.6 0 0 1 8.8 2.7Z"
+                                    ></path>
+
+                                </svg>
+
+                            </button>
+
+                        </div>
+
+
+                        <div class="product-card__body">
+
+                            <div class="product-card__topline">
+
+                                <span class="product-card__category">
+                                    DISTANCE
+                                </span>
+
+                                <span class="product-stock product-stock--available">
+
+                                    <span></span>
+
+                                    In stock
+
+                                </span>
+
+                            </div>
+
+
+                            <a
+                                href="product.html?id=hc-sr04"
+                                class="product-card__title"
+                            >
+                                HC-SR04 Ultrasonic Sensor
+                            </a>
+
+
+                            <p class="product-card__description">
+                                A practical distance sensor for obstacle
+                                detection, parking aids and robotics.
+                            </p>
+
+
+                            <div class="product-card__bottom">
+
+                                <div class="product-price">
+
+                                    <strong>
+                                        ₹89
+                                    </strong>
+
+                                    <del>
+                                        ₹120
+                                    </del>
+
+                                </div>
+
+
+                                <button
+                                    class="product-add-button"
+                                    type="button"
+                                    data-add-cart="hc-sr04"
+                                    aria-label="Add HC-SR04 to cart"
+                                >
+                                    +
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- Product 05 -->
+
+                    <article
+                        class="product-card"
+                        data-product-id="flex-sensor"
+                    >
+
+                        <div class="product-card__media">
+
+                            <a
+                                href="product.html?id=flex-sensor"
+                                class="product-card__image-link"
+                            >
+
+                                <img
+                                    src="assets/images/products/flex-sensor.jpg"
+                                    alt="Flex sensor 2.2 inch"
+                                    class="product-card__image"
+                                    loading="lazy"
+                                >
+
+                            </a>
+
+
+                            <span class="product-badge product-badge--red">
+                                LIMITED STOCK
+                            </span>
+
+
+                            <button
+                                class="product-card__wishlist"
+                                type="button"
+                                aria-label="Add flex sensor to wishlist"
+                                data-wishlist="flex-sensor"
+                            >
+
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    aria-hidden="true"
+                                >
+
+                                    <path
+                                        d="M20.8 8.8c0 5-8.8 10.2-8.8 10.2S3.2 13.8 3.2 8.8A4.6 4.6 0 0 1 12 6.1a4.6 4.6 0 0 1 8.8 2.7Z"
+                                    ></path>
+
+                                </svg>
+
+                            </button>
+
+                        </div>
+
+
+                        <div class="product-card__body">
+
+                            <div class="product-card__topline">
+
+                                <span class="product-card__category">
+                                    MOTION &amp; FLEX
+                                </span>
+
+                                <span class="product-stock product-stock--limited">
+
+                                    <span></span>
+
+                                    9 left
+
+                                </span>
+
+                            </div>
+
+
+                            <a
+                                href="product.html?id=flex-sensor"
+                                class="product-card__title"
+                            >
+                                Flex Sensor 2.2 inch
+                            </a>
+
+
+                            <p class="product-card__description">
+                                Measure bending and gesture input for
+                                wearables, controllers and interactive
+                                builds.
+                            </p>
+
+
+                            <div class="product-card__bottom">
+
+                                <div class="product-price">
+
+                                    <strong>
+                                        ₹299
+                                    </strong>
+
+                                </div>
+
+
+                                <button
+                                    class="product-add-button"
+                                    type="button"
+                                    data-add-cart="flex-sensor"
+                                    aria-label="Add flex sensor to cart"
+                                >
+                                    +
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- Product 06 -->
+
+                    <article
+                        class="product-card product-card--active-hover"
+                        data-product-id="sg90-servo"
+                    >
+
+                        <div class="product-card__media">
+
+                            <a
+                                href="product.html?id=sg90-servo"
+                                class="product-card__image-link"
+                            >
+
+                                <img
+                                    src="assets/images/products/sg90-servo.jpg"
+                                    alt="SG90 micro servo motor"
+                                    class="product-card__image"
+                                    loading="lazy"
+                                >
+
+                            </a>
+
+
+                            <button
+                                class="product-card__wishlist"
+                                type="button"
+                                aria-label="Add SG90 servo motor to wishlist"
+                                data-wishlist="sg90-servo"
+                            >
+
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    aria-hidden="true"
+                                >
+
+                                    <path
+                                        d="M20.8 8.8c0 5-8.8 10.2-8.8 10.2S3.2 13.8 3.2 8.8A4.6 4.6 0 0 1 12 6.1a4.6 4.6 0 0 1 8.8 2.7Z"
+                                    ></path>
+
+                                </svg>
+
+                            </button>
+
+
+                            <span class="product-card__quick-arrow">
+                                ↗
+                            </span>
+
+                        </div>
+
+
+                        <div class="product-card__body">
+
+                            <div class="product-card__topline">
+
+                                <span class="product-card__category">
+                                    SERVO MOTORS
+                                </span>
+
+                                <span class="product-stock product-stock--available">
+
+                                    <span></span>
+
+                                    In stock
+
+                                </span>
+
+                            </div>
+
+
+                            <a
+                                href="product.html?id=sg90-servo"
+                                class="product-card__title"
+                            >
+                                SG90 Micro Servo Motor
+                            </a>
+
+
+                            <p class="product-card__description">
+                                Lightweight 180° servo for pan-tilt
+                                mechanisms, arms and moving prototypes.
+                            </p>
+
+
+                            <div class="product-card__bottom">
+
+                                <div class="product-price">
+
+                                    <strong>
+                                        ₹149
+                                    </strong>
+
+                                    <del>
+                                        ₹179
+                                    </del>
+
+                                </div>
+
+
+                                <button
+                                    class="product-add-button"
+                                    type="button"
+                                    data-add-cart="sg90-servo"
+                                    aria-label="Add SG90 servo motor to cart"
+                                >
+                                    +
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- Product 07 -->
+
+                    <article
+                        class="product-card"
+                        data-product-id="oled-096"
+                    >
+
+                        <div class="product-card__media">
+
+                            <a
+                                href="product.html?id=oled-096"
+                                class="product-card__image-link"
+                            >
+
+                                <img
+                                    src="assets/images/products/oled-096.jpg"
+                                    alt="0.96 inch OLED display"
+                                    class="product-card__image"
+                                    loading="lazy"
+                                >
+
+                            </a>
+
+
+                            <button
+                                class="product-card__wishlist"
+                                type="button"
+                                aria-label="Add OLED display to wishlist"
+                                data-wishlist="oled-096"
+                            >
+
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    aria-hidden="true"
+                                >
+
+                                    <path
+                                        d="M20.8 8.8c0 5-8.8 10.2-8.8 10.2S3.2 13.8 3.2 8.8A4.6 4.6 0 0 1 12 6.1a4.6 4.6 0 0 1 8.8 2.7Z"
+                                    ></path>
+
+                                </svg>
+
+                            </button>
+
+                        </div>
+
+
+                        <div class="product-card__body">
+
+                            <div class="product-card__topline">
+
+                                <span class="product-card__category">
+                                    OLED
+                                </span>
+
+                                <span class="product-stock product-stock--available">
+
+                                    <span></span>
+
+                                    In stock
+
+                                </span>
+
+                            </div>
+
+
+                            <a
+                                href="product.html?id=oled-096"
+                                class="product-card__title"
+                            >
+                                0.96 inch OLED Display
+                            </a>
+
+
+                            <p class="product-card__description">
+                                Crisp I2C OLED display for compact
+                                dashboards, sensors and device interfaces.
+                            </p>
+
+
+                            <div class="product-card__bottom">
+
+                                <div class="product-price">
+
+                                    <strong>
+                                        ₹189
+                                    </strong>
+
+                                </div>
+
+
+                                <button
+                                    class="product-add-button"
+                                    type="button"
+                                    data-add-cart="oled-096"
+                                    aria-label="Add OLED display to cart"
+                                >
+                                    +
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- Product 08 -->
+
+                    <article
+                        class="product-card"
+                        data-product-id="l298n"
+                    >
+
+                        <div class="product-card__media">
+
+                            <a
+                                href="product.html?id=l298n"
+                                class="product-card__image-link"
+                            >
+
+                                <img
+                                    src="assets/images/products/l298n.jpg"
+                                    alt="L298N motor driver"
+                                    class="product-card__image"
+                                    loading="lazy"
+                                >
+
+                            </a>
+
+
+                            <button
+                                class="product-card__wishlist"
+                                type="button"
+                                aria-label="Add L298N motor driver to wishlist"
+                                data-wishlist="l298n"
+                            >
+
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    aria-hidden="true"
+                                >
+
+                                    <path
+                                        d="M20.8 8.8c0 5-8.8 10.2-8.8 10.2S3.2 13.8 3.2 8.8A4.6 4.6 0 0 1 12 6.1a4.6 4.6 0 0 1 8.8 2.7Z"
+                                    ></path>
+
+                                </svg>
+
+                            </button>
+
+                        </div>
+
+
+                        <div class="product-card__body">
+
+                            <div class="product-card__topline">
+
+                                <span class="product-card__category">
+                                    MOTOR DRIVERS
+                                </span>
+
+                                <span class="product-stock product-stock--available">
+
+                                    <span></span>
+
+                                    In stock
+
+                                </span>
+
+                            </div>
+
+
+                            <a
+                                href="product.html?id=l298n"
+                                class="product-card__title"
+                            >
+                                L298N Motor Driver
+                            </a>
+
+
+                            <p class="product-card__description">
+                                Dual H-bridge motor controller for two
+                                DC motors or one stepper motor.
+                            </p>
+
+
+                            <div class="product-card__bottom">
+
+                                <div class="product-price">
+
+                                    <strong>
+                                        ₹169
+                                    </strong>
+
+                                </div>
+
+
+                                <button
+                                    class="product-add-button"
+                                    type="button"
+                                    data-add-cart="l298n"
+                                    aria-label="Add L298N motor driver to cart"
+                                >
+                                    +
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             PROJECT KITS SECTION
+        ====================================================== -->
+
+        <section
+            class="home-section project-kits-section"
+            id="projectKits"
+        >
+
+            <div class="section-container project-kits-section__container">
+
+
+                <div class="project-kits-intro">
+
+                    <span class="section-eyebrow">
+                        FOR THE FULL BUILD
+                    </span>
+
+                    <h2>
+                        Build something amazing.
+                    </h2>
+
+                    <p>
+                        Curated kits take you from a blank desk to a
+                        working prototype with a clear, rewarding path.
+                    </p>
+
+
+                    <a
+                        href="project-kits.html"
+                        class="button button-secondary"
+                    >
+
+                        <span>
+                            Explore project kits
+                        </span>
+
+                        <span class="button-arrow">
+                            →
+                        </span>
+
+                    </a>
+
+                </div>
+
+
+                <div class="kit-showcase">
+
+                    <!-- Kit 01 -->
+
+                    <a
+                        href="project-kits.html?kit=smart-home"
+                        class="kit-card kit-card--large"
+                    >
+
+                        <div class="kit-card__image">
+
+                            <img
+                                src="assets/images/kits/smart-home-kit.jpg"
+                                alt="Smart Home Kit"
+                                loading="lazy"
+                            >
+
+                        </div>
+
+                        <div class="kit-card__overlay"></div>
+
+                        <div class="kit-card__content">
+
+                            <span class="kit-card__difficulty">
+                                INTERMEDIATE
+                            </span>
+
+                            <h3>
+                                Smart Home Kit
+                            </h3>
+
+                            <span class="kit-card__link">
+                                View kit →
+                            </span>
+
+                        </div>
+
+                    </a>
+
+
+                    <!-- Kit 02 -->
+
+                    <a
+                        href="project-kits.html?kit=obstacle-robot"
+                        class="kit-card"
+                    >
+
+                        <div class="kit-card__image">
+
+                            <img
+                                src="assets/images/kits/obstacle-robot.jpg"
+                                alt="Obstacle Avoiding Robot"
+                                loading="lazy"
+                            >
+
+                        </div>
+
+                        <div class="kit-card__overlay"></div>
+
+                        <div class="kit-card__content">
+
+                            <span class="kit-card__difficulty">
+                                INTERMEDIATE
+                            </span>
+
+                            <h3>
+                                Obstacle Avoiding Robot
+                            </h3>
+
+                            <span class="kit-card__link">
+                                View kit →
+                            </span>
+
+                        </div>
+
+                    </a>
+
+
+                    <!-- Kit 03 -->
+
+                    <a
+                        href="project-kits.html?kit=line-following-robot"
+                        class="kit-card"
+                    >
+
+                        <div class="kit-card__image">
+
+                            <img
+                                src="assets/images/kits/line-following-robot.jpg"
+                                alt="Line Following Robot"
+                                loading="lazy"
+                            >
+
+                        </div>
+
+                        <div class="kit-card__overlay"></div>
+
+                        <div class="kit-card__content">
+
+                            <span class="kit-card__difficulty">
+                                ADVANCED
+                            </span>
+
+                            <h3>
+                                Line Following Robot
+                            </h3>
+
+                            <span class="kit-card__link">
+                                View kit →
+                            </span>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             EDUCATION / PROJECT CTA
+        ====================================================== -->
+
+        <section
+            class="learning-cta"
+            id="learningCta"
+        >
+
+            <div class="section-container">
+
+                <div class="learning-cta__content">
+
+                    <span class="section-eyebrow">
+                        MADE FOR LEARNING BY DOING
+                    </span>
+
+                    <h2>
+                        Building a college or school project?
+                    </h2>
+
+                    <p>
+                        From a simple Arduino experiment to a complete
+                        robotics or IoT project, find the components
+                        you need in one place.
+                    </p>
+
+                </div>
+
+
+                <div class="learning-cta__actions">
+
+                    <a
+                        href="project-kits.html"
+                        class="button button-primary"
+                    >
+
+                        <span>
+                            Explore project kits
+                        </span>
+
+                        <span class="button-arrow">
+                            →
+                        </span>
+
+                    </a>
+
+
+                    <a
+                        href="contact.html"
+                        class="button button-secondary"
+                    >
+
+                        <span>
+                            Ask for help
+                        </span>
+
+                        <svg
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                        >
+
+                            <path
+                                d="M20 11.5a7.5 7.5 0 0 1-8 7.5 8.6 8.6 0 0 1-3.8-.9L4 19l1.3-3.1A7.2 7.2 0 0 1 4.5 12a7.5 7.5 0 0 1 7.5-7.5 7.5 7.5 0 0 1 8 7Z"
+                            ></path>
+
+                        </svg>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             WHY PROJECTKART
+        ====================================================== -->
+
+        <section
+            class="home-section why-section"
+            id="whyProjectKart"
+        >
+
+            <div class="section-container why-section__container">
+
+
+                <div class="why-intro">
+
+                    <span class="section-eyebrow">
+                        A BETTER STARTING POINT
+                    </span>
+
+                    <h2>
+                        Why ProjectKart?
+                    </h2>
+
+                    <p>
+                        A calm, clear place to find the parts behind
+                        your next idea — online or offline.
+                    </p>
+
+                </div>
+
+
+                <div class="why-grid">
+
+
+                    <!-- Why item 01 -->
+
+                    <article class="why-card">
+
+                        <div class="why-card__icon">
+
+                            <svg
+                                viewBox="0 0 24 24"
+                                aria-hidden="true"
+                            >
+
+                                <path
+                                    d="M12 3 20 7l-8 4-8-4 8-4Z"
+                                ></path>
+
+                                <path
+                                    d="m4 12 8 4 8-4M4 17l8 4 8-4"
+                                ></path>
+
+                            </svg>
+
+                        </div>
+
+                        <h3>
+                            Wide component selection
+                        </h3>
+
+                        <p>
+                            A growing collection of electronics and
+                            project components.
+                        </p>
+
+                    </article>
+
+
+                    <!-- Why item 02 -->
+
+                    <article class="why-card">
+
+                        <div class="why-card__icon">
+
+                            <svg
+                                viewBox="0 0 24 24"
+                                aria-hidden="true"
+                            >
+
+                                <path
+                                    d="M13 2 5 13h6l-1 9 9-12h-6l0-8Z"
+                                ></path>
+
+                            </svg>
+
+                        </div>
+
+                        <h3>
+                            Project focused
+                        </h3>
+
+                        <p>
+                            Components organized around real-world
+                            project paths.
+                        </p>
+
+                    </article>
+
+
+                    <!-- Why item 03 -->
+
+                    <article class="why-card">
+
+                        <div class="why-card__icon">
+
+                            <svg
+                                viewBox="0 0 24 24"
+                                aria-hidden="true"
+                            >
+
+                                <path
+                                    d="M12 4v4M12 16v4M4 12h4M16 12h4"
+                                ></path>
+
+                                <path
+                                    d="m6.3 6.3 2.8 2.8M14.9 14.9l2.8 2.8M17.7 6.3l-2.8 2.8M9.1 14.9l-2.8 2.8"
+                                ></path>
+
+                            </svg>
+
+                        </div>
+
+                        <h3>
+                            For every maker
+                        </h3>
+
+                        <p>
+                            Suitable for beginners, students,
+                            hobbyists and professionals.
+                        </p>
+
+                    </article>
+
+
+                    <!-- Why item 04 -->
+
+                    <article class="why-card">
+
+                        <div class="why-card__icon">
+
+                            <svg
+                                viewBox="0 0 24 24"
+                                aria-hidden="true"
+                            >
+
+                                <path
+                                    d="M20 11.5a7.5 7.5 0 0 1-8 7.5 8.6 8.6 0 0 1-3.8-.9L4 19l1.3-3.1A7.2 7.2 0 0 1 4.5 12a7.5 7.5 0 0 1 7.5-7.5 7.5 7.5 0 0 1 8 7Z"
+                                ></path>
+
+                            </svg>
+
+                        </div>
+
+                        <h3>
+                            Helpful support
+                        </h3>
+
+                        <p>
+                            Tell us what you are building and we'll
+                            help you start.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             ONLINE / OFFLINE BANNER
+        ====================================================== -->
+
+        <section
+            class="maker-hub-section"
+            id="makerHub"
+        >
+
+            <div class="section-container">
+
+                <div class="maker-hub-card">
+
+                    <div class="maker-hub-card__content">
+
+                        <span class="section-eyebrow">
+                            PROJECTKART / MAKER HUB
+                        </span>
+
+                        <h2>
+                            Shop online. Visit us offline.
+                        </h2>
+
+                        <p>
+                            Find your components online or contact our
+                            store directly. This demo keeps business
+                            details editable for your launch.
+                        </p>
+
+                    </div>
+
+
+                    <div class="maker-hub-card__actions">
+
+                        <a
+                            href="shop.html"
+                            class="button button-light"
+                        >
+
+                            <span>
+                                Shop online
+                            </span>
+
+                            <span class="button-arrow">
+                                →
+                            </span>
+
+                        </a>
+
+
+                        <a
+                            href="contact.html"
+                            class="button button-secondary"
+                        >
+
+                            <svg
+                                viewBox="0 0 24 24"
+                                aria-hidden="true"
+                            >
+
+                                <path
+                                    d="M12 21s7-6.1 7-12A7 7 0 0 0 5 9c0 5.9 7 12 7 12Z"
+                                ></path>
+
+                                <circle
+                                    cx="12"
+                                    cy="9"
+                                    r="2.2"
+                                ></circle>
+
+                            </svg>
+
+                            <span>
+                                Visit store
+                            </span>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
+
+    <footer
+        class="site-footer"
+        id="siteFooter"
+    >
+
+        <div class="section-container">
+
+
+            <div class="footer-main">
+
+
+                <!-- -------------------------------------------------
+                     FOOTER BRAND
+                -------------------------------------------------- -->
+
+                <div class="footer-brand">
+
+                    <a
+                        href="index.html"
+                        class="footer-brand__logo"
+                    >
+
+                        <span class="brand__mark">
+                            PK
+                        </span>
+
+                        <span class="brand__name">
+                            <span class="brand__project">Project</span><span class="brand__kart">Kart</span>
+                        </span>
+
+                    </a>
+
+
+                    <p class="footer-brand__tagline">
+                        Build. Create. Innovate.
+                    </p>
+
+                    <p class="footer-brand__description">
+                        A considered component store for people
+                        who make things real.
+                    </p>
+
+
+                    <div class="footer-status">
+
+                        <span></span>
+
+                        Online + offline maker hub
+
+                    </div>
+
+                </div>
+
+
+                <!-- -------------------------------------------------
+                     FOOTER SHOP
+                -------------------------------------------------- -->
+
+                <div class="footer-column">
+
+                    <span class="footer-column__title">
+                        SHOP
+                    </span>
+
+                    <nav>
+
+                        <a href="category.html?category=arduino-boards">
+                            Arduino &amp; Boards
+                        </a>
+
+                        <a href="category.html?category=sensors">
+                            Sensors
+                        </a>
+
+                        <a href="category.html?category=modules">
+                            Modules
+                        </a>
+
+                        <a href="category.html?category=batteries-power">
+                            Batteries
+                        </a>
+
+                        <a href="project-kits.html">
+                            Project Kits
+                        </a>
+
+                    </nav>
+
+                </div>
+
+
+                <!-- -------------------------------------------------
+                     FOOTER COMPANY
+                -------------------------------------------------- -->
+
+                <div class="footer-column">
+
+                    <span class="footer-column__title">
+                        COMPANY
+                    </span>
+
+                    <nav>
+
+                        <a href="about.html">
+                            About Us
+                        </a>
+
+                        <a href="contact.html">
+                            Contact
+                        </a>
+
+                        <a href="contact.html#faq">
+                            Help &amp; FAQ
+                        </a>
+
+                        <a href="contact.html#shipping">
+                            Shipping
+                        </a>
+
+                        <a href="contact.html#returns">
+                            Returns
+                        </a>
+
+                    </nav>
+
+                </div>
+
+
+                <!-- -------------------------------------------------
+                     FOOTER SUPPORT
+                -------------------------------------------------- -->
+
+                <div class="footer-support">
+
+                    <span class="footer-column__title">
+                        NEED A HAND?
+                    </span>
+
+                    <h3>
+                        Tell us what you're
+                        building.
+                    </h3>
+
+                    <p>
+                        We'll help you find the right starting point.
+                    </p>
+
+                    <a
+                        href="contact.html"
+                        class="footer-support__link"
+                    >
+                        Get project help
+                        <span>↗</span>
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- -------------------------------------------------
+                 FOOTER BOTTOM
+            -------------------------------------------------- -->
+
+            <div class="footer-bottom">
+
+                <p>
+                    © 2024 ProjectKart. Demo storefront —
+                    replace business details before launch.
+                </p>
+
+
+                <div class="footer-bottom__links">
+
+                    <a href="#">
+                        Privacy
+                    </a>
+
+                    <a href="#">
+                        Terms
+                    </a>
+
+                    <a href="contact.html">
+                        <span class="footer-location-icon">⌖</span>
+                        Visit us offline
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================================================
+         SCROLL TO TOP
+    ========================================================== -->
+
+    <button
+        class="scroll-top-button"
+        id="scrollTopButton"
+        type="button"
+        aria-label="Scroll to top"
+    >
+
+        <span>
+            ↑
+        </span>
+
+    </button>
+
+
+    <!-- =========================================================
+         TOAST
+    ========================================================== -->
+
+    <div
+        class="toast-container"
+        id="toastContainer"
+        aria-live="polite"
+        aria-atomic="true"
+    ></div>
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+         Firebase and functionality will be added in the JS stage.
+    ========================================================== -->
+
+    <script type="module" src="js/firebase.js"></script>
+    <script type="module" src="js/utils.js"></script>
+    <script type="module" src="js/navbar.js"></script>
+    <script type="module" src="js/cart.js"></script>
+    <script type="module" src="js/products.js"></script>
+    <script type="module" src="js/categories.js"></script>
+    <script type="module" src="js/kits.js"></script>
+    <script type="module" src="js/home.js"></script>
 
 </body>
 </html>
