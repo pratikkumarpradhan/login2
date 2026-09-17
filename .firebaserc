@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "projectkart"
-  }
+    "default": "notificationapp-854d0"
+  },
+  "targets": {},
+  "etags": {}
 }

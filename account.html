@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="css/responsive.css">
 </head>
 
-<body>
+<body class="home-page page-account">
 
     <!-- =========================================================
          NAVBAR
@@ -175,34 +175,20 @@
 
         <div class="container">
 
-            <!-- Page heading -->
             <section class="account-heading">
-
-                <div>
-
-                    <span class="section-eyebrow">
-                        MY ACCOUNT
-                    </span>
-
-                    <h1>
-                        Welcome back<span data-account-name></span>
-                    </h1>
-
-                    <p>
-                        Manage your profile, orders and account details.
-                    </p>
-
+                <div class="account-heading-copy">
+                    <span class="section-eyebrow">My account</span>
+                    <h1>Welcome back<span data-account-name></span></h1>
+                    <p>Manage your profile, orders and account details.</p>
                 </div>
-
-                                <button
-                                    type="button"
-                                    class="button button-secondary"
-                                    data-logout-button
-                                    data-logout
-                                >
+                <button
+                    type="button"
+                    class="button button-secondary"
+                    data-logout-button
+                    data-logout
+                >
                     Sign out
                 </button>
-
             </section>
 
 
@@ -215,57 +201,32 @@
                 <aside class="account-sidebar">
 
                     <div class="account-user-card">
-
-                        <div class="account-avatar" data-account-avatar>
-                            P
+                        <div class="account-user-card-main">
+                            <div class="account-avatar" data-account-avatar>P</div>
+                            <div class="account-user-info">
+                                <strong data-account-user-name>Account</strong>
+                                <span data-account-user-email>Loading...</span>
+                            </div>
                         </div>
-
-                        <div class="account-user-info">
-
-                            <strong data-account-user-name>
-                                Account
-                            </strong>
-
-                            <span data-account-user-email>
-                                Loading...
-                            </span>
+                        <div class="account-user-meta">
                             <small data-account-status>Account</small>
                             <small data-account-verified>Checking email status</small>
-
                         </div>
-
                     </div>
 
-
                     <nav class="account-nav">
-
-                        <a
-                            href="#profile"
-                            class="account-nav-item active"
-                            data-account-tab="profile"
-                        >
+                        <a href="#profile" class="account-nav-item active" data-account-tab="profile">
                             <span>◯</span>
                             <span>Profile</span>
                         </a>
-
-                        <a
-                            href="#orders"
-                            class="account-nav-item"
-                            data-account-tab="orders"
-                        >
+                        <a href="#orders" class="account-nav-item" data-account-tab="orders">
                             <span>▣</span>
                             <span>My Orders</span>
                         </a>
-
-                        <a
-                            href="#address"
-                            class="account-nav-item"
-                            data-account-tab="address"
-                        >
+                        <a href="#address" class="account-nav-item" data-account-tab="address">
                             <span>⌖</span>
                             <span>Address</span>
                         </a>
-
                     </nav>
 
                 </aside>
@@ -287,109 +248,65 @@
                     >
 
                         <div class="account-section-header">
-
                             <div>
-                                <span class="section-eyebrow">
-                                    PERSONAL INFORMATION
-                                </span>
-
+                                <span class="section-eyebrow">Personal information</span>
                                 <h2>Profile details</h2>
-
-                                <p>
-                                    Update your personal information.
-                                </p>
+                                <p>These details are saved to your ProjectKart account after you register.</p>
                             </div>
-
                         </div>
 
-
-                        <form
-                            class="account-form"
-                            data-profile-form
-                        >
-
+                        <form class="account-form" data-profile-form>
                             <div class="account-form-grid">
-
                                 <div class="form-group">
                                     <label for="profile-first-name">First name</label>
                                     <input type="text" id="profile-first-name" name="firstName" autocomplete="given-name" data-profile-first-name>
                                 </div>
-
                                 <div class="form-group">
                                     <label for="profile-last-name">Last name</label>
                                     <input type="text" id="profile-last-name" name="lastName" autocomplete="family-name" data-profile-last-name>
                                 </div>
-
-                                <div class="form-group">
+                                <div class="form-group account-form-full">
                                     <label for="profile-name">Display name</label>
                                     <input type="text" id="profile-name" name="name" placeholder="Your full name" autocomplete="name" data-profile-name readonly>
                                 </div>
-
                                 <div class="form-group">
                                     <label for="profile-email">Email address</label>
                                     <input type="email" id="profile-email" name="email" placeholder="you@example.com" autocomplete="email" data-profile-email readonly>
-                                    <small class="form-help">Your email address is managed through your account login.</small>
+                                    <small class="form-help">Managed through your login. It cannot be changed here.</small>
                                 </div>
-
                                 <div class="form-group">
                                     <label for="profile-phone">Phone number</label>
                                     <input type="tel" id="profile-phone" name="phone" placeholder="+91 XXXXX XXXXX" autocomplete="tel" data-profile-phone>
                                 </div>
-
-                                <div class="form-group">
-                                    <label for="profile-country">Country</label>
-                                    <input type="text" id="profile-country" name="country" autocomplete="country-name" data-profile-country>
-                                </div>
-
                                 <div class="form-group account-form-full">
                                     <label for="profile-address">Address</label>
-                                    <textarea id="profile-address" name="address" rows="4" placeholder="Enter your delivery address" autocomplete="street-address" data-profile-address></textarea>
+                                    <textarea id="profile-address" name="address" rows="3" placeholder="Street address" autocomplete="street-address" data-profile-address></textarea>
                                 </div>
-
                                 <div class="form-group">
                                     <label for="profile-city">City</label>
                                     <input type="text" id="profile-city" name="city" autocomplete="address-level2" data-profile-city>
                                 </div>
-
                                 <div class="form-group">
                                     <label for="profile-state">State</label>
                                     <input type="text" id="profile-state" name="state" autocomplete="address-level1" data-profile-state>
                                 </div>
-
                                 <div class="form-group">
                                     <label for="profile-postal">PIN / Postal code</label>
                                     <input type="text" id="profile-postal" name="postalCode" autocomplete="postal-code" data-profile-postal>
                                 </div>
-
+                                <div class="form-group">
+                                    <label for="profile-country">Country</label>
+                                    <input type="text" id="profile-country" name="country" autocomplete="country-name" data-profile-country>
+                                </div>
                             </div>
-
 
                             <div class="account-form-footer">
-
-                                <div
-                                    class="form-status"
-                                    data-profile-status
-                                    aria-live="polite"
-                                ></div>
-
-                                <button
-                                    type="submit"
-                                    class="button button-primary"
-                                    data-profile-submit
-                                >
-                                    <span data-profile-submit-text>
-                                        Save changes
-                                    </span>
-
-                                    <span
-                                        class="button-spinner"
-                                        data-profile-spinner
-                                        hidden
-                                    ></span>
+                                <div class="form-status" data-profile-status aria-live="polite"></div>
+                                <button type="submit" class="button button-primary" data-profile-submit>
+                                    <span data-profile-submit-text>Save changes</span>
+                                    <span class="button-spinner" data-profile-spinner hidden></span>
                                 </button>
-
                             </div>
-
                         </form>
 
                     </section>

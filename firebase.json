@@ -1,105 +1,17 @@
 {
-    "firestore": {
-      "rules": "firebase/firestore.rules",
-      "indexes": "firebase/firestore.indexes.json"
-    },
-    "storage": {
-      "rules": "firebase/storage.rules"
-    },
-    "hosting": {
-      "public": ".",
-      "ignore": [
-        "firebase.json",
-        "**/.*",
-        "**/node_modules/**"
-      ],
-      "cleanUrls": true,
-      "trailingSlash": false,
-      "rewrites": [
-        {
-          "source": "/",
-          "destination": "/index.html"
-        },
-        {
-          "source": "/shop",
-          "destination": "/shop.html"
-        },
-        {
-          "source": "/product",
-          "destination": "/product.html"
-        },
-        {
-          "source": "/categories",
-          "destination": "/categories.html"
-        },
-        {
-          "source": "/category",
-          "destination": "/category.html"
-        },
-        {
-          "source": "/project-kits",
-          "destination": "/project-kits.html"
-        },
-        {
-          "source": "/about",
-          "destination": "/about.html"
-        },
-        {
-          "source": "/contact",
-          "destination": "/contact.html"
-        },
-        {
-          "source": "/login",
-          "destination": "/login.html"
-        },
-        {
-          "source": "/register",
-          "destination": "/register.html"
-        },
-        {
-          "source": "/account",
-          "destination": "/account.html"
-        },
-        {
-          "source": "/cart",
-          "destination": "/cart.html"
-        },
-        {
-          "source": "/admin",
-          "destination": "/admin/index.html"
-        },
-        {
-          "source": "/admin/login",
-          "destination": "/admin/login.html"
-        },
-        {
-          "source": "/admin/products",
-          "destination": "/admin/products.html"
-        },
-        {
-          "source": "/admin/product-edit",
-          "destination": "/admin/product-edit.html"
-        },
-        {
-          "source": "/admin/categories",
-          "destination": "/admin/categories.html"
-        },
-        {
-          "source": "/admin/kits",
-          "destination": "/admin/kits.html"
-        },
-        {
-          "source": "/admin/orders",
-          "destination": "/admin/orders.html"
-        },
-        {
-          "source": "/admin/users",
-          "destination": "/admin/users.html"
-        },
-        {
-          "source": "/admin/settings",
-          "destination": "/admin/settings.html"
-        }
-      ]
-    }
+  "firestore": {
+    "rules": "firebase/firestore.rules",
+    "indexes": "firebase/firestore.indexes.json"
+  },
+  "storage": {
+    "rules": "firebase/storage.rules"
+  },
+  "hosting": {
+    "public": ".",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
   }
+}

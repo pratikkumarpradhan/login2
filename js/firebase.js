@@ -39,25 +39,13 @@ import {
 */
 
 const firebaseConfig = {
-
-    apiKey:
-        "YOUR_FIREBASE_API_KEY",
-
-    authDomain:
-        "YOUR_PROJECT_ID.firebaseapp.com",
-
-    projectId:
-        "YOUR_PROJECT_ID",
-
-    storageBucket:
-        "YOUR_PROJECT_ID.firebasestorage.app",
-
-    messagingSenderId:
-        "YOUR_MESSAGING_SENDER_ID",
-
-    appId:
-        "YOUR_FIREBASE_APP_ID"
-};
+    apiKey: "AIzaSyCv991Txao0U3vcHoFuL8sbVOQhOm7H7sk",
+    authDomain: "notificationapp-854d0.firebaseapp.com",
+    projectId: "notificationapp-854d0",
+    storageBucket: "notificationapp-854d0.firebasestorage.app",
+    messagingSenderId: "308832764565",
+    appId: "1:308832764565:web:c8f5c919183e661dc8d19c"
+  };
 
 
 /*
