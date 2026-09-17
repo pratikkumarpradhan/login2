@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Contact Us | ProjectKart</title>
+
+    <meta
+        name="description"
+        content="Get in touch with ProjectKart for product questions, project support, orders and general enquiries."
+    >
+
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/typography.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/mobile-menu.css">
+    <link rel="stylesheet" href="css/buttons.css">
+    <link rel="stylesheet" href="css/forms.css">
+    <link rel="stylesheet" href="css/sections.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+
+    <!-- =========================================================
+         NAVBAR
+    ========================================================== -->
+
+    <header class="site-header">
+
+        <nav class="navbar">
+
+            <div class="container navbar-inner">
+
+                <!-- Logo -->
+                <a href="index.html" class="navbar-logo">
+
+                    <span class="navbar-logo-mark">
+                        P
+                    </span>
+
+                    <span class="navbar-logo-text">
+                        Project<span>Kart</span>
+                    </span>
+
+                </a>
+
+
+                <!-- Desktop Navigation -->
+                <div class="navbar-nav">
+
+                    <a href="index.html">
+                        Home
+                    </a>
+
+                    <a href="shop.html">
+                        Shop
+                    </a>
+
+                    <a href="categories.html">
+                        Categories
+                    </a>
+
+                    <a href="project-kits.html">
+                        Project Kits
+                    </a>
+
+                    <a href="about.html">
+                        About
+                    </a>
+
+                    <a
+                        href="contact.html"
+                        class="active"
+                    >
+                        Contact
+                    </a>
+
+                </div>
+
+
+                <!-- Navbar Actions -->
+                <div class="navbar-actions">
+
+                    <!-- Search -->
+                    <form
+                        class="navbar-search"
+                        data-search-form
+                        autocomplete="off"
+                    >
+
+                        <span class="navbar-search-icon">
+
+                            <svg
+                                width="18"
+                                height="18"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                                aria-hidden="true"
+                            >
+
+                                <circle
+                                    cx="11"
+                                    cy="11"
+                                    r="7"
+                                    stroke="currentColor"
+                                    stroke-width="1.8"
+                                />
+
+                                <path
+                                    d="M16.5 16.5L21 21"
+                                    stroke="currentColor"
+                                    stroke-width="1.8"
+                                    stroke-linecap="round"
+                                />
+
+                            </svg>
+
+                        </span>
+
+                        <input
+                            type="search"
+                            placeholder="Search products..."
+                            aria-label="Search products"
+                            data-search-input
+                        >
+
+                        <div
+                            class="navbar-search-results"
+                            data-search-results
+                        ></div>
+
+                    </form>
+
+
+                    <!-- Account -->
+                    <div class="navbar-account">
+
+                        <button
+                            type="button"
+                            class="navbar-icon-button"
+                            data-account-toggle
+                            aria-label="Account"
+                            aria-expanded="false"
+                        >
+
+                            <svg
+                                width="20"
+                                height="20"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                                aria-hidden="true"
+                            >
+
+                                <circle
+                                    cx="12"
+                                    cy="8"
+                                    r="3.5"
+                                    stroke="currentColor"
+                                    stroke-width="1.7"
+                                />
+
+                                <path
+                                    d="M5 20C5.7 16.8 8.2 15 12 15C15.8 15 18.3 16.8 19 20"
+                                    stroke="currentColor"
+                                    stroke-width="1.7"
+                                    stroke-linecap="round"
+                                />
+
+                            </svg>
+
+                        </button>
+
+
+                        <div
+                            class="navbar-account-dropdown"
+                            data-account-dropdown
+                        >
+
+                            <div
+                                class="navbar-account-user"
+                                data-navbar-user
+                            >
+
+                                <strong>
+                                    My Account
+                                </strong>
+
+                                <span data-navbar-user-email>
+                                    Sign in to your account
+                                </span>
+
+                            </div>
+
+
+                            <div class="navbar-account-links">
+
+                                <a href="account.html">
+                                    My Account
+                                </a>
+
+                                <a href="cart.html">
+                                    My Cart
+                                </a>
+
+                                <a
+                                    href="login.html"
+                                    data-navbar-login
+                                >
+                                    Login
+                                </a>
+
+                                <button
+                                    type="button"
+                                    data-navbar-logout
+                                    hidden
+                                >
+                                    Logout
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Cart -->
+                    <a
+                        href="cart.html"
+                        class="navbar-cart"
+                        aria-label="Shopping cart"
+                    >
+
+                        <svg
+                            width="21"
+                            height="21"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            aria-hidden="true"
+                        >
+
+                            <path
+                                d="M3 4H5L7.2 15.2C7.4 16.2 8.3 17 9.4 17H18.2C19.2 17 20.1 16.3 20.4 15.3L22 9H6"
+                                stroke="currentColor"
+                                stroke-width="1.7"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            />
+
+                            <circle
+                                cx="9"
+                                cy="20"
+                                r="1.2"
+                                fill="currentColor"
+                            />
+
+                            <circle
+                                cx="18"
+                                cy="20"
+                                r="1.2"
+                                fill="currentColor"
+                            />
+
+                        </svg>
+
+                        <span
+                            class="navbar-cart-count"
+                            data-cart-count
+                        >
+                            0
+                        </span>
+
+                    </a>
+
+
+                    <!-- Mobile Menu -->
+                    <button
+                        type="button"
+                        class="navbar-menu-toggle"
+                        data-menu-toggle
+                        aria-label="Open menu"
+                        aria-expanded="false"
+                    >
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+
+                </div>
+
+            </div>
+
+        </nav>
+
+
+        <!-- Mobile Menu -->
+        <div
+            class="mobile-menu"
+            data-mobile-menu
+        >
+
+            <div class="mobile-menu-header">
+
+                <a
+                    href="index.html"
+                    class="navbar-logo"
+                >
+
+                    <span class="navbar-logo-mark">
+                        P
+                    </span>
+
+                    <span class="navbar-logo-text">
+                        Project<span>Kart</span>
+                    </span>
+
+                </a>
+
+
+                <button
+                    type="button"
+                    class="mobile-menu-close"
+                    data-menu-close
+                    aria-label="Close menu"
+                >
+                    &times;
+                </button>
+
+            </div>
+
+
+            <div class="mobile-menu-links">
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="shop.html">
+                    Shop
+                </a>
+
+                <a href="categories.html">
+                    Categories
+                </a>
+
+                <a href="project-kits.html">
+                    Project Kits
+                </a>
+
+                <a href="about.html">
+                    About
+                </a>
+
+                <a
+                    href="contact.html"
+                    class="active"
+                >
+                    Contact
+                </a>
+
+                <a href="account.html">
+                    My Account
+                </a>
+
+                <a href="cart.html">
+                    Cart
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="mobile-menu-overlay"
+            data-mobile-overlay
+        ></div>
+
+    </header>
+
+
+    <!-- =========================================================
+         MAIN
+    ========================================================== -->
+
+    <main>
+
+        <!-- =====================================================
+             PAGE HEADER
+        ====================================================== -->
+
+        <section class="page-header">
+
+            <div class="container">
+
+                <div class="breadcrumb">
+
+                    <a href="index.html">
+                        Home
+                    </a>
+
+                    <span>/</span>
+
+                    <span>
+                        Contact
+                    </span>
+
+                </div>
+
+
+                <div class="page-header-content">
+
+                    <span class="eyebrow">
+                        GET IN TOUCH
+                    </span>
+
+                    <h1>
+                        Let's talk.
+                    </h1>
+
+                    <p>
+                        Have a question about a product, order or
+                        project? Send us a message and we'll get back
+                        to you.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             CONTACT SECTION
+        ====================================================== -->
+
+        <section class="section">
+
+            <div class="container">
+
+                <div class="contact-grid">
+
+                    <!-- =================================================
+                         CONTACT INFORMATION
+                    ================================================== -->
+
+                    <div class="contact-info">
+
+                        <span class="eyebrow">
+                            CONTACT PROJECTKART
+                        </span>
+
+                        <h2>
+                            How can we help?
+                        </h2>
+
+                        <p>
+                            Whether you need help choosing a component,
+                            have a question about an order or want to
+                            discuss a project, we're here to help.
+                        </p>
+
+
+                        <!-- Email -->
+                        <div class="contact-info-item">
+
+                            <div class="contact-info-icon">
+
+                                <svg
+                                    width="21"
+                                    height="21"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+
+                                    <rect
+                                        x="3"
+                                        y="5"
+                                        width="18"
+                                        height="14"
+                                        rx="2"
+                                        stroke="currentColor"
+                                        stroke-width="1.6"
+                                    />
+
+                                    <path
+                                        d="M4 7L12 13L20 7"
+                                        stroke="currentColor"
+                                        stroke-width="1.6"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+
+                                </svg>
+
+                            </div>
+
+                            <div>
+
+                                <span>
+                                    Email
+                                </span>
+
+                                <a href="mailto:hello@projectkart.in">
+                                    hello@projectkart.in
+                                </a>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Phone -->
+                        <div class="contact-info-item">
+
+                            <div class="contact-info-icon">
+
+                                <svg
+                                    width="21"
+                                    height="21"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+
+                                    <path
+                                        d="M6.5 3.5L9.2 3C9.8 2.9 10.3 3.2 10.5 3.7L12 7.5C12.2 8 12 8.6 11.6 8.9L9.8 10.2C10.8 12.4 12.6 14.2 14.8 15.2L16.1 13.4C16.4 13 17 12.8 17.5 13L21.3 14.5C21.8 14.7 22.1 15.2 22 15.8L21.5 18.5C21.3 19.5 20.4 20.2 19.4 20.1C10.8 19.1 4.9 13.2 3.9 4.6C3.8 3.6 4.5 3.7 6.5 3.5Z"
+                                        stroke="currentColor"
+                                        stroke-width="1.5"
+                                        stroke-linejoin="round"
+                                    />
+
+                                </svg>
+
+                            </div>
+
+                            <div>
+
+                                <span>
+                                    Phone
+                                </span>
+
+                                <a href="tel:+919999999999">
+                                    +91 99999 99999
+                                </a>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Support -->
+                        <div class="contact-info-item">
+
+                            <div class="contact-info-icon">
+
+                                <svg
+                                    width="21"
+                                    height="21"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+
+                                    <path
+                                        d="M4 12C4 7.6 7.6 4 12 4C16.4 4 20 7.6 20 12"
+                                        stroke="currentColor"
+                                        stroke-width="1.6"
+                                        stroke-linecap="round"
+                                    />
+
+                                    <path
+                                        d="M4 12V17C4 18.1 4.9 19 6 19H7.5V12H4Z"
+                                        stroke="currentColor"
+                                        stroke-width="1.6"
+                                        stroke-linejoin="round"
+                                    />
+
+                                    <path
+                                        d="M20 12V17C20 18.1 19.1 19 18 19H16.5V12H20Z"
+                                        stroke="currentColor"
+                                        stroke-width="1.6"
+                                        stroke-linejoin="round"
+                                    />
+
+                                    <path
+                                        d="M16.5 19C16.5 20.1 15.6 21 14.5 21H12"
+                                        stroke="currentColor"
+                                        stroke-width="1.6"
+                                        stroke-linecap="round"
+                                    />
+
+                                </svg>
+
+                            </div>
+
+                            <div>
+
+                                <span>
+                                    Support
+                                </span>
+
+                                <p>
+                                    Product and order assistance
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Working Hours -->
+                        <div class="contact-info-item">
+
+                            <div class="contact-info-icon">
+
+                                <svg
+                                    width="21"
+                                    height="21"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+
+                                    <circle
+                                        cx="12"
+                                        cy="12"
+                                        r="8.5"
+                                        stroke="currentColor"
+                                        stroke-width="1.6"
+                                    />
+
+                                    <path
+                                        d="M12 7V12L15.5 14"
+                                        stroke="currentColor"
+                                        stroke-width="1.6"
+                                        stroke-linecap="round"
+                                    />
+
+                                </svg>
+
+                            </div>
+
+                            <div>
+
+                                <span>
+                                    Support Hours
+                                </span>
+
+                                <p>
+                                    Monday – Saturday
+                                    <br>
+                                    10:00 AM – 7:00 PM
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         CONTACT FORM
+                    ================================================== -->
+
+                    <div class="contact-form-wrapper">
+
+                        <div class="contact-form-header">
+
+                            <span class="eyebrow">
+                                SEND A MESSAGE
+                            </span>
+
+                            <h2>
+                                Tell us what's on your mind.
+                            </h2>
+
+                        </div>
+
+
+                        <form
+                            class="contact-form"
+                            data-contact-form
+                        >
+
+                            <!-- Name -->
+                            <div class="form-group">
+
+                                <label for="contact-name">
+                                    Full Name
+                                </label>
+
+                                <input
+                                    id="contact-name"
+                                    name="name"
+                                    type="text"
+                                    class="form-input"
+                                    placeholder="Enter your name"
+                                    autocomplete="name"
+                                    required
+                                    data-contact-name
+                                >
+
+                            </div>
+
+
+                            <!-- Email -->
+                            <div class="form-group">
+
+                                <label for="contact-email">
+                                    Email Address
+                                </label>
+
+                                <input
+                                    id="contact-email"
+                                    name="email"
+                                    type="email"
+                                    class="form-input"
+                                    placeholder="you@example.com"
+                                    autocomplete="email"
+                                    required
+                                    data-contact-email
+                                >
+
+                            </div>
+
+
+                            <!-- Subject -->
+                            <div class="form-group">
+
+                                <label for="contact-subject">
+                                    Subject
+                                </label>
+
+                                <select
+                                    id="contact-subject"
+                                    name="subject"
+                                    class="form-select"
+                                    required
+                                    data-contact-subject
+                                >
+
+                                    <option
+                                        value=""
+                                        selected
+                                        disabled
+                                    >
+                                        Select a subject
+                                    </option>
+
+                                    <option value="product">
+                                        Product Question
+                                    </option>
+
+                                    <option value="order">
+                                        Order Support
+                                    </option>
+
+                                    <option value="project">
+                                        Project Help
+                                    </option>
+
+                                    <option value="bulk">
+                                        Bulk / Business Enquiry
+                                    </option>
+
+                                    <option value="other">
+                                        Other
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <!-- Message -->
+                            <div class="form-group">
+
+                                <label for="contact-message">
+                                    Message
+                                </label>
+
+                                <textarea
+                                    id="contact-message"
+                                    name="message"
+                                    class="form-textarea"
+                                    placeholder="Write your message..."
+                                    rows="6"
+                                    required
+                                    data-contact-message
+                                ></textarea>
+
+                            </div>
+
+
+                            <!-- Submit -->
+                            <button
+                                type="submit"
+                                class="btn btn-primary btn-full"
+                                data-contact-submit
+                            >
+                                <span data-contact-submit-text>
+                                    Send Message
+                                </span>
+
+                                <span
+                                    class="button-spinner"
+                                    data-contact-spinner
+                                    hidden
+                                ></span>
+
+                            </button>
+
+
+                            <!-- Status -->
+                            <div
+                                class="form-status"
+                                data-contact-status
+                                role="status"
+                                aria-live="polite"
+                            ></div>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             FAQ / QUICK HELP
+        ====================================================== -->
+
+        <section class="section section-dark">
+
+            <div class="container">
+
+                <div class="section-heading centered">
+
+                    <span class="eyebrow">
+                        QUICK HELP
+                    </span>
+
+                    <h2>
+                        Looking for something else?
+                    </h2>
+
+                    <p>
+                        You may find what you need in one of these
+                        sections.
+                    </p>
+
+                </div>
+
+
+                <div class="contact-help-grid">
+
+                    <!-- Shop -->
+                    <a
+                        href="shop.html"
+                        class="contact-help-card"
+                    >
+
+                        <div class="contact-help-icon">
+
+                            <svg
+                                width="25"
+                                height="25"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+
+                                <path
+                                    d="M4 9L5.5 4H18.5L20 9"
+                                    stroke="currentColor"
+                                    stroke-width="1.6"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                />
+
+                                <path
+                                    d="M4 9H20V20H4V9Z"
+                                    stroke="currentColor"
+                                    stroke-width="1.6"
+                                    stroke-linejoin="round"
+                                />
+
+                                <path
+                                    d="M9 20V14H15V20"
+                                    stroke="currentColor"
+                                    stroke-width="1.6"
+                                />
+
+                            </svg>
+
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Browse Products
+                            </h3>
+
+                            <p>
+                                Find boards, sensors, modules and
+                                other components.
+                            </p>
+
+                        </div>
+
+                        <span class="contact-help-arrow">
+                            →
+                        </span>
+
+                    </a>
+
+
+                    <!-- Categories -->
+                    <a
+                        href="categories.html"
+                        class="contact-help-card"
+                    >
+
+                        <div class="contact-help-icon">
+
+                            <svg
+                                width="25"
+                                height="25"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+
+                                <rect
+                                    x="4"
+                                    y="4"
+                                    width="6"
+                                    height="6"
+                                    rx="1"
+                                    stroke="currentColor"
+                                    stroke-width="1.6"
+                                />
+
+                                <rect
+                                    x="14"
+                                    y="4"
+                                    width="6"
+                                    height="6"
+                                    rx="1"
+                                    stroke="currentColor"
+                                    stroke-width="1.6"
+                                />
+
+                                <rect
+                                    x="4"
+                                    y="14"
+                                    width="6"
+                                    height="6"
+                                    rx="1"
+                                    stroke="currentColor"
+                                    stroke-width="1.6"
+                                />
+
+                                <rect
+                                    x="14"
+                                    y="14"
+                                    width="6"
+                                    height="6"
+                                    rx="1"
+                                    stroke="currentColor"
+                                    stroke-width="1.6"
+                                />
+
+                            </svg>
+
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Explore Categories
+                            </h3>
+
+                            <p>
+                                Browse products by type and application.
+                            </p>
+
+                        </div>
+
+                        <span class="contact-help-arrow">
+                            →
+                        </span>
+
+                    </a>
+
+
+                    <!-- Kits -->
+                    <a
+                        href="project-kits.html"
+                        class="contact-help-card"
+                    >
+
+                        <div class="contact-help-icon">
+
+                            <svg
+                                width="25"
+                                height="25"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+
+                                <path
+                                    d="M4 7L12 3L20 7V17L12 21L4 17V7Z"
+                                    stroke="currentColor"
+                                    stroke-width="1.6"
+                                    stroke-linejoin="round"
+                                />
+
+                                <path
+                                    d="M4 7L12 12L20 7"
+                                    stroke="currentColor"
+                                    stroke-width="1.6"
+                                    stroke-linejoin="round"
+                                />
+
+                                <path
+                                    d="M12 12V21"
+                                    stroke="currentColor"
+                                    stroke-width="1.6"
+                                />
+
+                            </svg>
+
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Project Kits
+                            </h3>
+
+                            <p>
+                                Start a project with a ready-to-build kit.
+                            </p>
+
+                        </div>
+
+                        <span class="contact-help-arrow">
+                            →
+                        </span>
+
+                    </a>
+
+
+                    <!-- Account -->
+                    <a
+                        href="account.html"
+                        class="contact-help-card"
+                    >
+
+                        <div class="contact-help-icon">
+
+                            <svg
+                                width="25"
+                                height="25"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+
+                                <circle
+                                    cx="12"
+                                    cy="8"
+                                    r="3"
+                                    stroke="currentColor"
+                                    stroke-width="1.6"
+                                />
+
+                                <path
+                                    d="M5 20C5.7 16.5 8 15 12 15C16 15 18.3 16.5 19 20"
+                                    stroke="currentColor"
+                                    stroke-width="1.6"
+                                    stroke-linecap="round"
+                                />
+
+                            </svg>
+
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                My Account
+                            </h3>
+
+                            <p>
+                                View your profile, orders and account
+                                information.
+                            </p>
+
+                        </div>
+
+                        <span class="contact-help-arrow">
+                            →
+                        </span>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             CTA
+        ====================================================== -->
+
+        <section class="section">
+
+            <div class="container">
+
+                <div class="premium-cta">
+
+                    <div class="premium-cta-content">
+
+                        <span class="eyebrow">
+                            KEEP BUILDING
+                        </span>
+
+                        <h2>
+                            Have an idea? Make it real.
+                        </h2>
+
+                        <p>
+                            Explore ProjectKart and find the components
+                            you need for your next project.
+                        </p>
+
+                    </div>
+
+
+                    <div class="premium-cta-actions">
+
+                        <a
+                            href="shop.html"
+                            class="btn btn-primary"
+                        >
+                            Start Shopping
+                        </a>
+
+                        <a
+                            href="project-kits.html"
+                            class="btn btn-secondary"
+                        >
+                            Explore Kits
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
+
+    <footer class="site-footer">
+
+        <div class="container">
+
+            <div class="footer-main">
+
+                <!-- Brand -->
+                <div class="footer-brand">
+
+                    <a
+                        href="index.html"
+                        class="navbar-logo"
+                    >
+
+                        <span class="navbar-logo-mark">
+                            P
+                        </span>
+
+                        <span class="navbar-logo-text">
+                            Project<span>Kart</span>
+                        </span>
+
+                    </a>
+
+                    <p>
+                        Your destination for electronics,
+                        project components and DIY innovation.
+                    </p>
+
+
+                    <div class="footer-socials">
+
+                        <a
+                            href="#"
+                            aria-label="Instagram"
+                        >
+                            Instagram
+                        </a>
+
+                        <a
+                            href="#"
+                            aria-label="Facebook"
+                        >
+                            Facebook
+                        </a>
+
+                        <a
+                            href="#"
+                            aria-label="YouTube"
+                        >
+                            YouTube
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Shop -->
+                <div class="footer-column">
+
+                    <h3>
+                        Shop
+                    </h3>
+
+                    <a href="shop.html">
+                        All Products
+                    </a>
+
+                    <a href="categories.html">
+                        Categories
+                    </a>
+
+                    <a href="project-kits.html">
+                        Project Kits
+                    </a>
+
+                </div>
+
+
+                <!-- Company -->
+                <div class="footer-column">
+
+                    <h3>
+                        Company
+                    </h3>
+
+                    <a href="about.html">
+                        About Us
+                    </a>
+
+                    <a href="contact.html">
+                        Contact
+                    </a>
+
+                </div>
+
+
+                <!-- Account -->
+                <div class="footer-column">
+
+                    <h3>
+                        Account
+                    </h3>
+
+                    <a href="account.html">
+                        My Account
+                    </a>
+
+                    <a href="cart.html">
+                        Shopping Cart
+                    </a>
+
+                    <a href="login.html">
+                        Login
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-bottom">
+
+                <p>
+                    &copy;
+                    <span data-current-year></span>
+                    ProjectKart. All rights reserved.
+                </p>
+
+
+                <div class="footer-bottom-links">
+
+                    <a href="#">
+                        Privacy Policy
+                    </a>
+
+                    <a href="#">
+                        Terms &amp; Conditions
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================================================
+         SCRIPTS
+    ========================================================== -->
+
+    <script type="module" src="js/navbar.js"></script>
+    <script type="module" src="js/search.js"></script>
+
+    <script>
+        const yearElement = document.querySelector(
+            "[data-current-year]"
+        );
+
+        if (yearElement) {
+            yearElement.textContent = new Date().getFullYear();
+        }
+    </script>
+
+</body>
+</html>

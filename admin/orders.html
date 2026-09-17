@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Orders | ProjectKart Admin</title>
+
+    <meta
+        name="description"
+        content="Manage ProjectKart customer orders."
+    >
+
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/typography.css">
+
+    <link
+        rel="stylesheet"
+        href="../css/admin/admin-base.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../css/admin/admin-sidebar.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../css/admin/admin-header.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../css/admin/admin-forms.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../css/admin/admin-tables.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../css/admin/admin-responsive.css"
+    >
+</head>
+
+<body class="admin-body">
+
+<div class="admin-app">
+
+    <!-- =========================================================
+         SIDEBAR
+    ========================================================== -->
+    <aside
+        class="admin-sidebar"
+        id="admin-sidebar"
+        data-admin-sidebar
+    >
+
+        <div class="admin-sidebar-top">
+
+            <a
+                href="index.html"
+                class="admin-brand"
+                aria-label="ProjectKart Admin Dashboard"
+            >
+
+                <span class="admin-brand-mark">
+                    PK
+                </span>
+
+                <span class="admin-brand-text">
+                    <strong>ProjectKart</strong>
+                    <small>Admin Panel</small>
+                </span>
+
+            </a>
+
+
+            <nav class="admin-nav">
+
+                <div class="admin-nav-section">
+
+                    <span class="admin-nav-label">
+                        Overview
+                    </span>
+
+                    <a
+                        href="index.html"
+                        class="admin-nav-item"
+                        data-admin-nav="dashboard"
+                    >
+                        <span class="admin-nav-icon">▦</span>
+                        <span class="admin-nav-text">Dashboard</span>
+                    </a>
+
+                </div>
+
+
+                <div class="admin-nav-section">
+
+                    <span class="admin-nav-label">
+                        Store
+                    </span>
+
+                    <a
+                        href="products.html"
+                        class="admin-nav-item"
+                        data-admin-nav="products"
+                    >
+                        <span class="admin-nav-icon">□</span>
+                        <span class="admin-nav-text">Products</span>
+                    </a>
+
+                    <a
+                        href="categories.html"
+                        class="admin-nav-item"
+                        data-admin-nav="categories"
+                    >
+                        <span class="admin-nav-icon">◫</span>
+                        <span class="admin-nav-text">Categories</span>
+                    </a>
+
+                    <a
+                        href="kits.html"
+                        class="admin-nav-item"
+                        data-admin-nav="kits"
+                    >
+                        <span class="admin-nav-icon">◈</span>
+                        <span class="admin-nav-text">Project Kits</span>
+                    </a>
+
+                    <a
+                        href="orders.html"
+                        class="admin-nav-item active"
+                        data-admin-nav="orders"
+                    >
+                        <span class="admin-nav-icon">≡</span>
+                        <span class="admin-nav-text">Orders</span>
+                    </a>
+
+                </div>
+
+
+                <div class="admin-nav-section">
+
+                    <span class="admin-nav-label">
+                        Management
+                    </span>
+
+                    <a
+                        href="users.html"
+                        class="admin-nav-item"
+                        data-admin-nav="users"
+                    >
+                        <span class="admin-nav-icon">◎</span>
+                        <span class="admin-nav-text">Users</span>
+                    </a>
+
+                    <a
+                        href="settings.html"
+                        class="admin-nav-item"
+                        data-admin-nav="settings"
+                    >
+                        <span class="admin-nav-icon">⚙</span>
+                        <span class="admin-nav-text">Settings</span>
+                    </a>
+
+                </div>
+
+            </nav>
+
+        </div>
+
+
+        <div class="admin-sidebar-bottom">
+
+            <a
+                href="../index.html"
+                class="admin-sidebar-store-link"
+            >
+                <span class="admin-nav-icon">↗</span>
+                <span class="admin-nav-text">View Store</span>
+            </a>
+
+
+            <button
+                type="button"
+                class="admin-sidebar-logout"
+                data-admin-logout
+            >
+                <span class="admin-nav-icon">⇥</span>
+                <span class="admin-nav-text">Sign out</span>
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =========================================================
+         MAIN
+    ========================================================== -->
+    <div class="admin-main">
+
+
+        <!-- =====================================================
+             HEADER
+        ====================================================== -->
+        <header class="admin-header">
+
+            <div class="admin-header-left">
+
+                <button
+                    type="button"
+                    class="admin-mobile-menu-button"
+                    data-admin-menu-toggle
+                    aria-label="Open admin menu"
+                    aria-expanded="false"
+                >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+
+                <div class="admin-page-title">
+
+                    <span class="admin-breadcrumb">
+                        Store
+                        <span>/</span>
+                        Orders
+                    </span>
+
+                    <h1>
+                        Orders
+                    </h1>
+
+                </div>
+
+            </div>
+
+
+            <div class="admin-header-right">
+
+                <a
+                    href="../index.html"
+                    class="admin-header-store"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    <span>View store</span>
+                    <span>↗</span>
+                </a>
+
+
+                <button
+                    type="button"
+                    class="admin-header-icon-button"
+                    aria-label="Notifications"
+                    data-admin-notifications
+                >
+                    <span>♢</span>
+
+                    <i
+                        data-admin-notification-count
+                        hidden
+                    >
+                        0
+                    </i>
+                </button>
+
+
+                <div class="admin-user">
+
+                    <div
+                        class="admin-user-avatar"
+                        data-admin-avatar
+                    >
+                        A
+                    </div>
+
+                    <div class="admin-user-details">
+
+                        <strong data-admin-user-name>
+                            Admin
+                        </strong>
+
+                        <span data-admin-user-email>
+                            Loading...
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- =====================================================
+             CONTENT
+        ====================================================== -->
+        <main class="admin-content">
+
+
+            <!-- =================================================
+                 PAGE INTRO
+            ================================================== -->
+            <section class="admin-page-intro">
+
+                <div>
+
+                    <span class="admin-eyebrow">
+                        ORDER MANAGEMENT
+                    </span>
+
+                    <h2>
+                        Customer orders
+                    </h2>
+
+                    <p>
+                        View incoming orders, track their status
+                        and manage the fulfillment process.
+                    </p>
+
+                </div>
+
+
+                <div class="admin-page-intro-actions">
+
+                    <button
+                        type="button"
+                        class="admin-button admin-button-secondary"
+                        data-admin-refresh-orders
+                    >
+                        <span>↻</span>
+                        Refresh
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 ORDER STATS
+            ================================================== -->
+            <section class="admin-stats-grid">
+
+
+                <article class="admin-stat-card">
+
+                    <div class="admin-stat-icon">
+                        ≡
+                    </div>
+
+                    <div class="admin-stat-content">
+
+                        <span>
+                            Total orders
+                        </span>
+
+                        <strong data-orders-total>
+                            0
+                        </strong>
+
+                        <small
+                            data-orders-total-change
+                        >
+                            —
+                        </small>
+
+                    </div>
+
+                </article>
+
+
+                <article class="admin-stat-card">
+
+                    <div class="admin-stat-icon">
+                        ◷
+                    </div>
+
+                    <div class="admin-stat-content">
+
+                        <span>
+                            Pending
+                        </span>
+
+                        <strong data-orders-pending>
+                            0
+                        </strong>
+
+                    </div>
+
+                </article>
+
+
+                <article class="admin-stat-card">
+
+                    <div class="admin-stat-icon">
+                        ◉
+                    </div>
+
+                    <div class="admin-stat-content">
+
+                        <span>
+                            Processing
+                        </span>
+
+                        <strong data-orders-processing>
+                            0
+                        </strong>
+
+                    </div>
+
+                </article>
+
+
+                <article class="admin-stat-card">
+
+                    <div class="admin-stat-icon">
+                        ✓
+                    </div>
+
+                    <div class="admin-stat-content">
+
+                        <span>
+                            Completed
+                        </span>
+
+                        <strong data-orders-completed>
+                            0
+                        </strong>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <!-- =================================================
+                 REVENUE SUMMARY
+            ================================================== -->
+            <section class="admin-summary-grid">
+
+
+                <div class="admin-summary-card">
+
+                    <div class="admin-summary-card-header">
+
+                        <span>
+                            Total revenue
+                        </span>
+
+                        <span class="admin-summary-icon">
+                            ₹
+                        </span>
+
+                    </div>
+
+                    <strong data-orders-revenue>
+                        ₹0.00
+                    </strong>
+
+                    <small>
+                        From all recorded orders
+                    </small>
+
+                </div>
+
+
+                <div class="admin-summary-card">
+
+                    <div class="admin-summary-card-header">
+
+                        <span>
+                            Today's orders
+                        </span>
+
+                        <span class="admin-summary-icon">
+                            ◷
+                        </span>
+
+                    </div>
+
+                    <strong data-orders-today>
+                        0
+                    </strong>
+
+                    <small>
+                        Orders received today
+                    </small>
+
+                </div>
+
+
+                <div class="admin-summary-card">
+
+                    <div class="admin-summary-card-header">
+
+                        <span>
+                            Average order
+                        </span>
+
+                        <span class="admin-summary-icon">
+                            ≈
+                        </span>
+
+                    </div>
+
+                    <strong data-orders-average>
+                        ₹0.00
+                    </strong>
+
+                    <small>
+                        Average order value
+                    </small>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 ORDERS TABLE
+            ================================================== -->
+            <section class="admin-content-card">
+
+
+                <!-- Toolbar -->
+                <div class="admin-table-toolbar">
+
+                    <div class="admin-table-toolbar-left">
+
+                        <div class="admin-search-box">
+
+                            <span class="admin-search-icon">
+                                ⌕
+                            </span>
+
+                            <input
+                                type="search"
+                                placeholder="Search orders..."
+                                aria-label="Search orders"
+                                data-orders-search
+                            >
+
+                            <button
+                                type="button"
+                                class="admin-search-clear"
+                                data-orders-search-clear
+                                hidden
+                                aria-label="Clear search"
+                            >
+                                ×
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="admin-table-toolbar-right">
+
+                        <select
+                            class="admin-table-select"
+                            data-orders-status
+                            aria-label="Filter orders by status"
+                        >
+
+                            <option value="all">
+                                All statuses
+                            </option>
+
+                            <option value="pending">
+                                Pending
+                            </option>
+
+                            <option value="processing">
+                                Processing
+                            </option>
+
+                            <option value="shipped">
+                                Shipped
+                            </option>
+
+                            <option value="delivered">
+                                Delivered
+                            </option>
+
+                            <option value="cancelled">
+                                Cancelled
+                            </option>
+
+                            <option value="refunded">
+                                Refunded
+                            </option>
+
+                        </select>
+
+
+                        <select
+                            class="admin-table-select"
+                            data-orders-payment-status
+                            aria-label="Filter by payment status"
+                        >
+
+                            <option value="all">
+                                All payments
+                            </option>
+
+                            <option value="paid">
+                                Paid
+                            </option>
+
+                            <option value="pending">
+                                Payment pending
+                            </option>
+
+                            <option value="failed">
+                                Failed
+                            </option>
+
+                            <option value="refunded">
+                                Refunded
+                            </option>
+
+                        </select>
+
+
+                        <select
+                            class="admin-table-select"
+                            data-orders-sort
+                            aria-label="Sort orders"
+                        >
+
+                            <option value="newest">
+                                Newest first
+                            </option>
+
+                            <option value="oldest">
+                                Oldest first
+                            </option>
+
+                            <option value="amount-high">
+                                Amount: High to low
+                            </option>
+
+                            <option value="amount-low">
+                                Amount: Low to high
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     BULK BAR
+                ================================================== -->
+                <div
+                    class="admin-bulk-bar"
+                    data-orders-bulk-bar
+                    hidden
+                >
+
+                    <div class="admin-bulk-info">
+
+                        <strong data-orders-selected-count>
+                            0
+                        </strong>
+
+                        <span>
+                            orders selected
+                        </span>
+
+                    </div>
+
+
+                    <div class="admin-bulk-actions">
+
+                        <button
+                            type="button"
+                            class="admin-bulk-button"
+                            data-orders-bulk-action="processing"
+                        >
+                            Mark processing
+                        </button>
+
+                        <button
+                            type="button"
+                            class="admin-bulk-button"
+                            data-orders-bulk-action="shipped"
+                        >
+                            Mark shipped
+                        </button>
+
+                        <button
+                            type="button"
+                            class="admin-bulk-button"
+                            data-orders-bulk-action="delivered"
+                        >
+                            Mark delivered
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     TABLE
+                ================================================== -->
+                <div class="admin-table-wrapper">
+
+                    <table class="admin-table admin-orders-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th class="admin-table-check-column">
+
+                                    <input
+                                        type="checkbox"
+                                        data-orders-select-all
+                                        aria-label="Select all orders"
+                                    >
+
+                                </th>
+
+
+                                <th>
+                                    Order
+                                </th>
+
+
+                                <th>
+                                    Customer
+                                </th>
+
+
+                                <th>
+                                    Date
+                                </th>
+
+
+                                <th>
+                                    Items
+                                </th>
+
+
+                                <th>
+                                    Total
+                                </th>
+
+
+                                <th>
+                                    Payment
+                                </th>
+
+
+                                <th>
+                                    Status
+                                </th>
+
+
+                                <th class="admin-table-action-column">
+                                    Actions
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody
+                            data-orders-table-body
+                        ></tbody>
+
+                    </table>
+
+                </div>
+
+
+                <!-- =================================================
+                     LOADING
+                ================================================== -->
+                <div
+                    class="admin-table-loading"
+                    data-orders-loading
+                    hidden
+                >
+
+                    <div class="admin-loading-spinner"></div>
+
+                    <span>
+                        Loading orders...
+                    </span>
+
+                </div>
+
+
+                <!-- =================================================
+                     EMPTY
+                ================================================== -->
+                <div
+                    class="admin-table-empty"
+                    data-orders-empty
+                    hidden
+                >
+
+                    <div class="admin-empty-icon">
+                        ≡
+                    </div>
+
+                    <h3>
+                        No orders found
+                    </h3>
+
+                    <p data-orders-empty-message>
+                        There are no orders matching your
+                        current filters.
+                    </p>
+
+                    <button
+                        type="button"
+                        class="admin-button admin-button-secondary"
+                        data-orders-clear-filters
+                    >
+                        Clear filters
+                    </button>
+
+                </div>
+
+
+                <!-- =================================================
+                     FOOTER
+                ================================================== -->
+                <div class="admin-table-footer">
+
+                    <span data-orders-results>
+                        0 orders
+                    </span>
+
+
+                    <div class="admin-pagination">
+
+                        <button
+                            type="button"
+                            class="admin-pagination-button"
+                            data-orders-prev
+                            disabled
+                            aria-label="Previous page"
+                        >
+                            ←
+                        </button>
+
+                        <span data-orders-page>
+                            1
+                        </span>
+
+                        <button
+                            type="button"
+                            class="admin-pagination-button"
+                            data-orders-next
+                            disabled
+                            aria-label="Next page"
+                        >
+                            →
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+</div>
+
+
+<!-- =============================================================
+     MOBILE SIDEBAR OVERLAY
+============================================================== -->
+<div
+    class="admin-sidebar-overlay"
+    data-admin-sidebar-overlay
+></div>
+
+
+<!-- =============================================================
+     ORDER DETAILS MODAL
+============================================================== -->
+<div
+    class="admin-modal"
+    data-order-details-modal
+    hidden
+>
+
+    <div
+        class="admin-modal-backdrop"
+        data-order-modal-close
+    ></div>
+
+
+    <div
+        class="admin-modal-dialog admin-modal-dialog-xl"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="order-details-title"
+    >
+
+        <button
+            type="button"
+            class="admin-modal-close"
+            data-order-modal-close
+            aria-label="Close"
+        >
+            ×
+        </button>
+
+
+        <div class="admin-modal-header">
+
+            <div class="admin-order-modal-title">
+
+                <span class="admin-eyebrow">
+                    ORDER DETAILS
+                </span>
+
+                <h2 id="order-details-title">
+                    Order
+                    <span data-order-detail-id>
+                        —
+                    </span>
+                </h2>
+
+            </div>
+
+
+            <span
+                class="admin-status-badge"
+                data-order-detail-status
+            >
+                Pending
+            </span>
+
+        </div>
+
+
+        <!-- Customer -->
+        <div class="admin-order-detail-section">
+
+            <div class="admin-order-detail-section-header">
+
+                <h3>
+                    Customer
+                </h3>
+
+            </div>
+
+
+            <div class="admin-order-customer-grid">
+
+                <div>
+
+                    <span>
+                        Name
+                    </span>
+
+                    <strong data-order-detail-name>
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Email
+                    </span>
+
+                    <strong data-order-detail-email>
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Phone
+                    </span>
+
+                    <strong data-order-detail-phone>
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Order date
+                    </span>
+
+                    <strong data-order-detail-date>
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Items -->
+        <div class="admin-order-detail-section">
+
+            <div class="admin-order-detail-section-header">
+
+                <h3>
+                    Order items
+                </h3>
+
+                <span data-order-detail-item-count>
+                    0 items
+                </span>
+
+            </div>
+
+
+            <div
+                class="admin-order-items"
+                data-order-detail-items
+            ></div>
+
+        </div>
+
+
+        <!-- Shipping -->
+        <div class="admin-order-detail-section">
+
+            <div class="admin-order-detail-section-header">
+
+                <h3>
+                    Shipping information
+                </h3>
+
+            </div>
+
+
+            <div class="admin-order-shipping">
+
+                <div>
+
+                    <span>
+                        Address
+                    </span>
+
+                    <strong data-order-detail-address>
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        City
+                    </span>
+
+                    <strong data-order-detail-city>
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        State
+                    </span>
+
+                    <strong data-order-detail-state>
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        PIN code
+                    </span>
+
+                    <strong data-order-detail-pincode>
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Payment -->
+        <div class="admin-order-detail-section">
+
+            <div class="admin-order-detail-section-header">
+
+                <h3>
+                    Payment
+                </h3>
+
+            </div>
+
+
+            <div class="admin-order-payment">
+
+                <div>
+
+                    <span>
+                        Payment status
+                    </span>
+
+                    <strong data-order-detail-payment-status>
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Payment method
+                    </span>
+
+                    <strong data-order-detail-payment-method>
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Summary -->
+        <div class="admin-order-summary">
+
+            <div>
+                <span>Subtotal</span>
+                <strong data-order-detail-subtotal>
+                    ₹0.00
+                </strong>
+            </div>
+
+            <div>
+                <span>Shipping</span>
+                <strong data-order-detail-shipping>
+                    ₹0.00
+                </strong>
+            </div>
+
+            <div class="admin-order-summary-total">
+                <span>Total</span>
+                <strong data-order-detail-total>
+                    ₹0.00
+                </strong>
+            </div>
+
+        </div>
+
+
+        <!-- Status update -->
+        <div class="admin-order-status-update">
+
+            <div class="admin-form-group">
+
+                <label for="order-status-update">
+                    Update order status
+                </label>
+
+                <select
+                    id="order-status-update"
+                    data-order-status-update
+                >
+
+                    <option value="pending">
+                        Pending
+                    </option>
+
+                    <option value="processing">
+                        Processing
+                    </option>
+
+                    <option value="shipped">
+                        Shipped
+                    </option>
+
+                    <option value="delivered">
+                        Delivered
+                    </option>
+
+                    <option value="cancelled">
+                        Cancelled
+                    </option>
+
+                    <option value="refunded">
+                        Refunded
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="admin-form-status"
+            data-order-detail-status-message
+            aria-live="polite"
+        ></div>
+
+
+        <div class="admin-modal-actions">
+
+            <button
+                type="button"
+                class="admin-button admin-button-secondary"
+                data-order-modal-close
+            >
+                Close
+            </button>
+
+            <button
+                type="button"
+                class="admin-button admin-button-primary"
+                data-order-update-status
+            >
+                Update order
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =============================================================
+     CONTEXT MENU
+============================================================== -->
+<div
+    class="admin-context-menu"
+    data-order-context-menu
+    hidden
+>
+
+    <button
+        type="button"
+        data-order-action="view"
+    >
+        <span>⌕</span>
+        View order
+    </button>
+
+
+    <button
+        type="button"
+        data-order-action="processing"
+    >
+        <span>◷</span>
+        Mark processing
+    </button>
+
+
+    <button
+        type="button"
+        data-order-action="shipped"
+    >
+        <span>→</span>
+        Mark shipped
+    </button>
+
+
+    <button
+        type="button"
+        data-order-action="delivered"
+    >
+        <span>✓</span>
+        Mark delivered
+    </button>
+
+</div>
+
+
+<!-- =============================================================
+     SCRIPTS
+============================================================== -->
+<script type="module" src="../js/admin/admin-auth.js"></script>
+<script type="module" src="../js/admin/admin-guard.js"></script>
+<script type="module" src="../js/admin/admin-ui.js"></script>
+<script type="module" src="../js/admin/admin-orders.js"></script>
+
+</body>
+</html>

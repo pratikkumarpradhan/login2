@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Account | ProjectKart</title>
+    <meta
+        name="description"
+        content="Manage your ProjectKart account, profile, addresses and orders."
+    >
+
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/typography.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/mobile-menu.css">
+    <link rel="stylesheet" href="css/buttons.css">
+    <link rel="stylesheet" href="css/forms.css">
+    <link rel="stylesheet" href="css/account.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+
+    <!-- =========================================================
+         NAVBAR
+    ========================================================== -->
+    <header class="site-header">
+
+        <nav class="navbar container">
+
+            <a
+                href="index.html"
+                class="navbar-brand"
+                aria-label="ProjectKart Home"
+            >
+                <span class="navbar-brand-mark">PK</span>
+
+                <span class="navbar-brand-text">
+                    <strong>ProjectKart</strong>
+                    <small>Build. Create. Innovate.</small>
+                </span>
+            </a>
+
+
+            <div class="navbar-links">
+                <a href="index.html">Home</a>
+                <a href="shop.html">Shop</a>
+                <a href="categories.html">Categories</a>
+                <a href="project-kits.html">Project Kits</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+
+
+            <div class="navbar-actions">
+
+                <form class="navbar-search" data-search-form>
+
+                    <span class="navbar-search-icon">⌕</span>
+
+                    <input
+                        type="search"
+                        placeholder="Search components..."
+                        aria-label="Search products"
+                        data-search-input
+                        autocomplete="off"
+                    >
+
+                    <div
+                        class="navbar-search-results"
+                        data-search-results
+                        hidden
+                    ></div>
+
+                </form>
+
+
+                <a
+                    href="account.html"
+                    class="navbar-account active"
+                    aria-label="My account"
+                >
+                    <span class="navbar-action-icon">◯</span>
+                </a>
+
+
+                <a
+                    href="cart.html"
+                    class="navbar-cart"
+                    aria-label="Shopping cart"
+                >
+                    <span class="navbar-action-icon">🛒</span>
+                    <span class="cart-count" data-cart-count>0</span>
+                </a>
+
+
+                <button
+                    type="button"
+                    class="menu-toggle"
+                    data-menu-toggle
+                    aria-label="Open menu"
+                    aria-expanded="false"
+                >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+            </div>
+
+        </nav>
+
+
+        <!-- Mobile menu -->
+        <div class="mobile-menu" data-mobile-menu>
+
+            <div class="mobile-menu-header">
+
+                <a href="index.html" class="navbar-brand">
+
+                    <span class="navbar-brand-mark">PK</span>
+
+                    <span class="navbar-brand-text">
+                        <strong>ProjectKart</strong>
+                        <small>Build. Create. Innovate.</small>
+                    </span>
+
+                </a>
+
+                <button
+                    type="button"
+                    class="mobile-menu-close"
+                    data-menu-close
+                    aria-label="Close menu"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <div class="mobile-menu-links">
+
+                <a href="index.html">Home</a>
+                <a href="shop.html">Shop</a>
+                <a href="categories.html">Categories</a>
+                <a href="project-kits.html">Project Kits</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="account.html">My Account</a>
+                <a href="cart.html">Cart</a>
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="mobile-menu-overlay"
+            data-mobile-overlay
+        ></div>
+
+    </header>
+
+
+    <!-- =========================================================
+         ACCOUNT PAGE
+    ========================================================== -->
+    <main class="account-page">
+
+        <div class="container">
+
+            <!-- Page heading -->
+            <section class="account-heading">
+
+                <div>
+
+                    <span class="section-eyebrow">
+                        MY ACCOUNT
+                    </span>
+
+                    <h1>
+                        Welcome back<span data-account-name></span>
+                    </h1>
+
+                    <p>
+                        Manage your profile, orders and account details.
+                    </p>
+
+                </div>
+
+                <button
+                    type="button"
+                    class="button button-secondary"
+                    data-logout-button
+                >
+                    Sign out
+                </button>
+
+            </section>
+
+
+            <!-- Account layout -->
+            <div class="account-layout">
+
+                <!-- =================================================
+                     SIDEBAR
+                ================================================== -->
+                <aside class="account-sidebar">
+
+                    <div class="account-user-card">
+
+                        <div class="account-avatar" data-account-avatar>
+                            P
+                        </div>
+
+                        <div class="account-user-info">
+
+                            <strong data-account-user-name>
+                                Account
+                            </strong>
+
+                            <span data-account-user-email>
+                                Loading...
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <nav class="account-nav">
+
+                        <a
+                            href="#profile"
+                            class="account-nav-item active"
+                            data-account-tab="profile"
+                        >
+                            <span>◯</span>
+                            <span>Profile</span>
+                        </a>
+
+                        <a
+                            href="#orders"
+                            class="account-nav-item"
+                            data-account-tab="orders"
+                        >
+                            <span>▣</span>
+                            <span>My Orders</span>
+                        </a>
+
+                        <a
+                            href="#address"
+                            class="account-nav-item"
+                            data-account-tab="address"
+                        >
+                            <span>⌖</span>
+                            <span>Address</span>
+                        </a>
+
+                    </nav>
+
+                </aside>
+
+
+                <!-- =================================================
+                     MAIN CONTENT
+                ================================================== -->
+                <section class="account-content">
+
+
+                    <!-- =================================================
+                         PROFILE
+                    ================================================== -->
+                    <section
+                        class="account-section"
+                        id="profile"
+                        data-account-section="profile"
+                    >
+
+                        <div class="account-section-header">
+
+                            <div>
+                                <span class="section-eyebrow">
+                                    PERSONAL INFORMATION
+                                </span>
+
+                                <h2>Profile details</h2>
+
+                                <p>
+                                    Update your personal information.
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <form
+                            class="account-form"
+                            data-profile-form
+                        >
+
+                            <div class="account-form-grid">
+
+                                <!-- Name -->
+                                <div class="form-group">
+
+                                    <label for="profile-name">
+                                        Full name
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        id="profile-name"
+                                        name="name"
+                                        placeholder="Your full name"
+                                        autocomplete="name"
+                                        data-profile-name
+                                    >
+
+                                </div>
+
+
+                                <!-- Email -->
+                                <div class="form-group">
+
+                                    <label for="profile-email">
+                                        Email address
+                                    </label>
+
+                                    <input
+                                        type="email"
+                                        id="profile-email"
+                                        name="email"
+                                        placeholder="you@example.com"
+                                        autocomplete="email"
+                                        data-profile-email
+                                        readonly
+                                    >
+
+                                    <small class="form-help">
+                                        Your email address is managed
+                                        through your account login.
+                                    </small>
+
+                                </div>
+
+
+                                <!-- Phone -->
+                                <div class="form-group">
+
+                                    <label for="profile-phone">
+                                        Phone number
+                                    </label>
+
+                                    <input
+                                        type="tel"
+                                        id="profile-phone"
+                                        name="phone"
+                                        placeholder="+91 XXXXX XXXXX"
+                                        autocomplete="tel"
+                                        data-profile-phone
+                                    >
+
+                                </div>
+
+
+                                <!-- Address -->
+                                <div class="form-group account-form-full">
+
+                                    <label for="profile-address">
+                                        Address
+                                    </label>
+
+                                    <textarea
+                                        id="profile-address"
+                                        name="address"
+                                        rows="4"
+                                        placeholder="Enter your delivery address"
+                                        autocomplete="street-address"
+                                        data-profile-address
+                                    ></textarea>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="account-form-footer">
+
+                                <div
+                                    class="form-status"
+                                    data-profile-status
+                                    aria-live="polite"
+                                ></div>
+
+                                <button
+                                    type="submit"
+                                    class="button button-primary"
+                                    data-profile-submit
+                                >
+                                    <span data-profile-submit-text>
+                                        Save changes
+                                    </span>
+
+                                    <span
+                                        class="button-spinner"
+                                        data-profile-spinner
+                                        hidden
+                                    ></span>
+                                </button>
+
+                            </div>
+
+                        </form>
+
+                    </section>
+
+
+                    <!-- =================================================
+                         ORDERS
+                    ================================================== -->
+                    <section
+                        class="account-section"
+                        id="orders"
+                        data-account-section="orders"
+                        hidden
+                    >
+
+                        <div class="account-section-header">
+
+                            <div>
+
+                                <span class="section-eyebrow">
+                                    PURCHASE HISTORY
+                                </span>
+
+                                <h2>My orders</h2>
+
+                                <p>
+                                    View your previous ProjectKart orders.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="account-orders"
+                            data-account-orders
+                        >
+
+                            <div class="account-loading">
+                                Loading your orders...
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- =================================================
+                         ADDRESS
+                    ================================================== -->
+                    <section
+                        class="account-section"
+                        id="address"
+                        data-account-section="address"
+                        hidden
+                    >
+
+                        <div class="account-section-header">
+
+                            <div>
+
+                                <span class="section-eyebrow">
+                                    DELIVERY DETAILS
+                                </span>
+
+                                <h2>Saved address</h2>
+
+                                <p>
+                                    Your saved delivery information.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="account-address-card">
+
+                            <div class="account-address-icon">
+                                ⌖
+                            </div>
+
+                            <div class="account-address-content">
+
+                                <span class="account-address-label">
+                                    Default delivery address
+                                </span>
+
+                                <p data-account-address>
+                                    No address saved yet.
+                                </p>
+
+                            </div>
+
+                            <button
+                                type="button"
+                                class="button button-secondary button-small"
+                                data-edit-address
+                            >
+                                Edit
+                            </button>
+
+                        </div>
+
+                    </section>
+
+
+                </section>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
+    <footer class="site-footer">
+
+        <div class="container">
+
+            <div class="footer-main">
+
+                <div class="footer-brand">
+
+                    <a
+                        href="index.html"
+                        class="navbar-brand"
+                    >
+                        <span class="navbar-brand-mark">
+                            PK
+                        </span>
+
+                        <span class="navbar-brand-text">
+                            <strong>ProjectKart</strong>
+                            <small>Build. Create. Innovate.</small>
+                        </span>
+                    </a>
+
+                    <p>
+                        Your place for electronics components,
+                        project kits and everything you need to
+                        turn ideas into real projects.
+                    </p>
+
+                </div>
+
+
+                <div class="footer-column">
+
+                    <h3>Shop</h3>
+
+                    <a href="shop.html">All Products</a>
+                    <a href="categories.html">Categories</a>
+                    <a href="project-kits.html">Project Kits</a>
+
+                </div>
+
+
+                <div class="footer-column">
+
+                    <h3>Company</h3>
+
+                    <a href="about.html">About Us</a>
+                    <a href="contact.html">Contact</a>
+
+                </div>
+
+
+                <div class="footer-column">
+
+                    <h3>Account</h3>
+
+                    <a href="account.html">My Account</a>
+                    <a href="cart.html">Cart</a>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-bottom">
+
+                <p>
+                    ©
+                    <span data-current-year></span>
+                    ProjectKart. All rights reserved.
+                </p>
+
+                <p>
+                    Built for makers, students & creators.
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================================================
+         SCRIPTS
+    ========================================================== -->
+    <script type="module" src="js/navbar.js"></script>
+    <script type="module" src="js/search.js"></script>
+    <script type="module" src="js/account.js"></script>
+
+    <script>
+        const yearElement =
+            document.querySelector("[data-current-year]");
+
+        if (yearElement) {
+            yearElement.textContent =
+                new Date().getFullYear();
+        }
+    </script>
+
+</body>
+</html>

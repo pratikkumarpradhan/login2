@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Products | ProjectKart Admin</title>
+    <meta
+        name="description"
+        content="Manage ProjectKart products, inventory, visibility and featured products."
+    >
+
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/typography.css">
+
+    <link rel="stylesheet" href="../css/admin/admin-base.css">
+    <link rel="stylesheet" href="../css/admin/admin-sidebar.css">
+    <link rel="stylesheet" href="../css/admin/admin-header.css">
+    <link rel="stylesheet" href="../css/admin/admin-products.css">
+    <link rel="stylesheet" href="../css/admin/admin-tables.css">
+    <link rel="stylesheet" href="../css/admin/admin-responsive.css">
+</head>
+
+<body class="admin-body">
+
+    <!-- =========================================================
+         ADMIN APP
+    ========================================================== -->
+    <div class="admin-app">
+
+        <!-- =====================================================
+             SIDEBAR
+        ====================================================== -->
+        <aside
+            class="admin-sidebar"
+            id="admin-sidebar"
+            data-admin-sidebar
+        >
+
+            <div class="admin-sidebar-top">
+
+                <a
+                    href="index.html"
+                    class="admin-brand"
+                    aria-label="ProjectKart Admin Dashboard"
+                >
+                    <span class="admin-brand-mark">PK</span>
+
+                    <span class="admin-brand-text">
+                        <strong>ProjectKart</strong>
+                        <small>Admin Panel</small>
+                    </span>
+                </a>
+
+
+                <nav class="admin-nav">
+
+                    <div class="admin-nav-section">
+
+                        <span class="admin-nav-label">
+                            Overview
+                        </span>
+
+                        <a
+                            href="index.html"
+                            class="admin-nav-item"
+                            data-admin-nav="dashboard"
+                        >
+                            <span class="admin-nav-icon">▦</span>
+                            <span class="admin-nav-text">Dashboard</span>
+                        </a>
+
+                    </div>
+
+
+                    <div class="admin-nav-section">
+
+                        <span class="admin-nav-label">
+                            Store
+                        </span>
+
+                        <a
+                            href="products.html"
+                            class="admin-nav-item active"
+                            data-admin-nav="products"
+                        >
+                            <span class="admin-nav-icon">□</span>
+                            <span class="admin-nav-text">Products</span>
+                        </a>
+
+                        <a
+                            href="categories.html"
+                            class="admin-nav-item"
+                            data-admin-nav="categories"
+                        >
+                            <span class="admin-nav-icon">◫</span>
+                            <span class="admin-nav-text">Categories</span>
+                        </a>
+
+                        <a
+                            href="kits.html"
+                            class="admin-nav-item"
+                            data-admin-nav="kits"
+                        >
+                            <span class="admin-nav-icon">◈</span>
+                            <span class="admin-nav-text">Project Kits</span>
+                        </a>
+
+                        <a
+                            href="orders.html"
+                            class="admin-nav-item"
+                            data-admin-nav="orders"
+                        >
+                            <span class="admin-nav-icon">≡</span>
+                            <span class="admin-nav-text">Orders</span>
+                        </a>
+
+                    </div>
+
+
+                    <div class="admin-nav-section">
+
+                        <span class="admin-nav-label">
+                            Management
+                        </span>
+
+                        <a
+                            href="users.html"
+                            class="admin-nav-item"
+                            data-admin-nav="users"
+                        >
+                            <span class="admin-nav-icon">◎</span>
+                            <span class="admin-nav-text">Users</span>
+                        </a>
+
+                        <a
+                            href="settings.html"
+                            class="admin-nav-item"
+                            data-admin-nav="settings"
+                        >
+                            <span class="admin-nav-icon">⚙</span>
+                            <span class="admin-nav-text">Settings</span>
+                        </a>
+
+                    </div>
+
+                </nav>
+
+            </div>
+
+
+            <div class="admin-sidebar-bottom">
+
+                <a
+                    href="../index.html"
+                    class="admin-sidebar-store-link"
+                >
+                    <span class="admin-nav-icon">↗</span>
+                    <span class="admin-nav-text">View Store</span>
+                </a>
+
+                <button
+                    type="button"
+                    class="admin-sidebar-logout"
+                    data-admin-logout
+                >
+                    <span class="admin-nav-icon">⇥</span>
+                    <span class="admin-nav-text">Sign out</span>
+                </button>
+
+            </div>
+
+        </aside>
+
+
+        <!-- =====================================================
+             MAIN
+        ====================================================== -->
+        <div class="admin-main">
+
+            <!-- =================================================
+                 HEADER
+            ================================================== -->
+            <header class="admin-header">
+
+                <div class="admin-header-left">
+
+                    <button
+                        type="button"
+                        class="admin-mobile-menu-button"
+                        data-admin-menu-toggle
+                        aria-label="Open admin menu"
+                        aria-expanded="false"
+                    >
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+
+
+                    <div class="admin-page-title">
+
+                        <span class="admin-breadcrumb">
+                            Admin
+                            <span>/</span>
+                            Products
+                        </span>
+
+                        <h1>
+                            Products
+                        </h1>
+
+                    </div>
+
+                </div>
+
+
+                <div class="admin-header-right">
+
+                    <a
+                        href="../index.html"
+                        class="admin-header-store"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        <span>View store</span>
+                        <span>↗</span>
+                    </a>
+
+
+                    <button
+                        type="button"
+                        class="admin-header-icon-button"
+                        aria-label="Notifications"
+                        data-admin-notifications
+                    >
+                        <span>♢</span>
+
+                        <i
+                            data-admin-notification-count
+                            hidden
+                        >
+                            0
+                        </i>
+                    </button>
+
+
+                    <div class="admin-user">
+
+                        <div
+                            class="admin-user-avatar"
+                            data-admin-avatar
+                        >
+                            A
+                        </div>
+
+                        <div class="admin-user-details">
+
+                            <strong data-admin-user-name>
+                                Admin
+                            </strong>
+
+                            <span data-admin-user-email>
+                                Loading...
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- =================================================
+                 CONTENT
+            ================================================== -->
+            <main class="admin-content">
+
+
+                <!-- =================================================
+                     PAGE INTRO
+                ================================================== -->
+                <section class="admin-products-intro">
+
+                    <div>
+
+                        <span class="admin-eyebrow">
+                            STORE CATALOG
+                        </span>
+
+                        <h2>
+                            Manage products
+                        </h2>
+
+                        <p>
+                            Add, edit, hide, feature and manage
+                            inventory for your store products.
+                        </p>
+
+                    </div>
+
+
+                    <div class="admin-products-actions">
+
+                        <button
+                            type="button"
+                            class="admin-button admin-button-secondary"
+                            data-admin-refresh-products
+                        >
+                            <span>↻</span>
+                            Refresh
+                        </button>
+
+                        <a
+                            href="product-edit.html"
+                            class="admin-button admin-button-primary"
+                        >
+                            <span>+</span>
+                            Add product
+                        </a>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =================================================
+                     PRODUCT STATS
+                ================================================== -->
+                <section class="admin-product-stats">
+
+                    <div class="admin-mini-stat">
+
+                        <div class="admin-mini-stat-icon">
+                            □
+                        </div>
+
+                        <div>
+                            <span>
+                                Total products
+                            </span>
+
+                            <strong data-products-total>
+                                0
+                            </strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="admin-mini-stat">
+
+                        <div class="admin-mini-stat-icon">
+                            ✓
+                        </div>
+
+                        <div>
+                            <span>
+                                Active
+                            </span>
+
+                            <strong data-products-active>
+                                0
+                            </strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="admin-mini-stat">
+
+                        <div class="admin-mini-stat-icon">
+                            ◌
+                        </div>
+
+                        <div>
+                            <span>
+                                Hidden
+                            </span>
+
+                            <strong data-products-hidden>
+                                0
+                            </strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="admin-mini-stat">
+
+                        <div class="admin-mini-stat-icon">
+                            !
+                        </div>
+
+                        <div>
+                            <span>
+                                Low stock
+                            </span>
+
+                            <strong data-products-low-stock>
+                                0
+                            </strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="admin-mini-stat">
+
+                        <div class="admin-mini-stat-icon">
+                            ×
+                        </div>
+
+                        <div>
+                            <span>
+                                Out of stock
+                            </span>
+
+                            <strong data-products-out-stock>
+                                0
+                            </strong>
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =================================================
+                     PRODUCT PANEL
+                ================================================== -->
+                <section class="admin-panel admin-products-panel">
+
+
+                    <!-- =================================================
+                         TOOLBAR
+                    ================================================== -->
+                    <div class="admin-products-toolbar">
+
+                        <div class="admin-products-toolbar-left">
+
+                            <!-- Search -->
+                            <div class="admin-table-search">
+
+                                <span class="admin-table-search-icon">
+                                    ⌕
+                                </span>
+
+                                <input
+                                    type="search"
+                                    placeholder="Search products..."
+                                    aria-label="Search products"
+                                    data-products-search
+                                    autocomplete="off"
+                                >
+
+                            </div>
+
+
+                            <!-- Category -->
+                            <select
+                                class="admin-filter-select"
+                                data-products-category
+                                aria-label="Filter by category"
+                            >
+                                <option value="">
+                                    All categories
+                                </option>
+                            </select>
+
+
+                            <!-- Status -->
+                            <select
+                                class="admin-filter-select"
+                                data-products-status
+                                aria-label="Filter by status"
+                            >
+                                <option value="">
+                                    All status
+                                </option>
+
+                                <option value="active">
+                                    Active
+                                </option>
+
+                                <option value="hidden">
+                                    Hidden
+                                </option>
+
+                                <option value="out-of-stock">
+                                    Out of stock
+                                </option>
+
+                                <option value="low-stock">
+                                    Low stock
+                                </option>
+                            </select>
+
+                        </div>
+
+
+                        <div class="admin-products-toolbar-right">
+
+                            <select
+                                class="admin-filter-select"
+                                data-products-sort
+                                aria-label="Sort products"
+                            >
+                                <option value="newest">
+                                    Newest first
+                                </option>
+
+                                <option value="oldest">
+                                    Oldest first
+                                </option>
+
+                                <option value="name-asc">
+                                    Name A–Z
+                                </option>
+
+                                <option value="name-desc">
+                                    Name Z–A
+                                </option>
+
+                                <option value="price-low">
+                                    Price low to high
+                                </option>
+
+                                <option value="price-high">
+                                    Price high to low
+                                </option>
+
+                                <option value="stock-low">
+                                    Stock low to high
+                                </option>
+
+                            </select>
+
+
+                            <button
+                                type="button"
+                                class="admin-toolbar-icon-button"
+                                title="Refresh products"
+                                aria-label="Refresh products"
+                                data-admin-refresh-products
+                            >
+                                ↻
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         BULK ACTION BAR
+                    ================================================== -->
+                    <div
+                        class="admin-bulk-actions"
+                        data-products-bulk-bar
+                        hidden
+                    >
+
+                        <div class="admin-bulk-selection">
+
+                            <strong data-products-selected-count>
+                                0
+                            </strong>
+
+                            <span>
+                                selected
+                            </span>
+
+                        </div>
+
+
+                        <div class="admin-bulk-buttons">
+
+                            <button
+                                type="button"
+                                class="admin-bulk-button"
+                                data-products-bulk-show
+                            >
+                                Show
+                            </button>
+
+                            <button
+                                type="button"
+                                class="admin-bulk-button"
+                                data-products-bulk-hide
+                            >
+                                Hide
+                            </button>
+
+                            <button
+                                type="button"
+                                class="admin-bulk-button admin-bulk-danger"
+                                data-products-bulk-delete
+                            >
+                                Delete
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         TABLE
+                    ================================================== -->
+                    <div class="admin-products-table-wrapper">
+
+                        <table class="admin-data-table">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th class="admin-table-checkbox">
+                                        <input
+                                            type="checkbox"
+                                            aria-label="Select all products"
+                                            data-products-select-all
+                                        >
+                                    </th>
+
+                                    <th>
+                                        Product
+                                    </th>
+
+                                    <th>
+                                        Category
+                                    </th>
+
+                                    <th>
+                                        Price
+                                    </th>
+
+                                    <th>
+                                        Stock
+                                    </th>
+
+                                    <th>
+                                        Status
+                                    </th>
+
+                                    <th>
+                                        Featured
+                                    </th>
+
+                                    <th>
+                                        Updated
+                                    </th>
+
+                                    <th class="admin-table-actions">
+                                        Actions
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody data-products-table-body>
+
+                                <!-- Products rendered by admin-products.js -->
+
+                            </tbody>
+
+                        </table>
+
+
+                        <!-- =================================================
+                             EMPTY STATE
+                        ================================================== -->
+                        <div
+                            class="admin-products-empty"
+                            data-products-empty
+                            hidden
+                        >
+
+                            <div class="admin-empty-icon">
+                                □
+                            </div>
+
+                            <h3>
+                                No products found
+                            </h3>
+
+                            <p>
+                                No products match your current
+                                search or filters.
+                            </p>
+
+                            <button
+                                type="button"
+                                class="admin-button admin-button-secondary"
+                                data-products-clear-filters
+                            >
+                                Clear filters
+                            </button>
+
+                        </div>
+
+
+                        <!-- =================================================
+                             LOADING
+                        ================================================== -->
+                        <div
+                            class="admin-products-loading"
+                            data-products-loading
+                            hidden
+                        >
+
+                            <div class="admin-loading-spinner"></div>
+
+                            <span>
+                                Loading products...
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =================================================
+                         PAGINATION
+                    ================================================== -->
+                    <div class="admin-table-footer">
+
+                        <div
+                            class="admin-table-results"
+                            data-products-results
+                        >
+                            Showing 0 products
+                        </div>
+
+
+                        <div class="admin-pagination">
+
+                            <button
+                                type="button"
+                                class="admin-pagination-button"
+                                data-products-prev
+                                disabled
+                                aria-label="Previous page"
+                            >
+                                ←
+                            </button>
+
+                            <span
+                                class="admin-pagination-current"
+                                data-products-page
+                            >
+                                1
+                            </span>
+
+                            <button
+                                type="button"
+                                class="admin-pagination-button"
+                                data-products-next
+                                disabled
+                                aria-label="Next page"
+                            >
+                                →
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =================================================
+                     PRODUCT MANAGEMENT NOTE
+                ================================================== -->
+                <section class="admin-products-note">
+
+                    <div class="admin-products-note-icon">
+                        i
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Product visibility
+                        </strong>
+
+                        <p>
+                            Hidden products remain available in the
+                            admin panel but will not appear on the
+                            public ProjectKart storefront.
+                        </p>
+
+                    </div>
+
+                </section>
+
+
+            </main>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         MOBILE SIDEBAR OVERLAY
+    ========================================================== -->
+    <div
+        class="admin-sidebar-overlay"
+        data-admin-sidebar-overlay
+    ></div>
+
+
+    <!-- =========================================================
+         PRODUCT ACTION MENU
+    ========================================================== -->
+    <div
+        class="admin-context-menu"
+        data-product-context-menu
+        hidden
+    >
+
+        <button
+            type="button"
+            data-product-action="edit"
+        >
+            Edit product
+        </button>
+
+        <button
+            type="button"
+            data-product-action="toggle"
+        >
+            Toggle visibility
+        </button>
+
+        <button
+            type="button"
+            data-product-action="featured"
+        >
+            Toggle featured
+        </button>
+
+        <button
+            type="button"
+            class="danger"
+            data-product-action="delete"
+        >
+            Delete product
+        </button>
+
+    </div>
+
+
+    <!-- =========================================================
+         SCRIPTS
+    ========================================================== -->
+    <script type="module" src="../js/admin/admin-auth.js"></script>
+    <script type="module" src="../js/admin/admin-guard.js"></script>
+    <script type="module" src="../js/admin/admin-ui.js"></script>
+    <script type="module" src="../js/admin/admin-products.js"></script>
+
+</body>
+</html>

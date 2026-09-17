@@ -1,0 +1,250 @@
+/* ================================================================
+   PROJECTKART
+   FOOTER
+================================================================ */
+
+.site-footer {
+    position: relative;
+
+    margin-top: 80px;
+
+    background:
+        #05070a;
+
+    border-top:
+        1px solid var(--color-border);
+}
+
+
+/* ----------------------------------------------------------------
+   Footer Main
+---------------------------------------------------------------- */
+
+.footer-main {
+    display: grid;
+
+    grid-template-columns:
+        1.5fr
+        repeat(3, minmax(140px, 1fr));
+
+    gap: 50px;
+
+    padding:
+        70px 0 55px;
+}
+
+
+/* ----------------------------------------------------------------
+   Brand
+---------------------------------------------------------------- */
+
+.footer-brand {
+    max-width: 360px;
+}
+
+
+.footer-brand-logo {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 10px;
+
+    color:
+        var(--color-white);
+
+    font-size: 20px;
+    font-weight: 800;
+
+    letter-spacing:
+        -0.04em;
+
+    text-decoration:
+        none;
+}
+
+
+.footer-brand-logo-mark {
+    width: 34px;
+    height: 34px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius:
+        10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--color-primary),
+            var(--color-primary-light)
+        );
+
+    box-shadow:
+        0 8px 24px var(--color-primary-glow);
+}
+
+
+.footer-brand p {
+    margin:
+        17px 0 0;
+
+    color:
+        var(--color-text-muted);
+
+    font-size: 13px;
+
+    line-height:
+        1.75;
+}
+
+
+/* ----------------------------------------------------------------
+   Socials
+---------------------------------------------------------------- */
+
+.footer-socials {
+    display: flex;
+
+    gap: 8px;
+
+    margin-top: 22px;
+}
+
+
+.footer-social {
+    width: 36px;
+    height: 36px;
+
+    display: grid;
+    place-items: center;
+
+    border:
+        1px solid var(--color-border);
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(255, 255, 255, 0.02);
+
+    color:
+        var(--color-text-muted);
+
+    text-decoration:
+        none;
+
+    transition:
+        color var(--transition-fast),
+        background var(--transition-fast),
+        border-color var(--transition-fast),
+        transform var(--transition-fast);
+}
+
+
+.footer-social:hover {
+    color:
+        var(--color-white);
+
+    background:
+        var(--color-primary-soft);
+
+    border-color:
+        var(--color-primary-border);
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* ----------------------------------------------------------------
+   Columns
+---------------------------------------------------------------- */
+
+.footer-column h3 {
+    margin:
+        0 0 17px;
+
+    color:
+        var(--color-white);
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+
+.footer-column nav {
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+
+.footer-column nav a {
+    color:
+        var(--color-text-muted);
+
+    font-size: 12px;
+
+    text-decoration:
+        none;
+
+    transition:
+        color var(--transition-fast);
+}
+
+
+.footer-column nav a:hover {
+    color:
+        var(--color-primary-light);
+}
+
+
+/* ----------------------------------------------------------------
+   Footer Bottom
+---------------------------------------------------------------- */
+
+.footer-bottom {
+    min-height: 68px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding:
+        18px 0;
+
+    border-top:
+        1px solid var(--color-border);
+
+    color:
+        var(--color-text-dim);
+
+    font-size: 11px;
+}
+
+
+.footer-bottom-links {
+    display: flex;
+    align-items: center;
+
+    gap: 18px;
+}
+
+
+.footer-bottom-links a {
+    color:
+        inherit;
+
+    text-decoration:
+        none;
+}
+
+
+.footer-bottom-links a:hover {
+    color:
+        var(--color-text-soft);
+}

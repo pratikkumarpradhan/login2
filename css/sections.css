@@ -1,0 +1,441 @@
+/* ================================================================
+   PROJECTKART
+   SECTIONS
+================================================================ */
+
+.section {
+    position: relative;
+
+    padding:
+        100px 0;
+}
+
+
+.section-dark {
+    background:
+        var(--color-bg);
+}
+
+
+.section-soft {
+    background:
+        var(--color-bg-section);
+}
+
+
+.section-surface {
+    background:
+        var(--color-bg-soft);
+}
+
+
+/* ----------------------------------------------------------------
+   Section Header
+---------------------------------------------------------------- */
+
+.section-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    gap: 30px;
+
+    margin-bottom: 42px;
+}
+
+
+.section-header-content {
+    max-width: 720px;
+}
+
+
+.section-eyebrow {
+    display: inline-block;
+
+    margin-bottom: 10px;
+
+    color:
+        var(--color-primary-light);
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing:
+        0.13em;
+
+    text-transform:
+        uppercase;
+}
+
+
+.section-title {
+    margin: 0;
+
+    color:
+        var(--color-white);
+
+    font-size:
+        clamp(28px, 3.2vw, 46px);
+
+    font-weight:
+        800;
+
+    line-height:
+        1.08;
+
+    letter-spacing:
+        -0.045em;
+}
+
+
+.section-description {
+    max-width: 640px;
+
+    margin:
+        14px 0 0;
+
+    color:
+        var(--color-text-muted);
+
+    font-size: 14px;
+
+    line-height:
+        1.75;
+}
+
+
+.section-link {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 7px;
+
+    flex-shrink: 0;
+
+    color:
+        var(--color-primary-light);
+
+    font-size: 13px;
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transition:
+        gap var(--transition-fast),
+        color var(--transition-fast);
+}
+
+
+.section-link:hover {
+    gap: 11px;
+
+    color:
+        var(--color-white);
+}
+
+
+/* ----------------------------------------------------------------
+   Content Grid
+---------------------------------------------------------------- */
+
+.section-grid {
+    display: grid;
+
+    gap: 20px;
+}
+
+
+.section-grid-2 {
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+}
+
+
+.section-grid-3 {
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+}
+
+
+.section-grid-4 {
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+}
+
+
+/* ----------------------------------------------------------------
+   Feature Cards
+---------------------------------------------------------------- */
+
+.feature-card {
+    position: relative;
+
+    padding: 28px;
+
+    border:
+        1px solid var(--color-border);
+
+    border-radius:
+        var(--radius-lg);
+
+    background:
+        var(--color-surface);
+
+    overflow: hidden;
+
+    transition:
+        transform var(--transition-normal),
+        border-color var(--transition-normal),
+        background var(--transition-normal);
+}
+
+
+.feature-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    top: -100px;
+    right: -80px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(40, 120, 255, 0.12),
+            transparent 70%
+        );
+
+    pointer-events: none;
+}
+
+
+.feature-card:hover {
+    transform:
+        translateY(-5px);
+
+    border-color:
+        var(--color-border-light);
+
+    background:
+        var(--color-surface-light);
+}
+
+
+.feature-card-icon {
+    width: 46px;
+    height: 46px;
+
+    display: grid;
+    place-items: center;
+
+    margin-bottom: 22px;
+
+    border-radius:
+        var(--radius-sm);
+
+    background:
+        var(--color-primary-soft);
+
+    color:
+        var(--color-primary-light);
+}
+
+
+.feature-card-icon img,
+.feature-card-icon svg {
+    width: 21px;
+    height: 21px;
+}
+
+
+.feature-card h3 {
+    margin: 0;
+
+    color:
+        var(--color-white);
+
+    font-size: 16px;
+    font-weight: 700;
+}
+
+
+.feature-card p {
+    margin:
+        9px 0 0;
+
+    color:
+        var(--color-text-muted);
+
+    font-size: 13px;
+
+    line-height:
+        1.65;
+}
+
+
+/* ----------------------------------------------------------------
+   CTA
+---------------------------------------------------------------- */
+
+.cta-section {
+    position: relative;
+
+    padding:
+        90px 0;
+
+    overflow: hidden;
+}
+
+
+.cta-card {
+    position: relative;
+
+    padding:
+        70px 60px;
+
+    border:
+        1px solid var(--color-primary-border);
+
+    border-radius:
+        28px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(40, 120, 255, 0.14),
+            rgba(17, 21, 32, 0.92)
+        );
+
+    overflow: hidden;
+}
+
+
+.cta-card::before {
+    content: "";
+
+    position: absolute;
+
+    width: 450px;
+    height: 450px;
+
+    top: -260px;
+    right: -120px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(40, 120, 255, 0.18),
+            transparent 70%
+        );
+}
+
+
+.cta-content {
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 680px;
+}
+
+
+.cta-content h2 {
+    margin: 0;
+
+    color:
+        var(--color-white);
+
+    font-size:
+        clamp(28px, 4vw, 52px);
+
+    line-height:
+        1.04;
+
+    letter-spacing:
+        -0.05em;
+}
+
+
+.cta-content p {
+    margin:
+        18px 0 0;
+
+    color:
+        var(--color-text-soft);
+
+    font-size: 15px;
+
+    line-height:
+        1.7;
+}
+
+
+.cta-content .btn-group {
+    margin-top: 28px;
+}
+
+
+/* ----------------------------------------------------------------
+   Dividers
+---------------------------------------------------------------- */
+
+.section-divider {
+    width: 100%;
+
+    height: 1px;
+
+    background:
+        var(--color-border);
+}
+
+
+/* ----------------------------------------------------------------
+   Empty State
+---------------------------------------------------------------- */
+
+.empty-state {
+    width: 100%;
+
+    padding:
+        70px 30px;
+
+    border:
+        1px dashed var(--color-border-light);
+
+    border-radius:
+        var(--radius-lg);
+
+    color:
+        var(--color-text-muted);
+
+    text-align:
+        center;
+}
+
+
+.empty-state h1,
+.empty-state h2,
+.empty-state h3 {
+    margin: 0;
+
+    color:
+        var(--color-white);
+}
+
+
+.empty-state p {
+    margin:
+        10px 0 22px;
+
+    font-size: 14px;
+
+    line-height:
+        1.6;
+}

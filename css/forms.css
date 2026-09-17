@@ -1,0 +1,398 @@
+/* ================================================================
+   PROJECTKART
+   FORMS
+================================================================ */
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+
+    margin-bottom: 18px;
+}
+
+
+.form-label {
+    color:
+        var(--color-text-soft);
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+.form-label.required::after {
+    content: " *";
+
+    color:
+        var(--color-danger);
+}
+
+
+.form-input,
+.form-select,
+.form-textarea {
+    width: 100%;
+
+    min-height: 46px;
+
+    padding:
+        0 14px;
+
+    border:
+        1px solid var(--color-border);
+
+    border-radius:
+        var(--radius-sm);
+
+    outline: none;
+
+    background:
+        var(--color-surface);
+
+    color:
+        var(--color-text);
+
+    font-family:
+        inherit;
+
+    font-size: 14px;
+
+    transition:
+        border-color var(--transition-fast),
+        background var(--transition-fast),
+        box-shadow var(--transition-fast);
+}
+
+
+.form-textarea {
+    min-height: 130px;
+
+    padding:
+        13px 14px;
+
+    resize:
+        vertical;
+
+    line-height: 1.6;
+}
+
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+    color:
+        var(--color-text-dim);
+}
+
+
+.form-input:hover,
+.form-select:hover,
+.form-textarea:hover {
+    border-color:
+        var(--color-border-light);
+}
+
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+    border-color:
+        var(--color-primary);
+
+    background:
+        var(--color-surface-light);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(40, 120, 255, 0.1);
+}
+
+
+/* ----------------------------------------------------------------
+   Select
+---------------------------------------------------------------- */
+
+.form-select {
+    appearance: none;
+
+    padding-right: 40px;
+
+    background-image:
+        linear-gradient(
+            45deg,
+            transparent 50%,
+            var(--color-text-muted) 50%
+        ),
+        linear-gradient(
+            135deg,
+            var(--color-text-muted) 50%,
+            transparent 50%
+        );
+
+    background-position:
+        calc(100% - 17px) 20px,
+        calc(100% - 12px) 20px;
+
+    background-size:
+        5px 5px,
+        5px 5px;
+
+    background-repeat:
+        no-repeat;
+}
+
+
+/* ----------------------------------------------------------------
+   Checkbox
+---------------------------------------------------------------- */
+
+.form-checkbox {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 9px;
+
+    color:
+        var(--color-text-soft);
+
+    font-size: 13px;
+
+    cursor: pointer;
+}
+
+
+.form-checkbox input {
+    width: 17px;
+    height: 17px;
+
+    accent-color:
+        var(--color-primary);
+
+    cursor: pointer;
+}
+
+
+/* ----------------------------------------------------------------
+   Help Text
+---------------------------------------------------------------- */
+
+.form-help {
+    margin-top: 2px;
+
+    color:
+        var(--color-text-muted);
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+
+/* ----------------------------------------------------------------
+   Error
+---------------------------------------------------------------- */
+
+.form-error {
+    color:
+        var(--color-danger);
+
+    font-size: 12px;
+}
+
+
+.form-input.has-error,
+.form-select.has-error,
+.form-textarea.has-error {
+    border-color:
+        var(--color-danger);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(255, 77, 77, 0.08);
+}
+
+
+/* ----------------------------------------------------------------
+   Success
+---------------------------------------------------------------- */
+
+.form-input.has-success,
+.form-select.has-success,
+.form-textarea.has-success {
+    border-color:
+        var(--color-success);
+}
+
+
+/* ----------------------------------------------------------------
+   Form Row
+---------------------------------------------------------------- */
+
+.form-row {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 16px;
+}
+
+
+/* ----------------------------------------------------------------
+   Search Field
+---------------------------------------------------------------- */
+
+.search-field {
+    position: relative;
+}
+
+
+.search-field .form-input {
+    padding-right: 46px;
+}
+
+
+.search-field-icon {
+    position: absolute;
+
+    top: 50%;
+    right: 15px;
+
+    width: 18px;
+    height: 18px;
+
+    transform:
+        translateY(-50%);
+
+    color:
+        var(--color-text-muted);
+
+    pointer-events:
+        none;
+}
+
+
+/* ----------------------------------------------------------------
+   Search Suggestions
+---------------------------------------------------------------- */
+
+.search-results {
+    position: absolute;
+
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+
+    z-index:
+        var(--z-dropdown);
+
+    padding: 7px;
+
+    border:
+        1px solid var(--color-border);
+
+    border-radius:
+        var(--radius-md);
+
+    background:
+        rgba(17, 21, 32, 0.98);
+
+    box-shadow:
+        var(--shadow-lg);
+
+    backdrop-filter:
+        blur(20px);
+}
+
+
+.search-result {
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+
+    padding: 9px;
+
+    border-radius:
+        var(--radius-sm);
+
+    text-decoration: none;
+
+    transition:
+        background var(--transition-fast);
+}
+
+
+.search-result:hover {
+    background:
+        rgba(255, 255, 255, 0.05);
+}
+
+
+.search-result-image {
+    width: 44px;
+    height: 44px;
+
+    flex-shrink: 0;
+
+    overflow: hidden;
+
+    border-radius:
+        var(--radius-xs);
+
+    background:
+        var(--color-surface-light);
+}
+
+
+.search-result-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+.search-result-info {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+}
+
+
+.search-result-info strong {
+    overflow: hidden;
+
+    color:
+        var(--color-text);
+
+    font-size: 12px;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+.search-result-info span {
+    color:
+        var(--color-primary-light);
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+
+.search-empty {
+    padding: 16px;
+
+    color:
+        var(--color-text-muted);
+
+    font-size: 13px;
+
+    text-align: center;
+}

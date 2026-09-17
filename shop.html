@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Shop electronics components, Arduino boards, sensors, modules, batteries and project components at ProjectKart."
+    >
+
+    <meta name="theme-color" content="#07090d">
+
+    <title>Shop — ProjectKart</title>
+
+    <!-- =========================================================
+         STYLES
+    ========================================================== -->
+
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/typography.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/mobile-menu.css">
+    <link rel="stylesheet" href="css/buttons.css">
+    <link rel="stylesheet" href="css/forms.css">
+    <link rel="stylesheet" href="css/sections.css">
+    <link rel="stylesheet" href="css/category-cards.css">
+    <link rel="stylesheet" href="css/product-cards.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+
+<!-- =========================================================
+     NAVBAR
+========================================================== -->
+
+<header class="site-navbar" id="site-navbar">
+
+    <div class="container navbar-container">
+
+        <a
+            href="index.html"
+            class="navbar-logo"
+            aria-label="ProjectKart Home"
+        >
+            <span class="navbar-logo-mark">PK</span>
+
+            <span class="navbar-logo-text">
+                Project<span>Kart</span>
+            </span>
+        </a>
+
+
+        <nav
+            class="navbar-nav"
+            aria-label="Main navigation"
+        >
+
+            <a href="index.html" class="navbar-link">
+                Home
+            </a>
+
+            <a href="shop.html" class="navbar-link active">
+                Shop
+            </a>
+
+            <a href="categories.html" class="navbar-link">
+                Categories
+            </a>
+
+            <a href="project-kits.html" class="navbar-link">
+                Project Kits
+            </a>
+
+            <a href="about.html" class="navbar-link">
+                About
+            </a>
+
+            <a href="contact.html" class="navbar-link">
+                Contact
+            </a>
+
+        </nav>
+
+
+        <div class="navbar-actions">
+
+            <!-- Search -->
+            <div class="navbar-search">
+
+                <form
+                    data-search-form
+                    action="shop.html"
+                    method="get"
+                    class="navbar-search-form"
+                >
+
+                    <input
+                        type="search"
+                        name="search"
+                        data-search-input
+                        placeholder="Search components..."
+                        autocomplete="off"
+                        aria-label="Search products"
+                    >
+
+                    <button
+                        type="submit"
+                        class="navbar-search-button"
+                        aria-label="Search"
+                    >
+                        ⌕
+                    </button>
+
+                </form>
+
+                <div
+                    class="search-results"
+                    data-search-results
+                ></div>
+
+            </div>
+
+
+            <!-- Account -->
+            <div class="navbar-account">
+
+                <button
+                    type="button"
+                    class="navbar-action"
+                    data-account-toggle
+                    aria-label="Account"
+                >
+                    <span class="navbar-action-icon">
+                        ◯
+                    </span>
+                </button>
+
+                <div
+                    class="account-dropdown"
+                    data-account-dropdown
+                >
+
+                    <div
+                        class="account-dropdown-user"
+                        data-account-user
+                    >
+
+                        <span
+                            class="account-dropdown-avatar"
+                            data-navbar-avatar
+                        >
+                            U
+                        </span>
+
+                        <div>
+                            <strong data-user-name>
+                                Account
+                            </strong>
+
+                            <small data-user-email>
+                                Sign in to your account
+                            </small>
+                        </div>
+
+                    </div>
+
+                    <div class="account-dropdown-divider"></div>
+
+                    <a
+                        href="account.html"
+                        class="account-dropdown-link"
+                    >
+                        My Account
+                    </a>
+
+                    <a
+                        href="account.html#orders"
+                        class="account-dropdown-link"
+                    >
+                        My Orders
+                    </a>
+
+                    <a
+                        href="login.html"
+                        class="account-dropdown-link"
+                        data-auth-action="login"
+                    >
+                        Sign In
+                    </a>
+
+                    <button
+                        type="button"
+                        class="account-dropdown-link account-dropdown-logout"
+                        data-logout
+                        data-auth-action="logout"
+                    >
+                        Sign Out
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- Cart -->
+            <a
+                href="cart.html"
+                class="navbar-action navbar-cart"
+                aria-label="Shopping cart"
+            >
+
+                <span class="navbar-action-icon">
+                    🛒
+                </span>
+
+                <span
+                    class="navbar-cart-badge"
+                    data-cart-count
+                >
+                    0
+                </span>
+
+            </a>
+
+
+            <!-- Mobile button -->
+            <button
+                type="button"
+                class="navbar-mobile-button"
+                data-menu-toggle
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =========================================================
+     MOBILE MENU
+========================================================== -->
+
+<div
+    class="mobile-menu-overlay"
+    data-mobile-overlay
+></div>
+
+<aside
+    class="mobile-menu"
+    data-mobile-menu
+    aria-hidden="true"
+>
+
+    <div class="mobile-menu-header">
+
+        <a
+            href="index.html"
+            class="navbar-logo"
+        >
+            <span class="navbar-logo-mark">PK</span>
+
+            <span class="navbar-logo-text">
+                Project<span>Kart</span>
+            </span>
+        </a>
+
+        <button
+            type="button"
+            class="mobile-menu-close"
+            data-menu-close
+            aria-label="Close navigation menu"
+        >
+            ×
+        </button>
+
+    </div>
+
+
+    <nav class="mobile-nav">
+
+        <a href="index.html" class="mobile-nav-link">
+            Home
+        </a>
+
+        <a href="shop.html" class="mobile-nav-link active">
+            Shop
+        </a>
+
+        <a href="categories.html" class="mobile-nav-link">
+            Categories
+        </a>
+
+        <a href="project-kits.html" class="mobile-nav-link">
+            Project Kits
+        </a>
+
+        <a href="about.html" class="mobile-nav-link">
+            About
+        </a>
+
+        <a href="contact.html" class="mobile-nav-link">
+            Contact
+        </a>
+
+    </nav>
+
+
+    <div class="mobile-menu-actions">
+
+        <a
+            href="account.html"
+            class="btn btn-outline btn-full"
+        >
+            My Account
+        </a>
+
+        <a
+            href="cart.html"
+            class="btn btn-primary btn-full"
+        >
+            View Cart
+        </a>
+
+    </div>
+
+</aside>
+
+
+<main>
+
+<!-- =========================================================
+     SHOP PAGE HEADER
+========================================================== -->
+
+<section class="page-section page-header-section">
+
+    <div class="container">
+
+        <div class="page-header-content">
+
+            <span class="eyebrow">
+                ProjectKart Store
+            </span>
+
+            <h1 class="page-title">
+                Explore Our Products
+            </h1>
+
+            <p class="page-description">
+                Discover development boards, sensors, modules,
+                batteries and electronic components for your
+                next project.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     SHOP
+========================================================== -->
+
+<section class="page-section">
+
+    <div class="container">
+
+        <!-- Shop Toolbar -->
+
+        <div class="shop-toolbar">
+
+            <!-- Search -->
+            <div class="shop-search">
+
+                <label
+                    for="shop-search"
+                    class="sr-only"
+                >
+                    Search products
+                </label>
+
+                <div class="form-search">
+
+                    <span class="form-search-icon">
+                        ⌕
+                    </span>
+
+                    <input
+                        id="shop-search"
+                        type="search"
+                        data-shop-search
+                        placeholder="Search products..."
+                        autocomplete="off"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- Category -->
+            <div class="shop-filter">
+
+                <label for="shop-category">
+                    Category
+                </label>
+
+                <select
+                    id="shop-category"
+                    data-shop-category
+                >
+
+                    <option value="">
+                        All Categories
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- Sort -->
+            <div class="shop-filter">
+
+                <label for="shop-sort">
+                    Sort by
+                </label>
+
+                <select
+                    id="shop-sort"
+                    data-shop-sort
+                >
+
+                    <option value="default">
+                        Latest
+                    </option>
+
+                    <option value="price-low">
+                        Price: Low to High
+                    </option>
+
+                    <option value="price-high">
+                        Price: High to Low
+                    </option>
+
+                    <option value="name">
+                        Name: A–Z
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <!-- Results Information -->
+
+        <div class="shop-results-header">
+
+            <div>
+
+                <h2 class="shop-results-title">
+                    All Products
+                </h2>
+
+                <p class="shop-results-count">
+                    <span data-shop-count>
+                        Loading products...
+                    </span>
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Product Grid -->
+
+        <div
+            class="product-grid"
+            data-shop-grid
+        >
+
+            <!-- Loading cards -->
+
+            <div class="product-card skeleton">
+
+                <div class="skeleton-image"></div>
+
+                <div class="skeleton-content"></div>
+
+            </div>
+
+
+            <div class="product-card skeleton">
+
+                <div class="skeleton-image"></div>
+
+                <div class="skeleton-content"></div>
+
+            </div>
+
+
+            <div class="product-card skeleton">
+
+                <div class="skeleton-image"></div>
+
+                <div class="skeleton-content"></div>
+
+            </div>
+
+
+            <div class="product-card skeleton">
+
+                <div class="skeleton-image"></div>
+
+                <div class="skeleton-content"></div>
+
+            </div>
+
+
+            <div class="product-card skeleton">
+
+                <div class="skeleton-image"></div>
+
+                <div class="skeleton-content"></div>
+
+            </div>
+
+
+            <div class="product-card skeleton">
+
+                <div class="skeleton-image"></div>
+
+                <div class="skeleton-content"></div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Empty State -->
+
+        <div
+            class="empty-state shop-empty-state"
+            data-shop-empty
+            hidden
+        >
+
+            <div class="empty-state-icon">
+                ◌
+            </div>
+
+            <h3>
+                No products found
+            </h3>
+
+            <p>
+                Try changing your search or category filter.
+            </p>
+
+            <button
+                type="button"
+                class="btn btn-outline"
+                data-shop-clear
+            >
+                Clear Filters
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     SHOP CTA
+========================================================== -->
+
+<section class="page-section section-soft">
+
+    <div class="container">
+
+        <div class="cta-section">
+
+            <div class="cta-content">
+
+                <span class="eyebrow">
+                    Need something specific?
+                </span>
+
+                <h2>
+                    Can't find the component?
+                </h2>
+
+                <p>
+                    Tell us what you are looking for and we'll
+                    help you find the right part for your project.
+                </p>
+
+                <a
+                    href="contact.html"
+                    class="btn btn-primary btn-large"
+                >
+                    Contact Us
+                    <span>→</span>
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================== -->
+
+<footer class="site-footer">
+
+    <div class="container">
+
+        <div class="footer-main">
+
+            <div class="footer-brand">
+
+                <a
+                    href="index.html"
+                    class="navbar-logo"
+                >
+
+                    <span class="navbar-logo-mark">
+                        PK
+                    </span>
+
+                    <span class="navbar-logo-text">
+                        Project<span>Kart</span>
+                    </span>
+
+                </a>
+
+                <p>
+                    Components, tools and project kits for
+                    students, makers, engineers and creators.
+                </p>
+
+                <div class="footer-socials">
+
+                    <a
+                        href="#"
+                        class="footer-social"
+                        aria-label="Instagram"
+                    >
+                        IG
+                    </a>
+
+                    <a
+                        href="#"
+                        class="footer-social"
+                        aria-label="Facebook"
+                    >
+                        FB
+                    </a>
+
+                    <a
+                        href="#"
+                        class="footer-social"
+                        aria-label="YouTube"
+                    >
+                        YT
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>Shop</h3>
+
+                <a href="shop.html">
+                    All Products
+                </a>
+
+                <a href="categories.html">
+                    Categories
+                </a>
+
+                <a href="project-kits.html">
+                    Project Kits
+                </a>
+
+                <a href="shop.html?search=arduino">
+                    Arduino
+                </a>
+
+                <a href="shop.html?search=sensors">
+                    Sensors
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>Company</h3>
+
+                <a href="about.html">
+                    About Us
+                </a>
+
+                <a href="contact.html">
+                    Contact
+                </a>
+
+                <a href="#">
+                    Shipping
+                </a>
+
+                <a href="#">
+                    Returns
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>Account</h3>
+
+                <a href="login.html">
+                    Sign In
+                </a>
+
+                <a href="register.html">
+                    Create Account
+                </a>
+
+                <a href="account.html">
+                    My Account
+                </a>
+
+                <a href="cart.html">
+                    Shopping Cart
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 ProjectKart. All rights reserved.
+            </p>
+
+            <div class="footer-bottom-links">
+
+                <a href="#">
+                    Privacy Policy
+                </a>
+
+                <a href="#">
+                    Terms
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================== -->
+
+<script
+    type="module"
+    src="js/navbar.js"
+></script>
+
+<script
+    type="module"
+    src="js/search.js"
+></script>
+
+<script
+    type="module"
+    src="js/shop.js"
+></script>
+
+</body>
+</html>

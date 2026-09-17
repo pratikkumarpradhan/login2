@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Add Product | ProjectKart Admin
+    </title>
+
+    <meta
+        name="description"
+        content="Create or edit ProjectKart products."
+    >
+
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/typography.css">
+
+    <link
+        rel="stylesheet"
+        href="../css/admin/admin-base.css"
+    >
+    <link
+        rel="stylesheet"
+        href="../css/admin/admin-sidebar.css"
+    >
+    <link
+        rel="stylesheet"
+        href="../css/admin/admin-header.css"
+    >
+    <link
+        rel="stylesheet"
+        href="../css/admin/admin-forms.css"
+    >
+    <link
+        rel="stylesheet"
+        href="../css/admin/admin-products.css"
+    >
+    <link
+        rel="stylesheet"
+        href="../css/admin/admin-responsive.css"
+    >
+</head>
+
+<body class="admin-body">
+
+    <!-- =========================================================
+         ADMIN APP
+    ========================================================== -->
+    <div class="admin-app">
+
+        <!-- =====================================================
+             SIDEBAR
+        ====================================================== -->
+        <aside
+            class="admin-sidebar"
+            id="admin-sidebar"
+            data-admin-sidebar
+        >
+
+            <div class="admin-sidebar-top">
+
+                <!-- Brand -->
+                <a
+                    href="index.html"
+                    class="admin-brand"
+                    aria-label="ProjectKart Admin Dashboard"
+                >
+                    <span class="admin-brand-mark">
+                        PK
+                    </span>
+
+                    <span class="admin-brand-text">
+                        <strong>
+                            ProjectKart
+                        </strong>
+
+                        <small>
+                            Admin Panel
+                        </small>
+                    </span>
+                </a>
+
+
+                <!-- Navigation -->
+                <nav class="admin-nav">
+
+                    <div class="admin-nav-section">
+
+                        <span class="admin-nav-label">
+                            Overview
+                        </span>
+
+                        <a
+                            href="index.html"
+                            class="admin-nav-item"
+                            data-admin-nav="dashboard"
+                        >
+                            <span class="admin-nav-icon">
+                                ▦
+                            </span>
+
+                            <span class="admin-nav-text">
+                                Dashboard
+                            </span>
+                        </a>
+
+                    </div>
+
+
+                    <div class="admin-nav-section">
+
+                        <span class="admin-nav-label">
+                            Store
+                        </span>
+
+                        <a
+                            href="products.html"
+                            class="admin-nav-item active"
+                            data-admin-nav="products"
+                        >
+                            <span class="admin-nav-icon">
+                                □
+                            </span>
+
+                            <span class="admin-nav-text">
+                                Products
+                            </span>
+                        </a>
+
+                        <a
+                            href="categories.html"
+                            class="admin-nav-item"
+                            data-admin-nav="categories"
+                        >
+                            <span class="admin-nav-icon">
+                                ◫
+                            </span>
+
+                            <span class="admin-nav-text">
+                                Categories
+                            </span>
+                        </a>
+
+                        <a
+                            href="kits.html"
+                            class="admin-nav-item"
+                            data-admin-nav="kits"
+                        >
+                            <span class="admin-nav-icon">
+                                ◈
+                            </span>
+
+                            <span class="admin-nav-text">
+                                Project Kits
+                            </span>
+                        </a>
+
+                        <a
+                            href="orders.html"
+                            class="admin-nav-item"
+                            data-admin-nav="orders"
+                        >
+                            <span class="admin-nav-icon">
+                                ≡
+                            </span>
+
+                            <span class="admin-nav-text">
+                                Orders
+                            </span>
+                        </a>
+
+                    </div>
+
+
+                    <div class="admin-nav-section">
+
+                        <span class="admin-nav-label">
+                            Management
+                        </span>
+
+                        <a
+                            href="users.html"
+                            class="admin-nav-item"
+                            data-admin-nav="users"
+                        >
+                            <span class="admin-nav-icon">
+                                ◎
+                            </span>
+
+                            <span class="admin-nav-text">
+                                Users
+                            </span>
+                        </a>
+
+                        <a
+                            href="settings.html"
+                            class="admin-nav-item"
+                            data-admin-nav="settings"
+                        >
+                            <span class="admin-nav-icon">
+                                ⚙
+                            </span>
+
+                            <span class="admin-nav-text">
+                                Settings
+                            </span>
+                        </a>
+
+                    </div>
+
+                </nav>
+
+            </div>
+
+
+            <!-- Sidebar bottom -->
+            <div class="admin-sidebar-bottom">
+
+                <a
+                    href="../index.html"
+                    class="admin-sidebar-store-link"
+                >
+                    <span class="admin-nav-icon">
+                        ↗
+                    </span>
+
+                    <span class="admin-nav-text">
+                        View Store
+                    </span>
+                </a>
+
+
+                <button
+                    type="button"
+                    class="admin-sidebar-logout"
+                    data-admin-logout
+                >
+                    <span class="admin-nav-icon">
+                        ⇥
+                    </span>
+
+                    <span class="admin-nav-text">
+                        Sign out
+                    </span>
+                </button>
+
+            </div>
+
+        </aside>
+
+
+        <!-- =====================================================
+             MAIN
+        ====================================================== -->
+        <div class="admin-main">
+
+
+            <!-- =================================================
+                 HEADER
+            ================================================== -->
+            <header class="admin-header">
+
+                <div class="admin-header-left">
+
+                    <button
+                        type="button"
+                        class="admin-mobile-menu-button"
+                        data-admin-menu-toggle
+                        aria-label="Open admin menu"
+                        aria-expanded="false"
+                    >
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+
+
+                    <div class="admin-page-title">
+
+                        <span class="admin-breadcrumb">
+
+                            <a href="products.html">
+                                Products
+                            </a>
+
+                            <span>
+                                /
+                            </span>
+
+                            <span data-product-breadcrumb>
+                                Add product
+                            </span>
+
+                        </span>
+
+                        <h1 data-product-page-title>
+                            Add product
+                        </h1>
+
+                    </div>
+
+                </div>
+
+
+                <div class="admin-header-right">
+
+                    <a
+                        href="../index.html"
+                        class="admin-header-store"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        <span>
+                            View store
+                        </span>
+
+                        <span>
+                            ↗
+                        </span>
+                    </a>
+
+
+                    <button
+                        type="button"
+                        class="admin-header-icon-button"
+                        aria-label="Notifications"
+                        data-admin-notifications
+                    >
+                        <span>
+                            ♢
+                        </span>
+
+                        <i
+                            data-admin-notification-count
+                            hidden
+                        >
+                            0
+                        </i>
+                    </button>
+
+
+                    <div class="admin-user">
+
+                        <div
+                            class="admin-user-avatar"
+                            data-admin-avatar
+                        >
+                            A
+                        </div>
+
+                        <div class="admin-user-details">
+
+                            <strong
+                                data-admin-user-name
+                            >
+                                Admin
+                            </strong>
+
+                            <span
+                                data-admin-user-email
+                            >
+                                Loading...
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- =================================================
+                 CONTENT
+            ================================================== -->
+            <main class="admin-content">
+
+
+                <!-- =================================================
+                     FORM HEADER
+                ================================================== -->
+                <section class="admin-form-page-header">
+
+                    <div>
+
+                        <span class="admin-eyebrow">
+                            PRODUCT CATALOG
+                        </span>
+
+                        <h2 data-product-heading>
+                            Create a new product
+                        </h2>
+
+                        <p data-product-description>
+                            Add product information, pricing,
+                            inventory and images.
+                        </p>
+
+                    </div>
+
+
+                    <div class="admin-form-header-actions">
+
+                        <a
+                            href="products.html"
+                            class="admin-button admin-button-secondary"
+                        >
+                            Cancel
+                        </a>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =================================================
+                     PRODUCT FORM
+                ================================================== -->
+                <form
+                    class="admin-product-form"
+                    data-product-form
+                    novalidate
+                >
+
+                    <div class="admin-product-form-layout">
+
+
+                        <!-- =============================================
+                             LEFT COLUMN
+                        ============================================== -->
+                        <div class="admin-product-form-main">
+
+
+                            <!-- =========================================
+                                 BASIC INFORMATION
+                            ========================================== -->
+                            <section class="admin-form-card">
+
+                                <div class="admin-form-card-header">
+
+                                    <div>
+
+                                        <span class="admin-eyebrow">
+                                            BASIC INFORMATION
+                                        </span>
+
+                                        <h3>
+                                            Product details
+                                        </h3>
+
+                                        <p>
+                                            Information customers will
+                                            see on the storefront.
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="admin-form-card-body">
+
+
+                                    <!-- Product name -->
+                                    <div class="admin-form-group">
+
+                                        <label for="product-name">
+                                            Product name
+                                            <span>*</span>
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            id="product-name"
+                                            name="name"
+                                            placeholder="e.g. Arduino UNO R3"
+                                            data-product-name
+                                            maxlength="150"
+                                            required
+                                        >
+
+                                        <small>
+                                            Use a clear and descriptive
+                                            product name.
+                                        </small>
+
+                                    </div>
+
+
+                                    <!-- Slug -->
+                                    <div class="admin-form-group">
+
+                                        <label for="product-slug">
+                                            Product slug
+                                        </label>
+
+                                        <div class="admin-input-with-action">
+
+                                            <input
+                                                type="text"
+                                                id="product-slug"
+                                                name="slug"
+                                                placeholder="arduino-uno-r3"
+                                                data-product-slug
+                                                maxlength="180"
+                                            >
+
+                                            <button
+                                                type="button"
+                                                class="admin-input-action"
+                                                data-generate-slug
+                                            >
+                                                Generate
+                                            </button>
+
+                                        </div>
+
+                                        <small>
+                                            Used in product URLs.
+                                            Keep it lowercase and
+                                            easy to read.
+                                        </small>
+
+                                    </div>
+
+
+                                    <!-- Description -->
+                                    <div class="admin-form-group">
+
+                                        <label for="product-description">
+                                            Description
+                                            <span>*</span>
+                                        </label>
+
+                                        <textarea
+                                            id="product-description"
+                                            name="description"
+                                            rows="7"
+                                            placeholder="Describe the product, its features and important specifications..."
+                                            data-product-description-field
+                                            required
+                                        ></textarea>
+
+                                        <div class="admin-character-count">
+                                            <span
+                                                data-product-description-count
+                                            >
+                                                0
+                                            </span>
+                                            characters
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </section>
+
+
+                            <!-- =========================================
+                                 PRICING & INVENTORY
+                            ========================================== -->
+                            <section class="admin-form-card">
+
+                                <div class="admin-form-card-header">
+
+                                    <div>
+
+                                        <span class="admin-eyebrow">
+                                            PRICING & INVENTORY
+                                        </span>
+
+                                        <h3>
+                                            Product pricing
+                                        </h3>
+
+                                        <p>
+                                            Set the selling price and
+                                            available stock.
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="admin-form-card-body">
+
+                                    <div class="admin-form-grid">
+
+
+                                        <!-- Price -->
+                                        <div class="admin-form-group">
+
+                                            <label for="product-price">
+                                                Selling price
+                                                <span>*</span>
+                                            </label>
+
+                                            <div
+                                                class="admin-input-prefix"
+                                            >
+                                                <span>
+                                                    ₹
+                                                </span>
+
+                                                <input
+                                                    type="number"
+                                                    id="product-price"
+                                                    name="price"
+                                                    placeholder="0.00"
+                                                    min="0"
+                                                    step="0.01"
+                                                    data-product-price
+                                                    required
+                                                >
+                                            </div>
+
+                                        </div>
+
+
+                                        <!-- Old price -->
+                                        <div class="admin-form-group">
+
+                                            <label for="product-old-price">
+                                                Original price
+                                            </label>
+
+                                            <div
+                                                class="admin-input-prefix"
+                                            >
+                                                <span>
+                                                    ₹
+                                                </span>
+
+                                                <input
+                                                    type="number"
+                                                    id="product-old-price"
+                                                    name="oldPrice"
+                                                    placeholder="Optional"
+                                                    min="0"
+                                                    step="0.01"
+                                                    data-product-old-price
+                                                >
+                                            </div>
+
+                                            <small>
+                                                Optional. Used to show
+                                                a discounted price.
+                                            </small>
+
+                                        </div>
+
+
+                                        <!-- Stock -->
+                                        <div class="admin-form-group">
+
+                                            <label for="product-stock">
+                                                Stock quantity
+                                                <span>*</span>
+                                            </label>
+
+                                            <input
+                                                type="number"
+                                                id="product-stock"
+                                                name="stock"
+                                                placeholder="0"
+                                                min="0"
+                                                step="1"
+                                                data-product-stock
+                                                required
+                                            >
+
+                                        </div>
+
+
+                                        <!-- Badge -->
+                                        <div class="admin-form-group">
+
+                                            <label for="product-badge">
+                                                Product badge
+                                            </label>
+
+                                            <select
+                                                id="product-badge"
+                                                name="badge"
+                                                data-product-badge
+                                            >
+                                                <option value="">
+                                                    No badge
+                                                </option>
+
+                                                <option value="New">
+                                                    New
+                                                </option>
+
+                                                <option value="Popular">
+                                                    Popular
+                                                </option>
+
+                                                <option value="Sale">
+                                                    Sale
+                                                </option>
+
+                                                <option value="Featured">
+                                                    Featured
+                                                </option>
+                                            </select>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </section>
+
+
+                            <!-- =========================================
+                                 CATEGORY
+                            ========================================== -->
+                            <section class="admin-form-card">
+
+                                <div class="admin-form-card-header">
+
+                                    <div>
+
+                                        <span class="admin-eyebrow">
+                                            ORGANIZATION
+                                        </span>
+
+                                        <h3>
+                                            Product category
+                                        </h3>
+
+                                        <p>
+                                            Choose where this product
+                                            belongs in your catalog.
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="admin-form-card-body">
+
+                                    <div class="admin-form-grid">
+
+                                        <div class="admin-form-group">
+
+                                            <label for="product-category">
+                                                Category
+                                                <span>*</span>
+                                            </label>
+
+                                            <select
+                                                id="product-category"
+                                                name="categoryId"
+                                                data-product-category
+                                                required
+                                            >
+
+                                                <option value="">
+                                                    Select a category
+                                                </option>
+
+                                            </select>
+
+                                        </div>
+
+
+                                        <div class="admin-form-group">
+
+                                            <label for="product-category-name">
+                                                Category name
+                                            </label>
+
+                                            <input
+                                                type="text"
+                                                id="product-category-name"
+                                                name="categoryName"
+                                                data-product-category-name
+                                                placeholder="Category name"
+                                                readonly
+                                            >
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </section>
+
+
+                            <!-- =========================================
+                                 IMAGE
+                            ========================================== -->
+                            <section class="admin-form-card">
+
+                                <div class="admin-form-card-header">
+
+                                    <div>
+
+                                        <span class="admin-eyebrow">
+                                            PRODUCT MEDIA
+                                        </span>
+
+                                        <h3>
+                                            Product image
+                                        </h3>
+
+                                        <p>
+                                            Add the main image customers
+                                            will see on the product card.
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="admin-form-card-body">
+
+
+                                    <!-- Upload area -->
+                                    <div
+                                        class="admin-image-upload"
+                                        data-product-image-upload
+                                    >
+
+                                        <input
+                                            type="file"
+                                            id="product-image-file"
+                                            name="imageFile"
+                                            accept="image/jpeg,image/png,image/webp"
+                                            data-product-image-file
+                                            hidden
+                                        >
+
+
+                                        <div
+                                            class="admin-image-preview"
+                                            data-product-image-preview
+                                            hidden
+                                        >
+
+                                            <img
+                                                src=""
+                                                alt="Product preview"
+                                                data-product-image-preview-img
+                                            >
+
+                                            <button
+                                                type="button"
+                                                class="admin-image-remove"
+                                                data-product-image-remove
+                                                aria-label="Remove product image"
+                                            >
+                                                ×
+                                            </button>
+
+                                        </div>
+
+
+                                        <div
+                                            class="admin-image-upload-content"
+                                            data-product-image-upload-content
+                                        >
+
+                                            <div class="admin-image-upload-icon">
+                                                ↑
+                                            </div>
+
+                                            <strong>
+                                                Upload product image
+                                            </strong>
+
+                                            <p>
+                                                Click to browse or drag
+                                                and drop an image here.
+                                            </p>
+
+                                            <span>
+                                                JPG, PNG or WEBP ·
+                                                Recommended 1000 × 1000px
+                                            </span>
+
+                                            <button
+                                                type="button"
+                                                class="admin-button admin-button-secondary admin-button-small"
+                                                data-product-image-browse
+                                            >
+                                                Choose image
+                                            </button>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <!-- Existing image URL -->
+                                    <div class="admin-form-group">
+
+                                        <label for="product-image">
+                                            Image URL
+                                        </label>
+
+                                        <input
+                                            type="url"
+                                            id="product-image"
+                                            name="image"
+                                            placeholder="https://..."
+                                            data-product-image
+                                        >
+
+                                        <small>
+                                            You can use an existing hosted
+                                            image URL instead of uploading.
+                                        </small>
+
+                                    </div>
+
+
+                                    <!-- Upload progress -->
+                                    <div
+                                        class="admin-upload-progress"
+                                        data-product-upload-progress
+                                        hidden
+                                    >
+
+                                        <div class="admin-upload-progress-top">
+
+                                            <span>
+                                                Uploading image...
+                                            </span>
+
+                                            <strong
+                                                data-product-upload-percent
+                                            >
+                                                0%
+                                            </strong>
+
+                                        </div>
+
+                                        <div class="admin-progress">
+
+                                            <div
+                                                class="admin-progress-value"
+                                                data-product-upload-bar
+                                                style="width: 0%;"
+                                            ></div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </section>
+
+                        </div>
+
+
+                        <!-- =============================================
+                             RIGHT COLUMN
+                        ============================================== -->
+                        <aside class="admin-product-form-sidebar">
+
+
+                            <!-- =========================================
+                                 PUBLISHING
+                            ========================================== -->
+                            <section class="admin-form-card">
+
+                                <div class="admin-form-card-header">
+
+                                    <div>
+
+                                        <span class="admin-eyebrow">
+                                            PUBLISHING
+                                        </span>
+
+                                        <h3>
+                                            Visibility
+                                        </h3>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="admin-form-card-body">
+
+
+                                    <!-- Active -->
+                                    <label
+                                        class="admin-switch-row"
+                                    >
+
+                                        <span>
+
+                                            <strong>
+                                                Visible in store
+                                            </strong>
+
+                                            <small>
+                                                Customers can see
+                                                this product.
+                                            </small>
+
+                                        </span>
+
+                                        <input
+                                            type="checkbox"
+                                            name="active"
+                                            data-product-active
+                                            checked
+                                        >
+
+                                        <span class="admin-switch">
+                                            <i></i>
+                                        </span>
+
+                                    </label>
+
+
+                                    <div class="admin-form-divider"></div>
+
+
+                                    <!-- Featured -->
+                                    <label
+                                        class="admin-switch-row"
+                                    >
+
+                                        <span>
+
+                                            <strong>
+                                                Featured product
+                                            </strong>
+
+                                            <small>
+                                                Highlight this product
+                                                on the homepage.
+                                            </small>
+
+                                        </span>
+
+                                        <input
+                                            type="checkbox"
+                                            name="featured"
+                                            data-product-featured
+                                        >
+
+                                        <span class="admin-switch">
+                                            <i></i>
+                                        </span>
+
+                                    </label>
+
+                                </div>
+
+                            </section>
+
+
+                            <!-- =========================================
+                                 PRODUCT PREVIEW
+                            ========================================== -->
+                            <section class="admin-form-card">
+
+                                <div class="admin-form-card-header">
+
+                                    <div>
+
+                                        <span class="admin-eyebrow">
+                                            PREVIEW
+                                        </span>
+
+                                        <h3>
+                                            Store preview
+                                        </h3>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="admin-form-card-body">
+
+                                    <div
+                                        class="admin-product-preview"
+                                        data-product-preview
+                                    >
+
+                                        <div
+                                            class="admin-product-preview-image"
+                                            data-preview-image
+                                        >
+                                            <span>
+                                                Product image
+                                            </span>
+                                        </div>
+
+
+                                        <div class="admin-product-preview-content">
+
+                                            <span
+                                                class="admin-product-preview-category"
+                                                data-preview-category
+                                            >
+                                                Category
+                                            </span>
+
+                                            <h4
+                                                data-preview-name
+                                            >
+                                                Product name
+                                            </h4>
+
+                                            <p
+                                                data-preview-description
+                                            >
+                                                Product description will
+                                                appear here.
+                                            </p>
+
+                                            <div class="admin-product-preview-price">
+
+                                                <strong
+                                                    data-preview-price
+                                                >
+                                                    ₹0.00
+                                                </strong>
+
+                                                <del
+                                                    data-preview-old-price
+                                                    hidden
+                                                >
+                                                    ₹0.00
+                                                </del>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </section>
+
+
+                            <!-- =========================================
+                                 PRODUCT ID
+                            ========================================== -->
+                            <section
+                                class="admin-form-card"
+                                data-product-meta-card
+                                hidden
+                            >
+
+                                <div class="admin-form-card-header">
+
+                                    <div>
+
+                                        <span class="admin-eyebrow">
+                                            INFORMATION
+                                        </span>
+
+                                        <h3>
+                                            Product metadata
+                                        </h3>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="admin-form-card-body">
+
+                                    <div class="admin-meta-row">
+
+                                        <span>
+                                            Product ID
+                                        </span>
+
+                                        <code data-product-id>
+                                            —
+                                        </code>
+
+                                    </div>
+
+
+                                    <div class="admin-meta-row">
+
+                                        <span>
+                                            Created
+                                        </span>
+
+                                        <strong data-product-created>
+                                            —
+                                        </strong>
+
+                                    </div>
+
+
+                                    <div class="admin-meta-row">
+
+                                        <span>
+                                            Last updated
+                                        </span>
+
+                                        <strong data-product-updated>
+                                            —
+                                        </strong>
+
+                                    </div>
+
+                                </div>
+
+                            </section>
+
+                        </aside>
+
+                    </div>
+
+
+                    <!-- =============================================
+                         FORM FOOTER
+                    ============================================== -->
+                    <div class="admin-product-form-footer">
+
+                        <div
+                            class="admin-form-status"
+                            data-product-form-status
+                            aria-live="polite"
+                        ></div>
+
+
+                        <div class="admin-form-footer-actions">
+
+                            <a
+                                href="products.html"
+                                class="admin-button admin-button-secondary"
+                            >
+                                Cancel
+                            </a>
+
+                            <button
+                                type="submit"
+                                class="admin-button admin-button-primary"
+                                data-product-save
+                            >
+
+                                <span data-product-save-text>
+                                    Save product
+                                </span>
+
+                                <span
+                                    class="admin-button-spinner"
+                                    data-product-save-spinner
+                                    hidden
+                                ></span>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </form>
+
+
+                <!-- =================================================
+                     PAGE LOADING
+                ================================================== -->
+                <div
+                    class="admin-page-loading"
+                    data-product-page-loading
+                    hidden
+                >
+
+                    <div class="admin-loading-spinner"></div>
+
+                    <span>
+                        Loading product...
+                    </span>
+
+                </div>
+
+
+                <!-- =================================================
+                     ERROR
+                ================================================== -->
+                <div
+                    class="admin-page-error"
+                    data-product-page-error
+                    hidden
+                >
+
+                    <strong>
+                        Unable to load product
+                    </strong>
+
+                    <p data-product-page-error-message>
+                        Something went wrong.
+                    </p>
+
+                    <a
+                        href="products.html"
+                        class="admin-button admin-button-secondary"
+                    >
+                        Back to products
+                    </a>
+
+                </div>
+
+            </main>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         MOBILE SIDEBAR OVERLAY
+    ========================================================== -->
+    <div
+        class="admin-sidebar-overlay"
+        data-admin-sidebar-overlay
+    ></div>
+
+
+    <!-- =========================================================
+         CONFIRMATION MODAL
+    ========================================================== -->
+    <div
+        class="admin-modal"
+        data-product-delete-modal
+        hidden
+    >
+
+        <div
+            class="admin-modal-backdrop"
+            data-modal-close
+        ></div>
+
+        <div
+            class="admin-modal-dialog"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="delete-product-title"
+        >
+
+            <button
+                type="button"
+                class="admin-modal-close"
+                data-modal-close
+                aria-label="Close"
+            >
+                ×
+            </button>
+
+
+            <div class="admin-modal-icon admin-modal-icon-danger">
+                !
+            </div>
+
+
+            <h2 id="delete-product-title">
+                Delete product?
+            </h2>
+
+            <p>
+                This action cannot be undone. The product will be
+                permanently removed from your catalog.
+            </p>
+
+
+            <div class="admin-modal-actions">
+
+                <button
+                    type="button"
+                    class="admin-button admin-button-secondary"
+                    data-modal-close
+                >
+                    Cancel
+                </button>
+
+                <button
+                    type="button"
+                    class="admin-button admin-button-danger"
+                    data-confirm-product-delete
+                >
+                    Delete product
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         SCRIPTS
+    ========================================================== -->
+    <script type="module" src="../js/admin/admin-auth.js"></script>
+    <script type="module" src="../js/admin/admin-guard.js"></script>
+    <script type="module" src="../js/admin/admin-ui.js"></script>
+    <script type="module" src="../js/admin/admin-product-edit.js"></script>
+
+</body>
+</html>

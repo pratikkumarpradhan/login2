@@ -1,0 +1,268 @@
+/* =========================================================
+   PROJECTKART
+   Global Design Variables
+   ========================================================= */
+
+   :root {
+
+    /* -----------------------------------------------------
+       COLORS
+       ----------------------------------------------------- */
+
+    --color-bg:
+        #07090d;
+
+    --color-bg-soft:
+        #0b0e14;
+
+    --color-bg-section:
+        #090c11;
+
+    --color-surface:
+        #111520;
+
+    --color-surface-light:
+        #161b27;
+
+    --color-surface-hover:
+        #1b2130;
+
+    --color-white:
+        #ffffff;
+
+    --color-text:
+        #f5f7fb;
+
+    --color-text-soft:
+        #c2cad8;
+
+    --color-text-muted:
+        #71819a;
+
+    --color-text-dim:
+        #536177;
+
+
+    /* -----------------------------------------------------
+       BRAND BLUE
+       ----------------------------------------------------- */
+
+    --color-primary:
+        #2878ff;
+
+    --color-primary-light:
+        #4595ff;
+
+    --color-primary-dark:
+        #155ddd;
+
+    --color-primary-soft:
+        rgba(40, 120, 255, 0.12);
+
+    --color-primary-border:
+        rgba(69, 149, 255, 0.28);
+
+    --color-primary-glow:
+        rgba(40, 120, 255, 0.24);
+
+
+    /* -----------------------------------------------------
+       STATUS COLORS
+       ----------------------------------------------------- */
+
+    --color-success:
+        #00d68f;
+
+    --color-success-soft:
+        rgba(0, 214, 143, 0.12);
+
+    --color-danger:
+        #ff5d68;
+
+    --color-danger-soft:
+        rgba(255, 93, 104, 0.12);
+
+    --color-warning:
+        #ffc400;
+
+    --color-warning-soft:
+        rgba(255, 196, 0, 0.12);
+
+
+    /* -----------------------------------------------------
+       BORDERS
+       ----------------------------------------------------- */
+
+    --border:
+        rgba(255, 255, 255, 0.075);
+
+    --border-light:
+        rgba(255, 255, 255, 0.11);
+
+    --border-strong:
+        rgba(255, 255, 255, 0.16);
+
+    --border-blue:
+        rgba(69, 149, 255, 0.35);
+
+
+    /* -----------------------------------------------------
+       RADIUS
+       ----------------------------------------------------- */
+
+    --radius-xs:
+        7px;
+
+    --radius-sm:
+        10px;
+
+    --radius-md:
+        14px;
+
+    --radius-lg:
+        18px;
+
+    --radius-xl:
+        24px;
+
+    --radius-2xl:
+        30px;
+
+    --radius-round:
+        999px;
+
+
+    /* -----------------------------------------------------
+       SHADOWS
+       ----------------------------------------------------- */
+
+    --shadow-sm:
+        0 8px 24px rgba(0, 0, 0, 0.18);
+
+    --shadow-md:
+        0 18px 55px rgba(0, 0, 0, 0.28);
+
+    --shadow-lg:
+        0 30px 90px rgba(0, 0, 0, 0.38);
+
+    --shadow-blue:
+        0 18px 60px rgba(40, 120, 255, 0.14);
+
+
+    /* -----------------------------------------------------
+       LAYOUT
+       ----------------------------------------------------- */
+
+    --container-width:
+        1680px;
+
+    --container-padding:
+        40px;
+
+    --navbar-height:
+        80px;
+
+
+    /* -----------------------------------------------------
+       TRANSITIONS
+       ----------------------------------------------------- */
+
+    --transition-fast:
+        150ms ease;
+
+    --transition:
+        250ms ease;
+
+    --transition-slow:
+        450ms cubic-bezier(0.2, 0.8, 0.2, 1);
+
+    --transition-image:
+        700ms cubic-bezier(0.2, 0.8, 0.2, 1);
+
+
+    /* -----------------------------------------------------
+       TYPOGRAPHY
+       ----------------------------------------------------- */
+
+    --font-primary:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+
+    --font-mono:
+        "SFMono-Regular",
+        Consolas,
+        "Liberation Mono",
+        monospace;
+
+
+    /* -----------------------------------------------------
+       FONT WEIGHTS
+       ----------------------------------------------------- */
+
+    --weight-regular:
+        400;
+
+    --weight-medium:
+        500;
+
+    --weight-semibold:
+        600;
+
+    --weight-bold:
+        700;
+
+    --weight-extrabold:
+        800;
+
+
+    /* -----------------------------------------------------
+       Z INDEX
+       ----------------------------------------------------- */
+
+    --z-base:
+        1;
+
+    --z-card:
+        10;
+
+    --z-navbar:
+        1000;
+
+    --z-dropdown:
+        1100;
+
+    --z-modal:
+        2000;
+
+    --z-toast:
+        3000;
+
+
+    /* -----------------------------------------------------
+       PRODUCT CARD
+       ----------------------------------------------------- */
+
+    --product-image-ratio:
+        1 / 1;
+
+    --product-card-radius:
+        16px;
+
+
+    /* -----------------------------------------------------
+       ADMIN
+       ----------------------------------------------------- */
+
+    --admin-sidebar-width:
+        250px;
+
+    --admin-header-height:
+        72px;
+
+}

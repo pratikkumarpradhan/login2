@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Categories | ProjectKart Admin</title>
+
+    <meta
+        name="description"
+        content="Manage ProjectKart product categories."
+    >
+
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/typography.css">
+
+    <link
+        rel="stylesheet"
+        href="../css/admin/admin-base.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../css/admin/admin-sidebar.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../css/admin/admin-header.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../css/admin/admin-forms.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../css/admin/admin-tables.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../css/admin/admin-responsive.css"
+    >
+</head>
+
+<body class="admin-body">
+
+<div class="admin-app">
+
+    <!-- =========================================================
+         SIDEBAR
+    ========================================================== -->
+    <aside
+        class="admin-sidebar"
+        id="admin-sidebar"
+        data-admin-sidebar
+    >
+
+        <div class="admin-sidebar-top">
+
+            <a
+                href="index.html"
+                class="admin-brand"
+                aria-label="ProjectKart Admin Dashboard"
+            >
+
+                <span class="admin-brand-mark">
+                    PK
+                </span>
+
+                <span class="admin-brand-text">
+
+                    <strong>
+                        ProjectKart
+                    </strong>
+
+                    <small>
+                        Admin Panel
+                    </small>
+
+                </span>
+
+            </a>
+
+
+            <nav class="admin-nav">
+
+                <div class="admin-nav-section">
+
+                    <span class="admin-nav-label">
+                        Overview
+                    </span>
+
+                    <a
+                        href="index.html"
+                        class="admin-nav-item"
+                        data-admin-nav="dashboard"
+                    >
+                        <span class="admin-nav-icon">
+                            ▦
+                        </span>
+
+                        <span class="admin-nav-text">
+                            Dashboard
+                        </span>
+                    </a>
+
+                </div>
+
+
+                <div class="admin-nav-section">
+
+                    <span class="admin-nav-label">
+                        Store
+                    </span>
+
+                    <a
+                        href="products.html"
+                        class="admin-nav-item"
+                        data-admin-nav="products"
+                    >
+                        <span class="admin-nav-icon">
+                            □
+                        </span>
+
+                        <span class="admin-nav-text">
+                            Products
+                        </span>
+                    </a>
+
+                    <a
+                        href="categories.html"
+                        class="admin-nav-item active"
+                        data-admin-nav="categories"
+                    >
+                        <span class="admin-nav-icon">
+                            ◫
+                        </span>
+
+                        <span class="admin-nav-text">
+                            Categories
+                        </span>
+                    </a>
+
+                    <a
+                        href="kits.html"
+                        class="admin-nav-item"
+                        data-admin-nav="kits"
+                    >
+                        <span class="admin-nav-icon">
+                            ◈
+                        </span>
+
+                        <span class="admin-nav-text">
+                            Project Kits
+                        </span>
+                    </a>
+
+                    <a
+                        href="orders.html"
+                        class="admin-nav-item"
+                        data-admin-nav="orders"
+                    >
+                        <span class="admin-nav-icon">
+                            ≡
+                        </span>
+
+                        <span class="admin-nav-text">
+                            Orders
+                        </span>
+                    </a>
+
+                </div>
+
+
+                <div class="admin-nav-section">
+
+                    <span class="admin-nav-label">
+                        Management
+                    </span>
+
+                    <a
+                        href="users.html"
+                        class="admin-nav-item"
+                        data-admin-nav="users"
+                    >
+                        <span class="admin-nav-icon">
+                            ◎
+                        </span>
+
+                        <span class="admin-nav-text">
+                            Users
+                        </span>
+                    </a>
+
+                    <a
+                        href="settings.html"
+                        class="admin-nav-item"
+                        data-admin-nav="settings"
+                    >
+                        <span class="admin-nav-icon">
+                            ⚙
+                        </span>
+
+                        <span class="admin-nav-text">
+                            Settings
+                        </span>
+                    </a>
+
+                </div>
+
+            </nav>
+
+        </div>
+
+
+        <div class="admin-sidebar-bottom">
+
+            <a
+                href="../index.html"
+                class="admin-sidebar-store-link"
+            >
+                <span class="admin-nav-icon">
+                    ↗
+                </span>
+
+                <span class="admin-nav-text">
+                    View Store
+                </span>
+            </a>
+
+
+            <button
+                type="button"
+                class="admin-sidebar-logout"
+                data-admin-logout
+            >
+                <span class="admin-nav-icon">
+                    ⇥
+                </span>
+
+                <span class="admin-nav-text">
+                    Sign out
+                </span>
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =========================================================
+         MAIN
+    ========================================================== -->
+    <div class="admin-main">
+
+
+        <!-- =====================================================
+             HEADER
+        ====================================================== -->
+        <header class="admin-header">
+
+            <div class="admin-header-left">
+
+                <button
+                    type="button"
+                    class="admin-mobile-menu-button"
+                    data-admin-menu-toggle
+                    aria-label="Open admin menu"
+                    aria-expanded="false"
+                >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+
+                <div class="admin-page-title">
+
+                    <span class="admin-breadcrumb">
+                        Store
+                        <span>/</span>
+                        Categories
+                    </span>
+
+                    <h1>
+                        Categories
+                    </h1>
+
+                </div>
+
+            </div>
+
+
+            <div class="admin-header-right">
+
+                <a
+                    href="../index.html"
+                    class="admin-header-store"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    <span>
+                        View store
+                    </span>
+
+                    <span>
+                        ↗
+                    </span>
+                </a>
+
+
+                <button
+                    type="button"
+                    class="admin-header-icon-button"
+                    aria-label="Notifications"
+                    data-admin-notifications
+                >
+                    <span>
+                        ♢
+                    </span>
+
+                    <i
+                        data-admin-notification-count
+                        hidden
+                    >
+                        0
+                    </i>
+                </button>
+
+
+                <div class="admin-user">
+
+                    <div
+                        class="admin-user-avatar"
+                        data-admin-avatar
+                    >
+                        A
+                    </div>
+
+                    <div class="admin-user-details">
+
+                        <strong data-admin-user-name>
+                            Admin
+                        </strong>
+
+                        <span data-admin-user-email>
+                            Loading...
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- =====================================================
+             CONTENT
+        ====================================================== -->
+        <main class="admin-content">
+
+
+            <!-- =================================================
+                 PAGE INTRO
+            ================================================== -->
+            <section class="admin-page-intro">
+
+                <div>
+
+                    <span class="admin-eyebrow">
+                        STORE ORGANIZATION
+                    </span>
+
+                    <h2>
+                        Product categories
+                    </h2>
+
+                    <p>
+                        Organize your products into clear categories
+                        so customers can easily discover what they
+                        need.
+                    </p>
+
+                </div>
+
+
+                <div class="admin-page-intro-actions">
+
+                    <button
+                        type="button"
+                        class="admin-button admin-button-secondary"
+                        data-admin-refresh-categories
+                    >
+                        <span>
+                            ↻
+                        </span>
+
+                        Refresh
+                    </button>
+
+                    <button
+                        type="button"
+                        class="admin-button admin-button-primary"
+                        data-category-add
+                    >
+                        <span>
+                            +
+                        </span>
+
+                        Add category
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 STATS
+            ================================================== -->
+            <section class="admin-stats-grid">
+
+
+                <article class="admin-stat-card">
+
+                    <div class="admin-stat-icon">
+                        ◫
+                    </div>
+
+                    <div class="admin-stat-content">
+
+                        <span>
+                            Total categories
+                        </span>
+
+                        <strong data-categories-total>
+                            0
+                        </strong>
+
+                    </div>
+
+                </article>
+
+
+                <article class="admin-stat-card">
+
+                    <div class="admin-stat-icon">
+                        ✓
+                    </div>
+
+                    <div class="admin-stat-content">
+
+                        <span>
+                            Active
+                        </span>
+
+                        <strong data-categories-active>
+                            0
+                        </strong>
+
+                    </div>
+
+                </article>
+
+
+                <article class="admin-stat-card">
+
+                    <div class="admin-stat-icon">
+                        ◌
+                    </div>
+
+                    <div class="admin-stat-content">
+
+                        <span>
+                            Hidden
+                        </span>
+
+                        <strong data-categories-hidden>
+                            0
+                        </strong>
+
+                    </div>
+
+                </article>
+
+
+                <article class="admin-stat-card">
+
+                    <div class="admin-stat-icon">
+                        □
+                    </div>
+
+                    <div class="admin-stat-content">
+
+                        <span>
+                            Products assigned
+                        </span>
+
+                        <strong data-categories-products>
+                            0
+                        </strong>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+
+            <!-- =================================================
+                 CATEGORY CONTENT
+            ================================================== -->
+            <section class="admin-content-card">
+
+
+                <!-- Toolbar -->
+                <div class="admin-table-toolbar">
+
+                    <div class="admin-table-toolbar-left">
+
+                        <div class="admin-search-box">
+
+                            <span class="admin-search-icon">
+                                ⌕
+                            </span>
+
+                            <input
+                                type="search"
+                                placeholder="Search categories..."
+                                aria-label="Search categories"
+                                data-categories-search
+                            >
+
+                            <button
+                                type="button"
+                                class="admin-search-clear"
+                                data-categories-search-clear
+                                hidden
+                                aria-label="Clear search"
+                            >
+                                ×
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="admin-table-toolbar-right">
+
+                        <select
+                            class="admin-table-select"
+                            data-categories-status
+                            aria-label="Filter categories by status"
+                        >
+                            <option value="all">
+                                All statuses
+                            </option>
+
+                            <option value="active">
+                                Active
+                            </option>
+
+                            <option value="hidden">
+                                Hidden
+                            </option>
+                        </select>
+
+
+                        <select
+                            class="admin-table-select"
+                            data-categories-sort
+                            aria-label="Sort categories"
+                        >
+                            <option value="order">
+                                Display order
+                            </option>
+
+                            <option value="name-asc">
+                                Name A–Z
+                            </option>
+
+                            <option value="name-desc">
+                                Name Z–A
+                            </option>
+
+                            <option value="newest">
+                                Newest first
+                            </option>
+
+                            <option value="oldest">
+                                Oldest first
+                            </option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     TABLE
+                ================================================== -->
+                <div class="admin-table-wrapper">
+
+                    <table class="admin-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th class="admin-table-check-column">
+                                    <input
+                                        type="checkbox"
+                                        data-categories-select-all
+                                        aria-label="Select all categories"
+                                    >
+                                </th>
+
+                                <th>
+                                    Category
+                                </th>
+
+                                <th>
+                                    Description
+                                </th>
+
+                                <th>
+                                    Products
+                                </th>
+
+                                <th>
+                                    Order
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                                <th class="admin-table-action-column">
+                                    Actions
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody
+                            data-categories-table-body
+                        ></tbody>
+
+                    </table>
+
+                </div>
+
+
+                <!-- =================================================
+                     LOADING
+                ================================================== -->
+                <div
+                    class="admin-table-loading"
+                    data-categories-loading
+                    hidden
+                >
+
+                    <div class="admin-loading-spinner"></div>
+
+                    <span>
+                        Loading categories...
+                    </span>
+
+                </div>
+
+
+                <!-- =================================================
+                     EMPTY
+                ================================================== -->
+                <div
+                    class="admin-table-empty"
+                    data-categories-empty
+                    hidden
+                >
+
+                    <div class="admin-empty-icon">
+                        ◫
+                    </div>
+
+                    <h3>
+                        No categories found
+                    </h3>
+
+                    <p data-categories-empty-message>
+                        There are no categories matching your
+                        current filters.
+                    </p>
+
+                    <button
+                        type="button"
+                        class="admin-button admin-button-secondary"
+                        data-categories-clear-filters
+                    >
+                        Clear filters
+                    </button>
+
+                </div>
+
+
+                <!-- =================================================
+                     RESULTS FOOTER
+                ================================================== -->
+                <div class="admin-table-footer">
+
+                    <span data-categories-results>
+                        0 categories
+                    </span>
+
+
+                    <div class="admin-pagination">
+
+                        <button
+                            type="button"
+                            class="admin-pagination-button"
+                            data-categories-prev
+                            disabled
+                            aria-label="Previous page"
+                        >
+                            ←
+                        </button>
+
+                        <span data-categories-page>
+                            1
+                        </span>
+
+                        <button
+                            type="button"
+                            class="admin-pagination-button"
+                            data-categories-next
+                            disabled
+                            aria-label="Next page"
+                        >
+                            →
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+</div>
+
+
+<!-- =============================================================
+     MOBILE SIDEBAR OVERLAY
+============================================================== -->
+<div
+    class="admin-sidebar-overlay"
+    data-admin-sidebar-overlay
+></div>
+
+
+<!-- =============================================================
+     CATEGORY MODAL
+============================================================== -->
+<div
+    class="admin-modal"
+    data-category-modal
+    hidden
+>
+
+    <div
+        class="admin-modal-backdrop"
+        data-category-modal-close
+    ></div>
+
+
+    <div
+        class="admin-modal-dialog admin-modal-dialog-large"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="category-modal-title"
+    >
+
+        <button
+            type="button"
+            class="admin-modal-close"
+            data-category-modal-close
+            aria-label="Close"
+        >
+            ×
+        </button>
+
+
+        <div class="admin-modal-header">
+
+            <span class="admin-eyebrow">
+                CATEGORY
+            </span>
+
+            <h2 id="category-modal-title">
+                Add category
+            </h2>
+
+            <p>
+                Create a category for organizing your products.
+            </p>
+
+        </div>
+
+
+        <!-- Category form -->
+        <form
+            class="admin-category-form"
+            data-category-form
+            novalidate
+        >
+
+            <input
+                type="hidden"
+                data-category-id
+            >
+
+
+            <!-- Name -->
+            <div class="admin-form-group">
+
+                <label for="category-name">
+                    Category name
+                    <span>*</span>
+                </label>
+
+                <input
+                    type="text"
+                    id="category-name"
+                    name="name"
+                    placeholder="e.g. Arduino Boards"
+                    data-category-name
+                    maxlength="100"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Description -->
+            <div class="admin-form-group">
+
+                <label for="category-description">
+                    Description
+                </label>
+
+                <textarea
+                    id="category-description"
+                    name="description"
+                    rows="4"
+                    placeholder="Briefly describe this category..."
+                    data-category-description
+                    maxlength="500"
+                ></textarea>
+
+                <div class="admin-character-count">
+
+                    <span data-category-description-count>
+                        0
+                    </span>
+
+                    characters
+
+                </div>
+
+            </div>
+
+
+            <!-- Image URL -->
+            <div class="admin-form-group">
+
+                <label for="category-image">
+                    Category image
+                </label>
+
+                <input
+                    type="url"
+                    id="category-image"
+                    name="image"
+                    placeholder="https://..."
+                    data-category-image
+                >
+
+                <small>
+                    Enter a hosted image URL for the category.
+                </small>
+
+            </div>
+
+
+            <!-- Order -->
+            <div class="admin-form-grid">
+
+                <div class="admin-form-group">
+
+                    <label for="category-order">
+                        Display order
+                    </label>
+
+                    <input
+                        type="number"
+                        id="category-order"
+                        name="order"
+                        value="0"
+                        min="0"
+                        step="1"
+                        data-category-order
+                    >
+
+                    <small>
+                        Lower numbers appear first.
+                    </small>
+
+                </div>
+
+
+                <div class="admin-form-group">
+
+                    <label>
+                        Visibility
+                    </label>
+
+                    <label class="admin-checkbox-row">
+
+                        <input
+                            type="checkbox"
+                            name="active"
+                            data-category-active
+                            checked
+                        >
+
+                        <span>
+                            Active category
+                        </span>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <!-- Image preview -->
+            <div
+                class="admin-category-image-preview"
+                data-category-image-preview
+                hidden
+            >
+
+                <img
+                    src=""
+                    alt="Category preview"
+                    data-category-image-preview-img
+                >
+
+            </div>
+
+
+            <!-- Status -->
+            <div
+                class="admin-form-status"
+                data-category-form-status
+                aria-live="polite"
+            ></div>
+
+
+            <!-- Actions -->
+            <div class="admin-modal-actions">
+
+                <button
+                    type="button"
+                    class="admin-button admin-button-secondary"
+                    data-category-modal-close
+                >
+                    Cancel
+                </button>
+
+                <button
+                    type="submit"
+                    class="admin-button admin-button-primary"
+                    data-category-save
+                >
+
+                    <span data-category-save-text>
+                        Save category
+                    </span>
+
+                    <span
+                        class="admin-button-spinner"
+                        data-category-save-spinner
+                        hidden
+                    ></span>
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =============================================================
+     DELETE MODAL
+============================================================== -->
+<div
+    class="admin-modal"
+    data-category-delete-modal
+    hidden
+>
+
+    <div
+        class="admin-modal-backdrop"
+        data-category-delete-close
+    ></div>
+
+
+    <div
+        class="admin-modal-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="delete-category-title"
+    >
+
+        <button
+            type="button"
+            class="admin-modal-close"
+            data-category-delete-close
+            aria-label="Close"
+        >
+            ×
+        </button>
+
+
+        <div class="admin-modal-icon admin-modal-icon-danger">
+            !
+        </div>
+
+
+        <h2 id="delete-category-title">
+            Delete category?
+        </h2>
+
+        <p>
+            This will permanently remove the category. Products
+            assigned to it will not be deleted, but they may need
+            to be assigned to another category.
+        </p>
+
+
+        <div class="admin-modal-actions">
+
+            <button
+                type="button"
+                class="admin-button admin-button-secondary"
+                data-category-delete-close
+            >
+                Cancel
+            </button>
+
+            <button
+                type="button"
+                class="admin-button admin-button-danger"
+                data-confirm-category-delete
+            >
+                Delete category
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =============================================================
+     CONTEXT MENU
+============================================================== -->
+<div
+    class="admin-context-menu"
+    data-category-context-menu
+    hidden
+>
+
+    <button
+        type="button"
+        data-category-action="edit"
+    >
+        <span>
+            ✎
+        </span>
+
+        Edit category
+    </button>
+
+
+    <button
+        type="button"
+        data-category-action="toggle"
+    >
+        <span>
+            ◉
+        </span>
+
+        Toggle visibility
+    </button>
+
+
+    <button
+        type="button"
+        data-category-action="delete"
+        class="admin-context-danger"
+    >
+        <span>
+            ×
+        </span>
+
+        Delete category
+    </button>
+
+</div>
+
+
+<!-- =============================================================
+     SCRIPTS
+============================================================== -->
+<script type="module" src="../js/admin/admin-auth.js"></script>
+<script type="module" src="../js/admin/admin-guard.js"></script>
+<script type="module" src="../js/admin/admin-ui.js"></script>
+<script type="module" src="../js/admin/admin-categories.js"></script>
+
+</body>
+</html>

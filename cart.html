@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Shopping Cart | ProjectKart</title>
+    <meta
+        name="description"
+        content="Review your ProjectKart shopping cart and continue to checkout."
+    >
+
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/typography.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/mobile-menu.css">
+    <link rel="stylesheet" href="css/buttons.css">
+    <link rel="stylesheet" href="css/forms.css">
+    <link rel="stylesheet" href="css/cart.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+
+    <!-- =========================================================
+         NAVBAR
+    ========================================================== -->
+    <header class="site-header">
+
+        <nav class="navbar container">
+
+            <a
+                href="index.html"
+                class="navbar-brand"
+                aria-label="ProjectKart Home"
+            >
+                <span class="navbar-brand-mark">PK</span>
+
+                <span class="navbar-brand-text">
+                    <strong>ProjectKart</strong>
+                    <small>Build. Create. Innovate.</small>
+                </span>
+            </a>
+
+
+            <div class="navbar-links">
+
+                <a href="index.html">Home</a>
+                <a href="shop.html">Shop</a>
+                <a href="categories.html">Categories</a>
+                <a href="project-kits.html">Project Kits</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+
+            </div>
+
+
+            <div class="navbar-actions">
+
+                <form
+                    class="navbar-search"
+                    data-search-form
+                >
+
+                    <span class="navbar-search-icon">
+                        ⌕
+                    </span>
+
+                    <input
+                        type="search"
+                        placeholder="Search components..."
+                        aria-label="Search products"
+                        data-search-input
+                        autocomplete="off"
+                    >
+
+                    <div
+                        class="navbar-search-results"
+                        data-search-results
+                        hidden
+                    ></div>
+
+                </form>
+
+
+                <a
+                    href="account.html"
+                    class="navbar-account"
+                    aria-label="My account"
+                >
+                    <span class="navbar-action-icon">
+                        ◯
+                    </span>
+                </a>
+
+
+                <a
+                    href="cart.html"
+                    class="navbar-cart active"
+                    aria-label="Shopping cart"
+                >
+
+                    <span class="navbar-action-icon">
+                        🛒
+                    </span>
+
+                    <span
+                        class="cart-count"
+                        data-cart-count
+                    >
+                        0
+                    </span>
+
+                </a>
+
+
+                <button
+                    type="button"
+                    class="menu-toggle"
+                    data-menu-toggle
+                    aria-label="Open menu"
+                    aria-expanded="false"
+                >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+            </div>
+
+        </nav>
+
+
+        <!-- =====================================================
+             MOBILE MENU
+        ====================================================== -->
+        <div
+            class="mobile-menu"
+            data-mobile-menu
+        >
+
+            <div class="mobile-menu-header">
+
+                <a
+                    href="index.html"
+                    class="navbar-brand"
+                >
+
+                    <span class="navbar-brand-mark">
+                        PK
+                    </span>
+
+                    <span class="navbar-brand-text">
+                        <strong>ProjectKart</strong>
+                        <small>Build. Create. Innovate.</small>
+                    </span>
+
+                </a>
+
+
+                <button
+                    type="button"
+                    class="mobile-menu-close"
+                    data-menu-close
+                    aria-label="Close menu"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <div class="mobile-menu-links">
+
+                <a href="index.html">Home</a>
+                <a href="shop.html">Shop</a>
+                <a href="categories.html">Categories</a>
+                <a href="project-kits.html">Project Kits</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="account.html">My Account</a>
+                <a href="cart.html">Cart</a>
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="mobile-menu-overlay"
+            data-mobile-overlay
+        ></div>
+
+    </header>
+
+
+    <!-- =========================================================
+         CART PAGE
+    ========================================================== -->
+    <main class="cart-page">
+
+        <div class="container">
+
+            <!-- Page heading -->
+            <section class="cart-heading">
+
+                <div>
+
+                    <span class="section-eyebrow">
+                        YOUR CART
+                    </span>
+
+                    <h1>
+                        Shopping cart
+                    </h1>
+
+                    <p>
+                        Review your selected components before
+                        continuing to checkout.
+                    </p>
+
+                </div>
+
+                <a
+                    href="shop.html"
+                    class="button button-secondary"
+                >
+                    Continue shopping
+                </a>
+
+            </section>
+
+
+            <!-- =================================================
+                 EMPTY CART
+            ================================================== -->
+            <section
+                class="cart-empty"
+                data-cart-empty
+                hidden
+            >
+
+                <div class="cart-empty-icon">
+                    🛒
+                </div>
+
+                <h2>
+                    Your cart is empty
+                </h2>
+
+                <p>
+                    Looks like you haven't added anything yet.
+                    Explore our components and start building.
+                </p>
+
+                <a
+                    href="shop.html"
+                    class="button button-primary"
+                >
+                    Explore products
+                </a>
+
+            </section>
+
+
+            <!-- =================================================
+                 CART CONTENT
+            ================================================== -->
+            <section
+                class="cart-content"
+                data-cart-content
+            >
+
+                <div class="cart-layout">
+
+
+                    <!-- =============================================
+                         CART ITEMS
+                    ============================================== -->
+                    <div class="cart-items-column">
+
+                        <div class="cart-items-header">
+
+                            <div>
+
+                                <h2>
+                                    Your items
+                                </h2>
+
+                                <span
+                                    data-cart-item-count
+                                >
+                                    0 items
+                                </span>
+
+                            </div>
+
+
+                            <button
+                                type="button"
+                                class="cart-clear-button"
+                                data-cart-clear
+                            >
+                                Clear cart
+                            </button>
+
+                        </div>
+
+
+                        <div
+                            class="cart-items"
+                            data-cart-items
+                        >
+
+                            <!-- Cart items are rendered by cart.js -->
+
+                        </div>
+
+
+                        <!-- Loading -->
+                        <div
+                            class="cart-loading"
+                            data-cart-loading
+                            hidden
+                        >
+
+                            <div class="loading-spinner"></div>
+
+                            <span>
+                                Loading cart...
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =============================================
+                         ORDER SUMMARY
+                    ============================================== -->
+                    <aside class="cart-summary">
+
+                        <div class="cart-summary-card">
+
+                            <div class="cart-summary-header">
+
+                                <span class="section-eyebrow">
+                                    ORDER SUMMARY
+                                </span>
+
+                                <h2>
+                                    Summary
+                                </h2>
+
+                            </div>
+
+
+                            <!-- Subtotal -->
+                            <div class="cart-summary-row">
+
+                                <span>
+                                    Subtotal
+                                </span>
+
+                                <strong
+                                    data-cart-subtotal
+                                >
+                                    ₹0.00
+                                </strong>
+
+                            </div>
+
+
+                            <!-- Shipping -->
+                            <div class="cart-summary-row">
+
+                                <span>
+                                    Shipping
+                                </span>
+
+                                <strong
+                                    data-cart-shipping
+                                >
+                                    Calculated at checkout
+                                </strong>
+
+                            </div>
+
+
+                            <!-- Divider -->
+                            <div class="cart-summary-divider"></div>
+
+
+                            <!-- Total -->
+                            <div class="cart-summary-total">
+
+                                <span>
+                                    Total
+                                </span>
+
+                                <strong
+                                    data-cart-total
+                                >
+                                    ₹0.00
+                                </strong>
+
+                            </div>
+
+
+                            <!-- Checkout -->
+                            <a
+                                href="#"
+                                class="button button-primary button-full cart-checkout-button"
+                                data-cart-checkout
+                            >
+                                Proceed to checkout
+                            </a>
+
+
+                            <!-- Secure checkout -->
+                            <div class="cart-secure-note">
+
+                                <span>
+                                    ✓
+                                </span>
+
+                                <p>
+                                    Secure checkout
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Payment information -->
+                        <div class="cart-payment-info">
+
+                            <span>
+                                Secure payment
+                            </span>
+
+                            <div class="cart-payment-icons">
+
+                                <span>UPI</span>
+                                <span>VISA</span>
+                                <span>MC</span>
+                                <span>RuPay</span>
+
+                            </div>
+
+                        </div>
+
+                    </aside>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 TRUST FEATURES
+            ================================================== -->
+            <section class="cart-features">
+
+                <div class="cart-feature">
+
+                    <div class="cart-feature-icon">
+                        ✓
+                    </div>
+
+                    <div>
+                        <strong>
+                            Quality components
+                        </strong>
+
+                        <p>
+                            Carefully selected products for your projects.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="cart-feature">
+
+                    <div class="cart-feature-icon">
+                        ◈
+                    </div>
+
+                    <div>
+                        <strong>
+                            Project-ready
+                        </strong>
+
+                        <p>
+                            Components for students, makers and creators.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="cart-feature">
+
+                    <div class="cart-feature-icon">
+                        ⌁
+                    </div>
+
+                    <div>
+                        <strong>
+                            Support
+                        </strong>
+
+                        <p>
+                            Need help? Get in touch with our team.
+                        </p>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
+    <footer class="site-footer">
+
+        <div class="container">
+
+            <div class="footer-main">
+
+                <div class="footer-brand">
+
+                    <a
+                        href="index.html"
+                        class="navbar-brand"
+                    >
+
+                        <span class="navbar-brand-mark">
+                            PK
+                        </span>
+
+                        <span class="navbar-brand-text">
+                            <strong>ProjectKart</strong>
+                            <small>Build. Create. Innovate.</small>
+                        </span>
+
+                    </a>
+
+                    <p>
+                        Your place for electronics components,
+                        project kits and everything you need to
+                        turn ideas into real projects.
+                    </p>
+
+                </div>
+
+
+                <div class="footer-column">
+
+                    <h3>Shop</h3>
+
+                    <a href="shop.html">
+                        All Products
+                    </a>
+
+                    <a href="categories.html">
+                        Categories
+                    </a>
+
+                    <a href="project-kits.html">
+                        Project Kits
+                    </a>
+
+                </div>
+
+
+                <div class="footer-column">
+
+                    <h3>Company</h3>
+
+                    <a href="about.html">
+                        About Us
+                    </a>
+
+                    <a href="contact.html">
+                        Contact
+                    </a>
+
+                </div>
+
+
+                <div class="footer-column">
+
+                    <h3>Account</h3>
+
+                    <a href="login.html">
+                        Sign In
+                    </a>
+
+                    <a href="register.html">
+                        Create Account
+                    </a>
+
+                    <a href="account.html">
+                        My Account
+                    </a>
+
+                    <a href="cart.html">
+                        Cart
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-bottom">
+
+                <p>
+                    ©
+                    <span data-current-year></span>
+                    ProjectKart. All rights reserved.
+                </p>
+
+                <p>
+                    Built for makers, students & creators.
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================================================
+         SCRIPTS
+    ========================================================== -->
+    <script type="module" src="js/navbar.js"></script>
+    <script type="module" src="js/search.js"></script>
+    <script type="module" src="js/cart.js"></script>
+
+    <script>
+        const yearElement =
+            document.querySelector("[data-current-year]");
+
+        if (yearElement) {
+            yearElement.textContent =
+                new Date().getFullYear();
+        }
+    </script>
+
+</body>
+</html>

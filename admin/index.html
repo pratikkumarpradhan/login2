@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | ProjectKart Admin</title>
+    <meta
+        name="description"
+        content="ProjectKart administration dashboard."
+    >
+
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/typography.css">
+
+    <link rel="stylesheet" href="../css/admin/admin-base.css">
+    <link rel="stylesheet" href="../css/admin/admin-sidebar.css">
+    <link rel="stylesheet" href="../css/admin/admin-header.css">
+    <link rel="stylesheet" href="../css/admin/admin-dashboard.css">
+    <link rel="stylesheet" href="../css/admin/admin-responsive.css">
+</head>
+
+<body class="admin-body">
+
+    <!-- =========================================================
+         ADMIN APP
+    ========================================================== -->
+    <div class="admin-app">
+
+        <!-- =====================================================
+             SIDEBAR
+        ====================================================== -->
+        <aside
+            class="admin-sidebar"
+            id="admin-sidebar"
+            data-admin-sidebar
+        >
+
+            <div class="admin-sidebar-top">
+
+                <!-- Brand -->
+                <a
+                    href="index.html"
+                    class="admin-brand"
+                    aria-label="ProjectKart Admin Dashboard"
+                >
+
+                    <span class="admin-brand-mark">
+                        PK
+                    </span>
+
+                    <span class="admin-brand-text">
+                        <strong>ProjectKart</strong>
+                        <small>Admin Panel</small>
+                    </span>
+
+                </a>
+
+
+                <!-- Navigation -->
+                <nav class="admin-nav">
+
+                    <div class="admin-nav-section">
+
+                        <span class="admin-nav-label">
+                            Overview
+                        </span>
+
+                        <a
+                            href="index.html"
+                            class="admin-nav-item active"
+                            data-admin-nav="dashboard"
+                        >
+                            <span class="admin-nav-icon">
+                                ▦
+                            </span>
+
+                            <span class="admin-nav-text">
+                                Dashboard
+                            </span>
+                        </a>
+
+                    </div>
+
+
+                    <div class="admin-nav-section">
+
+                        <span class="admin-nav-label">
+                            Store
+                        </span>
+
+                        <a
+                            href="products.html"
+                            class="admin-nav-item"
+                            data-admin-nav="products"
+                        >
+                            <span class="admin-nav-icon">
+                                □
+                            </span>
+
+                            <span class="admin-nav-text">
+                                Products
+                            </span>
+                        </a>
+
+                        <a
+                            href="categories.html"
+                            class="admin-nav-item"
+                            data-admin-nav="categories"
+                        >
+                            <span class="admin-nav-icon">
+                                ◫
+                            </span>
+
+                            <span class="admin-nav-text">
+                                Categories
+                            </span>
+                        </a>
+
+                        <a
+                            href="kits.html"
+                            class="admin-nav-item"
+                            data-admin-nav="kits"
+                        >
+                            <span class="admin-nav-icon">
+                                ◈
+                            </span>
+
+                            <span class="admin-nav-text">
+                                Project Kits
+                            </span>
+                        </a>
+
+                        <a
+                            href="orders.html"
+                            class="admin-nav-item"
+                            data-admin-nav="orders"
+                        >
+                            <span class="admin-nav-icon">
+                                ≡
+                            </span>
+
+                            <span class="admin-nav-text">
+                                Orders
+                            </span>
+                        </a>
+
+                    </div>
+
+
+                    <div class="admin-nav-section">
+
+                        <span class="admin-nav-label">
+                            Management
+                        </span>
+
+                        <a
+                            href="users.html"
+                            class="admin-nav-item"
+                            data-admin-nav="users"
+                        >
+                            <span class="admin-nav-icon">
+                                ◎
+                            </span>
+
+                            <span class="admin-nav-text">
+                                Users
+                            </span>
+                        </a>
+
+                        <a
+                            href="settings.html"
+                            class="admin-nav-item"
+                            data-admin-nav="settings"
+                        >
+                            <span class="admin-nav-icon">
+                                ⚙
+                            </span>
+
+                            <span class="admin-nav-text">
+                                Settings
+                            </span>
+                        </a>
+
+                    </div>
+
+                </nav>
+
+            </div>
+
+
+            <!-- Sidebar bottom -->
+            <div class="admin-sidebar-bottom">
+
+                <a
+                    href="../index.html"
+                    class="admin-sidebar-store-link"
+                >
+                    <span class="admin-nav-icon">
+                        ↗
+                    </span>
+
+                    <span class="admin-nav-text">
+                        View Store
+                    </span>
+                </a>
+
+
+                <button
+                    type="button"
+                    class="admin-sidebar-logout"
+                    data-admin-logout
+                >
+                    <span class="admin-nav-icon">
+                        ⇥
+                    </span>
+
+                    <span class="admin-nav-text">
+                        Sign out
+                    </span>
+                </button>
+
+            </div>
+
+        </aside>
+
+
+        <!-- =====================================================
+             MAIN AREA
+        ====================================================== -->
+        <div class="admin-main">
+
+
+            <!-- =================================================
+                 HEADER
+            ================================================== -->
+            <header class="admin-header">
+
+                <div class="admin-header-left">
+
+                    <button
+                        type="button"
+                        class="admin-mobile-menu-button"
+                        data-admin-menu-toggle
+                        aria-label="Open admin menu"
+                        aria-expanded="false"
+                    >
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+
+
+                    <div class="admin-page-title">
+
+                        <span class="admin-breadcrumb">
+                            Admin
+                            <span>/</span>
+                            Dashboard
+                        </span>
+
+                        <h1>
+                            Dashboard
+                        </h1>
+
+                    </div>
+
+                </div>
+
+
+                <div class="admin-header-right">
+
+                    <!-- Store link -->
+                    <a
+                        href="../index.html"
+                        class="admin-header-store"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        <span>View store</span>
+                        <span>↗</span>
+                    </a>
+
+
+                    <!-- Notifications -->
+                    <button
+                        type="button"
+                        class="admin-header-icon-button"
+                        aria-label="Notifications"
+                        data-admin-notifications
+                    >
+                        <span>♢</span>
+                        <i data-admin-notification-count hidden>
+                            0
+                        </i>
+                    </button>
+
+
+                    <!-- Admin user -->
+                    <div class="admin-user">
+
+                        <div
+                            class="admin-user-avatar"
+                            data-admin-avatar
+                        >
+                            A
+                        </div>
+
+                        <div class="admin-user-details">
+
+                            <strong data-admin-user-name>
+                                Admin
+                            </strong>
+
+                            <span data-admin-user-email>
+                                Loading...
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- =================================================
+                 CONTENT
+            ================================================== -->
+            <main class="admin-content">
+
+                <!-- Dashboard intro -->
+                <section class="admin-dashboard-intro">
+
+                    <div>
+
+                        <span class="admin-eyebrow">
+                            STORE OVERVIEW
+                        </span>
+
+                        <h2>
+                            Welcome back,
+                            <span data-dashboard-admin-name>
+                                Admin
+                            </span>
+                        </h2>
+
+                        <p>
+                            Here's what's happening with your
+                            ProjectKart store.
+                        </p>
+
+                    </div>
+
+
+                    <div class="admin-dashboard-actions">
+
+                        <a
+                            href="products.html"
+                            class="admin-button admin-button-primary"
+                        >
+                            <span>+</span>
+                            Add product
+                        </a>
+
+                        <a
+                            href="../shop.html"
+                            class="admin-button admin-button-secondary"
+                            target="_blank"
+                            rel="noopener"
+                        >
+                            View store
+                            <span>↗</span>
+                        </a>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =================================================
+                     STAT CARDS
+                ================================================== -->
+                <section class="admin-stats-grid">
+
+
+                    <!-- Products -->
+                    <article class="admin-stat-card">
+
+                        <div class="admin-stat-top">
+
+                            <div class="admin-stat-icon">
+                                □
+                            </div>
+
+                            <span
+                                class="admin-stat-badge"
+                                data-dashboard-products-change
+                            >
+                                —
+                            </span>
+
+                        </div>
+
+                        <div class="admin-stat-content">
+
+                            <span class="admin-stat-label">
+                                Total products
+                            </span>
+
+                            <strong
+                                class="admin-stat-value"
+                                data-dashboard-products
+                            >
+                                0
+                            </strong>
+
+                            <span class="admin-stat-description">
+                                Products in your catalog
+                            </span>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- Active products -->
+                    <article class="admin-stat-card">
+
+                        <div class="admin-stat-top">
+
+                            <div class="admin-stat-icon">
+                                ✓
+                            </div>
+
+                            <span
+                                class="admin-stat-badge admin-stat-badge-positive"
+                                data-dashboard-active-change
+                            >
+                                Active
+                            </span>
+
+                        </div>
+
+                        <div class="admin-stat-content">
+
+                            <span class="admin-stat-label">
+                                Active products
+                            </span>
+
+                            <strong
+                                class="admin-stat-value"
+                                data-dashboard-active-products
+                            >
+                                0
+                            </strong>
+
+                            <span class="admin-stat-description">
+                                Currently visible in store
+                            </span>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- Orders -->
+                    <article class="admin-stat-card">
+
+                        <div class="admin-stat-top">
+
+                            <div class="admin-stat-icon">
+                                ≡
+                            </div>
+
+                            <span
+                                class="admin-stat-badge"
+                                data-dashboard-orders-change
+                            >
+                                —
+                            </span>
+
+                        </div>
+
+                        <div class="admin-stat-content">
+
+                            <span class="admin-stat-label">
+                                Total orders
+                            </span>
+
+                            <strong
+                                class="admin-stat-value"
+                                data-dashboard-orders
+                            >
+                                0
+                            </strong>
+
+                            <span class="admin-stat-description">
+                                Orders received
+                            </span>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- Users -->
+                    <article class="admin-stat-card">
+
+                        <div class="admin-stat-top">
+
+                            <div class="admin-stat-icon">
+                                ◎
+                            </div>
+
+                            <span
+                                class="admin-stat-badge"
+                                data-dashboard-users-change
+                            >
+                                —
+                            </span>
+
+                        </div>
+
+                        <div class="admin-stat-content">
+
+                            <span class="admin-stat-label">
+                                Registered users
+                            </span>
+
+                            <strong
+                                class="admin-stat-value"
+                                data-dashboard-users
+                            >
+                                0
+                            </strong>
+
+                            <span class="admin-stat-description">
+                                Customer accounts
+                            </span>
+
+                        </div>
+
+                    </article>
+
+                </section>
+
+
+                <!-- =================================================
+                     MAIN DASHBOARD GRID
+                ================================================== -->
+                <section class="admin-dashboard-grid">
+
+
+                    <!-- =============================================
+                         RECENT ORDERS
+                    ============================================== -->
+                    <article class="admin-panel admin-recent-orders">
+
+                        <div class="admin-panel-header">
+
+                            <div>
+
+                                <span class="admin-eyebrow">
+                                    ORDERS
+                                </span>
+
+                                <h3>
+                                    Recent orders
+                                </h3>
+
+                            </div>
+
+                            <a
+                                href="orders.html"
+                                class="admin-panel-link"
+                            >
+                                View all
+                                <span>→</span>
+                            </a>
+
+                        </div>
+
+
+                        <div
+                            class="admin-table-wrapper"
+                            data-dashboard-orders-table
+                        >
+
+                            <div class="admin-table">
+
+                                <div class="admin-table-head">
+
+                                    <span>
+                                        Order
+                                    </span>
+
+                                    <span>
+                                        Customer
+                                    </span>
+
+                                    <span>
+                                        Date
+                                    </span>
+
+                                    <span>
+                                        Status
+                                    </span>
+
+                                    <span>
+                                        Total
+                                    </span>
+
+                                </div>
+
+
+                                <div
+                                    class="admin-table-body"
+                                    data-dashboard-orders-list
+                                >
+
+                                    <div class="admin-table-empty">
+                                        <span class="admin-empty-icon">
+                                            ≡
+                                        </span>
+
+                                        <strong>
+                                            No orders yet
+                                        </strong>
+
+                                        <p>
+                                            New orders will appear here.
+                                        </p>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- =============================================
+                         INVENTORY OVERVIEW
+                    ============================================== -->
+                    <article class="admin-panel admin-inventory-panel">
+
+                        <div class="admin-panel-header">
+
+                            <div>
+
+                                <span class="admin-eyebrow">
+                                    INVENTORY
+                                </span>
+
+                                <h3>
+                                    Inventory overview
+                                </h3>
+
+                            </div>
+
+                            <a
+                                href="products.html"
+                                class="admin-panel-link"
+                            >
+                                Manage
+                                <span>→</span>
+                            </a>
+
+                        </div>
+
+
+                        <div class="admin-inventory-stats">
+
+                            <div class="admin-inventory-item">
+
+                                <div class="admin-inventory-icon">
+                                    ✓
+                                </div>
+
+                                <div>
+
+                                    <strong
+                                        data-dashboard-in-stock
+                                    >
+                                        0
+                                    </strong>
+
+                                    <span>
+                                        In stock
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="admin-inventory-item">
+
+                                <div class="admin-inventory-icon">
+                                    !
+                                </div>
+
+                                <div>
+
+                                    <strong
+                                        data-dashboard-low-stock
+                                    >
+                                        0
+                                    </strong>
+
+                                    <span>
+                                        Low stock
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="admin-inventory-item">
+
+                                <div class="admin-inventory-icon">
+                                    ×
+                                </div>
+
+                                <div>
+
+                                    <strong
+                                        data-dashboard-out-stock
+                                    >
+                                        0
+                                    </strong>
+
+                                    <span>
+                                        Out of stock
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="admin-inventory-bar">
+
+                            <div class="admin-inventory-bar-label">
+
+                                <span>
+                                    Stock health
+                                </span>
+
+                                <strong
+                                    data-dashboard-stock-health
+                                >
+                                    0%
+                                </strong>
+
+                            </div>
+
+                            <div class="admin-progress">
+
+                                <div
+                                    class="admin-progress-value"
+                                    data-dashboard-stock-progress
+                                    style="width: 0%;"
+                                ></div>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                </section>
+
+
+                <!-- =================================================
+                     QUICK ACTIONS + STORE STATUS
+                ================================================== -->
+                <section class="admin-bottom-grid">
+
+
+                    <!-- Quick actions -->
+                    <article class="admin-panel admin-quick-actions">
+
+                        <div class="admin-panel-header">
+
+                            <div>
+
+                                <span class="admin-eyebrow">
+                                    SHORTCUTS
+                                </span>
+
+                                <h3>
+                                    Quick actions
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="admin-actions-grid">
+
+                            <a
+                                href="products.html"
+                                class="admin-action-card"
+                            >
+
+                                <span class="admin-action-icon">
+                                    +
+                                </span>
+
+                                <span class="admin-action-content">
+
+                                    <strong>
+                                        Add product
+                                    </strong>
+
+                                    <small>
+                                        Create a new product
+                                    </small>
+
+                                </span>
+
+                                <span class="admin-action-arrow">
+                                    →
+                                </span>
+
+                            </a>
+
+
+                            <a
+                                href="categories.html"
+                                class="admin-action-card"
+                            >
+
+                                <span class="admin-action-icon">
+                                    ◫
+                                </span>
+
+                                <span class="admin-action-content">
+
+                                    <strong>
+                                        Add category
+                                    </strong>
+
+                                    <small>
+                                        Organize your products
+                                    </small>
+
+                                </span>
+
+                                <span class="admin-action-arrow">
+                                    →
+                                </span>
+
+                            </a>
+
+
+                            <a
+                                href="kits.html"
+                                class="admin-action-card"
+                            >
+
+                                <span class="admin-action-icon">
+                                    ◈
+                                </span>
+
+                                <span class="admin-action-content">
+
+                                    <strong>
+                                        Manage kits
+                                    </strong>
+
+                                    <small>
+                                        Update project kits
+                                    </small>
+
+                                </span>
+
+                                <span class="admin-action-arrow">
+                                    →
+                                </span>
+
+                            </a>
+
+
+                            <a
+                                href="settings.html"
+                                class="admin-action-card"
+                            >
+
+                                <span class="admin-action-icon">
+                                    ⚙
+                                </span>
+
+                                <span class="admin-action-content">
+
+                                    <strong>
+                                        Store settings
+                                    </strong>
+
+                                    <small>
+                                        Manage store configuration
+                                    </small>
+
+                                </span>
+
+                                <span class="admin-action-arrow">
+                                    →
+                                </span>
+
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- Store status -->
+                    <article class="admin-panel admin-store-status">
+
+                        <div class="admin-panel-header">
+
+                            <div>
+
+                                <span class="admin-eyebrow">
+                                    STORE
+                                </span>
+
+                                <h3>
+                                    Store status
+                                </h3>
+
+                            </div>
+
+                            <span class="admin-status-live">
+                                <i></i>
+                                Live
+                            </span>
+
+                        </div>
+
+
+                        <div class="admin-store-status-content">
+
+                            <div class="admin-store-status-icon">
+                                ✓
+                            </div>
+
+                            <h4>
+                                Your storefront is live
+                            </h4>
+
+                            <p>
+                                Customers can currently browse
+                                active products and project kits.
+                            </p>
+
+                            <a
+                                href="../index.html"
+                                class="admin-button admin-button-secondary admin-button-full"
+                                target="_blank"
+                                rel="noopener"
+                            >
+                                Open storefront
+                                <span>↗</span>
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                </section>
+
+
+                <!-- =================================================
+                     LOADING STATE
+                ================================================== -->
+                <div
+                    class="admin-page-loading"
+                    data-admin-dashboard-loading
+                    hidden
+                >
+                    <div class="admin-loading-spinner"></div>
+                    <span>
+                        Loading dashboard...
+                    </span>
+                </div>
+
+
+                <!-- =================================================
+                     ERROR STATE
+                ================================================== -->
+                <div
+                    class="admin-page-error"
+                    data-admin-dashboard-error
+                    hidden
+                >
+
+                    <strong>
+                        Unable to load dashboard
+                    </strong>
+
+                    <p data-admin-dashboard-error-message>
+                        Something went wrong while loading the dashboard.
+                    </p>
+
+                    <button
+                        type="button"
+                        class="admin-button admin-button-secondary"
+                        data-admin-dashboard-retry
+                    >
+                        Try again
+                    </button>
+
+                </div>
+
+            </main>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         MOBILE SIDEBAR OVERLAY
+    ========================================================== -->
+    <div
+        class="admin-sidebar-overlay"
+        data-admin-sidebar-overlay
+    ></div>
+
+
+    <!-- =========================================================
+         SCRIPTS
+    ========================================================== -->
+    <script type="module" src="../js/admin/admin-auth.js"></script>
+    <script type="module" src="../js/admin/admin-guard.js"></script>
+    <script type="module" src="../js/admin/admin-ui.js"></script>
+    <script type="module" src="../js/admin/admin-dashboard.js"></script>
+
+</body>
+</html>
