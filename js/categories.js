@@ -482,6 +482,8 @@ function hydrateCategory(category) {
     };
 }
 
+export { hydrateCategory };
+
 
 function renderCategoriesPage(categories) {
     const grid = document.querySelector("[data-categories-grid]");

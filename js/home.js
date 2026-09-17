@@ -1,22 +1,20 @@
 /* =========================================================
    PROJECTKART
-   Homepage — Firestore-driven categories, featured components,
-   and featured kits
+   Homepage — static Explore Components cards + live featured
+   components and kits
    ========================================================= */
 
 import { addToCart, initCart, updateCartCount } from "./cart.js";
 import { escapeHTML, formatPrice, showToast } from "./utils.js";
-import { watchActiveCategories } from "./categories.js";
 import { watchFeaturedComponents } from "./products.js";
 import { watchFeaturedKits } from "./kits.js";
-import { FALLBACK_CATEGORIES, FALLBACK_PRODUCTS, FALLBACK_KITS } from "./catalog-data.js";
+import { FALLBACK_PRODUCTS, FALLBACK_KITS } from "./catalog-data.js";
 
 const HOME_PRODUCT_LIMIT = 8;
 const HOME_KIT_LIMIT = 3;
 const PLACEHOLDER_IMAGE = "assets/images/hero/hero-workspace.jpg";
 
 let featuredProducts = [];
-let unsubCategories = null;
 let unsubProducts = null;
 let unsubKits = null;
 
@@ -37,24 +35,12 @@ export function initHome() {
 }
 
 function startHomeListeners() {
-    renderCategorySkeletons();
+    // Explore Components cards are permanent HTML — do not load from Firestore.
     renderProductSkeletons();
     renderKitSkeletons();
 
-    if (unsubCategories) unsubCategories();
     if (unsubProducts) unsubProducts();
     if (unsubKits) unsubKits();
-
-    unsubCategories = watchActiveCategories(
-        categories => {
-            renderHomeCategories(Array.isArray(categories) ? categories : []);
-        },
-        error => {
-            console.error("Home categories error:", error);
-            renderHomeCategories(FALLBACK_CATEGORIES);
-            showToast("Showing demo categories while Firebase is unavailable.", "error");
-        }
-    );
 
     unsubProducts = watchFeaturedComponents(
         products => {
@@ -129,63 +115,6 @@ function handleProductsGridClick(event) {
         category: product.categoryName || product.categoryId || ""
     });
     showToast(`${product.name} added to cart`);
-}
-
-function renderHomeCategories(categories) {
-    const grid = document.getElementById("homeCategoryGrid");
-    const empty = document.getElementById("homeCategoriesEmpty");
-    if (!grid) {
-        return;
-    }
-
-    const items = categories.filter(category => category && category.active !== false);
-
-    if (!items.length) {
-        grid.innerHTML = "";
-        if (empty) {
-            empty.hidden = false;
-            empty.removeAttribute("hidden");
-        }
-        return;
-    }
-
-    if (empty) {
-        empty.hidden = true;
-        empty.setAttribute("hidden", "");
-    }
-
-    grid.innerHTML = items.map((category, index) => {
-        const number = String(index + 1).padStart(2, "0");
-        const sizeClass = index === 0
-            ? " category-card--large"
-            : index === 3
-                ? " category-card--wide"
-                : "";
-        const categoryKey = category.id;
-        const href = category.id === "project-kits"
-            ? "project-kits.html"
-            : `shop.html?category=${encodeURIComponent(categoryKey)}`;
-        const image = category.image || PLACEHOLDER_IMAGE;
-        const description = category.description || "Explore components in this category.";
-
-        return `
-            <a href="${href}" class="category-card${sizeClass}">
-                <div class="category-card__image">
-                    <img src="${escapeHTML(image)}" alt="${escapeHTML(category.name || "Category")}" loading="lazy">
-                </div>
-                <div class="category-card__overlay"></div>
-                <div class="category-card__number">${number}</div>
-                <div class="category-card__content">
-                    <h3>${escapeHTML(category.name || "Category")}</h3>
-                    <p>${escapeHTML(description)}</p>
-                    <span class="category-card__link">
-                        Explore
-                        <span>›</span>
-                    </span>
-                </div>
-            </a>
-        `;
-    }).join("");
 }
 
 function renderHomeProducts(products) {
@@ -288,14 +217,6 @@ function renderHomeKits(kits) {
             </a>
         `;
     }).join("");
-}
-
-function renderCategorySkeletons() {
-    const grid = document.getElementById("homeCategoryGrid");
-    if (!grid) return;
-    grid.innerHTML = Array.from({ length: 4 }).map((_, index) => `
-        <div class="category-card home-card-skeleton${index === 0 ? " category-card--large" : ""}" aria-hidden="true"></div>
-    `).join("");
 }
 
 function renderProductSkeletons() {

@@ -8,7 +8,7 @@ import {
     deleteComponent
 } from "./components.js";
 import { getCategories } from "./categories.js";
-import { FALLBACK_PRODUCTS } from "./catalog-data.js";
+import { FALLBACK_CATEGORIES, FALLBACK_PRODUCTS } from "./catalog-data.js";
 import { escapeHTML, formatPrice, getQueryParam, showToast } from "./utils.js";
 import { addToCart } from "./cart.js";
 import { bootPublicPage } from "./page.js";
@@ -38,6 +38,10 @@ export async function initShop() {
         applyUrlState();
         setupAdminVisibility();
         startComponentsListener();
+        window.addEventListener("popstate", () => {
+            applyUrlState();
+            applyFilters();
+        });
     } catch (error) {
         console.error("Shop initialization error:", error);
         allProducts = FALLBACK_PRODUCTS;
@@ -181,16 +185,37 @@ async function loadCategoryOptions() {
     const select = document.getElementById("shopCategory");
     if (!select) return;
 
-    const categories = await getCategories();
+    let categories = [];
+
+    try {
+        categories = await getCategories();
+    } catch (error) {
+        console.error("Shop categories load error:", error);
+    }
+
+    if (!categories.length) {
+        categories = FALLBACK_CATEGORIES.filter(category => category.active !== false);
+    }
+
     const existing = new Set([...select.options].map(option => option.value));
 
     categories.forEach(category => {
-        if (existing.has(category.id)) return;
+        if (!category?.id || existing.has(category.id)) return;
         const option = document.createElement("option");
         option.value = category.id;
-        option.textContent = category.name;
+        option.textContent = category.name || category.id;
         select.appendChild(option);
+        existing.add(category.id);
     });
+
+    // Ensure deep-linked category IDs always exist in the select.
+    const urlCategory = getQueryParam("category");
+    if (urlCategory && !existing.has(urlCategory)) {
+        const option = document.createElement("option");
+        option.value = urlCategory;
+        option.textContent = urlCategory;
+        select.appendChild(option);
+    }
 }
 
 function applyUrlState() {
@@ -207,7 +232,15 @@ function applyUrlState() {
 
     if (category) {
         const select = document.getElementById("shopCategory");
-        if (select) select.value = category;
+        if (select) {
+            if (![...select.options].some(option => option.value === category)) {
+                const option = document.createElement("option");
+                option.value = category;
+                option.textContent = category;
+                select.appendChild(option);
+            }
+            select.value = category;
+        }
     }
 
     if (deal === "true" || deal === "1") {
@@ -368,11 +401,24 @@ function updateSkuLabel() {
 
 function applyFilters() {
     const search = (document.getElementById("shopSearch")?.value || "").toLowerCase().trim();
-    const category = document.getElementById("shopCategory")?.value || "";
+    const select = document.getElementById("shopCategory");
+    const urlCategory = getQueryParam("category") || "";
+    const category = (select?.value || urlCategory || "").trim();
     const maxPrice = Number(document.getElementById("shopMaxPrice")?.value || 2800);
     const inStock = Boolean(document.getElementById("shopInStock")?.checked);
     const sort = document.getElementById("shopSort")?.value || "featured";
     const dealOnly = getQueryParam("deal") === "true" || sort === "deals";
+
+    // Keep the select in sync with the URL for deep links / refresh.
+    if (select && urlCategory && select.value !== urlCategory) {
+        if (![...select.options].some(option => option.value === urlCategory)) {
+            const option = document.createElement("option");
+            option.value = urlCategory;
+            option.textContent = urlCategory;
+            select.appendChild(option);
+        }
+        select.value = urlCategory;
+    }
 
     updatePriceLabel();
     updateActiveCategoryChip();
@@ -387,7 +433,7 @@ function applyFilters() {
 
     if (search) {
         products = products.filter(product =>
-            `${product.name} ${product.description} ${product.categoryName}`.toLowerCase().includes(search)
+            `${product.name} ${product.description} ${product.categoryName} ${product.categoryId}`.toLowerCase().includes(search)
         );
     }
 
