@@ -194,11 +194,12 @@
 
                 </div>
 
-                <button
-                    type="button"
-                    class="button button-secondary"
-                    data-logout-button
-                >
+                                <button
+                                    type="button"
+                                    class="button button-secondary"
+                                    data-logout-button
+                                    data-logout
+                                >
                     Sign out
                 </button>
 
@@ -228,6 +229,8 @@
                             <span data-account-user-email>
                                 Loading...
                             </span>
+                            <small data-account-status>Account</small>
+                            <small data-account-verified>Checking email status</small>
 
                         </div>
 
@@ -307,85 +310,55 @@
 
                             <div class="account-form-grid">
 
-                                <!-- Name -->
                                 <div class="form-group">
-
-                                    <label for="profile-name">
-                                        Full name
-                                    </label>
-
-                                    <input
-                                        type="text"
-                                        id="profile-name"
-                                        name="name"
-                                        placeholder="Your full name"
-                                        autocomplete="name"
-                                        data-profile-name
-                                    >
-
+                                    <label for="profile-first-name">First name</label>
+                                    <input type="text" id="profile-first-name" name="firstName" autocomplete="given-name" data-profile-first-name>
                                 </div>
 
-
-                                <!-- Email -->
                                 <div class="form-group">
-
-                                    <label for="profile-email">
-                                        Email address
-                                    </label>
-
-                                    <input
-                                        type="email"
-                                        id="profile-email"
-                                        name="email"
-                                        placeholder="you@example.com"
-                                        autocomplete="email"
-                                        data-profile-email
-                                        readonly
-                                    >
-
-                                    <small class="form-help">
-                                        Your email address is managed
-                                        through your account login.
-                                    </small>
-
+                                    <label for="profile-last-name">Last name</label>
+                                    <input type="text" id="profile-last-name" name="lastName" autocomplete="family-name" data-profile-last-name>
                                 </div>
 
-
-                                <!-- Phone -->
                                 <div class="form-group">
-
-                                    <label for="profile-phone">
-                                        Phone number
-                                    </label>
-
-                                    <input
-                                        type="tel"
-                                        id="profile-phone"
-                                        name="phone"
-                                        placeholder="+91 XXXXX XXXXX"
-                                        autocomplete="tel"
-                                        data-profile-phone
-                                    >
-
+                                    <label for="profile-name">Display name</label>
+                                    <input type="text" id="profile-name" name="name" placeholder="Your full name" autocomplete="name" data-profile-name readonly>
                                 </div>
 
+                                <div class="form-group">
+                                    <label for="profile-email">Email address</label>
+                                    <input type="email" id="profile-email" name="email" placeholder="you@example.com" autocomplete="email" data-profile-email readonly>
+                                    <small class="form-help">Your email address is managed through your account login.</small>
+                                </div>
 
-                                <!-- Address -->
+                                <div class="form-group">
+                                    <label for="profile-phone">Phone number</label>
+                                    <input type="tel" id="profile-phone" name="phone" placeholder="+91 XXXXX XXXXX" autocomplete="tel" data-profile-phone>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="profile-country">Country</label>
+                                    <input type="text" id="profile-country" name="country" autocomplete="country-name" data-profile-country>
+                                </div>
+
                                 <div class="form-group account-form-full">
+                                    <label for="profile-address">Address</label>
+                                    <textarea id="profile-address" name="address" rows="4" placeholder="Enter your delivery address" autocomplete="street-address" data-profile-address></textarea>
+                                </div>
 
-                                    <label for="profile-address">
-                                        Address
-                                    </label>
+                                <div class="form-group">
+                                    <label for="profile-city">City</label>
+                                    <input type="text" id="profile-city" name="city" autocomplete="address-level2" data-profile-city>
+                                </div>
 
-                                    <textarea
-                                        id="profile-address"
-                                        name="address"
-                                        rows="4"
-                                        placeholder="Enter your delivery address"
-                                        autocomplete="street-address"
-                                        data-profile-address
-                                    ></textarea>
+                                <div class="form-group">
+                                    <label for="profile-state">State</label>
+                                    <input type="text" id="profile-state" name="state" autocomplete="address-level1" data-profile-state>
+                                </div>
 
+                                <div class="form-group">
+                                    <label for="profile-postal">PIN / Postal code</label>
+                                    <input type="text" id="profile-postal" name="postalCode" autocomplete="postal-code" data-profile-postal>
                                 </div>
 
                             </div>

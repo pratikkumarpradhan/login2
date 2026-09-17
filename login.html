@@ -2,19 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>Login | ProjectKart</title>
-
-    <meta
-        name="description"
-        content="Sign in to your ProjectKart account."
-    >
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sign in to your ProjectKart account.">
+    <meta name="theme-color" content="#07090d">
+    <title>Login — ProjectKart</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/base.css">
@@ -23,906 +17,240 @@
     <link rel="stylesheet" href="css/mobile-menu.css">
     <link rel="stylesheet" href="css/buttons.css">
     <link rel="stylesheet" href="css/forms.css">
-    <link rel="stylesheet" href="css/account.css">
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/auth-page.css">
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/responsive.css">
 </head>
-
-<body>
-
-    <!-- =========================================================
-         NAVBAR
-    ========================================================== -->
-
-    <header class="site-header">
-
-        <nav class="navbar">
-
-            <div class="container navbar-inner">
-
-                <a href="index.html" class="navbar-logo">
-                    <span class="navbar-logo-mark">P</span>
-
-                    <span class="navbar-logo-text">
-                        Project<span>Kart</span>
-                    </span>
-                </a>
-
-
-                <div class="navbar-nav">
-
-                    <a href="index.html">
-                        Home
-                    </a>
-
-                    <a href="shop.html">
-                        Shop
-                    </a>
-
-                    <a href="categories.html">
-                        Categories
-                    </a>
-
-                    <a href="project-kits.html">
-                        Project Kits
-                    </a>
-
-                    <a href="about.html">
-                        About
-                    </a>
-
-                    <a href="contact.html">
-                        Contact
-                    </a>
-
-                </div>
-
-
-                <div class="navbar-actions">
-
-                    <!-- Search -->
-                    <form
-                        class="navbar-search"
-                        data-search-form
-                        autocomplete="off"
-                    >
-
-                        <span class="navbar-search-icon">
-
-                            <svg
-                                width="18"
-                                height="18"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <circle
-                                    cx="11"
-                                    cy="11"
-                                    r="7"
-                                    stroke="currentColor"
-                                    stroke-width="1.8"
-                                />
-
-                                <path
-                                    d="M16.5 16.5L21 21"
-                                    stroke="currentColor"
-                                    stroke-width="1.8"
-                                    stroke-linecap="round"
-                                />
-                            </svg>
-
-                        </span>
-
-                        <input
-                            type="search"
-                            placeholder="Search products..."
-                            aria-label="Search products"
-                            data-search-input
-                        >
-
-                        <div
-                            class="navbar-search-results"
-                            data-search-results
-                        ></div>
-
-                    </form>
-
-
-                    <!-- Account -->
-                    <div class="navbar-account">
-
-                        <button
-                            type="button"
-                            class="navbar-icon-button"
-                            data-account-toggle
-                            aria-label="Account"
-                            aria-expanded="false"
-                        >
-
-                            <svg
-                                width="20"
-                                height="20"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <circle
-                                    cx="12"
-                                    cy="8"
-                                    r="3.5"
-                                    stroke="currentColor"
-                                    stroke-width="1.7"
-                                />
-
-                                <path
-                                    d="M5 20C5.7 16.8 8.2 15 12 15C15.8 15 18.3 16.8 19 20"
-                                    stroke="currentColor"
-                                    stroke-width="1.7"
-                                    stroke-linecap="round"
-                                />
-                            </svg>
-
-                        </button>
-
-
-                        <div
-                            class="navbar-account-dropdown"
-                            data-account-dropdown
-                        >
-
-                            <div
-                                class="navbar-account-user"
-                                data-navbar-user
-                            >
-
-                                <strong>
-                                    My Account
-                                </strong>
-
-                                <span data-navbar-user-email>
-                                    Sign in to your account
-                                </span>
-
-                            </div>
-
-
-                            <div class="navbar-account-links">
-
-                                <a href="account.html">
-                                    My Account
-                                </a>
-
-                                <a href="cart.html">
-                                    My Cart
-                                </a>
-
-                                <a
-                                    href="login.html"
-                                    data-navbar-login
-                                >
-                                    Login
-                                </a>
-
-                                <button
-                                    type="button"
-                                    data-navbar-logout
-                                    hidden
-                                >
-                                    Logout
-                                </button>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- Cart -->
-                    <a
-                        href="cart.html"
-                        class="navbar-cart"
-                        aria-label="Shopping cart"
-                    >
-
-                        <svg
-                            width="21"
-                            height="21"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-
-                            <path
-                                d="M3 4H5L7.2 15.2C7.4 16.2 8.3 17 9.4 17H18.2C19.2 17 20.1 16.3 20.4 15.3L22 9H6"
-                                stroke="currentColor"
-                                stroke-width="1.7"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                            />
-
-                            <circle
-                                cx="9"
-                                cy="20"
-                                r="1.2"
-                                fill="currentColor"
-                            />
-
-                            <circle
-                                cx="18"
-                                cy="20"
-                                r="1.2"
-                                fill="currentColor"
-                            />
-
-                        </svg>
-
-                        <span
-                            class="navbar-cart-count"
-                            data-cart-count
-                        >
-                            0
-                        </span>
-
-                    </a>
-
-
-                    <!-- Mobile Menu -->
-                    <button
-                        type="button"
-                        class="navbar-menu-toggle"
-                        data-menu-toggle
-                        aria-label="Open menu"
-                        aria-expanded="false"
-                    >
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
-
-                </div>
-
-            </div>
-
-        </nav>
-
-
-        <!-- Mobile Menu -->
-        <div
-            class="mobile-menu"
-            data-mobile-menu
-        >
-
-            <div class="mobile-menu-header">
-
-                <a
-                    href="index.html"
-                    class="navbar-logo"
-                >
-
-                    <span class="navbar-logo-mark">
-                        P
-                    </span>
-
-                    <span class="navbar-logo-text">
-                        Project<span>Kart</span>
-                    </span>
-
-                </a>
-
-
-                <button
-                    type="button"
-                    class="mobile-menu-close"
-                    data-menu-close
-                    aria-label="Close menu"
-                >
-                    &times;
-                </button>
-
-            </div>
-
-
-            <div class="mobile-menu-links">
-
-                <a href="index.html">
-                    Home
-                </a>
-
-                <a href="shop.html">
-                    Shop
-                </a>
-
-                <a href="categories.html">
-                    Categories
-                </a>
-
-                <a href="project-kits.html">
-                    Project Kits
-                </a>
-
-                <a href="about.html">
-                    About
-                </a>
-
-                <a href="contact.html">
-                    Contact
-                </a>
-
-                <a
-                    href="account.html"
-                    class="active"
-                >
-                    My Account
-                </a>
-
-                <a href="cart.html">
-                    Cart
-                </a>
-
-            </div>
-
+<body class="home-page page-auth">
+
+    <div class="page-loader" id="pageLoader" aria-hidden="true">
+        <div class="page-loader__inner">
+            <div class="page-loader__logo">PK</div>
+            <div class="page-loader__line"><span></span></div>
         </div>
+    </div>
 
-
-        <div
-            class="mobile-menu-overlay"
-            data-mobile-overlay
-        ></div>
-
+    <header class="site-header" id="siteHeader">
+        <div class="navbar">
+            <a href="index.html" class="brand" aria-label="ProjectKart Home">
+                <span class="brand__mark">PK</span>
+                <span class="brand__name">
+                    <span class="brand__project">Project</span><span class="brand__kart">Kart</span>
+                </span>
+                <sup class="brand__version">/01</sup>
+            </a>
+            <nav class="main-navigation" aria-label="Primary navigation">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="shop.html" class="nav-link">Shop</a>
+                <a href="categories.html" class="nav-link">Categories</a>
+                <a href="project-kits.html" class="nav-link">Project Kits</a>
+                <a href="shop.html?deal=true" class="nav-link">Deals</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </nav>
+            <div class="navbar__actions">
+                <form class="navbar-search" id="navbarSearch" role="search">
+                    <button type="submit" class="navbar-search__button" aria-label="Search">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <circle cx="11" cy="11" r="6.5"></circle>
+                            <path d="M16 16L21 21"></path>
+                        </svg>
+                    </button>
+                    <input type="search" id="globalSearchInput" name="search" placeholder="Search components" autocomplete="off">
+                </form>
+                <a href="login.html" class="navbar-icon-button" aria-label="Account">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="12" cy="8" r="3.2"></circle>
+                        <path d="M5.5 20c.8-3.3 3-5 6.5-5s5.7 1.7 6.5 5"></path>
+                    </svg>
+                </a>
+                <a href="cart.html" class="navbar-icon-button navbar-cart" aria-label="Shopping cart">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M5 8.5h14l-1 11H6l-1-11Z"></path>
+                        <path d="M8.5 9V6.8a3.5 3.5 0 0 1 7 0V9"></path>
+                    </svg>
+                    <span class="cart-count" id="cartCount" data-cart-count>0</span>
+                </a>
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" type="button" data-mobile-menu-button aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileMenu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
     </header>
 
-
-    <!-- =========================================================
-         LOGIN
-    ========================================================== -->
+    <div class="mobile-menu" id="mobileMenu" data-mobile-menu aria-hidden="true">
+        <div class="mobile-menu__backdrop"></div>
+        <aside class="mobile-menu__panel">
+            <div class="mobile-menu__top">
+                <a href="index.html" class="mobile-menu__brand">
+                    <span class="brand__mark">PK</span>
+                    <span class="brand__name"><span class="brand__project">Project</span><span class="brand__kart">Kart</span></span>
+                </a>
+                <button type="button" class="mobile-menu__close" id="mobileMenuClose" aria-label="Close navigation">×</button>
+            </div>
+            <nav class="mobile-navigation" aria-label="Mobile navigation">
+                <a href="index.html" class="mobile-nav-link"><span>Home</span><span>01</span></a>
+                <a href="shop.html" class="mobile-nav-link"><span>Shop</span><span>02</span></a>
+                <a href="categories.html" class="mobile-nav-link"><span>Categories</span><span>03</span></a>
+                <a href="project-kits.html" class="mobile-nav-link"><span>Project Kits</span><span>04</span></a>
+                <a href="shop.html?deal=true" class="mobile-nav-link"><span>Deals</span><span>05</span></a>
+                <a href="about.html" class="mobile-nav-link"><span>About</span><span>06</span></a>
+                <a href="contact.html" class="mobile-nav-link"><span>Contact</span><span>07</span></a>
+            </nav>
+            <div class="mobile-menu__bottom">
+                <a href="login.html">Account</a>
+                <a href="cart.html">Cart <span id="mobileCartCount" data-cart-count>0</span></a>
+            </div>
+        </aside>
+    </div>
 
     <main>
-
-        <section class="auth-section">
-
-            <div class="container">
-
-                <div class="auth-layout">
-
-                    <!-- Left Side -->
-                    <div class="auth-intro">
-
-                        <span class="eyebrow">
-                            WELCOME BACK
-                        </span>
-
-                        <h1>
-                            Build something
-                            <span>amazing.</span>
-                        </h1>
-
-                        <p>
-                            Sign in to manage your account, track your
-                            orders and keep your ProjectKart experience
-                            in one place.
-                        </p>
-
-
-                        <div class="auth-benefits">
-
-                            <div class="auth-benefit">
-
-                                <div class="auth-benefit-icon">
-
-                                    <svg
-                                        width="20"
-                                        height="20"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-
-                                        <path
-                                            d="M5 12L10 17L19 7"
-                                            stroke="currentColor"
-                                            stroke-width="1.8"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                        />
-
-                                    </svg>
-
-                                </div>
-
-                                <span>
-                                    Track your orders
-                                </span>
-
-                            </div>
-
-
-                            <div class="auth-benefit">
-
-                                <div class="auth-benefit-icon">
-
-                                    <svg
-                                        width="20"
-                                        height="20"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-
-                                        <path
-                                            d="M12 3L19 6V11C19 15.5 16.1 19 12 21C7.9 19 5 15.5 5 11V6L12 3Z"
-                                            stroke="currentColor"
-                                            stroke-width="1.6"
-                                            stroke-linejoin="round"
-                                        />
-
-                                    </svg>
-
-                                </div>
-
-                                <span>
-                                    Secure account
-                                </span>
-
-                            </div>
-
-
-                            <div class="auth-benefit">
-
-                                <div class="auth-benefit-icon">
-
-                                    <svg
-                                        width="20"
-                                        height="20"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-
-                                        <path
-                                            d="M4 7H20"
-                                            stroke="currentColor"
-                                            stroke-width="1.6"
-                                            stroke-linecap="round"
-                                        />
-
-                                        <path
-                                            d="M4 12H20"
-                                            stroke="currentColor"
-                                            stroke-width="1.6"
-                                            stroke-linecap="round"
-                                        />
-
-                                        <path
-                                            d="M4 17H14"
-                                            stroke="currentColor"
-                                            stroke-width="1.6"
-                                            stroke-linecap="round"
-                                        />
-
-                                    </svg>
-
-                                </div>
-
-                                <span>
-                                    Faster checkout
-                                </span>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- Login Card -->
-                    <div class="auth-card">
-
-                        <div class="auth-card-header">
-
-                            <div class="auth-card-logo">
-                                P
-                            </div>
-
+        <section class="auth-shell">
+            <div class="section-container auth-shell__grid">
+                <div class="auth-copy">
+                    <span class="auth-copy__eyebrow">WELCOME BACK</span>
+                    <h1>Sign in to keep building.</h1>
+                    <p>Access your ProjectKart account to track orders, save details and pick up where you left off.</p>
+                    <div class="auth-points">
+                        <div class="auth-point">
+                            <span>✓</span>
                             <div>
-
-                                <h2>
-                                    Sign in
-                                </h2>
-
-                                <p>
-                                    Access your ProjectKart account
-                                </p>
-
+                                <strong>Track orders</strong>
+                                <small>See purchase status in one place.</small>
                             </div>
-
                         </div>
-
-
-                        <!-- Login Form -->
-                        <form
-                            class="auth-form"
-                            data-login-form
-                            novalidate
-                        >
-
-                            <!-- Email -->
-                            <div class="form-group">
-
-                                <label for="login-email">
-                                    Email Address
-                                </label>
-
-                                <input
-                                    id="login-email"
-                                    name="email"
-                                    type="email"
-                                    class="form-input"
-                                    placeholder="you@example.com"
-                                    autocomplete="email"
-                                    required
-                                    data-login-email
-                                >
-
+                        <div class="auth-point">
+                            <span>✓</span>
+                            <div>
+                                <strong>Faster checkout</strong>
+                                <small>Keep your delivery details ready.</small>
                             </div>
-
-
-                            <!-- Password -->
-                            <div class="form-group">
-
-                                <div class="form-label-row">
-
-                                    <label for="login-password">
-                                        Password
-                                    </label>
-
-                                    <a
-                                        href="#"
-                                        data-forgot-password
-                                    >
-                                        Forgot password?
-                                    </a>
-
-                                </div>
-
-
-                                <div class="password-input-wrapper">
-
-                                    <input
-                                        id="login-password"
-                                        name="password"
-                                        type="password"
-                                        class="form-input"
-                                        placeholder="Enter your password"
-                                        autocomplete="current-password"
-                                        required
-                                        data-login-password
-                                    >
-
-                                    <button
-                                        type="button"
-                                        class="password-toggle"
-                                        data-password-toggle
-                                        aria-label="Show password"
-                                    >
-
-                                        <svg
-                                            class="password-eye-open"
-                                            width="20"
-                                            height="20"
-                                            viewBox="0 0 24 24"
-                                            fill="none"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
-
-                                            <path
-                                                d="M2.5 12C4.3 8.3 7.5 6 12 6C16.5 6 19.7 8.3 21.5 12C19.7 15.7 16.5 18 12 18C7.5 18 4.3 15.7 2.5 12Z"
-                                                stroke="currentColor"
-                                                stroke-width="1.5"
-                                            />
-
-                                            <circle
-                                                cx="12"
-                                                cy="12"
-                                                r="2.5"
-                                                stroke="currentColor"
-                                                stroke-width="1.5"
-                                            />
-
-                                        </svg>
-
-
-                                        <svg
-                                            class="password-eye-closed"
-                                            width="20"
-                                            height="20"
-                                            viewBox="0 0 24 24"
-                                            fill="none"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            hidden
-                                        >
-
-                                            <path
-                                                d="M3 3L21 21"
-                                                stroke="currentColor"
-                                                stroke-width="1.6"
-                                                stroke-linecap="round"
-                                            />
-
-                                            <path
-                                                d="M10.6 6.2C11.05 6.07 11.52 6 12 6C16.5 6 19.7 8.3 21.5 12C20.8 13.4 19.8 14.6 18.6 15.5"
-                                                stroke="currentColor"
-                                                stroke-width="1.5"
-                                                stroke-linecap="round"
-                                            />
-
-                                            <path
-                                                d="M6.2 8.2C4.7 9.1 3.5 10.4 2.5 12C4.3 15.7 7.5 18 12 18C13.1 18 14.1 17.8 15 17.5"
-                                                stroke="currentColor"
-                                                stroke-width="1.5"
-                                                stroke-linecap="round"
-                                            />
-
-                                        </svg>
-
-                                    </button>
-
-                                </div>
-
-                            </div>
-
-
-                            <!-- Remember -->
-                            <div class="auth-form-options">
-
-                                <label class="checkbox-label">
-
-                                    <input
-                                        type="checkbox"
-                                        name="remember"
-                                        data-login-remember
-                                    >
-
-                                    <span>
-                                        Remember me
-                                    </span>
-
-                                </label>
-
-                            </div>
-
-
-                            <!-- Submit -->
-                            <button
-                                type="submit"
-                                class="btn btn-primary btn-full auth-submit"
-                                data-login-submit
-                            >
-
-                                <span data-login-submit-text>
-                                    Sign In
-                                </span>
-
-                                <span
-                                    class="button-spinner"
-                                    data-login-spinner
-                                    hidden
-                                ></span>
-
-                            </button>
-
-
-                            <!-- Error / Status -->
-                            <div
-                                class="form-status"
-                                data-login-status
-                                role="status"
-                                aria-live="polite"
-                            ></div>
-
-                        </form>
-
-
-                        <!-- Divider -->
-                        <div class="auth-divider">
-                            <span>
-                                New to ProjectKart?
-                            </span>
                         </div>
-
-
-                        <!-- Register -->
-                        <a
-                            href="register.html"
-                            class="btn btn-secondary btn-full"
-                        >
-                            Create an Account
-                        </a>
-
-
-                        <p class="auth-terms">
-                            By continuing, you agree to our
-                            <a href="#">
-                                Terms &amp; Conditions
-                            </a>
-                            and
-                            <a href="#">
-                                Privacy Policy
-                            </a>.
-                        </p>
-
+                        <div class="auth-point">
+                            <span>✓</span>
+                            <div>
+                                <strong>Secure account</strong>
+                                <small>Email and password, stored in Firebase.</small>
+                            </div>
+                        </div>
                     </div>
-
                 </div>
 
+                <div class="auth-panel">
+                    <div data-login-view>
+                        <h2>Sign in</h2>
+                        <p class="auth-panel__intro">Use the email and password for your ProjectKart account.</p>
+                        <form class="auth-form" data-login-form novalidate>
+                            <div class="form-group">
+                                <label for="login-email">Email address</label>
+                                <input id="login-email" name="email" type="email" class="auth-input" placeholder="you@example.com" autocomplete="email" required data-login-email>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-label-row">
+                                    <label for="login-password">Password</label>
+                                    <a href="#" data-forgot-password>Forgot password?</a>
+                                </div>
+                                <div class="auth-field">
+                                    <input id="login-password" name="password" type="password" class="auth-input" placeholder="Enter your password" autocomplete="current-password" required data-login-password>
+                                    <button type="button" class="password-toggle" data-password-toggle="#login-password" aria-label="Show password">Show</button>
+                                </div>
+                            </div>
+                            <div class="auth-actions">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="remember" data-login-remember>
+                                    <span>Remember me</span>
+                                </label>
+                            </div>
+                            <div class="form-status" data-login-status role="status" aria-live="polite"></div>
+                            <button type="submit" class="button button-primary auth-submit" data-login-submit>
+                                <span data-login-submit-text>Sign in</span>
+                            </button>
+                        </form>
+                        <div class="auth-switch">
+                            <span>New to ProjectKart?</span>
+                            <a href="register.html">Create an account</a>
+                        </div>
+                    </div>
+
+                    <div data-forgot-panel hidden>
+                        <h2>Reset password</h2>
+                        <p class="auth-panel__intro">Enter your email and we will send a reset link if an account exists.</p>
+                        <form class="auth-form" data-forgot-form novalidate>
+                            <div class="form-group">
+                                <label for="forgot-email">Email address</label>
+                                <input id="forgot-email" type="email" class="auth-input" placeholder="you@example.com" autocomplete="email" data-forgot-email required>
+                            </div>
+                            <div class="form-status" data-forgot-status role="status" aria-live="polite"></div>
+                            <button type="submit" class="button button-primary auth-submit">Send reset link</button>
+                            <div class="auth-switch">
+                                <a href="#" data-forgot-back>Back to sign in</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-
         </section>
-
     </main>
 
-
-    <!-- =========================================================
-         FOOTER
-    ========================================================== -->
-
-    <footer class="site-footer">
-
-        <div class="container">
-
+    <footer class="site-footer" id="siteFooter">
+        <div class="section-container">
             <div class="footer-main">
-
                 <div class="footer-brand">
-
-                    <a
-                        href="index.html"
-                        class="navbar-logo"
-                    >
-
-                        <span class="navbar-logo-mark">
-                            P
-                        </span>
-
-                        <span class="navbar-logo-text">
-                            Project<span>Kart</span>
-                        </span>
-
+                    <a href="index.html" class="footer-brand__logo">
+                        <span class="brand__mark">PK</span>
+                        <span class="brand__name"><span class="brand__project">Project</span><span class="brand__kart">Kart</span></span>
                     </a>
-
-                    <p>
-                        Your destination for electronics,
-                        project components and DIY innovation.
-                    </p>
-
-
-                    <div class="footer-socials">
-
-                        <a href="#" aria-label="Instagram">
-                            Instagram
-                        </a>
-
-                        <a href="#" aria-label="Facebook">
-                            Facebook
-                        </a>
-
-                        <a href="#" aria-label="YouTube">
-                            YouTube
-                        </a>
-
-                    </div>
-
+                    <p class="footer-brand__tagline">Build. Create. Innovate.</p>
+                    <p class="footer-brand__description">A considered component store for people who make things real.</p>
+                    <div class="footer-status"><span></span>Online + offline maker hub</div>
                 </div>
-
-
                 <div class="footer-column">
-
-                    <h3>
-                        Shop
-                    </h3>
-
-                    <a href="shop.html">
-                        All Products
-                    </a>
-
-                    <a href="categories.html">
-                        Categories
-                    </a>
-
-                    <a href="project-kits.html">
-                        Project Kits
-                    </a>
-
+                    <span class="footer-column__title">SHOP</span>
+                    <nav>
+                        <a href="category.html?category=arduino-boards">Arduino &amp; Boards</a>
+                        <a href="category.html?category=sensors">Sensors</a>
+                        <a href="category.html?category=modules">Modules</a>
+                        <a href="category.html?category=batteries-power">Batteries</a>
+                        <a href="project-kits.html">Project Kits</a>
+                    </nav>
                 </div>
-
-
                 <div class="footer-column">
-
-                    <h3>
-                        Company
-                    </h3>
-
-                    <a href="about.html">
-                        About Us
-                    </a>
-
-                    <a href="contact.html">
-                        Contact
-                    </a>
-
+                    <span class="footer-column__title">COMPANY</span>
+                    <nav>
+                        <a href="about.html">About Us</a>
+                        <a href="contact.html">Contact</a>
+                        <a href="contact.html#faq">Help &amp; FAQ</a>
+                        <a href="contact.html#shipping">Shipping</a>
+                        <a href="contact.html#returns">Returns</a>
+                    </nav>
                 </div>
-
-
-                <div class="footer-column">
-
-                    <h3>
-                        Account
-                    </h3>
-
-                    <a href="account.html">
-                        My Account
-                    </a>
-
-                    <a href="cart.html">
-                        Shopping Cart
-                    </a>
-
-                    <a href="login.html">
-                        Login
-                    </a>
-
+                <div class="footer-support">
+                    <span class="footer-column__title">NEED A HAND?</span>
+                    <h3>Tell us what you're building.</h3>
+                    <p>We'll help you find the right starting point.</p>
+                    <a href="contact.html" class="footer-support__link">Get project help <span>↗</span></a>
                 </div>
-
             </div>
-
-
             <div class="footer-bottom">
-
-                <p>
-                    &copy;
-                    <span data-current-year></span>
-                    ProjectKart. All rights reserved.
-                </p>
-
-
-                <div class="footer-bottom-links">
-
-                    <a href="#">
-                        Privacy Policy
-                    </a>
-
-                    <a href="#">
-                        Terms &amp; Conditions
-                    </a>
-
+                <p>© 2024 ProjectKart. Demo storefront — replace business details before launch.</p>
+                <div class="footer-bottom__links">
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                    <a href="contact.html"><span class="footer-location-icon">⌖</span> Visit us offline</a>
                 </div>
-
             </div>
-
         </div>
-
     </footer>
 
-
-    <!-- =========================================================
-         SCRIPTS
-    ========================================================== -->
+    <button class="scroll-top-button" id="scrollTopButton" type="button" aria-label="Scroll to top"><span>↑</span></button>
+    <div class="toast-container" id="toastContainer" aria-live="polite"></div>
 
     <script type="module" src="js/page.js"></script>
     <script type="module" src="js/navbar.js"></script>
-    <script type="module" src="js/search.js"></script>
+    <script type="module" src="js/cart.js"></script>
+    <script type="module" src="js/auth-page.js"></script>
     <script type="module" src="js/login.js"></script>
-
-    <script>
-        const yearElement = document.querySelector(
-            "[data-current-year]"
-        );
-
-        if (yearElement) {
-            yearElement.textContent = new Date().getFullYear();
-        }
-    </script>
-
 </body>
 </html>

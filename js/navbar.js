@@ -75,32 +75,68 @@ function setupMobileMenu() {
     });
 }
 
+function accountDestination(user) {
+    return user ? "account.html" : "login.html";
+}
+
+function accountIconControls() {
+    return document.querySelectorAll(
+        "a.navbar-icon-button[aria-label='Account'], a.navbar-account, [data-account-link], .mobile-menu__bottom a[href$='account.html'], .mobile-menu__bottom a[href$='login.html'], .mobile-menu-links a[href$='account.html'], .mobile-menu-links a[href$='login.html']"
+    );
+}
+
+function applyAccountNavigation(user) {
+    const href = accountDestination(user);
+
+    accountIconControls().forEach(element => {
+        if (element.tagName === "A") {
+            element.setAttribute("href", href);
+        }
+        element.dataset.authHref = href;
+    });
+
+    document.querySelectorAll("[data-account-toggle]").forEach(button => {
+        button.dataset.authHref = href;
+    });
+}
+
 function setupAccountMenu() {
     const button = document.querySelector("[data-account-button], [data-account-toggle]");
     const menu = document.querySelector("[data-account-menu], [data-account-dropdown], .navbar-account-dropdown");
 
-    if (!button || !menu) {
-        return;
+    applyAccountNavigation(null);
+
+    document.querySelectorAll("[data-account-toggle], [data-account-button]").forEach(trigger => {
+        trigger.addEventListener("click", event => {
+            const href = trigger.dataset.authHref || "login.html";
+
+            if (menu && trigger.getAttribute("data-keep-dropdown") === "true") {
+                event.stopPropagation();
+                menu.classList.toggle("is-open");
+                return;
+            }
+
+            event.preventDefault();
+            event.stopPropagation();
+            window.location.href = href;
+        });
+    });
+
+    if (menu) {
+        document.addEventListener("click", () => {
+            menu.classList.remove("is-open");
+        });
     }
-
-    button.addEventListener("click", event => {
-        event.stopPropagation();
-        menu.classList.toggle("is-open");
-    });
-
-    document.addEventListener("click", () => {
-        menu.classList.remove("is-open");
-    });
 }
 
 function setupLogout() {
-    document.querySelectorAll("[data-logout], [data-navbar-logout], [data-auth-action='logout']").forEach(button => {
+    document.querySelectorAll("[data-logout], [data-logout-button], [data-navbar-logout], [data-auth-action='logout']").forEach(button => {
         button.addEventListener("click", async event => {
             event.preventDefault();
 
             try {
-                const auth = await import("./auth.js");
-                await auth.logoutUser();
+                const authApi = await import("./auth.js");
+                await authApi.logoutUser();
                 window.location.href = "index.html";
             } catch (error) {
                 console.error("Logout failed:", error);
@@ -112,6 +148,8 @@ function setupLogout() {
 function setupAuthState() {
     import("./auth.js").then(({ watchUser }) => {
         watchUser(user => {
+            applyAccountNavigation(user);
+
             document.querySelectorAll("[data-auth-logged-out], [data-navbar-login]").forEach(element => {
                 element.hidden = Boolean(user);
                 element.classList.toggle("hidden", Boolean(user));
@@ -122,11 +160,18 @@ function setupAuthState() {
                 element.classList.toggle("hidden", !user);
             });
 
+            const label = user?.displayName || user?.email || "Account";
+
             document.querySelectorAll("[data-user-name]").forEach(element => {
-                element.textContent = user?.displayName || user?.email || "Account";
+                element.textContent = label;
+            });
+
+            document.querySelectorAll("[data-navbar-user-email]").forEach(element => {
+                element.textContent = user?.email || "Sign in to your account";
             });
         });
     }).catch(error => {
         console.error("Navbar auth state error:", error);
+        applyAccountNavigation(null);
     });
 }

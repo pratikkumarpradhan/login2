@@ -25,12 +25,33 @@
    FORM ROW
 ---------------------------------------------------------------- */
 
-.form-row {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px;
+.form-row .form-group + .form-group {
+    margin-top: 0;
+}
 
-    width: 100%;
+.form-row + .form-row,
+.form-row + .form-group,
+.form-group + .form-row {
+    margin-top: 18px;
+}
+
+.form-status {
+    min-height: 1.2em;
+    color: #8b97ab;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.form-status[data-status="error"] {
+    color: #ff8b8b;
+}
+
+.form-status[data-status="success"] {
+    color: #7ddea0;
+}
+
+.form-status[data-status="info"] {
+    color: #8eb4ff;
 }
 
 .form-row--three {

@@ -1,224 +1,242 @@
-import { registerUser } from "./auth.js";
+import { getAuthErrorMessage, registerUser, whenAuthReady } from "./auth.js";
 import { showToast, setLoading } from "./utils.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  initRegisterPage();
+    initRegisterPage();
 });
 
 function initRegisterPage() {
-  const form = document.querySelector("[data-register-form]");
+    const form = document.querySelector("[data-register-form]");
 
-  if (!form) return;
+    if (!form) {
+        return;
+    }
 
-  form.addEventListener("submit", handleRegister);
+    whenAuthReady().then(user => {
+        if (user) {
+            window.location.replace("account.html");
+        }
+    }).catch(error => {
+        console.error("Register auth check error:", error);
+    });
 
-  setupPasswordToggle();
-  setupPasswordStrength();
+    form.addEventListener("submit", handleRegister);
+    setupPasswordToggle();
+    setupPasswordStrength();
 }
 
 async function handleRegister(event) {
-  event.preventDefault();
+    event.preventDefault();
 
-  const form = event.currentTarget;
-  const button = form.querySelector('button[type="submit"]');
+    const form = event.currentTarget;
+    const button = form.querySelector("[data-register-submit], button[type='submit']");
+    const status = form.querySelector("[data-register-status]");
+    const values = readForm(form);
+    const error = validateRegistration(values, form);
 
-  const nameInput = form.querySelector("[data-register-name]");
-  const emailInput = form.querySelector("[data-register-email]");
-  const passwordInput = form.querySelector("[data-register-password]");
-  const confirmInput = form.querySelector("[data-register-confirm-password]");
-  const termsInput = form.querySelector("[data-register-terms]");
+    setStatus(status, "");
 
-  const name = nameInput?.value.trim() || "";
-  const email = emailInput?.value.trim() || "";
-  const password = passwordInput?.value || "";
-  const confirmPassword = confirmInput?.value || "";
+    if (error) {
+        showToast(error.message, "error");
+        setStatus(status, error.message, "error");
+        error.input?.focus();
+        return;
+    }
 
-  if (!name) {
-    showToast("Please enter your name.", "error");
-    nameInput?.focus();
-    return;
-  }
+    try {
+        setLoading(button, true, "Creating account...");
+        setStatus(status, "Creating your account...", "info");
 
-  if (name.length < 2) {
-    showToast("Your name must be at least 2 characters.", "error");
-    nameInput?.focus();
-    return;
-  }
+        await registerUser({
+            firstName: values.firstName,
+            lastName: values.lastName,
+            email: values.email,
+            phone: values.phone,
+            password: values.password,
+            address: values.address,
+            city: values.city,
+            state: values.state,
+            postalCode: values.postalCode,
+            country: values.country
+        });
 
-  if (!email) {
-    showToast("Please enter your email address.", "error");
-    emailInput?.focus();
-    return;
-  }
+        const message = "Your account has been created. Please verify your email address.";
+        setStatus(status, message, "success");
+        showToast(message, "success");
 
-  if (!isValidEmail(email)) {
-    showToast("Please enter a valid email address.", "error");
-    emailInput?.focus();
-    return;
-  }
+        window.setTimeout(() => {
+            window.location.href = "account.html";
+        }, 700);
+    } catch (err) {
+        console.error("Registration error:", err);
+        const message = getAuthErrorMessage(err, "Unable to create your account. Please try again.");
+        setStatus(status, message, "error");
+        showToast(message, "error");
+    } finally {
+        setLoading(button, false);
+    }
+}
 
-  if (!password) {
-    showToast("Please create a password.", "error");
-    passwordInput?.focus();
-    return;
-  }
+function readForm(form) {
+    const value = selector => form.querySelector(selector)?.value.trim() || "";
 
-  if (!isStrongPassword(password)) {
-    showToast(
-      "Password must be at least 8 characters and contain a letter and a number.",
-      "error"
-    );
-    passwordInput?.focus();
-    return;
-  }
+    return {
+        firstName: value("[data-register-first-name]") || splitName(value("[data-register-name]")).firstName,
+        lastName: value("[data-register-last-name]") || splitName(value("[data-register-name]")).lastName,
+        email: value("[data-register-email]").toLowerCase(),
+        phone: value("[data-register-phone]"),
+        password: form.querySelector("[data-register-password]")?.value || "",
+        confirmPassword: form.querySelector("[data-register-confirm-password]")?.value || "",
+        address: value("[data-register-address]"),
+        city: value("[data-register-city]"),
+        state: value("[data-register-state]"),
+        postalCode: value("[data-register-postal]"),
+        country: value("[data-register-country]") || "India",
+        terms: form.querySelector("[data-register-terms]")
+    };
+}
 
-  if (password !== confirmPassword) {
-    showToast("Passwords do not match.", "error");
-    confirmInput?.focus();
-    return;
-  }
+function splitName(name) {
+    const parts = name.split(/\s+/).filter(Boolean);
+    return {
+        firstName: parts[0] || "",
+        lastName: parts.slice(1).join(" ")
+    };
+}
 
-  if (termsInput && !termsInput.checked) {
-    showToast("Please accept the terms and conditions.", "error");
-    termsInput.focus();
-    return;
-  }
+function validateRegistration(values, form) {
+    const field = name => form.querySelector(`[data-register-${name}]`);
 
-  try {
-    setLoading(button, true, "Creating account...");
+    if (!values.firstName || values.firstName.length < 2) {
+        return { message: "Please enter your first name.", input: field("first-name") || field("name") };
+    }
 
-    await registerUser({
-      name,
-      email,
-      password
-    });
+    if (!values.lastName) {
+        return { message: "Please enter your last name.", input: field("last-name") || field("name") };
+    }
 
-    showToast("Account created successfully!", "success");
+    if (!values.email) {
+        return { message: "Please enter your email address.", input: field("email") };
+    }
 
-    setTimeout(() => {
-      window.location.href = "account.html";
-    }, 600);
-  } catch (error) {
-    console.error("Registration error:", error);
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
+        return { message: "Please enter a valid email address.", input: field("email") };
+    }
 
-    showToast(getRegisterErrorMessage(error), "error");
-  } finally {
-    setLoading(button, false);
-  }
+    if (!values.phone) {
+        return { message: "Please enter your phone number.", input: field("phone") };
+    }
+
+    if (!/^[+]?[\d\s-]{8,18}$/.test(values.phone) || values.phone.replace(/\D/g, "").length < 8) {
+        return { message: "Please enter a valid phone number.", input: field("phone") };
+    }
+
+    if (!values.password) {
+        return { message: "Please create a password.", input: field("password") };
+    }
+
+    if (!(values.password.length >= 8 && /[A-Za-z]/.test(values.password) && /\d/.test(values.password))) {
+        return {
+            message: "Password must be at least 8 characters and contain a letter and a number.",
+            input: field("password")
+        };
+    }
+
+    if (values.password !== values.confirmPassword) {
+        return { message: "Passwords do not match.", input: field("confirm-password") };
+    }
+
+    if (!values.address || values.address.length < 6) {
+        return { message: "Please enter your address.", input: field("address") };
+    }
+
+    if (!values.city) {
+        return { message: "Please enter your city.", input: field("city") };
+    }
+
+    if (!values.state) {
+        return { message: "Please enter your state.", input: field("state") };
+    }
+
+    if (!/^[A-Za-z0-9\s-]{3,12}$/.test(values.postalCode)) {
+        return { message: "Please enter a valid PIN / postal code.", input: field("postal") };
+    }
+
+    if (!values.country) {
+        return { message: "Please enter your country.", input: field("country") };
+    }
+
+    if (values.terms && !values.terms.checked) {
+        return { message: "Please accept the terms and conditions.", input: values.terms };
+    }
+
+    return null;
 }
 
 function setupPasswordToggle() {
-  document.querySelectorAll("[data-password-toggle]").forEach((toggle) => {
-    toggle.addEventListener("click", () => {
-      const targetSelector = toggle.getAttribute("data-password-toggle");
+    document.querySelectorAll("[data-password-toggle]").forEach(toggle => {
+        toggle.addEventListener("click", () => {
+            const targetSelector = toggle.getAttribute("data-password-toggle");
+            const input = (targetSelector && document.querySelector(targetSelector))
+                || toggle.closest(".form-input-wrapper, .password-input-wrapper")?.querySelector("input");
 
-      const input = document.querySelector(targetSelector);
+            if (!input) {
+                return;
+            }
 
-      if (!input) return;
-
-      const isPassword = input.type === "password";
-
-      input.type = isPassword ? "text" : "password";
-
-      toggle.setAttribute(
-        "aria-label",
-        isPassword ? "Hide password" : "Show password"
-      );
-
-      toggle.textContent = isPassword ? "Hide" : "Show";
+            const isPassword = input.type === "password";
+            input.type = isPassword ? "text" : "password";
+            toggle.setAttribute("aria-label", isPassword ? "Hide password" : "Show password");
+            toggle.textContent = isPassword ? "Hide" : "Show";
+        });
     });
-  });
 }
 
 function setupPasswordStrength() {
-  const passwordInput = document.querySelector(
-    "[data-register-password]"
-  );
+    const passwordInput = document.querySelector("[data-register-password]");
+    const strengthElement = document.querySelector("[data-password-strength]");
 
-  const strengthElement = document.querySelector(
-    "[data-password-strength]"
-  );
-
-  if (!passwordInput || !strengthElement) return;
-
-  passwordInput.addEventListener("input", () => {
-    const password = passwordInput.value;
-
-    if (!password) {
-      strengthElement.textContent = "";
-      strengthElement.removeAttribute("data-strength");
-      return;
+    if (!passwordInput || !strengthElement) {
+        return;
     }
 
-    const strength = getPasswordStrength(password);
+    passwordInput.addEventListener("input", () => {
+        const password = passwordInput.value;
 
-    strengthElement.textContent = strength.label;
-    strengthElement.setAttribute("data-strength", strength.level);
-  });
+        if (!password) {
+            strengthElement.textContent = "";
+            strengthElement.removeAttribute("data-strength");
+            return;
+        }
+
+        const strength = getPasswordStrength(password);
+        strengthElement.textContent = strength.label;
+        strengthElement.setAttribute("data-strength", strength.level);
+    });
 }
 
 function getPasswordStrength(password) {
-  let score = 0;
+    let score = 0;
+    if (password.length >= 8) score += 1;
+    if (password.length >= 12) score += 1;
+    if (/[a-z]/.test(password)) score += 1;
+    if (/[A-Z]/.test(password)) score += 1;
+    if (/[0-9]/.test(password)) score += 1;
+    if (/[^A-Za-z0-9]/.test(password)) score += 1;
 
-  if (password.length >= 8) score++;
-  if (password.length >= 12) score++;
-  if (/[a-z]/.test(password)) score++;
-  if (/[A-Z]/.test(password)) score++;
-  if (/[0-9]/.test(password)) score++;
-  if (/[^A-Za-z0-9]/.test(password)) score++;
-
-  if (score <= 2) {
-    return {
-      level: "weak",
-      label: "Weak password"
-    };
-  }
-
-  if (score <= 4) {
-    return {
-      level: "medium",
-      label: "Medium password"
-    };
-  }
-
-  return {
-    level: "strong",
-    label: "Strong password"
-  };
+    if (score <= 2) {
+        return { level: "weak", label: "Weak password" };
+    }
+    if (score <= 4) {
+        return { level: "medium", label: "Medium password" };
+    }
+    return { level: "strong", label: "Strong password" };
 }
 
-function isStrongPassword(password) {
-  return (
-    password.length >= 8 &&
-    /[A-Za-z]/.test(password) &&
-    /[0-9]/.test(password)
-  );
-}
-
-function isValidEmail(email) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
-
-function getRegisterErrorMessage(error) {
-  const code = error?.code || "";
-
-  switch (code) {
-    case "auth/email-already-in-use":
-      return "An account with this email already exists.";
-
-    case "auth/invalid-email":
-      return "Please enter a valid email address.";
-
-    case "auth/weak-password":
-      return "Please choose a stronger password.";
-
-    case "auth/operation-not-allowed":
-      return "Email registration is currently unavailable.";
-
-    case "auth/network-request-failed":
-      return "Network error. Please check your connection.";
-
-    default:
-      return "Unable to create your account. Please try again.";
-  }
+function setStatus(element, message, type = "") {
+    if (!element) {
+        return;
+    }
+    element.textContent = message;
+    element.dataset.status = type;
 }

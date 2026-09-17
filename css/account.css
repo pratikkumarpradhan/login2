@@ -12,6 +12,14 @@
     padding: var(--space-48) 0 var(--space-96);
 }
 
+.account-user-info small {
+    display: block;
+    margin-top: 6px;
+    color: var(--color-text-muted, #8b97ab);
+    font-size: 12px;
+    line-height: 1.4;
+}
+
 .account-page__container {
     max-width: var(--container-width);
     margin: 0 auto;

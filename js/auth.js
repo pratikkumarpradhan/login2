@@ -1,233 +1,173 @@
 /* =========================================================
    PROJECTKART
-   User Authentication
+   Authentication: login, register, logout, reset, listener
    ========================================================= */
 
-   import {
+import {
     createUserWithEmailAndPassword,
+    onAuthStateChanged,
+    sendEmailVerification,
+    sendPasswordResetEmail,
     signInWithEmailAndPassword,
     signOut,
-    onAuthStateChanged,
     updateProfile
 } from
 "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
 import {
-    doc,
-    setDoc,
-    getDoc,
-    serverTimestamp
-} from
-"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
-
-import {
-    auth,
-    db
+    auth
 } from "./firebase.js";
 
+import {
+    collectDeviceToken,
+    createUserProfile,
+    getUser,
+    syncSessionProfile
+} from "./user.js";
 
-/*
-|--------------------------------------------------------------------------
-| Register User
-|--------------------------------------------------------------------------
-*/
+let authResolved = false;
+let currentAuthUser = null;
+const authReadyWaiters = [];
 
-export async function registerUser({
-    name,
-    email,
-    password
-}) {
+function resolveAuthReady(user) {
+    currentAuthUser = user || null;
+    authResolved = true;
+    while (authReadyWaiters.length) {
+        authReadyWaiters.shift()(currentAuthUser);
+    }
+}
 
-    if (!name || !email || !password) {
-        throw new Error(
-            "Please fill in all required fields."
-        );
+onAuthStateChanged(auth, user => {
+    resolveAuthReady(user);
+});
+
+export function whenAuthReady() {
+    if (authResolved) {
+        return Promise.resolve(currentAuthUser);
     }
 
+    return new Promise(resolve => {
+        authReadyWaiters.push(resolve);
+    });
+}
 
-    if (password.length < 6) {
-        throw new Error(
-            "Password must contain at least 6 characters."
-        );
+export function getAuthErrorMessage(error, fallback = "Something went wrong. Please try again.") {
+    const code = error?.code || "";
+
+    switch (code) {
+        case "auth/email-already-in-use":
+            return "An account with this email already exists.";
+        case "auth/invalid-email":
+            return "Please enter a valid email address.";
+        case "auth/weak-password":
+            return "Please choose a stronger password.";
+        case "auth/invalid-credential":
+        case "auth/wrong-password":
+        case "auth/user-not-found":
+            return "Incorrect email or password.";
+        case "auth/user-disabled":
+            return "This account has been disabled.";
+        case "auth/too-many-requests":
+            return "Too many attempts. Please try again later.";
+        case "auth/network-request-failed":
+            return "Network error. Please check your connection.";
+        case "auth/missing-email":
+            return "Please enter your email address.";
+        case "auth/operation-not-allowed":
+            return "Email sign-in is currently unavailable.";
+        default:
+            return error?.message && !String(error.message).includes("Firebase")
+                ? error.message
+                : fallback;
+    }
+}
+
+export async function registerUser(formData) {
+    const firstName = String(formData.firstName || "").trim();
+    const lastName = String(formData.lastName || "").trim();
+    const email = String(formData.email || "").trim().toLowerCase();
+    const password = String(formData.password || "");
+    const displayName = `${firstName} ${lastName}`.trim();
+
+    if (!firstName || !lastName || !email || !password) {
+        throw new Error("Please fill in all required fields.");
     }
 
+    const credentials = await createUserWithEmailAndPassword(auth, email, password);
+    const user = credentials.user;
+    const deviceToken = await collectDeviceToken();
 
-    const credentials =
-        await createUserWithEmailAndPassword(
-            auth,
-            email,
-            password
-        );
+    if (displayName) {
+        try {
+            await updateProfile(user, { displayName });
+        } catch (error) {
+            console.error("Auth profile update error:", error);
+        }
+    }
 
+    await createUserProfile(user, {
+        ...formData,
+        firstName,
+        lastName,
+        displayName,
+        email,
+        deviceToken,
+        role: "user"
+    });
 
-    const user =
-        credentials.user;
+    try {
+        await sendEmailVerification(user);
+    } catch (error) {
+        console.error("Verification email error:", error);
+    }
 
-
-    /*
-    |--------------------------------------------------------------------------
-    | Firebase Auth Profile
-    |--------------------------------------------------------------------------
-    */
-
-    await updateProfile(
+    return {
         user,
-        {
-            displayName: name
-        }
-    );
-
-
-    /*
-    |--------------------------------------------------------------------------
-    | Firestore User Profile
-    |--------------------------------------------------------------------------
-    */
-
-    await setDoc(
-        doc(
-            db,
-            "users",
-            user.uid
-        ),
-        {
-            uid:
-                user.uid,
-
-            name:
-                name,
-
-            email:
-                email.toLowerCase(),
-
-            role:
-                "user",
-
-            createdAt:
-                serverTimestamp(),
-
-            updatedAt:
-                serverTimestamp()
-        }
-    );
-
-
-    return user;
+        profile: await getUser(user.uid)
+    };
 }
 
-
-/*
-|--------------------------------------------------------------------------
-| Login User
-|--------------------------------------------------------------------------
-*/
-
-export async function loginUser(
-    email,
-    password
-) {
-
+export async function loginUser(email, password) {
     if (!email || !password) {
-        throw new Error(
-            "Email and password are required."
-        );
+        throw new Error("Email and password are required.");
     }
 
+    const credentials = await signInWithEmailAndPassword(
+        auth,
+        String(email).trim(),
+        password
+    );
 
-    const credentials =
-        await signInWithEmailAndPassword(
-            auth,
-            email,
-            password
-        );
-
-
-    return credentials.user;
+    const profile = await syncSessionProfile(credentials.user);
+    return {
+        user: credentials.user,
+        profile
+    };
 }
-
-
-/*
-|--------------------------------------------------------------------------
-| Logout
-|--------------------------------------------------------------------------
-*/
 
 export async function logoutUser() {
-
     await signOut(auth);
-
-    window.location.href =
-        "index.html";
 }
 
+export async function resetPassword(email) {
+    const value = String(email || "").trim();
 
-/*
-|--------------------------------------------------------------------------
-| Current User Listener
-|--------------------------------------------------------------------------
-*/
+    if (!value) {
+        throw new Error("Please enter your email address.");
+    }
 
-export function watchUser(
-    callback
-) {
-
-    return onAuthStateChanged(
-        auth,
-        callback
-    );
+    await sendPasswordResetEmail(auth, value);
+    return true;
 }
 
-
-/*
-|--------------------------------------------------------------------------
-| Get Current User
-|--------------------------------------------------------------------------
-*/
+export function watchUser(callback) {
+    return onAuthStateChanged(auth, callback);
+}
 
 export function getCurrentUser() {
-
     return auth.currentUser;
 }
 
-
-/*
-|--------------------------------------------------------------------------
-| Get Firestore User Profile
-|--------------------------------------------------------------------------
-*/
-
-export async function getUserProfile(
-    uid
-) {
-
-    if (!uid) {
-        return null;
-    }
-
-
-    const userReference =
-        doc(
-            db,
-            "users",
-            uid
-        );
-
-
-    const snapshot =
-        await getDoc(
-            userReference
-        );
-
-
-    if (!snapshot.exists()) {
-        return null;
-    }
-
-
-    return {
-        id:
-            snapshot.id,
-
-        ...snapshot.data()
-    };
+export async function getUserProfile(uid) {
+    return getUser(uid);
 }
