@@ -27,6 +27,10 @@
     >
     <link
         rel="stylesheet"
+        href="../css/admin/admin-shell.css"
+    >
+    <link
+        rel="stylesheet"
         href="../css/admin/admin-sidebar.css"
     >
     <link
@@ -391,16 +395,16 @@
                     <div>
 
                         <span class="admin-eyebrow">
-                            PRODUCT CATALOG
+                            COMPONENT CATALOG
                         </span>
 
                         <h2 data-product-heading>
-                            Create a new product
+                            Add component
                         </h2>
 
                         <p data-product-description>
-                            Add product information, pricing,
-                            inventory and images.
+                            Enter component details, pricing, stock and
+                            upload an image to Cloudinary.
                         </p>
 
                     </div>
@@ -452,7 +456,7 @@
                                         </span>
 
                                         <h3>
-                                            Product details
+                                            Component details
                                         </h3>
 
                                         <p>
@@ -472,7 +476,7 @@
                                     <div class="admin-form-group">
 
                                         <label for="product-name">
-                                            Product name
+                                            Component name
                                             <span>*</span>
                                         </label>
 
@@ -578,7 +582,7 @@
                                         </span>
 
                                         <h3>
-                                            Product pricing
+                                            Component pricing
                                         </h3>
 
                                         <p>
@@ -600,28 +604,29 @@
                                         <div class="admin-form-group">
 
                                             <label for="product-price">
-                                                Selling price
+                                                Price (₹)
                                                 <span>*</span>
                                             </label>
 
-                                            <div
-                                                class="admin-input-prefix"
-                                            >
-                                                <span>
-                                                    ₹
-                                                </span>
-
+                                            <div class="admin-price-field">
+                                                <span class="admin-price-field__symbol" aria-hidden="true">₹</span>
                                                 <input
                                                     type="number"
                                                     id="product-price"
                                                     name="price"
-                                                    placeholder="0.00"
+                                                    class="admin-price-field__input"
+                                                    placeholder="e.g. 499"
                                                     min="0"
-                                                    step="0.01"
+                                                    step="1"
+                                                    inputmode="decimal"
                                                     data-product-price
                                                     required
                                                 >
                                             </div>
+
+                                            <small>
+                                                Enter the selling price customers will see.
+                                            </small>
 
                                         </div>
 
@@ -630,30 +635,26 @@
                                         <div class="admin-form-group">
 
                                             <label for="product-old-price">
-                                                Original price
+                                                Old price (₹)
                                             </label>
 
-                                            <div
-                                                class="admin-input-prefix"
-                                            >
-                                                <span>
-                                                    ₹
-                                                </span>
-
+                                            <div class="admin-price-field">
+                                                <span class="admin-price-field__symbol" aria-hidden="true">₹</span>
                                                 <input
                                                     type="number"
                                                     id="product-old-price"
                                                     name="oldPrice"
+                                                    class="admin-price-field__input"
                                                     placeholder="Optional"
                                                     min="0"
-                                                    step="0.01"
+                                                    step="1"
+                                                    inputmode="decimal"
                                                     data-product-old-price
                                                 >
                                             </div>
 
                                             <small>
-                                                Optional. Used to show
-                                                a discounted price.
+                                                Optional. Shown as a crossed-out price when higher than the selling price.
                                             </small>
 
                                         </div>
@@ -671,9 +672,10 @@
                                                 type="number"
                                                 id="product-stock"
                                                 name="stock"
-                                                placeholder="0"
+                                                placeholder="e.g. 25"
                                                 min="0"
                                                 step="1"
+                                                inputmode="numeric"
                                                 data-product-stock
                                                 required
                                             >
@@ -685,7 +687,7 @@
                                         <div class="admin-form-group">
 
                                             <label for="product-badge">
-                                                Product badge
+                                                Badge
                                             </label>
 
                                             <select
@@ -811,16 +813,17 @@
                                     <div>
 
                                         <span class="admin-eyebrow">
-                                            PRODUCT MEDIA
+                                            COMPONENT MEDIA
                                         </span>
 
                                         <h3>
-                                            Product image
+                                            Component image
                                         </h3>
 
                                         <p>
-                                            Add the main image customers
-                                            will see on the product card.
+                                            Upload to Cloudinary. Only the
+                                            secure image URL is stored in
+                                            Firestore.
                                         </p>
 
                                     </div>
@@ -881,7 +884,7 @@
                                             </div>
 
                                             <strong>
-                                                Upload product image
+                                                Upload to Cloudinary
                                             </strong>
 
                                             <p>
@@ -923,8 +926,8 @@
                                         >
 
                                         <small>
-                                            You can use an existing hosted
-                                            image URL instead of uploading.
+                                            Filled automatically after a
+                                            successful Cloudinary upload.
                                         </small>
 
                                     </div>
@@ -1261,7 +1264,7 @@
                             >
 
                                 <span data-product-save-text>
-                                    Save product
+                                    Save component
                                 </span>
 
                                 <span

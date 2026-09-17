@@ -123,8 +123,14 @@
                 <h1>Shop components</h1>
                 <p>Find the components you need for your next project, from first prototype to final build.</p>
                 <div class="shop-hero__pills">
-                    <span class="shop-pill" id="shopSkuCount">16 DEMO SKUS</span>
+                    <span class="shop-pill" id="shopSkuCount">LOADING…</span>
                     <span class="shop-pill">DESIGNED FOR MAKERS</span>
+                    <span class="shop-pill" id="shopActiveCategory" hidden></span>
+                </div>
+                <div class="shop-hero__actions" data-admin-only hidden>
+                    <a href="admin/product-edit.html" class="button button-primary shop-add-component">
+                        + Add Component
+                    </a>
                 </div>
             </div>
         </section>
@@ -178,9 +184,10 @@
                 <div>
                     <div class="shop-toolbar">
                         <div class="shop-count">
-                            Showing <strong id="shopShownCount">16</strong> of <span id="shopTotalCount">16</span> products
+                            Showing <strong id="shopShownCount">0</strong> of <span id="shopTotalCount">0</span> components
                         </div>
                         <div class="shop-toolbar__right">
+                            <a href="admin/product-edit.html" class="button button-primary shop-add-component shop-add-component--toolbar" data-admin-only hidden>+ Add Component</a>
                             <select id="shopSort" class="shop-sort-select" aria-label="Sort products">
                                 <option value="featured">Featured</option>
                                 <option value="price-low">Price: Low to High</option>
@@ -201,8 +208,8 @@
 
                     <div class="product-grid" id="shopProductGrid"></div>
                     <div class="shop-empty" id="shopEmpty">
-                        <h3>No products found</h3>
-                        <p>Try another search or clear your filters.</p>
+                        <h3>No components available yet.</h3>
+                        <p>New components will appear here once they are published.</p>
                     </div>
                 </div>
             </div>
@@ -226,10 +233,10 @@
                 <div class="footer-column">
                     <span class="footer-column__title">SHOP</span>
                     <nav>
-                        <a href="category.html?category=arduino-boards">Arduino &amp; Boards</a>
-                        <a href="category.html?category=sensors">Sensors</a>
-                        <a href="category.html?category=modules">Modules</a>
-                        <a href="category.html?category=batteries-power">Batteries</a>
+                        <a href="shop.html?category=arduino-boards">Arduino &amp; Boards</a>
+                        <a href="shop.html?category=sensors">Sensors</a>
+                        <a href="shop.html?category=modules">Modules</a>
+                        <a href="shop.html?category=batteries-power">Batteries</a>
                         <a href="project-kits.html">Project Kits</a>
                     </nav>
                 </div>
@@ -262,6 +269,20 @@
     </footer>
 
     <button class="scroll-top-button" id="scrollTopButton" type="button" aria-label="Scroll to top"><span>↑</span></button>
+
+    <a
+        href="admin/product-edit.html"
+        class="shop-fab"
+        id="shopAdminFab"
+        data-admin-only
+        data-shop-admin-fab
+        hidden
+        aria-label="Add Component"
+    >
+        <span class="shop-fab__icon" aria-hidden="true">+</span>
+        <span class="shop-fab__label">Add Component</span>
+    </a>
+
     <div class="toast-container" id="toastContainer" aria-live="polite"></div>
 
     <script type="module" src="js/page.js"></script>

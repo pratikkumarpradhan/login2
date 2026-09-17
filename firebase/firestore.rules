@@ -88,7 +88,7 @@ service cloud.firestore {
     }
 
     match /admins/{adminId} {
-      allow read: if isAdmin();
+      allow read: if isAdmin() || (isSignedIn() && request.auth.uid == adminId);
       allow create, update, delete: if isAdmin();
     }
 
@@ -110,6 +110,11 @@ service cloud.firestore {
     }
 
     match /products/{productId} {
+      allow read: if isAdmin() || resource.data.active == true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /components/{componentId} {
       allow read: if isAdmin() || resource.data.active == true;
       allow create, update, delete: if isAdmin();
     }

@@ -132,6 +132,9 @@ export function addToCart(
            image:
                product.image || "",
 
+           category:
+               product.category || product.categoryName || "",
+
            quantity:
                amount,
 

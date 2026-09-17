@@ -477,7 +477,7 @@ function renderCategoriesPage(categories) {
         const count = String(category.itemCount).padStart(2, "0");
         const href = category.id === "project-kits"
             ? "project-kits.html"
-            : `category.html?category=${encodeURIComponent(category.id)}`;
+            : `shop.html?category=${encodeURIComponent(category.id)}`;
         const tags = category.tags.map(tag =>
             `<span>${escapeHTML(tag)}</span>`
         ).join("");
