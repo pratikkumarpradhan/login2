@@ -23,6 +23,10 @@ import {
     db
 } from "./firebase.js";
 
+import {
+    FALLBACK_KITS
+} from "./catalog-data.js";
+
 
 const KITS = "kits";
 
@@ -35,41 +39,57 @@ const KITS = "kits";
 
 export async function getKits() {
 
-    const reference =
-        collection(
-            db,
-            KITS
+    try {
+
+        const reference =
+            collection(
+                db,
+                KITS
+            );
+
+        const kitQuery =
+            query(
+                reference,
+
+                where(
+                    "active",
+                    "==",
+                    true
+                ),
+
+                orderBy(
+                    "order",
+                    "asc"
+                )
+            );
+
+        const snapshot =
+            await getDocs(
+                kitQuery
+            );
+
+        if (snapshot.empty) {
+            return FALLBACK_KITS;
+        }
+
+        return snapshot.docs.map(
+            document => ({
+                id:
+                    document.id,
+
+                ...document.data()
+            })
         );
 
-    const kitQuery =
-        query(
-            reference,
+    } catch (error) {
 
-            where(
-                "active",
-                "==",
-                true
-            ),
-
-            orderBy(
-                "order",
-                "asc"
-            )
+        console.error(
+            "Unable to load kits from Firebase:",
+            error
         );
 
-    const snapshot =
-        await getDocs(
-            kitQuery
-        );
-
-    return snapshot.docs.map(
-        document => ({
-            id:
-                document.id,
-
-            ...document.data()
-        })
-    );
+        return FALLBACK_KITS;
+    }
 }
 
 
@@ -412,4 +432,60 @@ export async function setKitActive(
     );
 
     return true;
+}
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    initKitsPage();
+});
+
+
+async function initKitsPage() {
+    const grid = document.querySelector("[data-kits-grid]");
+
+    if (!grid) {
+        return;
+    }
+
+    const loading = document.querySelector("[data-kits-loading]");
+    const empty = document.querySelector("[data-kits-empty]");
+
+    try {
+        const kits = await getKits();
+        renderKitsPage(kits);
+    } catch (error) {
+        console.error("Kits page error:", error);
+        renderKitsPage(FALLBACK_KITS);
+    } finally {
+        if (loading) {
+            loading.hidden = true;
+            loading.style.display = "none";
+        }
+        if (empty) {
+            empty.hidden = Boolean(grid.children.length);
+        }
+    }
+}
+
+
+function renderKitsPage(kits) {
+    const grid = document.querySelector("[data-kits-grid]");
+
+    if (!grid) {
+        return;
+    }
+
+    grid.innerHTML = kits.map(kit => `
+        <a href="project-kits.html?kit=${encodeURIComponent(kit.id)}" class="kit-card">
+            <div class="kit-card__image">
+                <img src="${kit.image || ""}" alt="${kit.name}" loading="lazy">
+            </div>
+            <div class="kit-card__overlay"></div>
+            <div class="kit-card__content">
+                <span class="kit-card__difficulty">${(kit.difficulty || "").toUpperCase()}</span>
+                <h3>${kit.name}</h3>
+                <span class="kit-card__link">View kit →</span>
+            </div>
+        </a>
+    `).join("");
 }

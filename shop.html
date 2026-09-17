@@ -2,1417 +2,271 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <meta
-        name="description"
-        content="ProjectKart — maker-grade electronics components, sensors, modules, boards, batteries and project essentials."
-    >
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Shop electronics components at ProjectKart — boards, sensors, modules and project essentials.">
     <meta name="theme-color" content="#07090d">
-
     <title>Shop Components — ProjectKart</title>
-
-    <!-- =========================================================
-         GLOBAL CSS
-    ========================================================== -->
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/typography.css">
-
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/mobile-menu.css">
     <link rel="stylesheet" href="css/buttons.css">
     <link rel="stylesheet" href="css/forms.css">
-
-    <link rel="stylesheet" href="css/sections.css">
     <link rel="stylesheet" href="css/product-cards.css">
-
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/shop.css">
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/responsive.css">
 </head>
+<body class="home-page page-shop">
 
-<body class="page-shop">
-
-    <!-- =========================================================
-         PAGE LOADER
-    ========================================================== -->
-
-    <div
-        class="page-loader"
-        id="pageLoader"
-        aria-hidden="true"
-    >
+    <div class="page-loader" id="pageLoader" aria-hidden="true">
         <div class="page-loader__inner">
-            <span class="page-loader__mark">PK</span>
-            <span class="page-loader__line"></span>
+            <div class="page-loader__logo">PK</div>
+            <div class="page-loader__line"><span></span></div>
         </div>
     </div>
-
-
-    <!-- =========================================================
-         NAVBAR
-    ========================================================== -->
 
     <header class="site-header" id="siteHeader">
-
-        <nav
-            class="navbar"
-            aria-label="Main navigation"
-        >
-
-            <!-- BRAND -->
-
-            <a
-                href="index.html"
-                class="navbar__brand"
-                aria-label="ProjectKart home"
-            >
-
-                <span class="navbar__logo">
-                    PK
+        <div class="navbar">
+            <a href="index.html" class="brand" aria-label="ProjectKart Home">
+                <span class="brand__mark">PK</span>
+                <span class="brand__name">
+                    <span class="brand__project">Project</span><span class="brand__kart">Kart</span>
                 </span>
-
-                <span class="navbar__brand-name">
-                    <span class="navbar__brand-project">
-                        Project
-                    </span>
-                    <span class="navbar__brand-kart">
-                        Kart
-                    </span>
-                </span>
-
-                <span class="navbar__version">
-                    /01
-                </span>
-
+                <sup class="brand__version">/01</sup>
             </a>
 
-
-            <!-- DESKTOP NAVIGATION -->
-
-            <div class="navbar__nav">
-
-                <a
-                    href="index.html"
-                    class="navbar__link"
-                >
-                    Home
-                </a>
-
-                <a
-                    href="shop.html"
-                    class="navbar__link is-active"
-                    aria-current="page"
-                >
-                    Shop
-                </a>
-
-                <a
-                    href="categories.html"
-                    class="navbar__link"
-                >
-                    Categories
-                </a>
-
-                <a
-                    href="project-kits.html"
-                    class="navbar__link"
-                >
-                    Project Kits
-                </a>
-
-                <a
-                    href="#"
-                    class="navbar__link"
-                    data-coming-soon
-                >
-                    Deals
-                </a>
-
-                <a
-                    href="about.html"
-                    class="navbar__link"
-                >
-                    About
-                </a>
-
-                <a
-                    href="contact.html"
-                    class="navbar__link"
-                >
-                    Contact
-                </a>
-
-            </div>
-
-
-            <!-- NAV ACTIONS -->
+            <nav class="main-navigation" aria-label="Primary navigation">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="shop.html" class="nav-link active" aria-current="page">Shop</a>
+                <a href="categories.html" class="nav-link">Categories</a>
+                <a href="project-kits.html" class="nav-link">Project Kits</a>
+                <a href="shop.html?deal=true" class="nav-link">Deals</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </nav>
 
             <div class="navbar__actions">
-
-                <!-- SEARCH -->
-
-                <button
-                    class="navbar-search"
-                    id="navbarSearchButton"
-                    type="button"
-                    aria-label="Search components"
-                    aria-expanded="false"
-                >
-
-                    <span class="navbar-search__icon">
-                        <svg
-                            viewBox="0 0 24 24"
-                            aria-hidden="true"
-                        >
-                            <circle
-                                cx="11"
-                                cy="11"
-                                r="6.5"
-                            ></circle>
-
-                            <path
-                                d="M16 16l5 5"
-                            ></path>
+                <form class="navbar-search" id="navbarSearch" role="search">
+                    <button type="submit" class="navbar-search__button" aria-label="Search">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <circle cx="11" cy="11" r="6.5"></circle>
+                            <path d="M16 16L21 21"></path>
                         </svg>
-                    </span>
+                    </button>
+                    <input type="search" id="globalSearchInput" name="search" placeholder="Search components" autocomplete="off">
+                </form>
 
-                    <span class="navbar-search__text">
-                        Search components
-                    </span>
-
-                </button>
-
-
-                <!-- ACCOUNT -->
-
-                <a
-                    href="account.html"
-                    class="navbar__icon-button"
-                    aria-label="Account"
-                >
-
-                    <svg
-                        viewBox="0 0 24 24"
-                        aria-hidden="true"
-                    >
-                        <circle
-                            cx="12"
-                            cy="8"
-                            r="3.2"
-                        ></circle>
-
-                        <path
-                            d="M5.5 20c.8-3.2 3-5 6.5-5s5.7 1.8 6.5 5"
-                        ></path>
+                <a href="account.html" class="navbar-icon-button" aria-label="Account">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="12" cy="8" r="3.2"></circle>
+                        <path d="M5.5 20c.8-3.3 3-5 6.5-5s5.7 1.7 6.5 5"></path>
                     </svg>
-
                 </a>
 
-
-                <!-- CART -->
-
-                <a
-                    href="cart.html"
-                    class="navbar__icon-button navbar-cart"
-                    aria-label="Shopping cart"
-                >
-
-                    <svg
-                        viewBox="0 0 24 24"
-                        aria-hidden="true"
-                    >
-                        <path
-                            d="M5 8h14l-1 11H6L5 8Z"
-                        ></path>
-
-                        <path
-                            d="M9 8V6.5a3 3 0 0 1 6 0V8"
-                        ></path>
+                <a href="cart.html" class="navbar-icon-button navbar-cart" aria-label="Shopping cart">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M5 8.5h14l-1 11H6l-1-11Z"></path>
+                        <path d="M8.5 9V6.8a3.5 3.5 0 0 1 7 0V9"></path>
                     </svg>
-
-                    <span
-                        class="navbar-cart__count"
-                        id="cartCount"
-                    >
-                        0
-                    </span>
-
+                    <span class="cart-count" id="cartCount" data-cart-count>0</span>
                 </a>
 
-
-                <!-- MOBILE MENU -->
-
-                <button
-                    class="navbar__menu-toggle"
-                    id="mobileMenuToggle"
-                    type="button"
-                    aria-label="Open navigation menu"
-                    aria-expanded="false"
-                    aria-controls="mobileMenu"
-                >
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" type="button" data-mobile-menu-button aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileMenu">
                     <span></span>
                     <span></span>
                     <span></span>
                 </button>
-
             </div>
-
-        </nav>
-
+        </div>
     </header>
 
-
-    <!-- =========================================================
-         MOBILE MENU
-    ========================================================== -->
-
-    <div
-        class="mobile-menu"
-        id="mobileMenu"
-        aria-hidden="true"
-    >
-
-        <div class="mobile-menu__backdrop" data-mobile-close></div>
-
-        <div class="mobile-menu__panel">
-
+    <div class="mobile-menu" id="mobileMenu" data-mobile-menu aria-hidden="true">
+        <div class="mobile-menu__backdrop"></div>
+        <aside class="mobile-menu__panel">
             <div class="mobile-menu__top">
-
-                <a
-                    href="index.html"
-                    class="mobile-menu__brand"
-                >
-
-                    <span class="mobile-menu__logo">
-                        PK
+                <a href="index.html" class="mobile-menu__brand">
+                    <span class="brand__mark">PK</span>
+                    <span class="brand__name">
+                        <span class="brand__project">Project</span><span class="brand__kart">Kart</span>
                     </span>
-
-                    <span>
-                        <strong>Project</strong><span>Kart</span>
-                    </span>
-
                 </a>
-
-                <button
-                    type="button"
-                    class="mobile-menu__close"
-                    id="mobileMenuClose"
-                    aria-label="Close menu"
-                >
-                    ×
-                </button>
-
+                <button type="button" class="mobile-menu__close" id="mobileMenuClose" aria-label="Close navigation">×</button>
             </div>
-
-
-            <div class="mobile-menu__links">
-
-                <a href="index.html">
-                    <span>01</span>
-                    Home
-                </a>
-
-                <a
-                    href="shop.html"
-                    class="is-active"
-                >
-                    <span>02</span>
-                    Shop
-                </a>
-
-                <a href="categories.html">
-                    <span>03</span>
-                    Categories
-                </a>
-
-                <a href="project-kits.html">
-                    <span>04</span>
-                    Project Kits
-                </a>
-
-                <a href="#">
-                    <span>05</span>
-                    Deals
-                </a>
-
-                <a href="about.html">
-                    <span>06</span>
-                    About
-                </a>
-
-                <a href="contact.html">
-                    <span>07</span>
-                    Contact
-                </a>
-
-            </div>
-
-
+            <nav class="mobile-navigation" aria-label="Mobile navigation">
+                <a href="index.html" class="mobile-nav-link"><span>Home</span><span>01</span></a>
+                <a href="shop.html" class="mobile-nav-link active"><span>Shop</span><span>02</span></a>
+                <a href="categories.html" class="mobile-nav-link"><span>Categories</span><span>03</span></a>
+                <a href="project-kits.html" class="mobile-nav-link"><span>Project Kits</span><span>04</span></a>
+                <a href="shop.html?deal=true" class="mobile-nav-link"><span>Deals</span><span>05</span></a>
+                <a href="about.html" class="mobile-nav-link"><span>About</span><span>06</span></a>
+                <a href="contact.html" class="mobile-nav-link"><span>Contact</span><span>07</span></a>
+            </nav>
             <div class="mobile-menu__bottom">
-
-                <a href="account.html">
-                    Account
-                </a>
-
-                <a href="cart.html">
-                    Cart
-                    <span id="mobileCartCount">0</span>
-                </a>
-
+                <a href="account.html">Account</a>
+                <a href="cart.html">Cart <span id="mobileCartCount" data-cart-count>0</span></a>
             </div>
-
-        </div>
-
+        </aside>
     </div>
 
-
-    <!-- =========================================================
-         SEARCH OVERLAY
-    ========================================================== -->
-
-    <div
-        class="search-overlay"
-        id="searchOverlay"
-        aria-hidden="true"
-    >
-
-        <div class="search-overlay__backdrop" data-search-close></div>
-
-        <div class="search-overlay__panel">
-
-            <div class="search-overlay__header">
-
-                <span class="eyebrow">
-                    PROJECTKART / SEARCH
-                </span>
-
-                <button
-                    type="button"
-                    class="search-overlay__close"
-                    id="searchOverlayClose"
-                    aria-label="Close search"
-                >
-                    ×
-                </button>
-
-            </div>
-
-            <div class="search-overlay__input-wrap">
-
-                <svg
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                >
-                    <circle
-                        cx="11"
-                        cy="11"
-                        r="6.5"
-                    ></circle>
-
-                    <path d="M16 16l5 5"></path>
-                </svg>
-
-                <input
-                    type="search"
-                    id="globalSearchInput"
-                    placeholder="Search Arduino, sensors, modules..."
-                    autocomplete="off"
-                >
-
-                <span class="search-overlay__shortcut">
-                    ESC
-                </span>
-
-            </div>
-
-            <div
-                class="search-overlay__results"
-                id="globalSearchResults"
-            >
-
-                <div class="search-overlay__empty">
-                    <span>⌕</span>
-                    <p>
-                        Search across ProjectKart components.
-                    </p>
+    <main>
+        <section class="shop-hero">
+            <div class="section-container">
+                <span class="shop-hero__eyebrow">THE CATALOGUE / 01</span>
+                <h1>Shop components</h1>
+                <p>Find the components you need for your next project, from first prototype to final build.</p>
+                <div class="shop-hero__pills">
+                    <span class="shop-pill" id="shopSkuCount">16 DEMO SKUS</span>
+                    <span class="shop-pill">DESIGNED FOR MAKERS</span>
                 </div>
-
             </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- =========================================================
-         MAIN
-    ========================================================== -->
-
-    <main id="mainContent">
-
-
-        <!-- =====================================================
-             SHOP HERO
-        ====================================================== -->
-
-        <section class="shop-hero section">
-
-            <div class="container">
-
-                <div class="shop-hero__content">
-
-                    <div
-                        class="eyebrow reveal"
-                        data-reveal
-                    >
-                        PROJECTKART / COMPONENTS
-                    </div>
-
-                    <h1
-                        class="shop-hero__title reveal reveal-delay-1"
-                        data-reveal
-                    >
-                        Everything
-                        <span>to build.</span>
-                    </h1>
-
-                    <p
-                        class="shop-hero__description reveal reveal-delay-2"
-                        data-reveal
-                    >
-                        Boards, sensors, modules, power,
-                        displays and the small essentials
-                        behind your next project.
-                    </p>
-
-                </div>
-
-
-                <!-- SHOP META -->
-
-                <div
-                    class="shop-hero__meta reveal reveal-delay-3"
-                    data-reveal
-                >
-
-                    <div class="shop-hero__meta-item">
-
-                        <span class="shop-hero__meta-dot"></span>
-
-                        <span>
-                            Maker-grade components
-                        </span>
-
-                    </div>
-
-                    <span class="shop-hero__meta-divider"></span>
-
-                    <div class="shop-hero__meta-item">
-
-                        <span>
-                            Online + offline ordering
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
         </section>
 
+        <section class="shop-workspace">
+            <div class="section-container shop-layout">
+                <aside class="shop-sidebar">
+                    <div class="shop-sidebar__top">
+                        <span class="shop-sidebar__label">Filter by</span>
+                        <button type="button" class="shop-clear" id="shopClear">Clear all</button>
+                    </div>
 
-        <!-- =====================================================
-             SHOP WORKSPACE
-        ====================================================== -->
-
-        <section class="shop-workspace section">
-
-            <div class="container">
-
-
-                <!-- =================================================
-                     SHOP TOOLBAR
-                ================================================== -->
-
-                <div
-                    class="shop-toolbar reveal"
-                    data-reveal
-                >
-
-                    <div class="shop-toolbar__left">
-
-                        <button
-                            type="button"
-                            class="shop-filter-toggle"
-                            id="shopFilterToggle"
-                            aria-expanded="false"
-                        >
-
-                            <svg
-                                viewBox="0 0 24 24"
-                                aria-hidden="true"
-                            >
-                                <path d="M4 6h16"></path>
-                                <path d="M7 12h10"></path>
-                                <path d="M10 18h4"></path>
+                    <div class="shop-field">
+                        <label for="shopSearch">Search</label>
+                        <div class="shop-search">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <circle cx="11" cy="11" r="6.5"></circle>
+                                <path d="M16 16L21 21"></path>
                             </svg>
-
-                            <span>
-                                Filters
-                            </span>
-
-                            <span
-                                class="shop-filter-toggle__count"
-                                id="filterCount"
-                            >
-                                0
-                            </span>
-
-                        </button>
-
-
-                        <div class="shop-results-count">
-
-                            <span id="productCount">
-                                0
-                            </span>
-
-                            <span>
-                                components
-                            </span>
-
+                            <input id="shopSearch" type="search" placeholder="Arduino, sensor..." autocomplete="off">
                         </div>
-
                     </div>
 
+                    <div class="shop-field">
+                        <label for="shopCategory">Category</label>
+                        <select id="shopCategory" class="shop-select">
+                            <option value="">All categories</option>
+                        </select>
+                    </div>
 
-                    <div class="shop-toolbar__right">
+                    <div class="shop-field">
+                        <label class="shop-field__label" for="shopMaxPrice">
+                            Max price
+                            <span class="shop-price-value" id="shopMaxPriceValue">₹2800</span>
+                        </label>
+                        <input id="shopMaxPrice" class="shop-range" type="range" min="50" max="2800" step="10" value="2800">
+                    </div>
 
-                        <div class="shop-sort">
+                    <label class="shop-check">
+                        <input id="shopInStock" type="checkbox">
+                        In stock only
+                    </label>
 
-                            <label
-                                for="sortProducts"
-                                class="shop-sort__label"
-                            >
-                                Sort
-                            </label>
+                    <div class="shop-sidebar__promo">
+                        <strong>Buying for a project?</strong>
+                        <p>Browse our kits for a considered set of compatible parts.</p>
+                        <a href="project-kits.html">See project kits →</a>
+                    </div>
+                </aside>
 
-                            <select
-                                id="sortProducts"
-                                class="shop-sort__select"
-                            >
-
-                                <option value="featured">
-                                    Featured
-                                </option>
-
-                                <option value="newest">
-                                    Newest
-                                </option>
-
-                                <option value="price-low">
-                                    Price: Low to High
-                                </option>
-
-                                <option value="price-high">
-                                    Price: High to Low
-                                </option>
-
-                                <option value="name">
-                                    Name
-                                </option>
-
+                <div>
+                    <div class="shop-toolbar">
+                        <div class="shop-count">
+                            Showing <strong id="shopShownCount">16</strong> of <span id="shopTotalCount">16</span> products
+                        </div>
+                        <div class="shop-toolbar__right">
+                            <select id="shopSort" class="shop-sort-select" aria-label="Sort products">
+                                <option value="featured">Featured</option>
+                                <option value="price-low">Price: Low to High</option>
+                                <option value="price-high">Price: High to Low</option>
+                                <option value="name">Name</option>
+                                <option value="deals">Deals</option>
                             </select>
-
+                            <div class="shop-view">
+                                <button type="button" class="is-active" data-shop-view="grid" aria-label="Grid view">
+                                    <svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7"></rect><rect x="13" y="4" width="7" height="7"></rect><rect x="4" y="13" width="7" height="7"></rect><rect x="13" y="13" width="7" height="7"></rect></svg>
+                                </button>
+                                <button type="button" data-shop-view="list" aria-label="List view">
+                                    <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+                                </button>
+                            </div>
                         </div>
-
                     </div>
 
-                </div>
-
-
-                <!-- =================================================
-                     FILTER PANEL
-                ================================================== -->
-
-                <div
-                    class="shop-filter-panel"
-                    id="shopFilterPanel"
-                    aria-hidden="true"
-                >
-
-                    <div class="shop-filter-panel__grid">
-
-
-                        <!-- CATEGORY -->
-
-                        <div class="filter-group">
-
-                            <div class="filter-group__heading">
-                                Category
-                            </div>
-
-                            <div
-                                class="filter-options"
-                                id="categoryFilters"
-                            >
-
-                                <label class="filter-option">
-
-                                    <input
-                                        type="radio"
-                                        name="category"
-                                        value="all"
-                                        checked
-                                    >
-
-                                    <span class="filter-option__box"></span>
-
-                                    <span>
-                                        All components
-                                    </span>
-
-                                </label>
-
-                            </div>
-
-                        </div>
-
-
-                        <!-- AVAILABILITY -->
-
-                        <div class="filter-group">
-
-                            <div class="filter-group__heading">
-                                Availability
-                            </div>
-
-                            <div class="filter-options">
-
-                                <label class="filter-option">
-
-                                    <input
-                                        type="checkbox"
-                                        id="filterInStock"
-                                    >
-
-                                    <span class="filter-option__box"></span>
-
-                                    <span>
-                                        In stock
-                                    </span>
-
-                                </label>
-
-                                <label class="filter-option">
-
-                                    <input
-                                        type="checkbox"
-                                        id="filterFeatured"
-                                    >
-
-                                    <span class="filter-option__box"></span>
-
-                                    <span>
-                                        Featured
-                                    </span>
-
-                                </label>
-
-                            </div>
-
-                        </div>
-
-
-                        <!-- PRICE -->
-
-                        <div class="filter-group">
-
-                            <div class="filter-group__heading">
-                                Price range
-                            </div>
-
-                            <div class="price-filter">
-
-                                <div class="price-filter__fields">
-
-                                    <div class="price-field">
-
-                                        <span>₹</span>
-
-                                        <input
-                                            type="number"
-                                            id="minPrice"
-                                            placeholder="Min"
-                                            min="0"
-                                        >
-
-                                    </div>
-
-                                    <span class="price-filter__dash">
-                                        —
-                                    </span>
-
-                                    <div class="price-field">
-
-                                        <span>₹</span>
-
-                                        <input
-                                            type="number"
-                                            id="maxPrice"
-                                            placeholder="Max"
-                                            min="0"
-                                        >
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-
-                        <!-- ACTIONS -->
-
-                        <div class="filter-group filter-group--actions">
-
-                            <button
-                                type="button"
-                                class="button button--secondary button--small"
-                                id="clearFilters"
-                            >
-                                Clear filters
-                            </button>
-
-                            <button
-                                type="button"
-                                class="button button--primary button--small"
-                                id="applyFilters"
-                            >
-                                Apply filters
-                                <span class="button__arrow">→</span>
-                            </button>
-
-                        </div>
-
+                    <div class="product-grid" id="shopProductGrid"></div>
+                    <div class="shop-empty" id="shopEmpty">
+                        <h3>No products found</h3>
+                        <p>Try another search or clear your filters.</p>
                     </div>
-
                 </div>
-
-
-                <!-- =================================================
-                     ACTIVE FILTERS
-                ================================================== -->
-
-                <div
-                    class="active-filters"
-                    id="activeFilters"
-                    aria-live="polite"
-                ></div>
-
-
-                <!-- =================================================
-                     PRODUCT GRID
-                ================================================== -->
-
-                <div
-                    class="product-grid product-grid--shop"
-                    id="shopProductGrid"
-                    aria-live="polite"
-                >
-
-                    <!-- =================================================
-                         SKELETON CARDS
-                    ================================================== -->
-
-                    <article class="product-card product-card--skeleton">
-
-                        <div class="product-card__media">
-                            <div class="skeleton-block"></div>
-                        </div>
-
-                        <div class="product-card__body">
-
-                            <div class="skeleton-line skeleton-line--small"></div>
-
-                            <div class="skeleton-line"></div>
-
-                            <div class="skeleton-line skeleton-line--medium"></div>
-
-                            <div class="skeleton-bottom">
-
-                                <div class="skeleton-line skeleton-line--price"></div>
-
-                                <div class="skeleton-square"></div>
-
-                            </div>
-
-                        </div>
-
-                    </article>
-
-
-                    <article class="product-card product-card--skeleton">
-
-                        <div class="product-card__media">
-                            <div class="skeleton-block"></div>
-                        </div>
-
-                        <div class="product-card__body">
-
-                            <div class="skeleton-line skeleton-line--small"></div>
-
-                            <div class="skeleton-line"></div>
-
-                            <div class="skeleton-line skeleton-line--medium"></div>
-
-                            <div class="skeleton-bottom">
-
-                                <div class="skeleton-line skeleton-line--price"></div>
-
-                                <div class="skeleton-square"></div>
-
-                            </div>
-
-                        </div>
-
-                    </article>
-
-
-                    <article class="product-card product-card--skeleton">
-
-                        <div class="product-card__media">
-                            <div class="skeleton-block"></div>
-                        </div>
-
-                        <div class="product-card__body">
-
-                            <div class="skeleton-line skeleton-line--small"></div>
-
-                            <div class="skeleton-line"></div>
-
-                            <div class="skeleton-line skeleton-line--medium"></div>
-
-                            <div class="skeleton-bottom">
-
-                                <div class="skeleton-line skeleton-line--price"></div>
-
-                                <div class="skeleton-square"></div>
-
-                            </div>
-
-                        </div>
-
-                    </article>
-
-
-                    <article class="product-card product-card--skeleton">
-
-                        <div class="product-card__media">
-                            <div class="skeleton-block"></div>
-                        </div>
-
-                        <div class="product-card__body">
-
-                            <div class="skeleton-line skeleton-line--small"></div>
-
-                            <div class="skeleton-line"></div>
-
-                            <div class="skeleton-line skeleton-line--medium"></div>
-
-                            <div class="skeleton-bottom">
-
-                                <div class="skeleton-line skeleton-line--price"></div>
-
-                                <div class="skeleton-square"></div>
-
-                            </div>
-
-                        </div>
-
-                    </article>
-
-                </div>
-
-
-                <!-- =================================================
-                     EMPTY STATE
-                ================================================== -->
-
-                <div
-                    class="shop-empty"
-                    id="shopEmpty"
-                    hidden
-                >
-
-                    <div class="shop-empty__icon">
-
-                        <svg
-                            viewBox="0 0 24 24"
-                            aria-hidden="true"
-                        >
-                            <circle
-                                cx="11"
-                                cy="11"
-                                r="6.5"
-                            ></circle>
-
-                            <path d="M16 16l5 5"></path>
-                        </svg>
-
-                    </div>
-
-                    <span class="eyebrow">
-                        NO MATCHES
-                    </span>
-
-                    <h2>
-                        Nothing found.
-                    </h2>
-
-                    <p>
-                        Try another search or clear your filters
-                        to explore the full catalogue.
-                    </p>
-
-                    <button
-                        type="button"
-                        class="button button--secondary"
-                        id="emptyClearFilters"
-                    >
-                        Clear filters
-                        <span class="button__arrow">→</span>
-                    </button>
-
-                </div>
-
-
-                <!-- =================================================
-                     LOAD MORE
-                ================================================== -->
-
-                <div
-                    class="shop-load-more"
-                    id="shopLoadMore"
-                    hidden
-                >
-
-                    <button
-                        type="button"
-                        class="button button--secondary"
-                        id="loadMoreProducts"
-                    >
-                        Load more components
-                        <span class="button__arrow">↓</span>
-                    </button>
-
-                </div>
-
             </div>
-
         </section>
-
-
-        <!-- =====================================================
-             SHOP PROMO / MAKER HUB
-        ====================================================== -->
-
-        <section class="shop-promo section">
-
-            <div class="container">
-
-                <div
-                    class="shop-promo__card reveal"
-                    data-reveal
-                >
-
-                    <div class="shop-promo__content">
-
-                        <span class="eyebrow">
-                            PROJECTKART / MAKER HUB
-                        </span>
-
-                        <h2>
-                            Build from
-                            <span>the right starting point.</span>
-                        </h2>
-
-                        <p>
-                            Need more than individual components?
-                            Explore curated project kits designed
-                            to take you from an idea to a working
-                            prototype.
-                        </p>
-
-                        <div class="shop-promo__actions">
-
-                            <a
-                                href="project-kits.html"
-                                class="button button--primary"
-                            >
-                                Explore project kits
-                                <span class="button__arrow">→</span>
-                            </a>
-
-                            <a
-                                href="contact.html"
-                                class="button button--secondary"
-                            >
-                                Ask for help
-                                <span class="button__arrow">↗</span>
-                            </a>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="shop-promo__visual">
-
-                        <div class="shop-promo__glow"></div>
-
-                        <div class="shop-promo__technical">
-                            PROJECTKART / BUILD_01
-                        </div>
-
-                        <div class="shop-promo__objects">
-
-                            <div class="promo-object promo-object--one">
-                                <span>+</span>
-                            </div>
-
-                            <div class="promo-object promo-object--two">
-                                <span>◌</span>
-                            </div>
-
-                            <div class="promo-object promo-object--three">
-                                <span>⌁</span>
-                            </div>
-
-                        </div>
-
-                        <span class="shop-promo__status">
-                            READY TO BUILD
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =====================================================
-             BOTTOM CTA
-        ====================================================== -->
-
-        <section class="section shop-bottom-cta">
-
-            <div class="container">
-
-                <div
-                    class="shop-bottom-cta__inner reveal"
-                    data-reveal
-                >
-
-                    <div>
-
-                        <span class="eyebrow">
-                            NEED A HAND?
-                        </span>
-
-                        <h2>
-                            Not sure what
-                            <span>you need?</span>
-                        </h2>
-
-                        <p>
-                            Tell us what you're building and
-                            we'll help you find the right
-                            starting components.
-                        </p>
-
-                    </div>
-
-                    <a
-                        href="contact.html"
-                        class="button button--secondary"
-                    >
-                        Get project help
-                        <span class="button__arrow">↗</span>
-                    </a>
-
-                </div>
-
-            </div>
-
-        </section>
-
     </main>
 
-
-    <!-- =========================================================
-         FOOTER
-    ========================================================== -->
-
-    <footer class="site-footer">
-
-        <div class="container">
-
-            <div class="site-footer__main">
-
-
-                <!-- BRAND COLUMN -->
-
-                <div class="site-footer__brand">
-
-                    <a
-                        href="index.html"
-                        class="footer-brand"
-                    >
-
-                        <span class="footer-brand__logo">
-                            PK
+    <footer class="site-footer" id="siteFooter">
+        <div class="section-container">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-brand__logo">
+                        <span class="brand__mark">PK</span>
+                        <span class="brand__name">
+                            <span class="brand__project">Project</span><span class="brand__kart">Kart</span>
                         </span>
-
-                        <span class="footer-brand__name">
-                            <span>Project</span><strong>Kart</strong>
-                        </span>
-
                     </a>
-
-                    <p>
-                        Build. Create. Innovate.
-                    </p>
-
-                    <p>
-                        A considered component store for
-                        people who make things real.
-                    </p>
-
-                    <div class="footer-status">
-
-                        <span class="footer-status__dot"></span>
-
-                        <span>
-                            Online + offline maker hub
-                        </span>
-
-                    </div>
-
+                    <p class="footer-brand__tagline">Build. Create. Innovate.</p>
+                    <p class="footer-brand__description">A considered component store for people who make things real.</p>
+                    <div class="footer-status"><span></span>Online + offline maker hub</div>
                 </div>
-
-
-                <!-- SHOP -->
-
-                <div class="site-footer__column">
-
-                    <span class="site-footer__heading">
-                        SHOP
-                    </span>
-
-                    <a href="category.html?category=arduino">
-                        Arduino &amp; Boards
-                    </a>
-
-                    <a href="category.html?category=sensors">
-                        Sensors
-                    </a>
-
-                    <a href="category.html?category=modules">
-                        Modules
-                    </a>
-
-                    <a href="category.html?category=batteries">
-                        Batteries
-                    </a>
-
-                    <a href="project-kits.html">
-                        Project Kits
-                    </a>
-
+                <div class="footer-column">
+                    <span class="footer-column__title">SHOP</span>
+                    <nav>
+                        <a href="category.html?category=arduino-boards">Arduino &amp; Boards</a>
+                        <a href="category.html?category=sensors">Sensors</a>
+                        <a href="category.html?category=modules">Modules</a>
+                        <a href="category.html?category=batteries-power">Batteries</a>
+                        <a href="project-kits.html">Project Kits</a>
+                    </nav>
                 </div>
-
-
-                <!-- COMPANY -->
-
-                <div class="site-footer__column">
-
-                    <span class="site-footer__heading">
-                        COMPANY
-                    </span>
-
-                    <a href="about.html">
-                        About Us
-                    </a>
-
-                    <a href="contact.html">
-                        Contact
-                    </a>
-
-                    <a href="contact.html#faq">
-                        Help &amp; FAQ
-                    </a>
-
-                    <a href="contact.html#shipping">
-                        Shipping
-                    </a>
-
-                    <a href="contact.html#returns">
-                        Returns
-                    </a>
-
+                <div class="footer-column">
+                    <span class="footer-column__title">COMPANY</span>
+                    <nav>
+                        <a href="about.html">About Us</a>
+                        <a href="contact.html">Contact</a>
+                        <a href="contact.html#faq">Help &amp; FAQ</a>
+                        <a href="contact.html#shipping">Shipping</a>
+                        <a href="contact.html#returns">Returns</a>
+                    </nav>
                 </div>
-
-
-                <!-- HELP -->
-
-                <div class="site-footer__help">
-
-                    <span class="site-footer__heading">
-                        NEED A HAND?
-                    </span>
-
-                    <h3>
-                        Tell us what you're
-                        <span>building.</span>
-                    </h3>
-
-                    <p>
-                        We'll help you find the right
-                        starting point.
-                    </p>
-
-                    <a
-                        href="contact.html"
-                        class="footer-help-link"
-                    >
-                        Get project help
-                        <span>↗</span>
-                    </a>
-
+                <div class="footer-support">
+                    <span class="footer-column__title">NEED A HAND?</span>
+                    <h3>Tell us what you're building.</h3>
+                    <p>We'll help you find the right starting point.</p>
+                    <a href="contact.html" class="footer-support__link">Get project help <span>↗</span></a>
                 </div>
-
             </div>
-
-
-            <!-- FOOTER BOTTOM -->
-
-            <div class="site-footer__bottom">
-
-                <p>
-                    © 2024 ProjectKart. Demo storefront —
-                    replace business details before launch.
-                </p>
-
-                <div class="site-footer__legal">
-
-                    <a href="#">
-                        Privacy
-                    </a>
-
-                    <a href="#">
-                        Terms
-                    </a>
-
-                    <a href="contact.html">
-                        <span>⌖</span>
-                        Visit us offline
-                    </a>
-
+            <div class="footer-bottom">
+                <p>© 2024 ProjectKart. Demo storefront — replace business details before launch.</p>
+                <div class="footer-bottom__links">
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                    <a href="contact.html"><span class="footer-location-icon">⌖</span> Visit us offline</a>
                 </div>
-
             </div>
-
         </div>
-
     </footer>
 
+    <button class="scroll-top-button" id="scrollTopButton" type="button" aria-label="Scroll to top"><span>↑</span></button>
+    <div class="toast-container" id="toastContainer" aria-live="polite"></div>
 
-    <!-- =========================================================
-         BACK TO TOP
-    ========================================================== -->
-
-    <button
-        type="button"
-        class="back-to-top"
-        id="backToTop"
-        aria-label="Back to top"
-    >
-
-        <svg
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-        >
-            <path d="M7 14l5-5 5 5"></path>
-        </svg>
-
-    </button>
-
-
-    <!-- =========================================================
-         TOAST
-    ========================================================== -->
-
-    <div
-        class="toast"
-        id="toast"
-        role="status"
-        aria-live="polite"
-        aria-atomic="true"
-    >
-
-        <span class="toast__icon">
-            ✓
-        </span>
-
-        <span
-            class="toast__message"
-            id="toastMessage"
-        >
-            Added to cart
-        </span>
-
-    </div>
-
-
-    <!-- =========================================================
-         FIREBASE / APPLICATION JS
-    ========================================================== -->
-
-    <script type="module" src="js/firebase.js"></script>
-
-    <script type="module" src="js/auth.js"></script>
-
-    <script type="module" src="js/user.js"></script>
-
-    <script type="module" src="js/products.js"></script>
-
-    <script type="module" src="js/categories.js"></script>
-
-    <script type="module" src="js/kits.js"></script>
-
-    <script type="module" src="js/cart.js"></script>
-
-    <script type="module" src="js/search.js"></script>
-
+    <script type="module" src="js/page.js"></script>
     <script type="module" src="js/navbar.js"></script>
-
+    <script type="module" src="js/cart.js"></script>
     <script type="module" src="js/shop.js"></script>
-
-    <script type="module" src="js/utils.js"></script>
-
 </body>
 </html>

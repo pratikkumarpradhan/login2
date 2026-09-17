@@ -26,6 +26,10 @@ import {
     createSlug
 } from "./utils.js";
 
+import {
+    FALLBACK_CATEGORIES
+} from "./catalog-data.js";
+
 
 const CATEGORIES = "categories";
 
@@ -38,41 +42,57 @@ const CATEGORIES = "categories";
 
 export async function getCategories() {
 
-    const reference =
-        collection(
-            db,
-            CATEGORIES
+    try {
+
+        const reference =
+            collection(
+                db,
+                CATEGORIES
+            );
+
+        const categoryQuery =
+            query(
+                reference,
+
+                where(
+                    "active",
+                    "==",
+                    true
+                ),
+
+                orderBy(
+                    "order",
+                    "asc"
+                )
+            );
+
+        const snapshot =
+            await getDocs(
+                categoryQuery
+            );
+
+        if (snapshot.empty) {
+            return FALLBACK_CATEGORIES;
+        }
+
+        return snapshot.docs.map(
+            document => ({
+                id:
+                    document.id,
+
+                ...document.data()
+            })
         );
 
-    const categoryQuery =
-        query(
-            reference,
+    } catch (error) {
 
-            where(
-                "active",
-                "==",
-                true
-            ),
-
-            orderBy(
-                "order",
-                "asc"
-            )
+        console.error(
+            "Unable to load categories from Firebase:",
+            error
         );
 
-    const snapshot =
-        await getDocs(
-            categoryQuery
-        );
-
-    return snapshot.docs.map(
-        document => ({
-            id:
-                document.id,
-
-            ...document.data()
-        })
-    );
+        return FALLBACK_CATEGORIES;
+    }
 }
 
 
@@ -90,28 +110,41 @@ export async function getCategory(
         return null;
     }
 
-    const reference =
-        doc(
-            db,
-            CATEGORIES,
-            categoryId
-        );
+    try {
 
-    const snapshot =
-        await getDoc(
-            reference
-        );
+        const reference =
+            doc(
+                db,
+                CATEGORIES,
+                categoryId
+            );
 
-    if (!snapshot.exists()) {
-        return null;
+        const snapshot =
+            await getDoc(
+                reference
+            );
+
+        if (snapshot.exists()) {
+            return {
+                id:
+                    snapshot.id,
+
+                ...snapshot.data()
+            };
+        }
+
+    } catch (error) {
+
+        console.error(
+            "Unable to load category from Firebase:",
+            error
+        );
     }
 
-    return {
-        id:
-            snapshot.id,
-
-        ...snapshot.data()
-    };
+    return FALLBACK_CATEGORIES.find(
+        category =>
+            category.id === categoryId
+    ) || null;
 }
 
 
@@ -336,4 +369,90 @@ export async function setCategoryActive(
     );
 
     return true;
+}
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    initCategoriesPage();
+});
+
+
+async function initCategoriesPage() {
+    const grid = document.querySelector("[data-categories-grid]");
+
+    if (!grid) {
+        return;
+    }
+
+    try {
+        const categories = await getCategories();
+        renderCategoriesPage(categories);
+        setupCategorySearch(categories);
+    } catch (error) {
+        console.error("Categories page error:", error);
+        renderCategoriesPage(FALLBACK_CATEGORIES);
+    }
+}
+
+
+function renderCategoriesPage(categories) {
+    const grid = document.querySelector("[data-categories-grid]");
+    const empty = document.querySelector("[data-categories-empty]");
+
+    if (!grid) {
+        return;
+    }
+
+    if (!categories.length) {
+        grid.innerHTML = "";
+        if (empty) {
+            empty.hidden = false;
+        }
+        return;
+    }
+
+    if (empty) {
+        empty.hidden = true;
+    }
+
+    grid.innerHTML = categories.map((category, index) => {
+        const number = String(index + 1).padStart(2, "0");
+        const href = category.id === "project-kits"
+            ? "project-kits.html"
+            : `category.html?category=${encodeURIComponent(category.id)}`;
+
+        return `
+            <a href="${href}" class="category-card">
+                <div class="category-card__image">
+                    <img src="${category.image || ""}" alt="${category.name}" loading="lazy">
+                </div>
+                <div class="category-card__overlay"></div>
+                <div class="category-card__number">${number}</div>
+                <div class="category-card__content">
+                    <h3>${category.name}</h3>
+                    <p>${category.description || ""}</p>
+                    <span class="category-card__link">Explore <span>›</span></span>
+                </div>
+            </a>
+        `;
+    }).join("");
+}
+
+
+function setupCategorySearch(categories) {
+    const input = document.querySelector("[data-category-search]");
+
+    if (!input) {
+        return;
+    }
+
+    input.addEventListener("input", () => {
+        const term = input.value.toLowerCase().trim();
+        const results = !term
+            ? categories
+            : categories.filter(category =>
+                `${category.name} ${category.description || ""}`.toLowerCase().includes(term)
+            );
+        renderCategoriesPage(results);
+    });
 }

@@ -530,7 +530,9 @@
 .reveal.is-visible,
 [data-reveal].is-visible,
 .reveal.revealed,
-[data-reveal="visible"] {
+[data-reveal="visible"],
+html.page-ready .reveal,
+html.page-ready [data-reveal] {
     opacity: 1;
     transform: translateY(0);
 }
@@ -590,7 +592,8 @@
         transform 520ms var(--pk-ease-standard);
 }
 
-.stagger.is-visible > * {
+.stagger.is-visible > *,
+html.page-ready .stagger > * {
     opacity: 1;
     transform: translateY(0);
 }

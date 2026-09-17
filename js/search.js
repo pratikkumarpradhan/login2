@@ -261,3 +261,8 @@ export function closeSearchSuggestions() {
             }
         );
 }
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    initSearch();
+});

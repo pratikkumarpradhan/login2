@@ -12,10 +12,11 @@
     display: flex;
     flex-direction: column;
     min-width: 0;
+    padding: 10px 10px 14px;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.07);
-    border-radius: 24px;
-    background: #0d1219;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 28px;
+    background: #0c1118;
     transition:
         transform 240ms ease,
         border-color 240ms ease,
@@ -23,8 +24,8 @@
 }
 
 .product-card:hover {
-    transform: translateY(-6px);
-    border-color: rgba(40, 120, 255, 0.28);
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.14);
     box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
 }
 
@@ -32,7 +33,8 @@
     position: relative;
     aspect-ratio: 1 / 0.92;
     overflow: hidden;
-    background: #11161e;
+    border-radius: 20px;
+    background: #10151d;
 }
 
 .product-card__image-link,
@@ -54,14 +56,14 @@
 
 .product-badge {
     position: absolute;
-    top: 14px;
-    left: 14px;
+    top: 12px;
+    left: 12px;
     z-index: 3;
-    padding: 6px 10px;
+    padding: 5px 10px;
     border-radius: 999px;
-    font-size: 10px;
+    font-size: 9px;
     font-weight: 800;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
 }
 
@@ -82,16 +84,18 @@
 
 .product-card__wishlist {
     position: absolute;
-    top: 14px;
-    right: 14px;
+    top: 12px;
+    right: 12px;
     z-index: 3;
     display: grid;
     place-items: center;
-    width: 36px;
-    height: 36px;
+    width: 34px;
+    height: 34px;
+    border: 0;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.82);
+    background: rgba(255, 255, 255, 0.9);
     color: #6b7280;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
 }
 
 .product-card__wishlist svg {
@@ -137,8 +141,8 @@
 .product-card__body {
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    padding: 16px 16px 18px;
+    gap: 6px;
+    padding: 14px 8px 4px;
 }
 
 .product-card__topline {
@@ -150,9 +154,10 @@
 
 .product-card__category {
     color: #7d8aa0;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 700;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
 }
 
 .product-stock {
@@ -187,16 +192,20 @@
 
 .product-card__title {
     color: #fff;
-    font-size: 18px;
-    font-weight: 750;
+    font-size: 17px;
+    font-weight: 700;
     letter-spacing: -0.035em;
 }
 
 .product-card__description {
+    display: -webkit-box;
+    overflow: hidden;
+    min-height: 40px;
     color: #8b97ab;
     font-size: 13px;
     line-height: 1.5;
-    min-height: 40px;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 
 .product-card__bottom {

@@ -27,9 +27,9 @@ import {
 export async function initCategoryPage() {
 
     const categoryId =
-        getQueryParam(
-            "id"
-        );
+        getQueryParam("category")
+        || getQueryParam("id")
+        || getQueryParam("slug");
 
 
     if (!categoryId) {
@@ -76,6 +76,8 @@ export async function initCategoryPage() {
             products
         );
 
+        hideCategoryLoading();
+
 
     } catch (error) {
 
@@ -100,11 +102,22 @@ function renderCategoryHeader(
     category
 ) {
 
-    const container =
-        document.querySelector(
-            "[data-category-header]"
-        );
+    const name = document.querySelector("[data-category-name]");
+    const description = document.querySelector("[data-category-description]");
+    const breadcrumb = document.querySelector("[data-category-breadcrumb]");
+    const container = document.querySelector("[data-category-header]");
 
+    if (name) {
+        name.textContent = category.name;
+    }
+
+    if (description && category.description) {
+        description.textContent = category.description;
+    }
+
+    if (breadcrumb) {
+        breadcrumb.textContent = category.name;
+    }
 
     if (!container) {
         return;
@@ -353,4 +366,21 @@ function showCategoryNotFound() {
     if (products) {
         products.innerHTML = "";
     }
+
+    hideCategoryLoading();
 }
+
+
+function hideCategoryLoading() {
+    const loading = document.querySelector("[data-category-loading]");
+
+    if (loading) {
+        loading.hidden = true;
+        loading.style.display = "none";
+    }
+}
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    initCategoryPage();
+});

@@ -20,6 +20,25 @@
 }
 
 
+.mobile-menu-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: calc(var(--z-modal) - 1);
+    background: rgba(0, 0, 0, 0.58);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+
+.mobile-menu-overlay.is-open,
+.mobile-menu-overlay.open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+
 /* ----------------------------------------------------------------
    BACKDROP
 ---------------------------------------------------------------- */

@@ -23,6 +23,10 @@ import {
     db
 } from "./firebase.js";
 
+import {
+    FALLBACK_PRODUCTS
+} from "./catalog-data.js";
+
 
 const PRODUCTS =
     "products";
@@ -36,45 +40,62 @@ const PRODUCTS =
 
 export async function getProducts() {
 
-    const reference =
-        collection(
-            db,
-            PRODUCTS
+    try {
+
+        const reference =
+            collection(
+                db,
+                PRODUCTS
+            );
+
+
+        const productQuery =
+            query(
+                reference,
+
+                where(
+                    "active",
+                    "==",
+                    true
+                ),
+
+                orderBy(
+                    "createdAt",
+                    "desc"
+                )
+            );
+
+
+        const snapshot =
+            await getDocs(
+                productQuery
+            );
+
+
+        if (snapshot.empty) {
+            return FALLBACK_PRODUCTS;
+        }
+
+
+        return snapshot.docs.map(
+            document => ({
+
+                id:
+                    document.id,
+
+                ...document.data()
+            })
         );
 
+    } catch (error) {
 
-    const productQuery =
-        query(
-            reference,
-
-            where(
-                "active",
-                "==",
-                true
-            ),
-
-            orderBy(
-                "createdAt",
-                "desc"
-            )
+        console.error(
+            "Unable to load products from Firebase:",
+            error
         );
 
-
-    const snapshot =
-        await getDocs(
-            productQuery
-        );
-
-
-    return snapshot.docs.map(
-        document => ({
-
-            id:
-                document.id,
-
-            ...document.data()
-        })
-    );
+        return FALLBACK_PRODUCTS;
+    }
 }
 
 
@@ -155,32 +176,45 @@ export async function getProduct(
     }
 
 
-    const reference =
-        doc(
-            db,
-            PRODUCTS,
-            productId
+    try {
+
+        const reference =
+            doc(
+                db,
+                PRODUCTS,
+                productId
+            );
+
+
+        const snapshot =
+            await getDoc(
+                reference
+            );
+
+
+        if (snapshot.exists()) {
+
+            return {
+
+                id:
+                    snapshot.id,
+
+                ...snapshot.data()
+            };
+        }
+
+    } catch (error) {
+
+        console.error(
+            "Unable to load product from Firebase:",
+            error
         );
-
-
-    const snapshot =
-        await getDoc(
-            reference
-        );
-
-
-    if (!snapshot.exists()) {
-        return null;
     }
 
 
-    return {
-
-        id:
-            snapshot.id,
-
-        ...snapshot.data()
-    };
+    return FALLBACK_PRODUCTS.find(
+        product => product.id === productId
+    ) || null;
 }
 
 
@@ -198,6 +232,8 @@ export async function getProductsByCategory(
         return [];
     }
 
+
+    try {
 
     const reference =
         collection(
@@ -236,14 +272,33 @@ export async function getProductsByCategory(
         );
 
 
-    return snapshot.docs.map(
-        document => ({
+    if (!snapshot.empty) {
 
-            id:
-                document.id,
+        return snapshot.docs.map(
+            document => ({
 
-            ...document.data()
-        })
+                id:
+                    document.id,
+
+                ...document.data()
+            })
+        );
+    }
+
+    } catch (error) {
+
+        console.error(
+            "Unable to load category products from Firebase:",
+            error
+        );
+    }
+
+
+    return FALLBACK_PRODUCTS.filter(
+        product =>
+            product.categoryId === categoryId
+            ||
+            product.categoryName === categoryId
     );
 }
 

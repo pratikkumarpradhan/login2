@@ -62,6 +62,7 @@ export async function initProductPage() {
             product
         );
 
+        hydrateLegacyProductDom(product);
 
         loadRelatedProducts(
             product
@@ -76,6 +77,39 @@ export async function initProductPage() {
         );
 
         showNotFound();
+    }
+}
+
+
+function hydrateLegacyProductDom(product) {
+    const setText = (id, value) => {
+        const element = document.getElementById(id);
+        if (element && value != null) {
+            element.textContent = value;
+        }
+    };
+
+    setText("productName", product.name);
+    setText("productDescription", product.description);
+    setText("productLongDescription", product.description);
+    setText("productCategory", product.categoryName || "Components");
+    setText("productBreadcrumbName", product.name);
+    setText("productPrice", formatPrice(product.price));
+
+    const image = document.getElementById("productMainImage");
+    if (image && product.image) {
+        image.src = product.image;
+        image.alt = product.name;
+    }
+
+    const oldPrice = document.getElementById("productOldPrice");
+    if (oldPrice) {
+        if (Number(product.oldPrice) > Number(product.price)) {
+            oldPrice.textContent = formatPrice(product.oldPrice);
+            oldPrice.hidden = false;
+        } else {
+            oldPrice.hidden = true;
+        }
     }
 }
 
@@ -592,3 +626,7 @@ function showNotFound() {
 
     `;
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+    initProductPage();
+});

@@ -14,8 +14,8 @@ body {
     min-height: 100%;
 }
 
-body.no-scroll {
-    overflow: hidden;
+.hidden {
+    display: none !important;
 }
 
 body {
@@ -534,6 +534,7 @@ body.is-loading {
 
     opacity: 1;
     visibility: visible;
+    pointer-events: auto;
 
     transition:
         opacity 500ms ease,
@@ -541,9 +542,11 @@ body.is-loading {
 }
 
 
-.page-loader.is-hidden {
+.page-loader.is-hidden,
+.page-loader.is-complete {
     opacity: 0;
     visibility: hidden;
+    pointer-events: none;
 }
 
 
