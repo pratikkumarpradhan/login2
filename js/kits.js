@@ -440,52 +440,114 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+let allKits = FALLBACK_KITS;
+let activeDifficulty = "all";
+
+
 async function initKitsPage() {
-    const grid = document.querySelector("[data-kits-grid]");
+    const grid = document.querySelector("[data-kits-grid], #kitsGrid");
 
     if (!grid) {
         return;
     }
 
-    const loading = document.querySelector("[data-kits-loading]");
-    const empty = document.querySelector("[data-kits-empty]");
+    setupKitFilters();
+    setupNavbarSearch();
+    renderKitsPage(allKits);
 
     try {
         const kits = await getKits();
-        renderKitsPage(kits);
+        if (Array.isArray(kits) && kits.length) {
+            allKits = kits;
+        }
     } catch (error) {
         console.error("Kits page error:", error);
-        renderKitsPage(FALLBACK_KITS);
-    } finally {
-        if (loading) {
-            loading.hidden = true;
-            loading.style.display = "none";
-        }
-        if (empty) {
-            empty.hidden = Boolean(grid.children.length);
-        }
+        allKits = FALLBACK_KITS;
     }
+
+    renderKitsPage(filterKits());
+}
+
+
+function setupNavbarSearch() {
+    const form = document.getElementById("navbarSearch");
+    const input = document.getElementById("globalSearchInput");
+
+    if (!form || !input) {
+        return;
+    }
+
+    form.addEventListener("submit", event => {
+        event.preventDefault();
+        const query = input.value.trim();
+        window.location.href = query
+            ? `shop.html?search=${encodeURIComponent(query)}`
+            : "shop.html";
+    });
+}
+
+
+function setupKitFilters() {
+    document.querySelectorAll("[data-kit-filter]").forEach(button => {
+        button.addEventListener("click", () => {
+            activeDifficulty = button.dataset.kitFilter || "all";
+            document.querySelectorAll("[data-kit-filter]").forEach(item => {
+                item.classList.toggle("is-active", item === button);
+            });
+            renderKitsPage(filterKits());
+        });
+    });
+}
+
+
+function filterKits() {
+    if (activeDifficulty === "all") {
+        return allKits;
+    }
+
+    return allKits.filter(kit =>
+        String(kit.difficulty || "").toLowerCase() === activeDifficulty.toLowerCase()
+    );
 }
 
 
 function renderKitsPage(kits) {
-    const grid = document.querySelector("[data-kits-grid]");
+    const grid = document.querySelector("[data-kits-grid], #kitsGrid");
+    const count = document.getElementById("kitsCount");
 
     if (!grid) {
         return;
     }
 
-    grid.innerHTML = kits.map(kit => `
-        <a href="project-kits.html?kit=${encodeURIComponent(kit.id)}" class="kit-card">
-            <div class="kit-card__image">
-                <img src="${kit.image || ""}" alt="${kit.name}" loading="lazy">
-            </div>
-            <div class="kit-card__overlay"></div>
-            <div class="kit-card__content">
-                <span class="kit-card__difficulty">${(kit.difficulty || "").toUpperCase()}</span>
-                <h3>${kit.name}</h3>
-                <span class="kit-card__link">View kit →</span>
-            </div>
-        </a>
-    `).join("");
+    if (count) {
+        count.textContent = String(kits.length);
+    }
+
+    grid.innerHTML = kits.map(kit => {
+        const includes = Array.isArray(kit.includes) ? kit.includes : [];
+
+        return `
+            <article class="project-kit-card">
+                <div class="project-kit-card__media">
+                    <img src="${kit.image || ""}" alt="${kit.name}" loading="lazy">
+                    <span class="project-kit-card__badge">${kit.difficulty || ""}</span>
+                </div>
+                <div class="project-kit-card__body">
+                    <span class="project-kit-card__category">${kit.category || "Project Kit"}</span>
+                    <h3>${kit.name}</h3>
+                    <p class="project-kit-card__text">${kit.description || ""}</p>
+                    <div class="project-kit-card__includes">
+                        <span>Includes</span>
+                        <ul>
+                            ${includes.map(item => `<li>${item}</li>`).join("")}
+                        </ul>
+                    </div>
+                    <div class="project-kit-card__bottom">
+                        <strong class="project-kit-card__price">₹${Number(kit.price).toLocaleString("en-IN")}</strong>
+                        <a class="project-kit-card__link" href="product.html?id=${encodeURIComponent(kit.id)}">View kit →</a>
+                    </div>
+                </div>
+            </article>
+        `;
+    }).join("");
 }

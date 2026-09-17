@@ -23,12 +23,17 @@ import {
 } from "./firebase.js";
 
 import {
-    createSlug
+    createSlug,
+    escapeHTML
 } from "./utils.js";
 
 import {
     FALLBACK_CATEGORIES
 } from "./catalog-data.js";
+
+const FALLBACK_BY_ID = Object.fromEntries(
+    FALLBACK_CATEGORIES.map(category => [category.id, category])
+);
 
 
 const CATEGORIES = "categories";
@@ -373,8 +378,38 @@ export async function setCategoryActive(
 
 
 document.addEventListener("DOMContentLoaded", () => {
+    if (!document.querySelector("[data-categories-grid]")) {
+        return;
+    }
+
+    initCategoriesChrome();
     initCategoriesPage();
 });
+
+
+function initCategoriesChrome() {
+    const header = document.getElementById("siteHeader");
+    const scrollTop = document.getElementById("scrollTopButton");
+    const form = document.getElementById("navbarSearch");
+    const input = document.getElementById("globalSearchInput");
+
+    const onScroll = () => {
+        header?.classList.toggle("is-scrolled", window.scrollY > 12);
+        scrollTop?.classList.toggle("is-visible", window.scrollY > 480);
+    };
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    scrollTop?.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+    form?.addEventListener("submit", event => {
+        event.preventDefault();
+        const query = input?.value.trim();
+        window.location.href = query
+            ? `shop.html?search=${encodeURIComponent(query)}`
+            : "shop.html";
+    });
+}
 
 
 async function initCategoriesPage() {
@@ -384,14 +419,35 @@ async function initCategoriesPage() {
         return;
     }
 
+    renderCategoriesPage(FALLBACK_CATEGORIES);
+
     try {
         const categories = await getCategories();
-        renderCategoriesPage(categories);
-        setupCategorySearch(categories);
+        renderCategoriesPage(categories.length ? categories : FALLBACK_CATEGORIES);
+        setupCategorySearch(categories.length ? categories : FALLBACK_CATEGORIES);
     } catch (error) {
         console.error("Categories page error:", error);
         renderCategoriesPage(FALLBACK_CATEGORIES);
+        setupCategorySearch(FALLBACK_CATEGORIES);
     }
+}
+
+
+function hydrateCategory(category) {
+    const fallback = FALLBACK_BY_ID[category.id] || {};
+    const tags = Array.isArray(category.tags) && category.tags.length
+        ? category.tags
+        : fallback.tags || [];
+
+    return {
+        ...fallback,
+        ...category,
+        tags,
+        itemCount: Number.isFinite(Number(category.itemCount))
+            ? Number(category.itemCount)
+            : Number(fallback.itemCount || 0),
+        image: category.image || fallback.image || "assets/images/hero/hero-workspace.jpg"
+    };
 }
 
 
@@ -415,23 +471,37 @@ function renderCategoriesPage(categories) {
         empty.hidden = true;
     }
 
-    grid.innerHTML = categories.map((category, index) => {
+    grid.innerHTML = categories.map((raw, index) => {
+        const category = hydrateCategory(raw);
         const number = String(index + 1).padStart(2, "0");
+        const count = String(category.itemCount).padStart(2, "0");
         const href = category.id === "project-kits"
             ? "project-kits.html"
             : `category.html?category=${encodeURIComponent(category.id)}`;
+        const tags = category.tags.map(tag =>
+            `<span>${escapeHTML(tag)}</span>`
+        ).join("");
 
         return `
-            <a href="${href}" class="category-card">
-                <div class="category-card__image">
-                    <img src="${category.image || ""}" alt="${category.name}" loading="lazy">
+            <a href="${href}" class="explore-card">
+                <div class="explore-card__media">
+                    <img src="${escapeHTML(category.image)}" alt="${escapeHTML(category.name)}" loading="lazy">
                 </div>
-                <div class="category-card__overlay"></div>
-                <div class="category-card__number">${number}</div>
-                <div class="category-card__content">
-                    <h3>${category.name}</h3>
-                    <p>${category.description || ""}</p>
-                    <span class="category-card__link">Explore <span>›</span></span>
+                <div class="explore-card__overlay"></div>
+                <div class="explore-card__meta">
+                    <span>${number} / ${count} items</span>
+                    <span class="explore-card__arrow" aria-hidden="true">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M7 17 17 7"></path>
+                            <path d="M9 7h8v8"></path>
+                        </svg>
+                    </span>
+                </div>
+                <div class="explore-card__content">
+                    <h3>${escapeHTML(category.name)}</h3>
+                    <p>${escapeHTML(category.description || "")}</p>
+                    <div class="explore-card__tags">${tags}</div>
+                    <span class="explore-card__link">Explore category <span>›</span></span>
                 </div>
             </a>
         `;
@@ -451,7 +521,7 @@ function setupCategorySearch(categories) {
         const results = !term
             ? categories
             : categories.filter(category =>
-                `${category.name} ${category.description || ""}`.toLowerCase().includes(term)
+                `${category.name} ${category.description || ""} ${(category.tags || []).join(" ")}`.toLowerCase().includes(term)
             );
         renderCategoriesPage(results);
     });

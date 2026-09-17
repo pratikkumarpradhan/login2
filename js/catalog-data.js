@@ -11,6 +11,8 @@ export const FALLBACK_CATEGORIES = [
         name: "Arduino & Boards",
         description: "Microcontrollers and connected brains for every build.",
         image: "assets/images/categories/arduino-boards.jpg",
+        tags: ["Arduino UNO", "Arduino Nano", "ESP32", "ESP8266"],
+        itemCount: 3,
         order: 1,
         active: true
     },
@@ -19,6 +21,8 @@ export const FALLBACK_CATEGORIES = [
         name: "Sensors",
         description: "Give your projects the ability to sense the world.",
         image: "assets/images/categories/sensors.jpg",
+        tags: ["Distance", "Motion", "Temperature", "Light"],
+        itemCount: 4,
         order: 2,
         active: true
     },
@@ -27,6 +31,8 @@ export const FALLBACK_CATEGORIES = [
         name: "Modules",
         description: "Plug-and-play building blocks for fast prototypes.",
         image: "assets/images/categories/modules.jpg",
+        tags: ["Relay", "Motor Drivers", "RFID", "Bluetooth"],
+        itemCount: 4,
         order: 3,
         active: true
     },
@@ -34,7 +40,9 @@ export const FALLBACK_CATEGORIES = [
         id: "batteries-power",
         name: "Batteries & Power",
         description: "Reliable power options for portable and embedded ideas.",
-        image: "assets/images/categories/batteries-power.jpg",
+        image: "assets/images/hero/hero-workspace.jpg",
+        tags: ["Li-ion Cells", "Charging", "Adapters", "Power Modules"],
+        itemCount: 1,
         order: 4,
         active: true
     },
@@ -42,7 +50,9 @@ export const FALLBACK_CATEGORIES = [
         id: "motors-robotics",
         name: "Motors & Robotics",
         description: "Movement, mechanisms and the parts that make robots go.",
-        image: "assets/images/categories/motors-robotics.jpg",
+        image: "assets/images/categories/sensors.jpg",
+        tags: ["Servo Motors", "DC Motors", "Stepper Motors", "Wheels"],
+        itemCount: 1,
         order: 5,
         active: true
     },
@@ -50,7 +60,9 @@ export const FALLBACK_CATEGORIES = [
         id: "displays",
         name: "Displays",
         description: "Make data visible with bright, compact interfaces.",
-        image: "assets/images/categories/displays.jpg",
+        image: "assets/images/categories/modules.jpg",
+        tags: ["OLED", "LCD", "TFT", "LED"],
+        itemCount: 1,
         order: 6,
         active: true
     },
@@ -58,7 +70,9 @@ export const FALLBACK_CATEGORIES = [
         id: "wires-connectors",
         name: "Wires & Connectors",
         description: "The small essentials that connect your whole system.",
-        image: "assets/images/categories/wires-connectors.jpg",
+        image: "assets/images/categories/arduino-boards.jpg",
+        tags: ["Dupont", "JST", "Headers", "Terminals"],
+        itemCount: 1,
         order: 7,
         active: true
     },
@@ -66,7 +80,9 @@ export const FALLBACK_CATEGORIES = [
         id: "prototyping",
         name: "Prototyping",
         description: "Breadboards and boards that make iteration effortless.",
-        image: "assets/images/categories/prototyping.jpg",
+        image: "assets/images/hero/hero-workspace.jpg",
+        tags: ["Breadboards", "Perfboards", "PCBs", "Jumpers"],
+        itemCount: 1,
         order: 8,
         active: true
     },
@@ -74,7 +90,9 @@ export const FALLBACK_CATEGORIES = [
         id: "components",
         name: "Components",
         description: "Resistors, LEDs, switches and the essential building blocks.",
-        image: "assets/images/categories/components.jpg",
+        image: "assets/images/categories/modules.jpg",
+        tags: ["Resistors", "LEDs", "Switches", "Capacitors"],
+        itemCount: 0,
         order: 9,
         active: true
     },
@@ -82,7 +100,9 @@ export const FALLBACK_CATEGORIES = [
         id: "project-kits",
         name: "Project Kits",
         description: "Curated starting points for real-world projects.",
-        image: "assets/images/categories/project-kits.jpg",
+        image: "assets/images/categories/arduino-boards.jpg",
+        tags: ["Smart Home", "Robotics", "Starter", "IoT"],
+        itemCount: 6,
         order: 10,
         active: true
     }
@@ -299,10 +319,12 @@ export const FALLBACK_KITS = [
     {
         id: "smart-home",
         name: "Smart Home Kit",
-        description: "Automate lights, sensors and alerts with a guided smart-home build.",
+        description: "Build a connected room with sensors, switching and a simple dashboard.",
         image: "assets/images/kits/smart-home-kit.jpg",
+        category: "IoT & Automation",
         difficulty: "Intermediate",
-        price: 2499,
+        price: 1289,
+        includes: ["ESP32", "PIR Sensor", "Relay Module", "Jumper Wire Kit"],
         order: 1,
         featured: true,
         active: true
@@ -310,10 +332,12 @@ export const FALLBACK_KITS = [
     {
         id: "obstacle-robot",
         name: "Obstacle Avoiding Robot",
-        description: "Build a robot that senses and steers around objects in its path.",
+        description: "A hands-on robotics build that sees obstacles and finds its path.",
         image: "assets/images/kits/obstacle-robot.jpg",
+        category: "Robotics",
         difficulty: "Intermediate",
-        price: 1899,
+        price: 1599,
+        includes: ["Arduino Nano", "HC-SR04", "L298N Driver", "Robot Chassis"],
         order: 2,
         featured: true,
         active: true
@@ -321,11 +345,52 @@ export const FALLBACK_KITS = [
     {
         id: "line-following-robot",
         name: "Line Following Robot",
-        description: "An advanced kit for line tracking, motor control and sensor tuning.",
+        description: "Explore sensing, motor control and feedback with a classic robot build.",
         image: "assets/images/kits/line-following-robot.jpg",
+        category: "Robotics & Control",
         difficulty: "Advanced",
-        price: 2199,
+        price: 1799,
+        includes: ["Arduino UNO", "IR Sensor Array", "Motors", "Chassis"],
         order: 3,
+        featured: true,
+        active: true
+    },
+    {
+        id: "arduino-starter",
+        name: "Arduino Starter Kit",
+        description: "The first complete path from blink to a working classroom prototype.",
+        image: "assets/images/categories/prototyping.jpg",
+        category: "Getting Started",
+        difficulty: "Beginner",
+        price: 1499,
+        includes: ["Arduino UNO", "Breadboard", "LEDs & Resistors", "Jumper Wires"],
+        order: 4,
+        featured: true,
+        active: true
+    },
+    {
+        id: "weather-station",
+        name: "Weather Station Kit",
+        description: "Measure temperature, humidity and light with a compact sensor dashboard.",
+        image: "assets/images/categories/arduino-boards.jpg",
+        category: "Sensing",
+        difficulty: "Intermediate",
+        price: 1199,
+        includes: ["ESP32", "DHT11", "OLED Display", "Breadboard"],
+        order: 5,
+        featured: true,
+        active: true
+    },
+    {
+        id: "led-basics",
+        name: "LED Basics Kit",
+        description: "Learn output, timing and simple circuits with a rewarding first project.",
+        image: "assets/images/categories/components.jpg",
+        category: "Fundamentals",
+        difficulty: "Beginner",
+        price: 799,
+        includes: ["Arduino Nano", "LEDs", "Resistors", "Push Buttons"],
+        order: 6,
         featured: true,
         active: true
     }
