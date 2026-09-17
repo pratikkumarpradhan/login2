@@ -12,7 +12,7 @@ import { FALLBACK_PRODUCTS, FALLBACK_KITS } from "./catalog-data.js";
 
 const HOME_PRODUCT_LIMIT = 8;
 const HOME_KIT_LIMIT = 3;
-const PLACEHOLDER_IMAGE = "assets/images/hero/hero-workspace.jpg";
+const PLACEHOLDER_IMAGE = "assets/images/hero/home.jpeg";
 
 let featuredProducts = [];
 let unsubProducts = null;

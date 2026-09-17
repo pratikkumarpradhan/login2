@@ -478,7 +478,7 @@ function hydrateCategory(category) {
         itemCount: Number.isFinite(Number(category.itemCount))
             ? Number(category.itemCount)
             : Number(fallback.itemCount || 0),
-        image: category.image || fallback.image || "assets/images/hero/hero-workspace.jpg"
+        image: category.image || fallback.image || "assets/images/hero/home.jpeg"
     };
 }
 

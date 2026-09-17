@@ -426,3 +426,10 @@
         padding: 28px 22px;
     }
 }
+
+.brand__logo-image {
+    height: 80px;
+    width: 100%;
+    display: block;
+    object-fit: contain;
+}
