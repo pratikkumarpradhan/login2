@@ -193,10 +193,21 @@
 }
 
 .project-kit-card__price {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.project-kit-card__price strong {
     color: #fff;
     font-size: 28px;
     font-weight: 750;
     letter-spacing: -0.04em;
+}
+
+.project-kit-card__price del {
+    color: #6d7b90;
+    font-size: 15px;
 }
 
 .project-kit-card__link {
@@ -256,6 +267,139 @@
 
 .kits-help .button {
     flex-shrink: 0;
+}
+
+.kits-empty {
+    margin-top: 28px;
+    padding: 48px 24px;
+    border: 1px dashed rgba(255, 255, 255, 0.12);
+    border-radius: 24px;
+    text-align: center;
+    color: #8b97ab;
+}
+
+.kits-empty h3 {
+    margin: 0 0 8px;
+    color: #fff;
+    font-size: 22px;
+    font-weight: 750;
+    letter-spacing: -0.03em;
+}
+
+.kits-empty p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+[data-admin-only] {
+    display: none !important;
+}
+
+body.is-kits-admin [data-admin-only],
+body.is-kits-admin [data-admin-only].is-admin-visible,
+body.is-shop-admin [data-admin-only],
+body.is-shop-admin [data-admin-only].is-admin-visible {
+    display: revert !important;
+}
+
+body.is-kits-admin .project-kit-card__admin-actions[data-admin-only],
+body.is-shop-admin .project-kit-card__admin-actions[data-admin-only] {
+    display: flex !important;
+}
+
+body.is-kits-admin .shop-fab[data-admin-only],
+body.is-shop-admin .shop-fab[data-admin-only] {
+    display: inline-flex !important;
+}
+
+.shop-fab {
+    position: fixed;
+    right: 24px;
+    bottom: 28px;
+    z-index: 80;
+    display: none;
+    align-items: center;
+    gap: 10px;
+    min-height: 56px;
+    padding: 0 18px 0 14px;
+    border-radius: 999px;
+    background: linear-gradient(180deg, #3b86ff, #1768ed);
+    color: #fff;
+    text-decoration: none;
+    box-shadow:
+        0 14px 34px rgba(40, 120, 255, 0.38),
+        0 0 0 1px rgba(255, 255, 255, 0.08);
+    transition:
+        transform 180ms ease,
+        box-shadow 180ms ease;
+}
+
+.shop-fab:hover {
+    transform: translateY(-2px);
+    color: #fff;
+    box-shadow:
+        0 18px 40px rgba(40, 120, 255, 0.46),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.shop-fab__icon {
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.16);
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.shop-fab__label {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+}
+
+.project-kit-card__admin-actions {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 2;
+    display: none;
+    gap: 8px;
+}
+
+.project-kit-card__admin-btn {
+    min-height: 32px;
+    padding: 0 12px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 999px;
+    background: rgba(8, 12, 18, 0.72);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+}
+
+.project-kit-card__admin-btn--delete {
+    border-color: rgba(255, 92, 92, 0.35);
+    color: #ffb4b4;
+}
+
+@media (max-width: 640px) {
+    .shop-fab {
+        right: 16px;
+        bottom: 18px;
+        min-height: 52px;
+        padding: 0 14px 0 12px;
+    }
+
+    .shop-fab__label {
+        font-size: 12px;
+    }
 }
 
 @media (max-width: 1100px) {

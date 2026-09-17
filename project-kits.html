@@ -126,6 +126,10 @@
                     </div>
                 </div>
                 <div class="kits-grid" id="kitsGrid" data-kits-grid></div>
+                <div class="kits-empty" id="kitsEmpty" hidden>
+                    <h3>No kits yet</h3>
+                    <p>Active project kits will appear here once an admin adds them.</p>
+                </div>
             </div>
         </section>
 
@@ -196,6 +200,21 @@
     </footer>
 
     <button class="scroll-top-button" id="scrollTopButton" type="button" aria-label="Scroll to top"><span>↑</span></button>
+
+    <a
+        href="admin/kit-edit.html"
+        class="shop-fab kits-fab"
+        id="kitsAdminFab"
+        data-admin-only
+        data-kits-admin-fab
+        hidden
+        aria-label="Add Project Kit"
+        aria-hidden="true"
+    >
+        <span class="shop-fab__icon" aria-hidden="true">+</span>
+        <span class="shop-fab__label">Add Kit</span>
+    </a>
+
     <div class="toast-container" id="toastContainer" aria-live="polite"></div>
 
     <script type="module" src="js/page.js"></script>

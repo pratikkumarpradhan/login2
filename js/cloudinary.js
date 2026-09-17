@@ -34,14 +34,15 @@ export function validateImageFile(file) {
 }
 
 export function uploadImageToCloudinary(file, {
-    onProgress
+    onProgress,
+    folder = "projectkart/components"
 } = {}) {
     validateImageFile(file);
 
     const formData = new FormData();
     formData.append("file", file);
     formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
-    formData.append("folder", "projectkart/components");
+    formData.append("folder", folder);
 
     return new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest();

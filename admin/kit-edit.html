@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Project Kit | ProjectKart Admin</title>
+    <meta name="description" content="Create or edit ProjectKart project kits.">
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/typography.css">
+    <link rel="stylesheet" href="../css/admin/admin-base.css">
+    <link rel="stylesheet" href="../css/admin/admin-shell.css">
+    <link rel="stylesheet" href="../css/admin/admin-sidebar.css">
+    <link rel="stylesheet" href="../css/admin/admin-header.css">
+    <link rel="stylesheet" href="../css/admin/admin-forms.css">
+    <link rel="stylesheet" href="../css/admin/admin-products.css">
+    <link rel="stylesheet" href="../css/admin/admin-responsive.css">
+</head>
+<body class="admin-body">
+<div class="admin-app">
+
+    <aside class="admin-sidebar" id="admin-sidebar" data-admin-sidebar>
+        <div class="admin-sidebar-top">
+            <a href="index.html" class="admin-brand" aria-label="ProjectKart Admin Dashboard">
+                <span class="admin-brand-mark">PK</span>
+                <span class="admin-brand-text">
+                    <strong>ProjectKart</strong>
+                    <small>Admin Panel</small>
+                </span>
+            </a>
+            <nav class="admin-nav">
+                <div class="admin-nav-section">
+                    <span class="admin-nav-label">Overview</span>
+                    <a href="index.html" class="admin-nav-item" data-admin-nav="dashboard">
+                        <span class="admin-nav-icon">▦</span>
+                        <span class="admin-nav-text">Dashboard</span>
+                    </a>
+                </div>
+                <div class="admin-nav-section">
+                    <span class="admin-nav-label">Store</span>
+                    <a href="products.html" class="admin-nav-item" data-admin-nav="products">
+                        <span class="admin-nav-icon">□</span>
+                        <span class="admin-nav-text">Products</span>
+                    </a>
+                    <a href="categories.html" class="admin-nav-item" data-admin-nav="categories">
+                        <span class="admin-nav-icon">◫</span>
+                        <span class="admin-nav-text">Categories</span>
+                    </a>
+                    <a href="kits.html" class="admin-nav-item active" data-admin-nav="kits">
+                        <span class="admin-nav-icon">◈</span>
+                        <span class="admin-nav-text">Project Kits</span>
+                    </a>
+                    <a href="orders.html" class="admin-nav-item" data-admin-nav="orders">
+                        <span class="admin-nav-icon">≡</span>
+                        <span class="admin-nav-text">Orders</span>
+                    </a>
+                </div>
+                <div class="admin-nav-section">
+                    <span class="admin-nav-label">Management</span>
+                    <a href="users.html" class="admin-nav-item" data-admin-nav="users">
+                        <span class="admin-nav-icon">◎</span>
+                        <span class="admin-nav-text">Users</span>
+                    </a>
+                    <a href="settings.html" class="admin-nav-item" data-admin-nav="settings">
+                        <span class="admin-nav-icon">⚙</span>
+                        <span class="admin-nav-text">Settings</span>
+                    </a>
+                </div>
+            </nav>
+        </div>
+        <div class="admin-sidebar-bottom">
+            <a href="../project-kits.html" class="admin-sidebar-store-link">
+                <span class="admin-nav-icon">↗</span>
+                <span class="admin-nav-text">View Kits</span>
+            </a>
+            <button type="button" class="admin-sidebar-logout" data-admin-logout>
+                <span class="admin-nav-icon">⇥</span>
+                <span class="admin-nav-text">Sign out</span>
+            </button>
+        </div>
+    </aside>
+
+    <div class="admin-main">
+        <header class="admin-header">
+            <div class="admin-header-left">
+                <button type="button" class="admin-mobile-menu-button" data-admin-menu-toggle aria-label="Open admin menu" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+                <div class="admin-page-title">
+                    <span class="admin-breadcrumb">
+                        <a href="../project-kits.html">Project Kits</a>
+                        <span>/</span>
+                        <span data-kit-breadcrumb>Add kit</span>
+                    </span>
+                    <h1 data-kit-page-title>Add kit</h1>
+                </div>
+            </div>
+            <div class="admin-header-right">
+                <a href="../project-kits.html" class="admin-header-store" target="_blank" rel="noopener">
+                    <span>View kits</span><span>↗</span>
+                </a>
+                <div class="admin-user">
+                    <div class="admin-user-avatar" data-admin-avatar>A</div>
+                    <div class="admin-user-details">
+                        <strong data-admin-user-name>Admin</strong>
+                        <span data-admin-user-email>Loading...</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="admin-content">
+            <section class="admin-page-intro">
+                <div>
+                    <span class="admin-eyebrow">PROJECT KIT</span>
+                    <h2 data-kit-heading>Add kit</h2>
+                    <p data-kit-page-copy>
+                        Enter kit details, pricing, what's included, and upload an image to Cloudinary.
+                    </p>
+                </div>
+                <div class="admin-form-header-actions">
+                    <a href="../project-kits.html" class="admin-button admin-button-secondary">Cancel</a>
+                </div>
+            </section>
+
+            <form class="admin-product-form" data-kit-form novalidate>
+                <div class="admin-product-form-layout">
+                    <div class="admin-product-form-main">
+
+                        <section class="admin-form-card">
+                            <div class="admin-form-card-header">
+                                <div>
+                                    <span class="admin-eyebrow">BASIC INFORMATION</span>
+                                    <h3>Kit details</h3>
+                                    <p>Information customers will see on the Project Kits page.</p>
+                                </div>
+                            </div>
+                            <div class="admin-form-card-body">
+                                <div class="admin-form-group">
+                                    <label for="kit-name">Kit name <span>*</span></label>
+                                    <input type="text" id="kit-name" name="name" placeholder="e.g. Smart Home Starter Kit" data-kit-name maxlength="150" required>
+                                </div>
+
+                                <div class="admin-form-group">
+                                    <label for="kit-slug">Kit slug</label>
+                                    <input type="text" id="kit-slug" name="slug" placeholder="smart-home-starter-kit" data-kit-slug maxlength="180">
+                                </div>
+
+                                <div class="admin-form-group">
+                                    <label for="kit-description">Description <span>*</span></label>
+                                    <textarea id="kit-description" name="description" rows="5" placeholder="Describe what customers can build with this kit..." data-kit-description-field maxlength="1000" required></textarea>
+                                    <div class="admin-character-count">
+                                        <span data-kit-description-count>0</span> characters
+                                    </div>
+                                </div>
+
+                                <div class="admin-form-grid">
+                                    <div class="admin-form-group">
+                                        <label for="kit-category">Category label</label>
+                                        <input type="text" id="kit-category" name="category" placeholder="e.g. Robotics" data-kit-category maxlength="80">
+                                    </div>
+                                    <div class="admin-form-group">
+                                        <label for="kit-difficulty">Difficulty</label>
+                                        <select id="kit-difficulty" name="difficulty" data-kit-difficulty>
+                                            <option value="Beginner">Beginner</option>
+                                            <option value="Intermediate">Intermediate</option>
+                                            <option value="Advanced">Advanced</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="admin-form-group">
+                                    <label for="kit-includes">What's included</label>
+                                    <textarea id="kit-includes" name="includes" rows="4" placeholder="One item per line&#10;ESP32&#10;PIR Sensor&#10;Relay Module" data-kit-includes></textarea>
+                                    <small>Enter one item per line (or comma-separated).</small>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="admin-form-card">
+                            <div class="admin-form-card-header">
+                                <div>
+                                    <span class="admin-eyebrow">PRICING</span>
+                                    <h3>Kit pricing</h3>
+                                    <p>Set the selling price customers will see.</p>
+                                </div>
+                            </div>
+                            <div class="admin-form-card-body">
+                                <div class="admin-form-grid">
+                                    <div class="admin-form-group">
+                                        <label for="kit-price">Price (₹) <span>*</span></label>
+                                        <div class="admin-price-field">
+                                            <span class="admin-price-field__symbol" aria-hidden="true">₹</span>
+                                            <input type="number" id="kit-price" name="price" class="admin-price-field__input" placeholder="e.g. 1499" min="0" step="1" inputmode="decimal" data-kit-price required>
+                                        </div>
+                                    </div>
+                                    <div class="admin-form-group">
+                                        <label for="kit-old-price">Old price (₹)</label>
+                                        <div class="admin-price-field">
+                                            <span class="admin-price-field__symbol" aria-hidden="true">₹</span>
+                                            <input type="number" id="kit-old-price" name="oldPrice" class="admin-price-field__input" placeholder="Optional" min="0" step="1" inputmode="decimal" data-kit-old-price>
+                                        </div>
+                                    </div>
+                                    <div class="admin-form-group">
+                                        <label for="kit-order">Display order</label>
+                                        <input type="number" id="kit-order" name="order" placeholder="0" min="0" step="1" data-kit-order>
+                                    </div>
+                                    <div class="admin-form-group">
+                                        <label for="kit-badge">Badge</label>
+                                        <select id="kit-badge" name="badge" data-kit-badge>
+                                            <option value="">No badge</option>
+                                            <option value="New">New</option>
+                                            <option value="Popular">Popular</option>
+                                            <option value="Sale">Sale</option>
+                                            <option value="Featured">Featured</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="admin-form-card">
+                            <div class="admin-form-card-header">
+                                <div>
+                                    <span class="admin-eyebrow">KIT MEDIA</span>
+                                    <h3>Kit image</h3>
+                                    <p>Upload to Cloudinary. Only the secure image URL is stored in Firestore.</p>
+                                </div>
+                            </div>
+                            <div class="admin-form-card-body">
+                                <div class="admin-image-upload" data-kit-image-upload>
+                                    <input type="file" id="kit-image-file" name="imageFile" accept="image/jpeg,image/png,image/webp" data-kit-image-file hidden>
+                                    <div class="admin-image-preview" data-kit-image-preview hidden>
+                                        <img src="" alt="Kit preview" data-kit-image-preview-img>
+                                        <button type="button" class="admin-image-remove" data-kit-image-remove aria-label="Remove kit image">×</button>
+                                    </div>
+                                    <div class="admin-image-upload-content" data-kit-image-upload-content>
+                                        <div class="admin-image-upload-icon">↑</div>
+                                        <strong>Upload to Cloudinary</strong>
+                                        <p>Click to browse or drag and drop an image here.</p>
+                                        <span>JPG, PNG or WEBP · Recommended 1200 × 800px</span>
+                                        <button type="button" class="admin-button admin-button-secondary admin-button-small" data-kit-image-browse>
+                                            Choose image
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="admin-form-group">
+                                    <label for="kit-image">Image URL</label>
+                                    <input type="url" id="kit-image" name="image" placeholder="Filled automatically after upload" data-kit-image readonly>
+                                </div>
+                                <div class="admin-upload-progress" data-kit-upload-progress hidden>
+                                    <div class="admin-upload-progress-top">
+                                        <span>Uploading…</span>
+                                        <strong data-kit-upload-percent>0%</strong>
+                                    </div>
+                                    <div class="admin-upload-progress-track">
+                                        <span data-kit-upload-bar style="width: 0%"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                    </div>
+
+                    <aside class="admin-product-form-aside">
+                        <section class="admin-form-card">
+                            <div class="admin-form-card-header">
+                                <div>
+                                    <span class="admin-eyebrow">VISIBILITY</span>
+                                    <h3>Publishing</h3>
+                                </div>
+                            </div>
+                            <div class="admin-form-card-body">
+                                <label class="admin-switch-row">
+                                    <span>
+                                        <strong>Visible on store</strong>
+                                        <small>Customers can see this kit.</small>
+                                    </span>
+                                    <input type="checkbox" name="active" data-kit-active checked>
+                                    <span class="admin-switch"><i></i></span>
+                                </label>
+                                <div class="admin-form-divider"></div>
+                                <label class="admin-switch-row">
+                                    <span>
+                                        <strong>Featured kit</strong>
+                                        <small>Highlight on the homepage.</small>
+                                    </span>
+                                    <input type="checkbox" name="featured" data-kit-featured>
+                                    <span class="admin-switch"><i></i></span>
+                                </label>
+                            </div>
+                        </section>
+
+                        <section class="admin-form-card">
+                            <div class="admin-form-card-header">
+                                <div>
+                                    <span class="admin-eyebrow">PREVIEW</span>
+                                    <h3>Store preview</h3>
+                                </div>
+                            </div>
+                            <div class="admin-form-card-body">
+                                <div class="admin-product-preview" data-kit-preview>
+                                    <div class="admin-product-preview-image" data-preview-image>
+                                        <span>Kit image</span>
+                                    </div>
+                                    <div class="admin-product-preview-content">
+                                        <span class="admin-product-preview-category" data-preview-category>Project Kit</span>
+                                        <h4 data-preview-name>Kit name</h4>
+                                        <p data-preview-description>Kit description will appear here.</p>
+                                        <div class="admin-product-preview-price">
+                                            <strong data-preview-price>₹0</strong>
+                                            <del data-preview-old-price hidden></del>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="admin-form-card" data-kit-meta-card hidden>
+                            <div class="admin-form-card-header">
+                                <div>
+                                    <span class="admin-eyebrow">METADATA</span>
+                                    <h3>Kit metadata</h3>
+                                </div>
+                            </div>
+                            <div class="admin-form-card-body">
+                                <div class="admin-meta-row">
+                                    <span>Kit ID</span>
+                                    <code data-kit-id>—</code>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="admin-form-card" data-kit-danger-card hidden>
+                            <div class="admin-form-card-header">
+                                <div>
+                                    <span class="admin-eyebrow">DANGER ZONE</span>
+                                    <h3>Delete kit</h3>
+                                </div>
+                            </div>
+                            <div class="admin-form-card-body">
+                                <p>Permanently remove this kit from Firestore.</p>
+                                <button type="button" class="admin-button admin-button-danger" data-confirm-kit-delete>
+                                    Delete kit
+                                </button>
+                            </div>
+                        </section>
+                    </aside>
+                </div>
+
+                <div class="admin-product-form-footer">
+                    <div class="admin-form-status" data-kit-form-status aria-live="polite"></div>
+                    <div class="admin-form-footer-actions">
+                        <a href="../project-kits.html" class="admin-button admin-button-secondary">Cancel</a>
+                        <button type="submit" class="admin-button admin-button-primary" data-kit-save>
+                            <span data-kit-save-text>Save kit</span>
+                            <span class="admin-button-spinner" data-kit-save-spinner hidden></span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <div class="admin-page-loading" data-kit-page-loading hidden>
+                <div class="admin-loading-spinner"></div>
+                <span>Loading kit...</span>
+            </div>
+
+            <div class="admin-page-error" data-kit-page-error hidden>
+                <strong>Unable to load kit</strong>
+                <p data-kit-page-error-message>Something went wrong.</p>
+                <a href="../project-kits.html" class="admin-button admin-button-secondary">Back to kits</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="module" src="../js/admin/admin-guard.js"></script>
+<script type="module" src="../js/admin/admin-kit-edit.js"></script>
+</body>
+</html>
