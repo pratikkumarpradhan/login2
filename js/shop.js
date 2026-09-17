@@ -315,22 +315,31 @@ async function handleGridClick(event) {
     }
 
     const add = event.target.closest("[data-add-cart]");
-    if (!add) return;
+    if (add) {
+        event.preventDefault();
+        const id = add.getAttribute("data-add-cart");
+        const product = allProducts.find(item => item.id === id);
+        if (!product) return;
 
-    event.preventDefault();
-    const id = add.getAttribute("data-add-cart");
-    const product = allProducts.find(item => item.id === id);
-    if (!product) return;
+        addToCart({
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            image: product.image,
+            stock: product.stock,
+            category: product.categoryName || product.categoryId || ""
+        });
+        showToast(`${product.name} added to cart`);
+        return;
+    }
 
-    addToCart({
-        id: product.id,
-        name: product.name,
-        price: product.price,
-        image: product.image,
-        stock: product.stock,
-        category: product.categoryName || product.categoryId || ""
-    });
-    showToast(`${product.name} added to cart`);
+    const card = event.target.closest(".product-card[data-product-id]");
+    if (card && !event.target.closest("a, button")) {
+        const id = card.getAttribute("data-product-id");
+        if (id) {
+            window.location.href = `product.html?id=${encodeURIComponent(id)}`;
+        }
+    }
 }
 
 function clearFilters() {

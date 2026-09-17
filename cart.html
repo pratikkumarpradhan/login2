@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="css/forms.css">
     <link rel="stylesheet" href="css/cart.css">
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/responsive.css">
 </head>
@@ -300,13 +301,24 @@
                             </div>
 
 
-                            <button
-                                type="button"
-                                class="cart-clear-button"
-                                data-cart-clear
-                            >
-                                Clear cart
-                            </button>
+                            <div class="cart-items-header-actions">
+                                <label class="cart-select-all">
+                                    <input
+                                        type="checkbox"
+                                        data-cart-select-all
+                                        checked
+                                    >
+                                    <span>Select all</span>
+                                </label>
+
+                                <button
+                                    type="button"
+                                    class="cart-clear-button"
+                                    data-cart-clear
+                                >
+                                    Clear cart
+                                </button>
+                            </div>
 
                         </div>
 
@@ -412,12 +424,23 @@
 
 
                             <!-- Checkout -->
-                            <a
-                                href="#"
-                                class="button button-primary button-full cart-checkout-button"
-                                data-cart-checkout
+                            <button
+                                type="button"
+                                class="button button-primary button-full cart-whatsapp-button"
+                                data-cart-whatsapp
                             >
-                                Proceed to checkout
+                                Order Selected on WhatsApp
+                            </button>
+
+                            <p class="cart-whatsapp-hint" data-cart-whatsapp-hint>
+                                Select items above, then open WhatsApp with a pre-filled order.
+                            </p>
+
+                            <a
+                                href="shop.html"
+                                class="button button-secondary button-full"
+                            >
+                                Continue shopping
                             </a>
 
 
@@ -429,7 +452,7 @@
                                 </span>
 
                                 <p>
-                                    Secure checkout
+                                    Orders are confirmed on WhatsApp
                                 </p>
 
                             </div>
@@ -647,9 +670,10 @@
     <!-- =========================================================
          SCRIPTS
     ========================================================== -->
+    <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
     <script type="module" src="js/page.js"></script>
     <script type="module" src="js/navbar.js"></script>
-    <script type="module" src="js/search.js"></script>
     <script type="module" src="js/cart.js"></script>
 
     <script>
