@@ -51,6 +51,24 @@
         ]
       },
       {
+        "collectionGroup": "components",
+        "queryScope": "COLLECTION",
+        "fields": [
+          {
+            "fieldPath": "active",
+            "order": "ASCENDING"
+          },
+          {
+            "fieldPath": "featured",
+            "order": "ASCENDING"
+          },
+          {
+            "fieldPath": "createdAt",
+            "order": "DESCENDING"
+          }
+        ]
+      },
+      {
         "collectionGroup": "products",
         "queryScope": "COLLECTION",
         "fields": [
@@ -161,6 +179,24 @@
           {
             "fieldPath": "featured",
             "order": "DESCENDING"
+          },
+          {
+            "fieldPath": "order",
+            "order": "ASCENDING"
+          }
+        ]
+      },
+      {
+        "collectionGroup": "kits",
+        "queryScope": "COLLECTION",
+        "fields": [
+          {
+            "fieldPath": "active",
+            "order": "ASCENDING"
+          },
+          {
+            "fieldPath": "featured",
+            "order": "ASCENDING"
           },
           {
             "fieldPath": "order",

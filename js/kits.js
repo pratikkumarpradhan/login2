@@ -209,15 +209,36 @@ export async function getFeaturedKits(maximum = 6) {
             return snapshot.docs.map(mapKit);
         }
 
-        const active = await getKits();
-        if (active.length) {
-            return active.slice(0, maximum);
-        }
+        return [];
     } catch (error) {
         console.error("Unable to load featured kits:", error);
     }
 
     return FALLBACK_KITS.filter(item => item.featured).slice(0, maximum);
+}
+
+
+export function watchFeaturedKits(onData, onError, maximum = 3) {
+    const kitQuery = query(
+        kitsRef(),
+        where("active", "==", true),
+        where("featured", "==", true),
+        orderBy("order", "asc"),
+        limit(maximum)
+    );
+
+    return onSnapshot(
+        kitQuery,
+        snapshot => {
+            onData(snapshot.docs.map(mapKit));
+        },
+        error => {
+            console.error("Featured kits listener error:", error);
+            if (typeof onError === "function") {
+                onError(error);
+            }
+        }
+    );
 }
 
 

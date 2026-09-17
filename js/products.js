@@ -9,6 +9,7 @@ export {
     getComponents,
     getProducts,
     watchActiveComponents,
+    watchFeaturedComponents,
     getFeaturedProducts,
     getComponent,
     getProduct,

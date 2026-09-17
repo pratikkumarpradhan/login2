@@ -158,6 +158,29 @@ export function watchActiveComponents(onData, onError) {
     );
 }
 
+export function watchFeaturedComponents(onData, onError, maximum = 8) {
+    const componentQuery = query(
+        componentsRef(),
+        where("active", "==", true),
+        where("featured", "==", true),
+        orderBy("createdAt", "desc"),
+        limit(maximum)
+    );
+
+    return onSnapshot(
+        componentQuery,
+        snapshot => {
+            onData(snapshot.docs.map(mapComponent));
+        },
+        error => {
+            console.error("Featured components listener error:", error);
+            if (typeof onError === "function") {
+                onError(error);
+            }
+        }
+    );
+}
+
 export async function getFeaturedProducts(maximum = 8) {
     try {
         const componentQuery = query(
@@ -168,15 +191,11 @@ export async function getFeaturedProducts(maximum = 8) {
             limit(maximum)
         );
         const snapshot = await getDocs(componentQuery);
-
-        if (!snapshot.empty) {
-            return snapshot.docs.map(mapComponent);
-        }
+        return snapshot.docs.map(mapComponent);
     } catch (error) {
         console.error("Unable to load featured components:", error);
+        return FALLBACK_PRODUCTS.filter(item => item.featured && item.active !== false).slice(0, maximum);
     }
-
-    return FALLBACK_PRODUCTS.filter(item => item.featured).slice(0, maximum);
 }
 
 export async function getComponent(componentId) {

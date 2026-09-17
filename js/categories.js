@@ -3,7 +3,7 @@
    Categories Database
    ========================================================= */
 
-   import {
+import {
     collection,
     addDoc,
     updateDoc,
@@ -11,6 +11,7 @@
     doc,
     getDoc,
     getDocs,
+    onSnapshot,
     query,
     where,
     orderBy,
@@ -77,7 +78,7 @@ export async function getCategories() {
             );
 
         if (snapshot.empty) {
-            return FALLBACK_CATEGORIES;
+            return [];
         }
 
         return snapshot.docs.map(
@@ -98,6 +99,37 @@ export async function getCategories() {
 
         return FALLBACK_CATEGORIES;
     }
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Real-time Active Categories
+|--------------------------------------------------------------------------
+*/
+
+export function watchActiveCategories(onData, onError) {
+    const categoryQuery = query(
+        collection(db, CATEGORIES),
+        where("active", "==", true),
+        orderBy("order", "asc")
+    );
+
+    return onSnapshot(
+        categoryQuery,
+        snapshot => {
+            onData(snapshot.docs.map(document => ({
+                id: document.id,
+                ...document.data()
+            })));
+        },
+        error => {
+            console.error("Categories listener error:", error);
+            if (typeof onError === "function") {
+                onError(error);
+            }
+        }
+    );
 }
 
 
