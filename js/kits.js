@@ -574,7 +574,9 @@ function renderKitsPage(kits) {
         return `
             <article class="project-kit-card" data-kit-id="${escapeHTML(kit.id)}">
                 <div class="project-kit-card__media">
-                    <img src="${escapeHTML(kit.image || "")}" alt="${escapeHTML(kit.name)}" loading="lazy">
+                    <a href="kit.html?id=${encodeURIComponent(kit.id)}" class="project-kit-card__image-link" aria-label="View ${escapeHTML(kit.name)}">
+                        <img src="${escapeHTML(kit.image || "")}" alt="${escapeHTML(kit.name)}" loading="lazy">
+                    </a>
                     ${badge ? `<span class="project-kit-card__badge">${escapeHTML(badge)}</span>` : ""}
                     <div class="project-kit-card__admin-actions" data-admin-only ${isAdmin ? "" : "hidden"}>
                         <button type="button" class="project-kit-card__admin-btn project-kit-card__admin-btn--edit" data-admin-edit="${escapeHTML(kit.id)}" aria-label="Edit ${escapeHTML(kit.name)}">Edit</button>
@@ -583,7 +585,7 @@ function renderKitsPage(kits) {
                 </div>
                 <div class="project-kit-card__body">
                     <span class="project-kit-card__category">${escapeHTML(kit.category || "Project Kit")}</span>
-                    <h3>${escapeHTML(kit.name)}</h3>
+                    <h3><a href="kit.html?id=${encodeURIComponent(kit.id)}">${escapeHTML(kit.name)}</a></h3>
                     <p class="project-kit-card__text">${escapeHTML(kit.description || "")}</p>
                     <div class="project-kit-card__includes">
                         <span>Includes</span>
@@ -596,7 +598,7 @@ function renderKitsPage(kits) {
                             <strong>₹${Number(kit.price || 0).toLocaleString("en-IN")}</strong>
                             ${Number(kit.oldPrice) > Number(kit.price) ? `<del>₹${Number(kit.oldPrice).toLocaleString("en-IN")}</del>` : ""}
                         </div>
-                        <a class="project-kit-card__link" href="product.html?id=${encodeURIComponent(kit.id)}">View kit →</a>
+                        <a class="project-kit-card__link" href="kit.html?id=${encodeURIComponent(kit.id)}">View kit →</a>
                     </div>
                 </div>
             </article>

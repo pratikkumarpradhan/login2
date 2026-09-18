@@ -147,6 +147,27 @@
     letter-spacing: -0.04em;
 }
 
+.project-kit-card h3 a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.project-kit-card h3 a:hover {
+    color: #6ea0ff;
+}
+
+.project-kit-card__image-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.project-kit-card__image-link img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 .project-kit-card__text {
     min-height: 44px;
     color: #8b97ab;

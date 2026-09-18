@@ -211,7 +211,7 @@ function renderHomeKits(kits) {
         const image = kit.image || PLACEHOLDER_IMAGE;
 
         return `
-            <a href="project-kits.html?kit=${encodeURIComponent(kit.id)}" class="kit-card${sizeClass}">
+            <a href="kit.html?id=${encodeURIComponent(kit.id)}" class="kit-card${sizeClass}">
                 <div class="kit-card__image">
                     <img src="${escapeHTML(image)}" alt="${escapeHTML(kit.name || "Project kit")}" loading="lazy">
                 </div>
