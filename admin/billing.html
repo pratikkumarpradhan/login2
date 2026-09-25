@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bill | ProjectKart Admin</title>
+    <meta name="description" content="ProjectKart admin billing and invoice generator.">
+
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/typography.css">
+    <link rel="stylesheet" href="../css/admin/admin-base.css">
+    <link rel="stylesheet" href="../css/admin/admin-sidebar.css">
+    <link rel="stylesheet" href="../css/admin/admin-header.css">
+    <link rel="stylesheet" href="../css/admin/admin-forms.css">
+    <link rel="stylesheet" href="../css/admin/admin-responsive.css">
+    <link rel="stylesheet" href="../css/admin/admin-billing.css">
+</head>
+<body class="admin-body billing-page">
+<div class="admin-app">
+
+    <aside class="admin-sidebar" id="admin-sidebar" data-admin-sidebar>
+        <div class="admin-sidebar-top">
+            <a href="index.html" class="admin-brand" aria-label="ProjectKart Admin Dashboard">
+                <span class="admin-brand-mark">PK</span>
+                <span class="admin-brand-text">
+                    <strong>ProjectKart</strong>
+                    <small>Admin Panel</small>
+                </span>
+            </a>
+
+            <nav class="admin-nav">
+                <div class="admin-nav-section">
+                    <span class="admin-nav-label">Overview</span>
+                    <a href="index.html" class="admin-nav-item" data-admin-nav="dashboard">
+                        <span class="admin-nav-icon">▦</span>
+                        <span class="admin-nav-text">Dashboard</span>
+                    </a>
+                </div>
+
+                <div class="admin-nav-section">
+                    <span class="admin-nav-label">Store</span>
+                    <a href="products.html" class="admin-nav-item" data-admin-nav="products">
+                        <span class="admin-nav-icon">□</span>
+                        <span class="admin-nav-text">Products</span>
+                    </a>
+                    <a href="categories.html" class="admin-nav-item" data-admin-nav="categories">
+                        <span class="admin-nav-icon">◫</span>
+                        <span class="admin-nav-text">Categories</span>
+                    </a>
+                    <a href="kits.html" class="admin-nav-item" data-admin-nav="kits">
+                        <span class="admin-nav-icon">◈</span>
+                        <span class="admin-nav-text">Project Kits</span>
+                    </a>
+                    <a href="billing.html" class="admin-nav-item active" data-admin-nav="billing">
+                        <span class="admin-nav-icon">₹</span>
+                        <span class="admin-nav-text">Bill</span>
+                    </a>
+                    <a href="bills.html" class="admin-nav-item" data-admin-nav="bills">
+                        <span class="admin-nav-icon">▤</span>
+                        <span class="admin-nav-text">Bill History</span>
+                    </a>
+                    <a href="orders.html" class="admin-nav-item" data-admin-nav="orders">
+                        <span class="admin-nav-icon">≡</span>
+                        <span class="admin-nav-text">Orders</span>
+                    </a>
+                </div>
+
+                <div class="admin-nav-section">
+                    <span class="admin-nav-label">Management</span>
+                    <a href="users.html" class="admin-nav-item" data-admin-nav="users">
+                        <span class="admin-nav-icon">◎</span>
+                        <span class="admin-nav-text">Users</span>
+                    </a>
+                    <a href="settings.html" class="admin-nav-item" data-admin-nav="settings">
+                        <span class="admin-nav-icon">⚙</span>
+                        <span class="admin-nav-text">Settings</span>
+                    </a>
+                </div>
+            </nav>
+        </div>
+
+        <div class="admin-sidebar-bottom">
+            <a href="../index.html" class="admin-sidebar-store-link">
+                <span class="admin-nav-icon">↗</span>
+                <span class="admin-nav-text">View Store</span>
+            </a>
+            <button type="button" class="admin-sidebar-logout" data-admin-logout>
+                <span class="admin-nav-icon">⇥</span>
+                <span class="admin-nav-text">Sign out</span>
+            </button>
+        </div>
+    </aside>
+
+    <div class="admin-main">
+        <header class="admin-header">
+            <div class="admin-header-left">
+                <button type="button" class="admin-menu-toggle" data-admin-menu-toggle aria-label="Open admin menu">☰</button>
+                <div>
+                    <div class="admin-breadcrumb">
+                        <a href="index.html">Admin</a>
+                        <span>/</span>
+                        <span>Bill</span>
+                    </div>
+                    <h1>Create bill</h1>
+                </div>
+            </div>
+            <div class="admin-header-right">
+                <a href="bills.html" class="admin-button admin-button-secondary">Bill history</a>
+                <div class="admin-user">
+                    <span class="admin-user-avatar" data-admin-avatar>A</span>
+                    <span>
+                        <strong data-admin-user-name>Administrator</strong>
+                        <small data-admin-user-email></small>
+                    </span>
+                </div>
+            </div>
+        </header>
+
+        <main class="admin-content">
+            <div class="billing-toolbar">
+                <div>
+                    <strong style="color:#0b1f3a;">New invoice</strong>
+                    <p style="margin:4px 0 0;color:#5b6b7c;font-size:13px;">Customer invoice never shows original cost or profit.</p>
+                </div>
+                <div class="billing-toolbar__actions">
+                    <button type="button" class="admin-button admin-button-secondary" data-billing-new>New bill</button>
+                    <button type="button" class="admin-button admin-button-secondary" data-billing-download>Download bill</button>
+                    <button type="button" class="admin-button admin-button-primary" data-billing-save>Save bill</button>
+                </div>
+            </div>
+
+            <div class="billing-layout">
+                <section class="invoice-sheet" id="invoiceSheet" aria-label="ProjectKart invoice">
+                    <div class="invoice-sheet__top">
+                        <img src="../assets/images/logo1.png" alt="ProjectKart" class="invoice-sheet__logo">
+                        <div class="invoice-sheet__biz">
+                            <h1 data-biz-name>ProjectKart</h1>
+                            <div class="tagline" data-biz-tagline>Electronics • Components • Project Kits</div>
+                            <p><strong>Address:</strong> <span data-biz-address>Near Bidyut Bakery & Chai Bari, Kshudiramnagar</span></p>
+                            <p><strong>Phone / WhatsApp:</strong> <span data-biz-phone>9434693252, 7209741278</span></p>
+                            <p>Online &amp; Offline Store</p>
+                        </div>
+                    </div>
+
+                    <div class="invoice-meta">
+                        <div>
+                            <h2>Bill To</h2>
+                            <div class="invoice-field">
+                                <label for="customerName">Customer name *</label>
+                                <input id="customerName" type="text" data-customer-name placeholder="Customer name" autocomplete="name">
+                            </div>
+                            <div class="invoice-field">
+                                <label for="customerAddress">Address</label>
+                                <textarea id="customerAddress" data-customer-address placeholder="Customer address"></textarea>
+                            </div>
+                            <div class="invoice-field">
+                                <label for="customerPhone">Phone *</label>
+                                <input id="customerPhone" type="tel" data-customer-phone placeholder="Phone number" autocomplete="tel">
+                            </div>
+                        </div>
+                        <div>
+                            <h2>Invoice</h2>
+                            <div class="invoice-field">
+                                <label>Invoice number</label>
+                                <div class="invoice-readonly" data-invoice-number>BK-00001</div>
+                            </div>
+                            <div class="invoice-field">
+                                <label>Invoice date</label>
+                                <div class="invoice-readonly" data-invoice-date>—</div>
+                            </div>
+                            <div class="invoice-field">
+                                <label for="paymentMethod">Payment method</label>
+                                <select id="paymentMethod" data-payment-method>
+                                    <option value="Cash / UPI / Bank Transfer">Cash / UPI / Bank Transfer</option>
+                                    <option value="Cash">Cash</option>
+                                    <option value="UPI">UPI</option>
+                                    <option value="Bank Transfer">Bank Transfer</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="invoice-table-wrap">
+                        <table class="invoice-table">
+                            <thead>
+                                <tr>
+                                    <th>SL.</th>
+                                    <th>Item description</th>
+                                    <th>Price (₹)</th>
+                                    <th>Qty.</th>
+                                    <th>Total (₹)</th>
+                                    <th class="no-print"></th>
+                                </tr>
+                            </thead>
+                            <tbody data-invoice-rows>
+                                <tr>
+                                    <td colspan="6" class="invoice-empty">No items yet. Tap + Add item to begin.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="invoice-summary">
+                        <div class="invoice-qr">
+                            <h3>Scan &amp; Pay</h3>
+                            <img data-invoice-qr alt="UPI QR code" hidden>
+                            <div class="muted" data-invoice-qr-fallback>Upload your QR PNG in the panel → Payment QR image.</div>
+                            <div class="muted">UPI / PhonePe / Google Pay</div>
+                        </div>
+                        <div class="invoice-total-box">
+                            <div class="invoice-total-row">
+                                <span>TOTAL</span>
+                                <span data-invoice-total>₹0.00</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="invoice-footer">
+                        <div class="invoice-terms">
+                            <h3>Terms &amp; Conditions</h3>
+                            <ol>
+                                <li>Goods once sold will not be returned or exchanged.</li>
+                                <li>Warranty is applicable only for manufacturing defects.</li>
+                                <li>Payment should be made at the time of delivery / before shipment.</li>
+                                <li>For any queries, contact ProjectKart.</li>
+                            </ol>
+                        </div>
+                        <div class="invoice-sign">
+                            <h3>Authorised Sign</h3>
+                            <div class="invoice-sign-line">Authorised Signatory</div>
+                        </div>
+                    </div>
+
+                    <div class="invoice-bottom-note">
+                        Thank you for shopping with ProjectKart — Electronics • Components • Project Kits
+                    </div>
+                </section>
+
+                <aside class="billing-admin-panel" aria-label="Admin only billing controls">
+                    <div class="billing-admin-card">
+                        <h3>Admin only</h3>
+                        <div class="billing-admin-stat">
+                            <span>Total bill</span>
+                            <strong data-admin-total>₹0.00</strong>
+                        </div>
+                        <div class="billing-admin-stat">
+                            <span>Original cost</span>
+                            <strong data-admin-cost>₹0.00</strong>
+                        </div>
+                        <div class="billing-admin-stat billing-admin-stat--profit">
+                            <span>Profit</span>
+                            <strong data-admin-profit>₹0.00</strong>
+                        </div>
+                        <p style="margin:10px 0 0;">Not shown on customer invoice, print, or download.</p>
+                    </div>
+
+                    <div class="billing-admin-card">
+                        <h3>Payment QR image</h3>
+                        <p style="margin:0 0 8px;">Show your own PNG QR on invoices (PhonePe / GPay / UPI).</p>
+                        <img data-settings-qr-preview alt="QR preview" hidden style="width:120px;height:120px;object-fit:contain;border:1px solid #d7dee8;border-radius:8px;padding:4px;background:#fff;margin-bottom:10px;display:block;">
+                        <label for="qrFile">Upload QR PNG</label>
+                        <input id="qrFile" type="file" accept="image/png,image/jpeg,image/webp,image/*" data-settings-qr-file>
+                        <label for="qrPath">Or image path</label>
+                        <input id="qrPath" type="text" data-settings-qr-path placeholder="../assets/images/upi-qr.png">
+                        <div style="display:flex;gap:8px;margin-top:4px;">
+                            <button type="button" class="admin-button admin-button-secondary" data-settings-save style="flex:1;">Save path</button>
+                            <button type="button" class="admin-button admin-button-secondary" data-settings-qr-clear style="flex:1;">Clear upload</button>
+                        </div>
+                        <small>Default file: <code>assets/images/upi-qr.png</code></small>
+                    </div>
+
+                    <div class="billing-admin-card">
+                        <h3>Shortcuts</h3>
+                        <p style="margin:0 0 10px;">Add components or complete project kits. Kits stay as one line item.</p>
+                        <button type="button" class="admin-button admin-button-primary" data-open-picker style="width:100%;">+ Add item</button>
+                    </div>
+
+                    <div class="billing-admin-card" data-billing-status aria-live="polite"></div>
+                </aside>
+            </div>
+        </main>
+    </div>
+</div>
+
+<button type="button" class="billing-fab" data-open-picker>
+    <span>+</span>
+    Add item
+</button>
+
+<div class="billing-modal" id="itemPickerModal" aria-hidden="true">
+    <div class="billing-modal__backdrop" data-close-picker></div>
+    <div class="billing-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="pickerTitle">
+        <div class="billing-modal__header">
+            <h2 id="pickerTitle">Add bill item</h2>
+            <button type="button" class="billing-modal__close" data-close-picker aria-label="Close">×</button>
+        </div>
+        <div class="billing-modal__tools">
+            <div class="billing-tabs" role="tablist">
+                <button type="button" class="is-active" data-picker-tab="component">Components</button>
+                <button type="button" data-picker-tab="projectKit">Project Kits</button>
+            </div>
+            <input type="search" placeholder="Search items…" data-picker-search autocomplete="off">
+        </div>
+        <div class="billing-modal__list" data-picker-list></div>
+    </div>
+</div>
+
+<div class="admin-sidebar-overlay" data-admin-sidebar-overlay></div>
+
+<script type="module" src="../js/admin/admin-guard.js"></script>
+<script type="module" src="../js/admin/admin-ui.js"></script>
+<script type="module" src="../js/admin/admin-billing.js"></script>
+</body>
+</html>

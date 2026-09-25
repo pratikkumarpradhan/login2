@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bill History | ProjectKart Admin</title>
+    <meta name="description" content="ProjectKart bill history, sales and profit analytics.">
+
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/typography.css">
+    <link rel="stylesheet" href="../css/admin/admin-base.css">
+    <link rel="stylesheet" href="../css/admin/admin-sidebar.css">
+    <link rel="stylesheet" href="../css/admin/admin-header.css">
+    <link rel="stylesheet" href="../css/admin/admin-tables.css">
+    <link rel="stylesheet" href="../css/admin/admin-responsive.css">
+    <link rel="stylesheet" href="../css/admin/admin-billing.css">
+</head>
+<body class="admin-body">
+<div class="admin-app">
+
+    <aside class="admin-sidebar" id="admin-sidebar" data-admin-sidebar>
+        <div class="admin-sidebar-top">
+            <a href="index.html" class="admin-brand" aria-label="ProjectKart Admin Dashboard">
+                <span class="admin-brand-mark">PK</span>
+                <span class="admin-brand-text">
+                    <strong>ProjectKart</strong>
+                    <small>Admin Panel</small>
+                </span>
+            </a>
+
+            <nav class="admin-nav">
+                <div class="admin-nav-section">
+                    <span class="admin-nav-label">Overview</span>
+                    <a href="index.html" class="admin-nav-item" data-admin-nav="dashboard">
+                        <span class="admin-nav-icon">▦</span>
+                        <span class="admin-nav-text">Dashboard</span>
+                    </a>
+                </div>
+
+                <div class="admin-nav-section">
+                    <span class="admin-nav-label">Store</span>
+                    <a href="products.html" class="admin-nav-item" data-admin-nav="products">
+                        <span class="admin-nav-icon">□</span>
+                        <span class="admin-nav-text">Products</span>
+                    </a>
+                    <a href="categories.html" class="admin-nav-item" data-admin-nav="categories">
+                        <span class="admin-nav-icon">◫</span>
+                        <span class="admin-nav-text">Categories</span>
+                    </a>
+                    <a href="kits.html" class="admin-nav-item" data-admin-nav="kits">
+                        <span class="admin-nav-icon">◈</span>
+                        <span class="admin-nav-text">Project Kits</span>
+                    </a>
+                    <a href="billing.html" class="admin-nav-item" data-admin-nav="billing">
+                        <span class="admin-nav-icon">₹</span>
+                        <span class="admin-nav-text">Bill</span>
+                    </a>
+                    <a href="bills.html" class="admin-nav-item active" data-admin-nav="bills">
+                        <span class="admin-nav-icon">▤</span>
+                        <span class="admin-nav-text">Bill History</span>
+                    </a>
+                    <a href="orders.html" class="admin-nav-item" data-admin-nav="orders">
+                        <span class="admin-nav-icon">≡</span>
+                        <span class="admin-nav-text">Orders</span>
+                    </a>
+                </div>
+
+                <div class="admin-nav-section">
+                    <span class="admin-nav-label">Management</span>
+                    <a href="users.html" class="admin-nav-item" data-admin-nav="users">
+                        <span class="admin-nav-icon">◎</span>
+                        <span class="admin-nav-text">Users</span>
+                    </a>
+                    <a href="settings.html" class="admin-nav-item" data-admin-nav="settings">
+                        <span class="admin-nav-icon">⚙</span>
+                        <span class="admin-nav-text">Settings</span>
+                    </a>
+                </div>
+            </nav>
+        </div>
+
+        <div class="admin-sidebar-bottom">
+            <a href="../index.html" class="admin-sidebar-store-link">
+                <span class="admin-nav-icon">↗</span>
+                <span class="admin-nav-text">View Store</span>
+            </a>
+            <button type="button" class="admin-sidebar-logout" data-admin-logout>
+                <span class="admin-nav-icon">⇥</span>
+                <span class="admin-nav-text">Sign out</span>
+            </button>
+        </div>
+    </aside>
+
+    <div class="admin-main">
+        <header class="admin-header">
+            <div class="admin-header-left">
+                <button type="button" class="admin-menu-toggle" data-admin-menu-toggle aria-label="Open admin menu">☰</button>
+                <div>
+                    <div class="admin-breadcrumb">
+                        <a href="index.html">Admin</a>
+                        <span>/</span>
+                        <span>Bill History</span>
+                    </div>
+                    <h1>Bills &amp; analytics</h1>
+                </div>
+            </div>
+            <div class="admin-header-right">
+                <a href="billing.html" class="admin-button admin-button-primary">+ New bill</a>
+                <div class="admin-user">
+                    <span class="admin-user-avatar" data-admin-avatar>A</span>
+                    <span>
+                        <strong data-admin-user-name>Administrator</strong>
+                        <small data-admin-user-email></small>
+                    </span>
+                </div>
+            </div>
+        </header>
+
+        <main class="admin-content">
+            <div class="bills-stats">
+                <div class="bills-stat">
+                    <span data-month-label>This month</span>
+                    <strong data-stat-sales>₹0</strong>
+                    <small style="color:#8b97ab;">Total sales</small>
+                </div>
+                <div class="bills-stat">
+                    <span>Monthly profit</span>
+                    <strong data-stat-profit>₹0</strong>
+                </div>
+                <div class="bills-stat">
+                    <span>Bills generated</span>
+                    <strong data-stat-bills>0</strong>
+                </div>
+                <div class="bills-stat">
+                    <span>Items sold</span>
+                    <strong data-stat-items>0</strong>
+                </div>
+            </div>
+
+            <div class="bills-charts">
+                <div class="bills-chart-card">
+                    <h3>Monthly sales</h3>
+                    <div class="bills-chart" data-chart-sales></div>
+                </div>
+                <div class="bills-chart-card">
+                    <h3>Monthly profit</h3>
+                    <div class="bills-chart" data-chart-profit></div>
+                </div>
+            </div>
+
+            <div class="admin-card" style="padding:0;overflow:hidden;">
+                <div style="padding:16px 18px;border-bottom:1px solid rgba(255,255,255,0.08);display:flex;justify-content:space-between;gap:12px;align-items:center;">
+                    <div>
+                        <strong style="color:#fff;">Invoice history</strong>
+                        <p style="margin:4px 0 0;color:#8b97ab;font-size:13px;">Admin only — includes profit. Customer views never show original cost.</p>
+                    </div>
+                </div>
+                <div class="admin-table-wrap">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Invoice No.</th>
+                                <th>Date</th>
+                                <th>Customer</th>
+                                <th>Total</th>
+                                <th>Profit</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody data-bills-table>
+                            <tr>
+                                <td colspan="6" style="text-align:center;color:#8b97ab;padding:28px;">No bills saved yet.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+<div class="admin-sidebar-overlay" data-admin-sidebar-overlay></div>
+
+<!-- Printable viewer -->
+<div class="billing-modal" id="billViewModal" aria-hidden="true">
+    <div class="billing-modal__backdrop" data-close-bill-view></div>
+    <div class="billing-modal__dialog" style="width:min(900px,100%);max-height:92vh;grid-template-rows:auto 1fr auto;">
+        <div class="billing-modal__header">
+            <h2 data-view-title>Invoice</h2>
+            <button type="button" class="billing-modal__close" data-close-bill-view aria-label="Close">×</button>
+        </div>
+        <div style="overflow:auto;padding:16px;background:#e8eef5;" data-bill-view-body></div>
+        <div style="display:flex;gap:8px;justify-content:flex-end;padding:12px 16px;border-top:1px solid #d7dee8;">
+            <button type="button" class="admin-button admin-button-primary" data-view-download>Download PDF</button>
+            <button type="button" class="admin-button admin-button-secondary" data-close-bill-view>Close</button>
+        </div>
+    </div>
+</div>
+
+<script type="module" src="../js/admin/admin-guard.js"></script>
+<script type="module" src="../js/admin/admin-ui.js"></script>
+<script type="module" src="../js/admin/admin-bills.js"></script>
+</body>
+</html>
