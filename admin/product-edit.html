@@ -817,13 +817,13 @@
                                         </span>
 
                                         <h3>
-                                            Component image
+                                            Component images
                                         </h3>
 
                                         <p>
-                                            Upload to Cloudinary. Only the
-                                            secure image URL is stored in
-                                            Firestore.
+                                            Upload one or more images to
+                                            Cloudinary. The first image is
+                                            used as the cover.
                                         </p>
 
                                     </div>
@@ -833,8 +833,12 @@
 
                                 <div class="admin-form-card-body">
 
+                                    <div
+                                        class="admin-image-gallery"
+                                        data-product-image-gallery
+                                        hidden
+                                    ></div>
 
-                                    <!-- Upload area -->
                                     <div
                                         class="admin-image-upload"
                                         data-product-image-upload
@@ -844,35 +848,11 @@
                                             type="file"
                                             id="product-image-file"
                                             name="imageFile"
-                                            accept="image/jpeg,image/png,image/webp"
+                                            accept="image/jpeg,image/png,image/webp,image/gif"
                                             data-product-image-file
+                                            multiple
                                             hidden
                                         >
-
-
-                                        <div
-                                            class="admin-image-preview"
-                                            data-product-image-preview
-                                            hidden
-                                        >
-
-                                            <img
-                                                src=""
-                                                alt="Product preview"
-                                                data-product-image-preview-img
-                                            >
-
-                                            <button
-                                                type="button"
-                                                class="admin-image-remove"
-                                                data-product-image-remove
-                                                aria-label="Remove product image"
-                                            >
-                                                ×
-                                            </button>
-
-                                        </div>
-
 
                                         <div
                                             class="admin-image-upload-content"
@@ -884,17 +864,17 @@
                                             </div>
 
                                             <strong>
-                                                Upload to Cloudinary
+                                                Upload images to Cloudinary
                                             </strong>
 
                                             <p>
-                                                Click to browse or drag
-                                                and drop an image here.
+                                                Click to browse or drag and
+                                                drop multiple images here.
                                             </p>
 
                                             <span>
-                                                JPG, PNG or WEBP ·
-                                                Recommended 1000 × 1000px
+                                                JPG, PNG, WEBP or GIF ·
+                                                Up to 8 images
                                             </span>
 
                                             <button
@@ -902,38 +882,27 @@
                                                 class="admin-button admin-button-secondary admin-button-small"
                                                 data-product-image-browse
                                             >
-                                                Choose image
+                                                Add images
                                             </button>
 
                                         </div>
 
                                     </div>
 
+                                    <input
+                                        type="hidden"
+                                        id="product-image"
+                                        name="image"
+                                        data-product-image
+                                    >
 
-                                    <!-- Existing image URL -->
-                                    <div class="admin-form-group">
+                                    <input
+                                        type="hidden"
+                                        id="product-images"
+                                        name="images"
+                                        data-product-images
+                                    >
 
-                                        <label for="product-image">
-                                            Image URL
-                                        </label>
-
-                                        <input
-                                            type="url"
-                                            id="product-image"
-                                            name="image"
-                                            placeholder="https://..."
-                                            data-product-image
-                                        >
-
-                                        <small>
-                                            Filled automatically after a
-                                            successful Cloudinary upload.
-                                        </small>
-
-                                    </div>
-
-
-                                    <!-- Upload progress -->
                                     <div
                                         class="admin-upload-progress"
                                         data-product-upload-progress
@@ -942,8 +911,8 @@
 
                                         <div class="admin-upload-progress-top">
 
-                                            <span>
-                                                Uploading image...
+                                            <span data-product-upload-label>
+                                                Uploading images...
                                             </span>
 
                                             <strong

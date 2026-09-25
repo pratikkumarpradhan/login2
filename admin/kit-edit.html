@@ -224,31 +224,26 @@
                             <div class="admin-form-card-header">
                                 <div>
                                     <span class="admin-eyebrow">KIT MEDIA</span>
-                                    <h3>Kit image</h3>
-                                    <p>Upload to Cloudinary. Only the secure image URL is stored in Firestore.</p>
+                                    <h3>Kit images</h3>
+                                    <p>Upload one or more images to Cloudinary. The first image is used as the cover.</p>
                                 </div>
                             </div>
                             <div class="admin-form-card-body">
+                                <div class="admin-image-gallery" data-kit-image-gallery hidden></div>
                                 <div class="admin-image-upload" data-kit-image-upload>
-                                    <input type="file" id="kit-image-file" name="imageFile" accept="image/jpeg,image/png,image/webp" data-kit-image-file hidden>
-                                    <div class="admin-image-preview" data-kit-image-preview hidden>
-                                        <img src="" alt="Kit preview" data-kit-image-preview-img>
-                                        <button type="button" class="admin-image-remove" data-kit-image-remove aria-label="Remove kit image">×</button>
-                                    </div>
+                                    <input type="file" id="kit-image-file" name="imageFile" accept="image/jpeg,image/png,image/webp,image/gif" data-kit-image-file multiple hidden>
                                     <div class="admin-image-upload-content" data-kit-image-upload-content>
                                         <div class="admin-image-upload-icon">↑</div>
-                                        <strong>Upload to Cloudinary</strong>
-                                        <p>Click to browse or drag and drop an image here.</p>
-                                        <span>JPG, PNG or WEBP · Recommended 1200 × 800px</span>
+                                        <strong>Upload images to Cloudinary</strong>
+                                        <p>Click to browse or drag and drop multiple images here.</p>
+                                        <span>JPG, PNG, WEBP or GIF · Up to 8 images</span>
                                         <button type="button" class="admin-button admin-button-secondary admin-button-small" data-kit-image-browse>
-                                            Choose image
+                                            Add images
                                         </button>
                                     </div>
                                 </div>
-                                <div class="admin-form-group">
-                                    <label for="kit-image">Image URL</label>
-                                    <input type="url" id="kit-image" name="image" placeholder="Filled automatically after upload" data-kit-image readonly>
-                                </div>
+                                <input type="hidden" id="kit-image" name="image" data-kit-image>
+                                <input type="hidden" id="kit-images" name="images" data-kit-images>
                                 <div class="admin-upload-progress" data-kit-upload-progress hidden>
                                     <div class="admin-upload-progress-top">
                                         <span>Uploading…</span>

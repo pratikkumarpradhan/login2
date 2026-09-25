@@ -50,6 +50,26 @@ function mapComponent(document) {
     };
 }
 
+function normalizeImages(images, primaryImage = "") {
+    const list = [];
+
+    if (Array.isArray(images)) {
+        images.forEach(item => {
+            const url = String(item || "").trim();
+            if (url && !list.includes(url)) {
+                list.push(url);
+            }
+        });
+    }
+
+    const primary = String(primaryImage || "").trim();
+    if (primary && !list.includes(primary)) {
+        list.unshift(primary);
+    }
+
+    return list;
+}
+
 function normalizeComponentInput(component = {}, {
     isCreate = false
 } = {}) {
@@ -79,9 +99,9 @@ function normalizeComponentInput(component = {}, {
         throw new Error("Please enter a valid stock quantity.");
     }
 
-    const image = String(component.image || "").trim();
-    if (isCreate && !image) {
-        throw new Error("Please upload a component image.");
+    const images = normalizeImages(component.images, component.image);
+    if (isCreate && !images.length) {
+        throw new Error("Please upload at least one component image.");
     }
 
     const data = {
@@ -93,7 +113,8 @@ function normalizeComponentInput(component = {}, {
         stock,
         categoryId,
         categoryName: String(component.categoryName || "").trim(),
-        image,
+        image: images[0] || "",
+        images,
         badge: String(component.badge || "").trim(),
         featured: Boolean(component.featured),
         active: component.active !== false,
@@ -292,6 +313,7 @@ export async function updateComponent(componentId, component) {
 
     if (!data.image) {
         delete data.image;
+        delete data.images;
     }
 
     await updateDoc(componentDoc(componentId), data);

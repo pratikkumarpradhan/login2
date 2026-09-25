@@ -10,6 +10,10 @@ import {
 } from "../categories.js";
 
 import {
+    FALLBACK_CATEGORIES
+} from "../catalog-data.js";
+
+import {
     addComponent,
     deleteComponent,
     getComponent,
@@ -32,9 +36,10 @@ import {
 } from "./admin-guard.js";
 
 let editingId = null;
-let uploadedImageUrl = "";
+let uploadedImages = [];
 let categories = [];
-let pendingFile = null;
+let uploadsInFlight = 0;
+const MAX_IMAGES = 8;
 
 document.addEventListener("DOMContentLoaded", () => {
     initProductEditPage();
@@ -78,21 +83,44 @@ async function loadCategories() {
         }
     } catch (error) {
         console.error("Admin categories load error:", error);
-        categories = await getCategories();
+        try {
+            categories = await getCategories();
+        } catch (innerError) {
+            console.error("Admin fallback categories load error:", innerError);
+            categories = [];
+        }
     }
 
+    if (!categories.length) {
+        categories = FALLBACK_CATEGORIES.slice();
+    }
+
+    const previous = select.value;
     select.innerHTML = `<option value="">Select a category</option>` + categories.map(category => `
         <option value="${escapeAttr(category.id)}">${escapeHtml(category.name)}</option>
     `).join("");
 
-    select.addEventListener("change", () => {
-        const selected = categories.find(item => item.id === select.value);
-        const nameInput = document.querySelector("[data-product-category-name]");
-        if (nameInput) {
-            nameInput.value = selected?.name || "";
-        }
-        updatePreview();
-    });
+    if (previous && categories.some(item => item.id === previous)) {
+        select.value = previous;
+    }
+
+    select.disabled = false;
+    select.removeAttribute("disabled");
+
+    select.addEventListener("change", syncCategoryName);
+    syncCategoryName();
+}
+
+function syncCategoryName() {
+    const select = document.querySelector("[data-product-category]");
+    const nameInput = document.querySelector("[data-product-category-name]");
+    if (!select || !nameInput) {
+        return;
+    }
+
+    const selected = categories.find(item => item.id === select.value);
+    nameInput.value = selected?.name || "";
+    updatePreview();
 }
 
 async function loadExistingComponent(id) {
@@ -107,7 +135,6 @@ async function loadExistingComponent(id) {
 
         updatePageLabels(true);
         fillForm(component);
-        uploadedImageUrl = component.image || "";
         updatePreview();
     } catch (error) {
         console.error("Load component error:", error);
@@ -125,18 +152,20 @@ function fillForm(component) {
     setValue("[data-product-old-price]", component.oldPrice || "");
     setValue("[data-product-stock]", component.stock);
     setValue("[data-product-badge]", component.badge || "");
-    setValue("[data-product-image]", component.image || "");
     setValue("[data-product-category]", component.categoryId || "");
-    setValue("[data-product-category-name]", component.categoryName || "");
+    syncCategoryName();
+    if (!valueOf("[data-product-category-name]")) {
+        setValue("[data-product-category-name]", component.categoryName || "");
+    }
 
     const active = document.querySelector("[data-product-active]");
     const featured = document.querySelector("[data-product-featured]");
     if (active) active.checked = component.active !== false;
     if (featured) featured.checked = Boolean(component.featured);
 
-    if (component.image) {
-        showImagePreview(component.image);
-    }
+    uploadedImages = normalizeImageList(component.images, component.image);
+    syncImageFields();
+    renderImageGallery();
 
     const idEl = document.querySelector("[data-product-id]");
     if (idEl) idEl.textContent = component.id;
@@ -185,15 +214,16 @@ function setupImageUpload() {
     const dropzone = document.querySelector("[data-product-image-upload]");
     const fileInput = document.querySelector("[data-product-image-file]");
     const browse = document.querySelector("[data-product-image-browse]");
-    const remove = document.querySelector("[data-product-image-remove]");
-    const urlInput = document.querySelector("[data-product-image]");
+    const gallery = document.querySelector("[data-product-image-gallery]");
 
-    browse?.addEventListener("click", () => fileInput?.click());
+    browse?.addEventListener("click", event => {
+        event.preventDefault();
+        event.stopPropagation();
+        fileInput?.click();
+    });
+
     dropzone?.addEventListener("click", event => {
-        if (event.target.closest("[data-product-image-remove], [data-product-image-browse]")) {
-            return;
-        }
-        if (!document.querySelector("[data-product-image-preview]")?.hasAttribute("hidden")) {
+        if (event.target.closest("[data-product-image-browse]")) {
             return;
         }
         fileInput?.click();
@@ -211,64 +241,140 @@ function setupImageUpload() {
     dropzone?.addEventListener("drop", event => {
         event.preventDefault();
         dropzone.classList.remove("is-dragging");
-        const file = event.dataTransfer?.files?.[0];
-        if (file) {
-            handleSelectedFile(file);
+        const files = [...(event.dataTransfer?.files || [])];
+        if (files.length) {
+            handleSelectedFiles(files);
         }
     });
 
     fileInput?.addEventListener("change", () => {
-        const file = fileInput.files?.[0];
-        if (file) {
-            handleSelectedFile(file);
+        const files = [...(fileInput.files || [])];
+        if (files.length) {
+            handleSelectedFiles(files);
         }
+        fileInput.value = "";
     });
 
-    remove?.addEventListener("click", event => {
-        event.preventDefault();
-        pendingFile = null;
-        uploadedImageUrl = "";
-        if (fileInput) fileInput.value = "";
-        if (urlInput) urlInput.value = "";
-        hideImagePreview();
-        updatePreview();
-    });
-
-    urlInput?.addEventListener("change", () => {
-        uploadedImageUrl = urlInput.value.trim();
-        if (uploadedImageUrl) {
-            showImagePreview(uploadedImageUrl);
+    gallery?.addEventListener("click", event => {
+        const remove = event.target.closest("[data-remove-image]");
+        if (remove) {
+            const index = Number(remove.getAttribute("data-remove-image"));
+            if (Number.isFinite(index)) {
+                uploadedImages.splice(index, 1);
+                syncImageFields();
+                renderImageGallery();
+                updatePreview();
+            }
+            return;
         }
-        updatePreview();
+
+        const makePrimary = event.target.closest("[data-primary-image]");
+        if (makePrimary) {
+            const index = Number(makePrimary.getAttribute("data-primary-image"));
+            if (Number.isFinite(index) && index > 0) {
+                const [selected] = uploadedImages.splice(index, 1);
+                uploadedImages.unshift(selected);
+                syncImageFields();
+                renderImageGallery();
+                updatePreview();
+            }
+        }
     });
 }
 
-async function handleSelectedFile(file) {
-    try {
-        validateImageFile(file);
-        pendingFile = file;
-        showImagePreview(URL.createObjectURL(file));
-        setUploadProgress(0, true);
-        setFormStatus("Uploading image to Cloudinary...", "info");
-
-        const result = await uploadImageToCloudinary(file, {
-            onProgress: percent => setUploadProgress(percent, true)
-        });
-
-        uploadedImageUrl = result.url;
-        pendingFile = null;
-        const urlInput = document.querySelector("[data-product-image]");
-        if (urlInput) urlInput.value = result.url;
-        showImagePreview(result.url);
-        setUploadProgress(100, false);
-        setFormStatus("Image uploaded successfully.", "success");
-        updatePreview();
-    } catch (error) {
-        console.error("Cloudinary upload error:", error);
-        pendingFile = null;
-        setUploadProgress(0, false);
-        setFormStatus(error.message || "Image upload failed.", "error");
+async function handleSelectedFiles(files) {
+    const remaining = MAX_IMAGES - uploadedImages.length;
+    if (remaining <= 0) {
+        setFormStatus(`You can upload up to ${MAX_IMAGES} images.`, "error");
+        return;
     }
+
+    const selected = files.slice(0, remaining);
+    uploadsInFlight += selected.length;
+    setUploadProgress(0, true);
+    setFormStatus(`Uploading ${selected.length} image${selected.length > 1 ? "s" : ""}...`, "info");
+
+    let completed = 0;
+    for (const file of selected) {
+        try {
+            validateImageFile(file);
+            const result = await uploadImageToCloudinary(file, {
+                onProgress: percent => {
+                    const overall = Math.round(((completed + percent / 100) / selected.length) * 100);
+                    setUploadProgress(overall, true);
+                }
+            });
+            if (result.url && !uploadedImages.includes(result.url)) {
+                uploadedImages.push(result.url);
+            }
+        } catch (error) {
+            console.error("Cloudinary upload error:", error);
+            setFormStatus(error.message || "Image upload failed.", "error");
+        } finally {
+            completed += 1;
+            uploadsInFlight = Math.max(0, uploadsInFlight - 1);
+            setUploadProgress(Math.round((completed / selected.length) * 100), true);
+        }
+    }
+
+    syncImageFields();
+    renderImageGallery();
+    updatePreview();
+    setUploadProgress(100, false);
+
+    if (uploadedImages.length) {
+        setFormStatus(
+            `${uploadedImages.length} image${uploadedImages.length > 1 ? "s" : ""} ready.`,
+            "success"
+        );
+    }
+}
+
+function normalizeImageList(images, primary = "") {
+    const list = [];
+    if (Array.isArray(images)) {
+        images.forEach(item => {
+            const url = String(item || "").trim();
+            if (url && !list.includes(url)) list.push(url);
+        });
+    }
+    const cover = String(primary || "").trim();
+    if (cover && !list.includes(cover)) list.unshift(cover);
+    return list.slice(0, MAX_IMAGES);
+}
+
+function syncImageFields() {
+    const primary = document.querySelector("[data-product-image]");
+    const all = document.querySelector("[data-product-images]");
+    if (primary) primary.value = uploadedImages[0] || "";
+    if (all) all.value = JSON.stringify(uploadedImages);
+}
+
+function renderImageGallery() {
+    const gallery = document.querySelector("[data-product-image-gallery]");
+    if (!gallery) return;
+
+    if (!uploadedImages.length) {
+        gallery.innerHTML = "";
+        gallery.hidden = true;
+        gallery.setAttribute("hidden", "");
+        return;
+    }
+
+    gallery.hidden = false;
+    gallery.removeAttribute("hidden");
+    gallery.innerHTML = uploadedImages.map((url, index) => `
+        <article class="admin-image-gallery__item${index === 0 ? " is-primary" : ""}">
+            <img src="${escapeAttr(url)}" alt="Component image ${index + 1}">
+            <div class="admin-image-gallery__actions">
+                ${index === 0
+                    ? `<span class="admin-image-gallery__badge">Cover</span>`
+                    : `<button type="button" class="admin-image-gallery__btn" data-primary-image="${index}">Make cover</button>`
+                }
+                <button type="button" class="admin-image-gallery__btn admin-image-gallery__btn--danger" data-remove-image="${index}" aria-label="Remove image">Remove</button>
+            </div>
+        </article>
+    `).join("");
 }
 
 async function handleSave(event) {
@@ -280,14 +386,14 @@ async function handleSave(event) {
     const spinner = document.querySelector("[data-product-save-spinner]");
 
     try {
-        if (pendingFile) {
+        if (uploadsInFlight > 0) {
             throw new Error("Please wait for the image upload to finish.");
         }
 
         const payload = readForm();
 
-        if (!payload.image) {
-            throw new Error("Please upload a component image before saving.");
+        if (!payload.image || !payload.images.length) {
+            throw new Error("Please upload at least one component image before saving.");
         }
 
         if (button) button.disabled = true;
@@ -351,7 +457,8 @@ function readForm() {
         badge: valueOf("[data-product-badge]"),
         categoryId: valueOf("[data-product-category]"),
         categoryName: valueOf("[data-product-category-name]"),
-        image: uploadedImageUrl || valueOf("[data-product-image]"),
+        image: uploadedImages[0] || valueOf("[data-product-image]"),
+        images: uploadedImages.slice(),
         active: Boolean(document.querySelector("[data-product-active]")?.checked),
         featured: Boolean(document.querySelector("[data-product-featured]")?.checked)
     };
@@ -363,7 +470,7 @@ function updatePreview() {
     const category = valueOf("[data-product-category-name]") || "Category";
     const price = Number(valueOf("[data-product-price]") || 0);
     const oldPrice = Number(valueOf("[data-product-old-price]") || 0);
-    const image = uploadedImageUrl || valueOf("[data-product-image]");
+    const image = uploadedImages[0] || valueOf("[data-product-image]");
 
     setText("[data-preview-name]", name);
     setText("[data-preview-description]", description);
@@ -390,23 +497,6 @@ function updatePreview() {
     }
 }
 
-function showImagePreview(url) {
-    const preview = document.querySelector("[data-product-image-preview]");
-    const content = document.querySelector("[data-product-image-upload-content]");
-    const img = document.querySelector("[data-product-image-preview-img]");
-    if (img) img.src = url;
-    preview?.removeAttribute("hidden");
-    if (content) content.hidden = true;
-}
-
-function hideImagePreview() {
-    const preview = document.querySelector("[data-product-image-preview]");
-    const content = document.querySelector("[data-product-image-upload-content]");
-    const img = document.querySelector("[data-product-image-preview-img]");
-    if (img) img.src = "";
-    preview?.setAttribute("hidden", "");
-    if (content) content.hidden = false;
-}
 
 function setUploadProgress(percent, visible) {
     const box = document.querySelector("[data-product-upload-progress]");

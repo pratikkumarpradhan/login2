@@ -27,8 +27,9 @@ import {
 } from "./admin-guard.js";
 
 let editingId = null;
-let uploadedImageUrl = "";
-let pendingFile = null;
+let uploadedImages = [];
+let uploadsInFlight = 0;
+const MAX_IMAGES = 8;
 
 document.addEventListener("DOMContentLoaded", () => {
     initKitEditPage();
@@ -70,7 +71,6 @@ async function loadExistingKit(id) {
 
         updatePageLabels(true);
         fillForm(kit);
-        uploadedImageUrl = kit.image || "";
         updatePreview();
     } catch (error) {
         console.error("Load kit error:", error);
@@ -90,7 +90,6 @@ function fillForm(kit) {
     setValue("[data-kit-old-price]", kit.oldPrice || "");
     setValue("[data-kit-order]", kit.order ?? 0);
     setValue("[data-kit-badge]", kit.badge || "");
-    setValue("[data-kit-image]", kit.image || "");
     setValue(
         "[data-kit-includes]",
         Array.isArray(kit.includes) ? kit.includes.join("\n") : String(kit.includes || "")
@@ -101,9 +100,9 @@ function fillForm(kit) {
     if (active) active.checked = kit.active !== false;
     if (featured) featured.checked = Boolean(kit.featured);
 
-    if (kit.image) {
-        showImagePreview(kit.image);
-    }
+    uploadedImages = normalizeImageList(kit.images, kit.image);
+    syncImageFields();
+    renderImageGallery();
 
     const idEl = document.querySelector("[data-kit-id]");
     if (idEl) idEl.textContent = kit.id;
@@ -161,15 +160,16 @@ function setupImageUpload() {
     const dropzone = document.querySelector("[data-kit-image-upload]");
     const fileInput = document.querySelector("[data-kit-image-file]");
     const browse = document.querySelector("[data-kit-image-browse]");
-    const remove = document.querySelector("[data-kit-image-remove]");
-    const urlInput = document.querySelector("[data-kit-image]");
+    const gallery = document.querySelector("[data-kit-image-gallery]");
 
-    browse?.addEventListener("click", () => fileInput?.click());
+    browse?.addEventListener("click", event => {
+        event.preventDefault();
+        event.stopPropagation();
+        fileInput?.click();
+    });
+
     dropzone?.addEventListener("click", event => {
-        if (event.target.closest("[data-kit-image-remove], [data-kit-image-browse]")) {
-            return;
-        }
-        if (!document.querySelector("[data-kit-image-preview]")?.hasAttribute("hidden")) {
+        if (event.target.closest("[data-kit-image-browse]")) {
             return;
         }
         fileInput?.click();
@@ -187,57 +187,141 @@ function setupImageUpload() {
     dropzone?.addEventListener("drop", event => {
         event.preventDefault();
         dropzone.classList.remove("is-dragging");
-        const file = event.dataTransfer?.files?.[0];
-        if (file) {
-            handleSelectedFile(file);
+        const files = [...(event.dataTransfer?.files || [])];
+        if (files.length) {
+            handleSelectedFiles(files);
         }
     });
 
     fileInput?.addEventListener("change", () => {
-        const file = fileInput.files?.[0];
-        if (file) {
-            handleSelectedFile(file);
+        const files = [...(fileInput.files || [])];
+        if (files.length) {
+            handleSelectedFiles(files);
         }
+        fileInput.value = "";
     });
 
-    remove?.addEventListener("click", event => {
-        event.preventDefault();
-        pendingFile = null;
-        uploadedImageUrl = "";
-        if (fileInput) fileInput.value = "";
-        if (urlInput) urlInput.value = "";
-        hideImagePreview();
-        updatePreview();
+    gallery?.addEventListener("click", event => {
+        const remove = event.target.closest("[data-remove-image]");
+        if (remove) {
+            const index = Number(remove.getAttribute("data-remove-image"));
+            if (Number.isFinite(index)) {
+                uploadedImages.splice(index, 1);
+                syncImageFields();
+                renderImageGallery();
+                updatePreview();
+            }
+            return;
+        }
+
+        const makePrimary = event.target.closest("[data-primary-image]");
+        if (makePrimary) {
+            const index = Number(makePrimary.getAttribute("data-primary-image"));
+            if (Number.isFinite(index) && index > 0) {
+                const [selected] = uploadedImages.splice(index, 1);
+                uploadedImages.unshift(selected);
+                syncImageFields();
+                renderImageGallery();
+                updatePreview();
+            }
+        }
     });
 }
 
-async function handleSelectedFile(file) {
-    try {
-        validateImageFile(file);
-        pendingFile = file;
-        showImagePreview(URL.createObjectURL(file));
-        setUploadProgress(0, true);
-        setFormStatus("Uploading image to Cloudinary...", "info");
-
-        const result = await uploadImageToCloudinary(file, {
-            folder: "projectkart/kits",
-            onProgress: percent => setUploadProgress(percent, true)
-        });
-
-        uploadedImageUrl = result.url;
-        pendingFile = null;
-        const urlInput = document.querySelector("[data-kit-image]");
-        if (urlInput) urlInput.value = result.url;
-        showImagePreview(result.url);
-        setUploadProgress(100, false);
-        setFormStatus("Image uploaded successfully.", "success");
-        updatePreview();
-    } catch (error) {
-        console.error("Cloudinary upload error:", error);
-        pendingFile = null;
-        setUploadProgress(0, false);
-        setFormStatus(error.message || "Image upload failed.", "error");
+async function handleSelectedFiles(files) {
+    const remaining = MAX_IMAGES - uploadedImages.length;
+    if (remaining <= 0) {
+        setFormStatus(`You can upload up to ${MAX_IMAGES} images.`, "error");
+        return;
     }
+
+    const selected = files.slice(0, remaining);
+    uploadsInFlight += selected.length;
+    setUploadProgress(0, true);
+    setFormStatus(`Uploading ${selected.length} image${selected.length > 1 ? "s" : ""}...`, "info");
+
+    let completed = 0;
+    for (const file of selected) {
+        try {
+            validateImageFile(file);
+            const result = await uploadImageToCloudinary(file, {
+                folder: "projectkart/kits",
+                onProgress: percent => {
+                    const overall = Math.round(((completed + percent / 100) / selected.length) * 100);
+                    setUploadProgress(overall, true);
+                }
+            });
+            if (result.url && !uploadedImages.includes(result.url)) {
+                uploadedImages.push(result.url);
+            }
+        } catch (error) {
+            console.error("Cloudinary upload error:", error);
+            setFormStatus(error.message || "Image upload failed.", "error");
+        } finally {
+            completed += 1;
+            uploadsInFlight = Math.max(0, uploadsInFlight - 1);
+            setUploadProgress(Math.round((completed / selected.length) * 100), true);
+        }
+    }
+
+    syncImageFields();
+    renderImageGallery();
+    updatePreview();
+    setUploadProgress(100, false);
+
+    if (uploadedImages.length) {
+        setFormStatus(
+            `${uploadedImages.length} image${uploadedImages.length > 1 ? "s" : ""} ready.`,
+            "success"
+        );
+    }
+}
+
+function normalizeImageList(images, primary = "") {
+    const list = [];
+    if (Array.isArray(images)) {
+        images.forEach(item => {
+            const url = String(item || "").trim();
+            if (url && !list.includes(url)) list.push(url);
+        });
+    }
+    const cover = String(primary || "").trim();
+    if (cover && !list.includes(cover)) list.unshift(cover);
+    return list.slice(0, MAX_IMAGES);
+}
+
+function syncImageFields() {
+    const primary = document.querySelector("[data-kit-image]");
+    const all = document.querySelector("[data-kit-images]");
+    if (primary) primary.value = uploadedImages[0] || "";
+    if (all) all.value = JSON.stringify(uploadedImages);
+}
+
+function renderImageGallery() {
+    const gallery = document.querySelector("[data-kit-image-gallery]");
+    if (!gallery) return;
+
+    if (!uploadedImages.length) {
+        gallery.innerHTML = "";
+        gallery.hidden = true;
+        gallery.setAttribute("hidden", "");
+        return;
+    }
+
+    gallery.hidden = false;
+    gallery.removeAttribute("hidden");
+    gallery.innerHTML = uploadedImages.map((url, index) => `
+        <article class="admin-image-gallery__item${index === 0 ? " is-primary" : ""}">
+            <img src="${escapeAttr(url)}" alt="Kit image ${index + 1}">
+            <div class="admin-image-gallery__actions">
+                ${index === 0
+                    ? `<span class="admin-image-gallery__badge">Cover</span>`
+                    : `<button type="button" class="admin-image-gallery__btn" data-primary-image="${index}">Make cover</button>`
+                }
+                <button type="button" class="admin-image-gallery__btn admin-image-gallery__btn--danger" data-remove-image="${index}" aria-label="Remove image">Remove</button>
+            </div>
+        </article>
+    `).join("");
 }
 
 async function handleSave(event) {
@@ -249,14 +333,14 @@ async function handleSave(event) {
     const status = document.querySelector("[data-kit-form-status]");
 
     try {
-        if (pendingFile) {
+        if (uploadsInFlight > 0) {
             throw new Error("Please wait for the image upload to finish.");
         }
 
         const payload = readForm();
 
-        if (!payload.image) {
-            throw new Error("Please upload a kit image before saving.");
+        if (!payload.image || !payload.images.length) {
+            throw new Error("Please upload at least one kit image before saving.");
         }
 
         if (button) button.disabled = true;
@@ -318,7 +402,8 @@ function readForm() {
         oldPrice: valueOf("[data-kit-old-price]"),
         order: valueOf("[data-kit-order]") || 0,
         badge: valueOf("[data-kit-badge]"),
-        image: uploadedImageUrl || valueOf("[data-kit-image]"),
+        image: uploadedImages[0] || valueOf("[data-kit-image]"),
+        images: uploadedImages.slice(),
         active: Boolean(document.querySelector("[data-kit-active]")?.checked),
         featured: Boolean(document.querySelector("[data-kit-featured]")?.checked)
     };
@@ -330,7 +415,7 @@ function updatePreview() {
     const category = valueOf("[data-kit-category]") || "Project Kit";
     const price = Number(valueOf("[data-kit-price]") || 0);
     const oldPrice = Number(valueOf("[data-kit-old-price]") || 0);
-    const image = uploadedImageUrl || valueOf("[data-kit-image]");
+    const image = uploadedImages[0] || valueOf("[data-kit-image]");
 
     setText("[data-preview-name]", name);
     setText("[data-preview-description]", description);
@@ -355,24 +440,6 @@ function updatePreview() {
             previewImage.innerHTML = `<span>Kit image</span>`;
         }
     }
-}
-
-function showImagePreview(url) {
-    const preview = document.querySelector("[data-kit-image-preview]");
-    const content = document.querySelector("[data-kit-image-upload-content]");
-    const img = document.querySelector("[data-kit-image-preview-img]");
-    if (img) img.src = url;
-    preview?.removeAttribute("hidden");
-    if (content) content.hidden = true;
-}
-
-function hideImagePreview() {
-    const preview = document.querySelector("[data-kit-image-preview]");
-    const content = document.querySelector("[data-kit-image-upload-content]");
-    const img = document.querySelector("[data-kit-image-preview-img]");
-    if (img) img.src = "";
-    preview?.setAttribute("hidden", "");
-    if (content) content.hidden = false;
 }
 
 function setUploadProgress(percent, visible) {

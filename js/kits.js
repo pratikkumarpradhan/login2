@@ -79,6 +79,26 @@ function parseIncludes(value) {
 }
 
 
+function normalizeImages(images, primaryImage = "") {
+    const list = [];
+
+    if (Array.isArray(images)) {
+        images.forEach(item => {
+            const url = String(item || "").trim();
+            if (url && !list.includes(url)) {
+                list.push(url);
+            }
+        });
+    }
+
+    const primary = String(primaryImage || "").trim();
+    if (primary && !list.includes(primary)) {
+        list.unshift(primary);
+    }
+
+    return list;
+}
+
 function normalizeKitInput(kit = {}, {
     isCreate = false
 } = {}) {
@@ -98,9 +118,9 @@ function normalizeKitInput(kit = {}, {
         throw new Error("Please enter a valid price.");
     }
 
-    const image = String(kit.image || "").trim();
-    if (isCreate && !image) {
-        throw new Error("Please upload a kit image.");
+    const images = normalizeImages(kit.images, kit.image);
+    if (isCreate && !images.length) {
+        throw new Error("Please upload at least one kit image.");
     }
 
     const difficulty = String(kit.difficulty || "Beginner").trim() || "Beginner";
@@ -114,7 +134,8 @@ function normalizeKitInput(kit = {}, {
         category: String(kit.category || "Project Kit").trim() || "Project Kit",
         price,
         oldPrice: Number(kit.oldPrice) > 0 ? Number(kit.oldPrice) : 0,
-        image,
+        image: images[0] || "",
+        images,
         includes,
         badge: String(kit.badge || "").trim(),
         featured: Boolean(kit.featured),

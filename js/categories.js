@@ -78,7 +78,7 @@ export async function getCategories() {
             );
 
         if (snapshot.empty) {
-            return [];
+            return FALLBACK_CATEGORIES.filter(category => category.active !== false);
         }
 
         return snapshot.docs.map(
@@ -97,7 +97,7 @@ export async function getCategories() {
             error
         );
 
-        return FALLBACK_CATEGORIES;
+        return FALLBACK_CATEGORIES.filter(category => category.active !== false);
     }
 }
 
@@ -196,34 +196,43 @@ export async function getCategory(
 
 export async function getAllCategories() {
 
-    const reference =
-        collection(
-            db,
-            CATEGORIES
+    try {
+        const reference =
+            collection(
+                db,
+                CATEGORIES
+            );
+
+        const categoryQuery =
+            query(
+                reference,
+                orderBy(
+                    "order",
+                    "asc"
+                )
+            );
+
+        const snapshot =
+            await getDocs(
+                categoryQuery
+            );
+
+        if (snapshot.empty) {
+            return FALLBACK_CATEGORIES.slice();
+        }
+
+        return snapshot.docs.map(
+            document => ({
+                id:
+                    document.id,
+
+                ...document.data()
+            })
         );
-
-    const categoryQuery =
-        query(
-            reference,
-            orderBy(
-                "order",
-                "asc"
-            )
-        );
-
-    const snapshot =
-        await getDocs(
-            categoryQuery
-        );
-
-    return snapshot.docs.map(
-        document => ({
-            id:
-                document.id,
-
-            ...document.data()
-        })
-    );
+    } catch (error) {
+        console.error("Unable to load all categories from Firebase:", error);
+        return FALLBACK_CATEGORIES.slice();
+    }
 }
 
 

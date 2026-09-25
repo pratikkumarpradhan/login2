@@ -278,10 +278,11 @@ function renderThumbnails(kit) {
     if (!thumbs) return;
 
     const images = Array.isArray(kit.images) && kit.images.length
-        ? kit.images
+        ? kit.images.map(item => String(item || "").trim()).filter(Boolean)
         : [kit.image || "assets/images/placeholders/product-placeholder.jpg"].filter(Boolean);
 
-    const galleryImages = images.length === 1 ? [images[0], images[0]] : images;
+    const unique = [...new Set(images)];
+    const galleryImages = unique.length === 1 ? [unique[0], unique[0]] : unique;
 
     thumbs.innerHTML = galleryImages.map((src, index) => `
         <button
