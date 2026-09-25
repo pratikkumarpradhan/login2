@@ -110,6 +110,7 @@ function normalizeComponentInput(component = {}, {
         description,
         price,
         oldPrice: Number(component.oldPrice) > 0 ? Number(component.oldPrice) : 0,
+        originalPrice: Number(component.originalPrice) > 0 ? Number(component.originalPrice) : 0,
         stock,
         categoryId,
         categoryName: String(component.categoryName || "").trim(),

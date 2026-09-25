@@ -660,6 +660,35 @@
                                         </div>
 
 
+                                        <!-- Original price (admin only) -->
+                                        <div class="admin-form-group">
+
+                                            <label for="product-original-price">
+                                                Original price (₹)
+                                            </label>
+
+                                            <div class="admin-price-field">
+                                                <span class="admin-price-field__symbol" aria-hidden="true">₹</span>
+                                                <input
+                                                    type="number"
+                                                    id="product-original-price"
+                                                    name="originalPrice"
+                                                    class="admin-price-field__input"
+                                                    placeholder="Admin only"
+                                                    min="0"
+                                                    step="1"
+                                                    inputmode="decimal"
+                                                    data-product-original-price
+                                                >
+                                            </div>
+
+                                            <small>
+                                                Admin only. Not shown to customers on the store.
+                                            </small>
+
+                                        </div>
+
+
                                         <!-- Stock -->
                                         <div class="admin-form-group">
 

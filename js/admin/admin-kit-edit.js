@@ -88,6 +88,7 @@ function fillForm(kit) {
     setValue("[data-kit-difficulty]", kit.difficulty || "Beginner");
     setValue("[data-kit-price]", kit.price);
     setValue("[data-kit-old-price]", kit.oldPrice || "");
+    setValue("[data-kit-original-price]", kit.originalPrice || "");
     setValue("[data-kit-order]", kit.order ?? 0);
     setValue("[data-kit-badge]", kit.badge || "");
     setValue(
@@ -400,6 +401,7 @@ function readForm() {
         includes: valueOf("[data-kit-includes]"),
         price: valueOf("[data-kit-price]"),
         oldPrice: valueOf("[data-kit-old-price]"),
+        originalPrice: valueOf("[data-kit-original-price]"),
         order: valueOf("[data-kit-order]") || 0,
         badge: valueOf("[data-kit-badge]"),
         image: uploadedImages[0] || valueOf("[data-kit-image]"),

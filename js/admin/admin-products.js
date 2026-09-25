@@ -228,6 +228,7 @@ function renderTable() {
                 <td>
                     <div class="admin-table-price">${formatPrice(item.price)}</div>
                     ${Number(item.oldPrice) > Number(item.price) ? `<div class="admin-table-old-price">${formatPrice(item.oldPrice)}</div>` : ""}
+                    ${Number(item.originalPrice) > 0 ? `<div class="admin-table-original-price">Original ${formatPrice(item.originalPrice)}</div>` : ""}
                 </td>
                 <td>
                     <div class="admin-stock ${stock <= 0 ? "admin-stock--out" : stock < 10 ? "admin-stock--low" : "admin-stock--in"}">

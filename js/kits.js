@@ -134,6 +134,7 @@ function normalizeKitInput(kit = {}, {
         category: String(kit.category || "Project Kit").trim() || "Project Kit",
         price,
         oldPrice: Number(kit.oldPrice) > 0 ? Number(kit.oldPrice) : 0,
+        originalPrice: Number(kit.originalPrice) > 0 ? Number(kit.originalPrice) : 0,
         image: images[0] || "",
         images,
         includes,

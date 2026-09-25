@@ -262,6 +262,7 @@
 .product-price {
     display: flex;
     align-items: baseline;
+    flex-wrap: wrap;
     gap: 8px;
 }
 
@@ -275,6 +276,21 @@
 .product-price del {
     color: #6d7b90;
     font-size: 14px;
+}
+
+.product-price__original {
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+    margin-top: 2px;
+    color: #8eb4ff;
+    font-size: 12px;
+    font-weight: 650;
+    letter-spacing: 0.01em;
+}
+
+.product-price__original[hidden] {
+    display: none !important;
 }
 
 @media (max-width: 1100px) {

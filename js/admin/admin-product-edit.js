@@ -150,6 +150,7 @@ function fillForm(component) {
     setValue("[data-product-description-field]", component.description);
     setValue("[data-product-price]", component.price);
     setValue("[data-product-old-price]", component.oldPrice || "");
+    setValue("[data-product-original-price]", component.originalPrice || "");
     setValue("[data-product-stock]", component.stock);
     setValue("[data-product-badge]", component.badge || "");
     setValue("[data-product-category]", component.categoryId || "");
@@ -453,6 +454,7 @@ function readForm() {
         description: valueOf("[data-product-description-field]"),
         price: valueOf("[data-product-price]"),
         oldPrice: valueOf("[data-product-old-price]"),
+        originalPrice: valueOf("[data-product-original-price]"),
         stock: valueOf("[data-product-stock]"),
         badge: valueOf("[data-product-badge]"),
         categoryId: valueOf("[data-product-category]"),

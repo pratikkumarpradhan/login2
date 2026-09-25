@@ -562,6 +562,7 @@ function renderProducts(products, meta = {}) {
                         <div class="product-price">
                             <strong>${formatPrice(product.price)}</strong>
                             ${Number(product.oldPrice) > Number(product.price) ? `<del>${formatPrice(product.oldPrice)}</del>` : ""}
+                            ${Number(product.originalPrice) > 0 ? `<span class="product-price__original" data-admin-only ${isAdmin ? "" : "hidden"}>Original ${formatPrice(product.originalPrice)}</span>` : ""}
                         </div>
                         <button class="product-add-button" type="button" data-add-cart="${escapeHTML(product.id)}" aria-label="Add ${escapeHTML(product.name)} to cart" ${out ? "disabled" : ""}>+</button>
                     </div>
