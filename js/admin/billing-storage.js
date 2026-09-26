@@ -100,6 +100,38 @@ export function saveBill(billInput) {
     return bill;
 }
 
+export function updateBill(billId, patch = {}) {
+    const bills = getAllBills();
+    const index = bills.findIndex(bill => bill.id === billId);
+    if (index < 0) {
+        throw new Error("Bill not found.");
+    }
+
+    const current = bills[index];
+    const next = {
+        ...current,
+        ...patch,
+        id: current.id,
+        invoiceNumber: current.invoiceNumber,
+        createdAt: current.createdAt,
+        updatedAt: new Date().toISOString()
+    };
+
+    bills[index] = next;
+    writeJSON(BILLS_KEY, bills);
+    return next;
+}
+
+export function deleteBill(billId) {
+    const bills = getAllBills();
+    const next = bills.filter(bill => bill.id !== billId);
+    if (next.length === bills.length) {
+        throw new Error("Bill not found.");
+    }
+    writeJSON(BILLS_KEY, next);
+    return true;
+}
+
 export function buildMonthlyAnalytics(bills = getAllBills()) {
     const byMonth = new Map();
 

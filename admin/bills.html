@@ -14,10 +14,11 @@
     <link rel="stylesheet" href="../css/admin/admin-sidebar.css">
     <link rel="stylesheet" href="../css/admin/admin-header.css">
     <link rel="stylesheet" href="../css/admin/admin-tables.css">
+    <link rel="stylesheet" href="../css/admin/admin-forms.css">
     <link rel="stylesheet" href="../css/admin/admin-responsive.css">
     <link rel="stylesheet" href="../css/admin/admin-billing.css">
 </head>
-<body class="admin-body">
+<body class="admin-body bills-page">
 <div class="admin-app">
 
     <aside class="admin-sidebar" id="admin-sidebar" data-admin-sidebar>
@@ -118,84 +119,169 @@
             </div>
         </header>
 
-        <main class="admin-content">
-            <div class="bills-stats">
-                <div class="bills-stat">
-                    <span data-month-label>This month</span>
-                    <strong data-stat-sales>₹0</strong>
-                    <small style="color:#8b97ab;">Total sales</small>
-                </div>
-                <div class="bills-stat">
-                    <span>Monthly profit</span>
-                    <strong data-stat-profit>₹0</strong>
-                </div>
-                <div class="bills-stat">
-                    <span>Bills generated</span>
-                    <strong data-stat-bills>0</strong>
-                </div>
-                <div class="bills-stat">
-                    <span>Items sold</span>
-                    <strong data-stat-items>0</strong>
-                </div>
-            </div>
-
-            <div class="bills-charts">
-                <div class="bills-chart-card">
-                    <h3>Monthly sales</h3>
-                    <div class="bills-chart" data-chart-sales></div>
-                </div>
-                <div class="bills-chart-card">
-                    <h3>Monthly profit</h3>
-                    <div class="bills-chart" data-chart-profit></div>
-                </div>
-            </div>
-
-            <div class="admin-card" style="padding:0;overflow:hidden;">
-                <div style="padding:16px 18px;border-bottom:1px solid rgba(255,255,255,0.08);display:flex;justify-content:space-between;gap:12px;align-items:center;">
+        <main class="admin-content bills-content">
+            <section class="bills-section" aria-label="Monthly overview">
+                <div class="bills-section__head">
                     <div>
-                        <strong style="color:#fff;">Invoice history</strong>
-                        <p style="margin:4px 0 0;color:#8b97ab;font-size:13px;">Admin only — includes profit. Customer views never show original cost.</p>
+                        <h2 class="bills-section__title">This month</h2>
+                        <p class="bills-section__subtitle" data-month-label>Overview</p>
                     </div>
                 </div>
-                <div class="admin-table-wrap">
-                    <table class="admin-table">
+
+                <div class="bills-stats">
+                    <article class="bills-stat">
+                        <span class="bills-stat__label">Total sales</span>
+                        <strong class="bills-stat__value" data-stat-sales>₹0</strong>
+                    </article>
+                    <article class="bills-stat bills-stat--profit">
+                        <span class="bills-stat__label">Monthly profit</span>
+                        <strong class="bills-stat__value" data-stat-profit>₹0</strong>
+                    </article>
+                    <article class="bills-stat">
+                        <span class="bills-stat__label">Bills generated</span>
+                        <strong class="bills-stat__value" data-stat-bills>0</strong>
+                    </article>
+                    <article class="bills-stat">
+                        <span class="bills-stat__label">Items sold</span>
+                        <strong class="bills-stat__value" data-stat-items>0</strong>
+                    </article>
+                </div>
+            </section>
+
+            <section class="bills-section" aria-label="Charts">
+                <div class="bills-charts">
+                    <article class="bills-chart-card">
+                        <h3>Monthly sales</h3>
+                        <div class="bills-chart" data-chart-sales></div>
+                    </article>
+                    <article class="bills-chart-card">
+                        <h3>Monthly profit</h3>
+                        <div class="bills-chart" data-chart-profit></div>
+                    </article>
+                </div>
+            </section>
+
+            <section class="bills-section bills-history-card" aria-label="Invoice history">
+                <div class="bills-history-card__head">
+                    <div>
+                        <h2 class="bills-section__title">Invoice history</h2>
+                        <p class="bills-section__subtitle">Admin only — profit is never shown on customer invoices.</p>
+                    </div>
+                    <div class="bills-history-card__tools">
+                        <label class="bills-search">
+                            <span class="visually-hidden">Search bills</span>
+                            <input type="search" placeholder="Search invoice, customer, phone…" data-bills-search autocomplete="off">
+                        </label>
+                        <span class="bills-count" data-bills-count>0 bills</span>
+                    </div>
+                </div>
+
+                <div class="bills-table-wrap">
+                    <table class="admin-table bills-table">
                         <thead>
                             <tr>
-                                <th>Invoice No.</th>
+                                <th>Invoice</th>
                                 <th>Date</th>
                                 <th>Customer</th>
+                                <th>Payment</th>
                                 <th>Total</th>
                                 <th>Profit</th>
-                                <th>Actions</th>
+                                <th class="bills-table__actions-col">Actions</th>
                             </tr>
                         </thead>
                         <tbody data-bills-table>
                             <tr>
-                                <td colspan="6" style="text-align:center;color:#8b97ab;padding:28px;">No bills saved yet.</td>
+                                <td colspan="7" class="bills-empty">No bills saved yet.</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-            </div>
+            </section>
         </main>
     </div>
 </div>
 
 <div class="admin-sidebar-overlay" data-admin-sidebar-overlay></div>
 
-<!-- Printable viewer -->
+<!-- View invoice modal -->
 <div class="billing-modal" id="billViewModal" aria-hidden="true">
     <div class="billing-modal__backdrop" data-close-bill-view></div>
-    <div class="billing-modal__dialog" style="width:min(900px,100%);max-height:92vh;grid-template-rows:auto 1fr auto;">
+    <div class="billing-modal__dialog bills-modal-dialog">
         <div class="billing-modal__header">
             <h2 data-view-title>Invoice</h2>
             <button type="button" class="billing-modal__close" data-close-bill-view aria-label="Close">×</button>
         </div>
-        <div style="overflow:auto;padding:16px;background:#e8eef5;" data-bill-view-body></div>
-        <div style="display:flex;gap:8px;justify-content:flex-end;padding:12px 16px;border-top:1px solid #d7dee8;">
+        <div class="bills-modal-body" data-bill-view-body></div>
+        <div class="bills-modal-footer">
             <button type="button" class="admin-button admin-button-primary" data-view-download>Download PDF</button>
             <button type="button" class="admin-button admin-button-secondary" data-close-bill-view>Close</button>
         </div>
+    </div>
+</div>
+
+<!-- Edit bill modal -->
+<div class="billing-modal" id="billEditModal" aria-hidden="true">
+    <div class="billing-modal__backdrop" data-close-bill-edit></div>
+    <div class="billing-modal__dialog bills-edit-dialog">
+        <div class="billing-modal__header">
+            <h2>Edit bill <span data-edit-invoice-label></span></h2>
+            <button type="button" class="billing-modal__close" data-close-bill-edit aria-label="Close">×</button>
+        </div>
+        <form class="bills-edit-form" data-bill-edit-form>
+            <input type="hidden" data-edit-bill-id>
+
+            <div class="bills-edit-grid">
+                <label class="bills-edit-field">
+                    <span>Customer name *</span>
+                    <input type="text" data-edit-customer-name required autocomplete="name">
+                </label>
+                <label class="bills-edit-field">
+                    <span>Phone *</span>
+                    <input type="tel" data-edit-customer-phone required autocomplete="tel">
+                </label>
+                <label class="bills-edit-field bills-edit-field--full">
+                    <span>Address</span>
+                    <textarea rows="2" data-edit-customer-address></textarea>
+                </label>
+                <label class="bills-edit-field">
+                    <span>Payment method</span>
+                    <select data-edit-payment-method>
+                        <option value="Cash / UPI / Bank Transfer">Cash / UPI / Bank Transfer</option>
+                        <option value="Cash">Cash</option>
+                        <option value="UPI">UPI</option>
+                        <option value="Bank Transfer">Bank Transfer</option>
+                    </select>
+                </label>
+                <label class="bills-edit-field">
+                    <span>Invoice date</span>
+                    <input type="date" data-edit-invoice-date>
+                </label>
+            </div>
+
+            <div class="bills-edit-items">
+                <div class="bills-edit-items__head">
+                    <h3>Items</h3>
+                    <p>Change quantity or remove lines. Totals and profit update automatically.</p>
+                </div>
+                <div class="bills-edit-items__list" data-edit-items></div>
+            </div>
+
+            <div class="bills-edit-totals">
+                <div>
+                    <span>Total</span>
+                    <strong data-edit-total>₹0</strong>
+                </div>
+                <div>
+                    <span>Profit</span>
+                    <strong data-edit-profit>₹0</strong>
+                </div>
+            </div>
+
+            <div class="bills-modal-footer bills-modal-footer--form">
+                <button type="button" class="admin-button admin-button-secondary" data-close-bill-edit>Cancel</button>
+                <button type="submit" class="admin-button admin-button-primary">Save changes</button>
+            </div>
+        </form>
     </div>
 </div>
 

@@ -7,14 +7,19 @@ import { guardAdminPage } from "./admin-guard.js";
 import { formatPrice, showToast } from "../utils.js";
 import {
     buildMonthlyAnalytics,
+    deleteBill,
     getAllBills,
     getBillById,
-    getCurrentMonthStats
+    getCurrentMonthStats,
+    updateBill
 } from "./billing-storage.js";
 import { downloadInvoicePdfFromBill, invoiceFileName } from "./invoice-pdf.js";
 import { buildCustomerInvoiceHTML } from "./invoice-render.js";
 
 let activeBillId = null;
+let editBillId = null;
+let editItems = [];
+let searchQuery = "";
 
 document.addEventListener("DOMContentLoaded", () => {
     initBillsPage();
@@ -34,11 +39,20 @@ function bindEvents() {
         btn.addEventListener("click", closeViewer);
     });
 
+    document.querySelectorAll("[data-close-bill-edit]").forEach(btn => {
+        btn.addEventListener("click", closeEditor);
+    });
+
     document.querySelector("[data-view-download]")?.addEventListener("click", () => {
         downloadActiveBill().catch(error => {
             console.error("Download bill error:", error);
             showToast(error.message || "Unable to download PDF.", "error");
         });
+    });
+
+    document.querySelector("[data-bills-search]")?.addEventListener("input", event => {
+        searchQuery = String(event.currentTarget.value || "").trim().toLowerCase();
+        renderHistory();
     });
 
     document.querySelector("[data-bills-table]")?.addEventListener("click", event => {
@@ -48,14 +62,58 @@ function bindEvents() {
             return;
         }
 
+        const edit = event.target.closest("[data-edit-bill]");
+        if (edit) {
+            openEditor(edit.getAttribute("data-edit-bill"));
+            return;
+        }
+
         const downloadBtn = event.target.closest("[data-download-bill]");
         if (downloadBtn) {
             downloadBillById(downloadBtn.getAttribute("data-download-bill")).catch(error => {
                 console.error("Download bill error:", error);
                 showToast(error.message || "Unable to download PDF.", "error");
             });
+            return;
+        }
+
+        const remove = event.target.closest("[data-delete-bill]");
+        if (remove) {
+            handleDelete(remove.getAttribute("data-delete-bill"));
         }
     });
+
+    document.querySelector("[data-bill-edit-form]")?.addEventListener("submit", event => {
+        event.preventDefault();
+        handleEditSave();
+    });
+
+    document.querySelector("[data-edit-items]")?.addEventListener("input", event => {
+        const input = event.target.closest("[data-edit-qty]");
+        if (!input) return;
+        const index = Number(input.getAttribute("data-edit-qty"));
+        const qty = Math.max(1, Math.floor(Number(input.value) || 1));
+        input.value = String(qty);
+        if (!editItems[index]) return;
+        editItems[index].quantity = qty;
+        recalculateEditItem(editItems[index]);
+        renderEditItems();
+        updateEditTotals();
+    });
+
+    document.querySelector("[data-edit-items]")?.addEventListener("click", event => {
+        const remove = event.target.closest("[data-edit-remove]");
+        if (!remove) return;
+        const index = Number(remove.getAttribute("data-edit-remove"));
+        editItems.splice(index, 1);
+        renderEditItems();
+        updateEditTotals();
+    });
+}
+
+function refreshPage() {
+    renderAnalytics();
+    renderHistory();
 }
 
 function renderAnalytics() {
@@ -63,7 +121,7 @@ function renderAnalytics() {
     const current = getCurrentMonthStats(bills);
     const monthly = buildMonthlyAnalytics(bills);
 
-    setText("[data-month-label]", current.label || "This month");
+    setText("[data-month-label]", current.label || "Overview");
     setText("[data-stat-sales]", formatPrice(current.sales));
     setText("[data-stat-profit]", formatPrice(current.profit));
     setText("[data-stat-bills]", String(current.bills));
@@ -78,7 +136,7 @@ function renderChart(selector, monthly, field, gold) {
     if (!root) return;
 
     if (!monthly.length) {
-        root.innerHTML = `<div class="invoice-empty" style="grid-column:1/-1;">No billing data yet.</div>`;
+        root.innerHTML = `<div class="bills-chart-empty">No billing data yet.</div>`;
         return;
     }
 
@@ -95,13 +153,43 @@ function renderChart(selector, monthly, field, gold) {
     }).join("");
 }
 
+function getFilteredBills() {
+    const bills = getAllBills();
+    if (!searchQuery) return bills;
+
+    return bills.filter(bill => {
+        const hay = [
+            bill.invoiceNumber,
+            bill.customerName,
+            bill.customerPhone,
+            bill.customerAddress,
+            bill.paymentMethod
+        ].join(" ").toLowerCase();
+        return hay.includes(searchQuery);
+    });
+}
+
 function renderHistory() {
     const body = document.querySelector("[data-bills-table]");
+    const countEl = document.querySelector("[data-bills-count]");
     if (!body) return;
 
-    const bills = getAllBills();
+    const bills = getFilteredBills();
+    const totalCount = getAllBills().length;
+
+    if (countEl) {
+        countEl.textContent = searchQuery
+            ? `${bills.length} of ${totalCount} bills`
+            : `${totalCount} bill${totalCount === 1 ? "" : "s"}`;
+    }
+
     if (!bills.length) {
-        body.innerHTML = `<tr><td colspan="6" style="text-align:center;color:#8b97ab;padding:28px;">No bills saved yet.</td></tr>`;
+        body.innerHTML = `
+            <tr>
+                <td colspan="7" class="bills-empty">
+                    ${searchQuery ? "No bills match your search." : "No bills saved yet. Create one from the Bill page."}
+                </td>
+            </tr>`;
         return;
     }
 
@@ -110,21 +198,32 @@ function renderHistory() {
         const dateLabel = Number.isNaN(date.getTime())
             ? "—"
             : date.toLocaleDateString("en-IN", { day: "2-digit", month: "2-digit", year: "numeric" });
+        const itemCount = (bill.items || []).reduce((sum, item) => sum + (Number(item.quantity) || 0), 0);
 
         return `
             <tr>
-                <td><strong>${escapeHtml(bill.invoiceNumber)}</strong></td>
+                <td>
+                    <div class="bills-invoice-cell">
+                        <strong>${escapeHtml(bill.invoiceNumber)}</strong>
+                        <small>${itemCount} item${itemCount === 1 ? "" : "s"}</small>
+                    </div>
+                </td>
                 <td>${escapeHtml(dateLabel)}</td>
                 <td>
-                    <div>${escapeHtml(bill.customerName || "—")}</div>
-                    <div style="color:#8b97ab;font-size:12px;">${escapeHtml(bill.customerPhone || "")}</div>
+                    <div class="bills-customer-cell">
+                        <strong>${escapeHtml(bill.customerName || "—")}</strong>
+                        <small>${escapeHtml(bill.customerPhone || "")}</small>
+                    </div>
                 </td>
-                <td>${formatPrice(bill.totalAmount)}</td>
-                <td style="color:#48c98b;">${formatPrice(bill.totalProfit)}</td>
+                <td><span class="bills-payment-chip">${escapeHtml(bill.paymentMethod || "Cash / UPI / Bank Transfer")}</span></td>
+                <td class="bills-money">${formatPrice(bill.totalAmount)}</td>
+                <td class="bills-money bills-money--profit">${formatPrice(bill.totalProfit)}</td>
                 <td>
-                    <div class="admin-table-actions">
+                    <div class="bills-row-actions">
                         <button type="button" class="admin-table-action" data-view-bill="${escapeAttr(bill.id)}">View</button>
+                        <button type="button" class="admin-table-action admin-table-action--edit" data-edit-bill="${escapeAttr(bill.id)}">Edit</button>
                         <button type="button" class="admin-table-action" data-download-bill="${escapeAttr(bill.id)}">Download</button>
+                        <button type="button" class="admin-table-action admin-table-action--danger" data-delete-bill="${escapeAttr(bill.id)}">Delete</button>
                     </div>
                 </td>
             </tr>
@@ -144,6 +243,195 @@ function openViewer(billId) {
 
     modal?.classList.add("is-open");
     modal?.setAttribute("aria-hidden", "false");
+}
+
+function closeViewer() {
+    const modal = document.getElementById("billViewModal");
+    modal?.classList.remove("is-open");
+    modal?.setAttribute("aria-hidden", "true");
+    activeBillId = null;
+}
+
+function openEditor(billId) {
+    const bill = getBillById(billId);
+    if (!bill) return;
+
+    editBillId = billId;
+    editItems = (bill.items || []).map(item => {
+        const row = {
+            productId: item.productId,
+            productName: item.productName,
+            type: item.type || "component",
+            sellingPrice: Number(item.sellingPrice) || 0,
+            originalPrice: Number(item.originalPrice) || 0,
+            quantity: Math.max(1, Number(item.quantity) || 1),
+            lineTotal: 0,
+            lineProfit: 0
+        };
+        recalculateEditItem(row);
+        return row;
+    });
+
+    setValue("[data-edit-bill-id]", bill.id);
+    setText("[data-edit-invoice-label]", `· ${bill.invoiceNumber}`);
+    setValue("[data-edit-customer-name]", bill.customerName || "");
+    setValue("[data-edit-customer-phone]", bill.customerPhone || "");
+    setValue("[data-edit-customer-address]", bill.customerAddress || "");
+    setValue("[data-edit-payment-method]", bill.paymentMethod || "Cash / UPI / Bank Transfer");
+
+    const date = new Date(bill.invoiceDate || bill.createdAt);
+    if (!Number.isNaN(date.getTime())) {
+        setValue("[data-edit-invoice-date]", date.toISOString().slice(0, 10));
+    } else {
+        setValue("[data-edit-invoice-date]", "");
+    }
+
+    renderEditItems();
+    updateEditTotals();
+
+    const modal = document.getElementById("billEditModal");
+    modal?.classList.add("is-open");
+    modal?.setAttribute("aria-hidden", "false");
+}
+
+function closeEditor() {
+    const modal = document.getElementById("billEditModal");
+    modal?.classList.remove("is-open");
+    modal?.setAttribute("aria-hidden", "true");
+    editBillId = null;
+    editItems = [];
+}
+
+function renderEditItems() {
+    const list = document.querySelector("[data-edit-items]");
+    if (!list) return;
+
+    if (!editItems.length) {
+        list.innerHTML = `<div class="bills-edit-empty">No items on this bill. Add items from the Bill page for a new invoice, or cancel.</div>`;
+        return;
+    }
+
+    list.innerHTML = `
+        <table class="bills-edit-table">
+            <thead>
+                <tr>
+                    <th>SL.</th>
+                    <th>Item</th>
+                    <th>Price</th>
+                    <th>Qty</th>
+                    <th>Total</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                ${editItems.map((item, index) => `
+                    <tr>
+                        <td>${index + 1}</td>
+                        <td>
+                            <strong>${escapeHtml(item.productName)}</strong>
+                            <small>${item.type === "projectKit" ? "Project Kit" : "Component"}</small>
+                        </td>
+                        <td>${formatPrice(item.sellingPrice)}</td>
+                        <td>
+                            <input type="number" min="1" step="1" value="${item.quantity}" data-edit-qty="${index}" aria-label="Quantity">
+                        </td>
+                        <td>${formatPrice(item.lineTotal)}</td>
+                        <td>
+                            <button type="button" class="admin-table-action admin-table-action--danger" data-edit-remove="${index}">Remove</button>
+                        </td>
+                    </tr>
+                `).join("")}
+            </tbody>
+        </table>
+    `;
+}
+
+function recalculateEditItem(item) {
+    const qty = Math.max(1, Number(item.quantity) || 1);
+    const sell = Number(item.sellingPrice) || 0;
+    const cost = Number(item.originalPrice) || 0;
+    item.quantity = qty;
+    item.lineTotal = roundMoney(sell * qty);
+    item.lineProfit = roundMoney((sell - cost) * qty);
+}
+
+function updateEditTotals() {
+    const totalAmount = roundMoney(editItems.reduce((sum, item) => sum + (Number(item.lineTotal) || 0), 0));
+    const totalOriginalCost = roundMoney(editItems.reduce((sum, item) => sum + ((Number(item.originalPrice) || 0) * (Number(item.quantity) || 0)), 0));
+    const totalProfit = roundMoney(totalAmount - totalOriginalCost);
+
+    setText("[data-edit-total]", formatPrice(totalAmount));
+    setText("[data-edit-profit]", formatPrice(totalProfit));
+
+    return { totalAmount, totalOriginalCost, totalProfit };
+}
+
+function handleEditSave() {
+    try {
+        if (!editBillId) throw new Error("No bill selected.");
+
+        const customerName = valueOf("[data-edit-customer-name]");
+        const customerPhone = valueOf("[data-edit-customer-phone]");
+        const customerAddress = valueOf("[data-edit-customer-address]");
+        const paymentMethod = valueOf("[data-edit-payment-method]") || "Cash / UPI / Bank Transfer";
+        const dateValue = valueOf("[data-edit-invoice-date]");
+
+        if (!customerName) throw new Error("Customer name is required.");
+        if (!customerPhone) throw new Error("Customer phone is required.");
+        if (!editItems.length) throw new Error("Add at least one item, or delete this bill.");
+
+        const { totalAmount, totalOriginalCost, totalProfit } = updateEditTotals();
+        const invoiceDate = dateValue
+            ? new Date(`${dateValue}T12:00:00`).toISOString()
+            : new Date().toISOString();
+
+        updateBill(editBillId, {
+            customerName,
+            customerPhone,
+            customerAddress,
+            paymentMethod,
+            invoiceDate,
+            items: editItems.map(item => ({
+                productId: item.productId,
+                productName: item.productName,
+                type: item.type,
+                sellingPrice: Number(item.sellingPrice) || 0,
+                originalPrice: Number(item.originalPrice) || 0,
+                quantity: Number(item.quantity) || 1,
+                lineTotal: Number(item.lineTotal) || 0,
+                lineProfit: Number(item.lineProfit) || 0
+            })),
+            totalAmount,
+            totalOriginalCost,
+            totalProfit
+        });
+
+        showToast("Bill updated successfully", "success");
+        closeEditor();
+        refreshPage();
+    } catch (error) {
+        console.error("Edit bill error:", error);
+        showToast(error.message || "Unable to update bill.", "error");
+    }
+}
+
+function handleDelete(billId) {
+    const bill = getBillById(billId);
+    if (!bill) return;
+
+    const ok = window.confirm(`Delete invoice ${bill.invoiceNumber}?\n\nThis cannot be undone.`);
+    if (!ok) return;
+
+    try {
+        deleteBill(billId);
+        if (activeBillId === billId) closeViewer();
+        if (editBillId === billId) closeEditor();
+        showToast(`Deleted ${bill.invoiceNumber}`, "success");
+        refreshPage();
+    } catch (error) {
+        console.error("Delete bill error:", error);
+        showToast(error.message || "Unable to delete bill.", "error");
+    }
 }
 
 async function downloadActiveBill() {
@@ -179,11 +467,17 @@ async function downloadBillById(billId) {
     }
 }
 
-function closeViewer() {
-    const modal = document.getElementById("billViewModal");
-    modal?.classList.remove("is-open");
-    modal?.setAttribute("aria-hidden", "true");
-    activeBillId = null;
+function roundMoney(value) {
+    return Math.round((Number(value) || 0) * 100) / 100;
+}
+
+function valueOf(selector) {
+    return document.querySelector(selector)?.value.trim() || "";
+}
+
+function setValue(selector, value) {
+    const el = document.querySelector(selector);
+    if (el) el.value = value ?? "";
 }
 
 function setText(selector, value) {
