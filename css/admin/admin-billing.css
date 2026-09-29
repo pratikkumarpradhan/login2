@@ -12,8 +12,75 @@
     --bill-paper: #ffffff;
 }
 
+/* Keep billing pages inside admin shell — never under sidebar/header */
+.billing-page,
+.bills-page {
+    overflow-x: hidden;
+}
+
+.billing-page .admin-app,
+.bills-page .admin-app {
+    position: relative;
+    overflow-x: hidden;
+}
+
+.billing-page .admin-main,
+.bills-page .admin-main {
+    position: relative;
+    z-index: 1;
+    min-width: 0;
+    overflow-x: hidden;
+}
+
+.billing-page .admin-sidebar,
+.bills-page .admin-sidebar {
+    z-index: 100;
+}
+
+.billing-page .admin-header,
+.bills-page .admin-header {
+    z-index: 60;
+}
+
 .billing-page .admin-content {
     background: #e8eef5;
+    color: #122033;
+    min-width: 0;
+}
+
+.bills-page .admin-content {
+    min-width: 0;
+}
+
+.billing-page .admin-header h1,
+.bills-page .admin-header h1 {
+    margin: 4px 0 0;
+    color: #fff;
+    font-size: 22px;
+    font-weight: 750;
+    letter-spacing: -0.03em;
+}
+
+.billing-page .admin-menu-toggle,
+.bills-page .admin-menu-toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.04);
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+@media (max-width: 980px) {
+    .billing-page .admin-menu-toggle,
+    .bills-page .admin-menu-toggle {
+        display: inline-flex;
+    }
 }
 
 .billing-toolbar {
@@ -111,6 +178,8 @@
     background: var(--bill-paper);
     color: #122033;
     box-shadow: 0 18px 40px rgba(11, 31, 58, 0.12);
+    overflow: hidden;
+    box-sizing: border-box;
 }
 
 .invoice-sheet__top {
@@ -442,9 +511,10 @@
 }
 
 .invoice-bottom-note {
-    margin: 16px -30px -24px;
+    margin: 16px 0 0;
     padding: 10px 18px;
     border-top: 0;
+    border-radius: 0 0 8px 8px;
     background: var(--bill-navy);
     color: #fff;
     font-size: 11px;

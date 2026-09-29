@@ -1,6 +1,6 @@
 /* =========================================================
    PROJECTKART
-   Admin bill history + monthly analytics
+   Admin bill history + monthly analytics (Firestore realtime)
    ========================================================= */
 
 import { guardAdminPage } from "./admin-guard.js";
@@ -8,10 +8,11 @@ import { formatPrice, showToast } from "../utils.js";
 import {
     buildMonthlyAnalytics,
     deleteBill,
-    getAllBills,
     getBillById,
     getCurrentMonthStats,
-    updateBill
+    migrateLocalBillsIfNeeded,
+    updateBill,
+    watchBills
 } from "./billing-storage.js";
 import { downloadInvoicePdfFromBill, invoiceFileName } from "./invoice-pdf.js";
 import { buildCustomerInvoiceHTML } from "./invoice-render.js";
@@ -20,18 +21,59 @@ let activeBillId = null;
 let editBillId = null;
 let editItems = [];
 let searchQuery = "";
+let cachedBills = [];
+let unsubscribeBills = null;
 
 document.addEventListener("DOMContentLoaded", () => {
     initBillsPage();
+});
+
+window.addEventListener("beforeunload", () => {
+    if (typeof unsubscribeBills === "function") unsubscribeBills();
 });
 
 async function initBillsPage() {
     const user = await guardAdminPage();
     if (!user) return;
 
-    renderAnalytics();
-    renderHistory();
     bindEvents();
+    setHistoryLoading(true);
+
+    try {
+        const migration = await migrateLocalBillsIfNeeded();
+        if (migration.migrated && migration.count > 0) {
+            showToast(`Migrated ${migration.count} local bill(s) to Firebase`, "success");
+        }
+    } catch (error) {
+        console.warn("Bill migration skipped:", error);
+    }
+
+    unsubscribeBills = watchBills(
+        bills => {
+            cachedBills = Array.isArray(bills) ? bills : [];
+            setHistoryLoading(false);
+            renderAnalytics();
+            renderHistory();
+        },
+        error => {
+            setHistoryLoading(false);
+            console.error("Realtime bills error:", error);
+            const message = error?.code === "permission-denied"
+                ? "Permission denied reading bills. Deploy Firestore rules for bills."
+                : (error.message || "Unable to load bills from Firebase.");
+            showToast(message, "error");
+            const body = document.querySelector("[data-bills-table]");
+            if (body) {
+                body.innerHTML = `<tr><td colspan="7" class="bills-empty">${escapeHtml(message)}</td></tr>`;
+            }
+        }
+    );
+}
+
+function setHistoryLoading(isLoading) {
+    const body = document.querySelector("[data-bills-table]");
+    if (!body || !isLoading) return;
+    body.innerHTML = `<tr><td colspan="7" class="bills-empty">Loading bills from Firebase…</td></tr>`;
 }
 
 function bindEvents() {
@@ -85,7 +127,10 @@ function bindEvents() {
 
     document.querySelector("[data-bill-edit-form]")?.addEventListener("submit", event => {
         event.preventDefault();
-        handleEditSave();
+        handleEditSave().catch(error => {
+            console.error("Edit bill error:", error);
+            showToast(error.message || "Unable to update bill.", "error");
+        });
     });
 
     document.querySelector("[data-edit-items]")?.addEventListener("input", event => {
@@ -111,13 +156,12 @@ function bindEvents() {
     });
 }
 
-function refreshPage() {
-    renderAnalytics();
-    renderHistory();
+function findBill(billId) {
+    return cachedBills.find(bill => bill.id === billId) || null;
 }
 
 function renderAnalytics() {
-    const bills = getAllBills();
+    const bills = cachedBills;
     const current = getCurrentMonthStats(bills);
     const monthly = buildMonthlyAnalytics(bills);
 
@@ -154,10 +198,9 @@ function renderChart(selector, monthly, field, gold) {
 }
 
 function getFilteredBills() {
-    const bills = getAllBills();
-    if (!searchQuery) return bills;
+    if (!searchQuery) return cachedBills;
 
-    return bills.filter(bill => {
+    return cachedBills.filter(bill => {
         const hay = [
             bill.invoiceNumber,
             bill.customerName,
@@ -175,7 +218,7 @@ function renderHistory() {
     if (!body) return;
 
     const bills = getFilteredBills();
-    const totalCount = getAllBills().length;
+    const totalCount = cachedBills.length;
 
     if (countEl) {
         countEl.textContent = searchQuery
@@ -187,7 +230,7 @@ function renderHistory() {
         body.innerHTML = `
             <tr>
                 <td colspan="7" class="bills-empty">
-                    ${searchQuery ? "No bills match your search." : "No bills saved yet. Create one from the Bill page."}
+                    ${searchQuery ? "No bills match your search." : "No bills in Firebase yet. Save one from the Bill page."}
                 </td>
             </tr>`;
         return;
@@ -198,7 +241,7 @@ function renderHistory() {
         const dateLabel = Number.isNaN(date.getTime())
             ? "—"
             : date.toLocaleDateString("en-IN", { day: "2-digit", month: "2-digit", year: "numeric" });
-        const itemCount = (bill.items || []).reduce((sum, item) => sum + (Number(item.quantity) || 0), 0);
+        const itemCount = Number(bill.itemsSold) || (bill.items || []).reduce((sum, item) => sum + (Number(item.quantity) || 0), 0);
 
         return `
             <tr>
@@ -231,9 +274,15 @@ function renderHistory() {
     }).join("");
 }
 
-function openViewer(billId) {
-    const bill = getBillById(billId);
-    if (!bill) return;
+async function openViewer(billId) {
+    let bill = findBill(billId);
+    if (!bill) {
+        bill = await getBillById(billId);
+    }
+    if (!bill) {
+        showToast("Bill not found.", "error");
+        return;
+    }
 
     activeBillId = billId;
     const modal = document.getElementById("billViewModal");
@@ -252,9 +301,15 @@ function closeViewer() {
     activeBillId = null;
 }
 
-function openEditor(billId) {
-    const bill = getBillById(billId);
-    if (!bill) return;
+async function openEditor(billId) {
+    let bill = findBill(billId);
+    if (!bill) {
+        bill = await getBillById(billId);
+    }
+    if (!bill) {
+        showToast("Bill not found.", "error");
+        return;
+    }
 
     editBillId = billId;
     editItems = (bill.items || []).map(item => {
@@ -307,7 +362,7 @@ function renderEditItems() {
     if (!list) return;
 
     if (!editItems.length) {
-        list.innerHTML = `<div class="bills-edit-empty">No items on this bill. Add items from the Bill page for a new invoice, or cancel.</div>`;
+        list.innerHTML = `<div class="bills-edit-empty">No items on this bill.</div>`;
         return;
     }
 
@@ -366,68 +421,62 @@ function updateEditTotals() {
     return { totalAmount, totalOriginalCost, totalProfit };
 }
 
-function handleEditSave() {
-    try {
-        if (!editBillId) throw new Error("No bill selected.");
+async function handleEditSave() {
+    if (!editBillId) throw new Error("No bill selected.");
 
-        const customerName = valueOf("[data-edit-customer-name]");
-        const customerPhone = valueOf("[data-edit-customer-phone]");
-        const customerAddress = valueOf("[data-edit-customer-address]");
-        const paymentMethod = valueOf("[data-edit-payment-method]") || "Cash / UPI / Bank Transfer";
-        const dateValue = valueOf("[data-edit-invoice-date]");
+    const customerName = valueOf("[data-edit-customer-name]");
+    const customerPhone = valueOf("[data-edit-customer-phone]");
+    const customerAddress = valueOf("[data-edit-customer-address]");
+    const paymentMethod = valueOf("[data-edit-payment-method]") || "Cash / UPI / Bank Transfer";
+    const dateValue = valueOf("[data-edit-invoice-date]");
 
-        if (!customerName) throw new Error("Customer name is required.");
-        if (!customerPhone) throw new Error("Customer phone is required.");
-        if (!editItems.length) throw new Error("Add at least one item, or delete this bill.");
+    if (!customerName) throw new Error("Customer name is required.");
+    if (!customerPhone) throw new Error("Customer phone is required.");
+    if (!editItems.length) throw new Error("Add at least one item, or delete this bill.");
 
-        const { totalAmount, totalOriginalCost, totalProfit } = updateEditTotals();
-        const invoiceDate = dateValue
-            ? new Date(`${dateValue}T12:00:00`).toISOString()
-            : new Date().toISOString();
+    const { totalAmount, totalOriginalCost, totalProfit } = updateEditTotals();
+    const invoiceDate = dateValue
+        ? new Date(`${dateValue}T12:00:00`).toISOString()
+        : new Date().toISOString();
 
-        updateBill(editBillId, {
-            customerName,
-            customerPhone,
-            customerAddress,
-            paymentMethod,
-            invoiceDate,
-            items: editItems.map(item => ({
-                productId: item.productId,
-                productName: item.productName,
-                type: item.type,
-                sellingPrice: Number(item.sellingPrice) || 0,
-                originalPrice: Number(item.originalPrice) || 0,
-                quantity: Number(item.quantity) || 1,
-                lineTotal: Number(item.lineTotal) || 0,
-                lineProfit: Number(item.lineProfit) || 0
-            })),
-            totalAmount,
-            totalOriginalCost,
-            totalProfit
-        });
+    await updateBill(editBillId, {
+        customerName,
+        customerPhone,
+        customerAddress,
+        paymentMethod,
+        invoiceDate,
+        items: editItems.map(item => ({
+            productId: item.productId,
+            productName: item.productName,
+            type: item.type,
+            sellingPrice: Number(item.sellingPrice) || 0,
+            originalPrice: Number(item.originalPrice) || 0,
+            quantity: Number(item.quantity) || 1,
+            lineTotal: Number(item.lineTotal) || 0,
+            lineProfit: Number(item.lineProfit) || 0
+        })),
+        totalAmount,
+        totalOriginalCost,
+        totalProfit
+    });
 
-        showToast("Bill updated successfully", "success");
-        closeEditor();
-        refreshPage();
-    } catch (error) {
-        console.error("Edit bill error:", error);
-        showToast(error.message || "Unable to update bill.", "error");
-    }
+    showToast("Bill updated in Firebase", "success");
+    closeEditor();
+    // Realtime listener refreshes UI automatically
 }
 
-function handleDelete(billId) {
-    const bill = getBillById(billId);
+async function handleDelete(billId) {
+    const bill = findBill(billId) || await getBillById(billId);
     if (!bill) return;
 
-    const ok = window.confirm(`Delete invoice ${bill.invoiceNumber}?\n\nThis cannot be undone.`);
+    const ok = window.confirm(`Delete invoice ${bill.invoiceNumber} from Firebase?\n\nThis cannot be undone.`);
     if (!ok) return;
 
     try {
-        deleteBill(billId);
+        await deleteBill(billId);
         if (activeBillId === billId) closeViewer();
         if (editBillId === billId) closeEditor();
         showToast(`Deleted ${bill.invoiceNumber}`, "success");
-        refreshPage();
     } catch (error) {
         console.error("Delete bill error:", error);
         showToast(error.message || "Unable to delete bill.", "error");
@@ -442,10 +491,9 @@ async function downloadActiveBill() {
 }
 
 async function downloadBillById(billId) {
-    const bill = getBillById(billId);
-    if (!bill) {
-        throw new Error("Bill not found.");
-    }
+    let bill = findBill(billId);
+    if (!bill) bill = await getBillById(billId);
+    if (!bill) throw new Error("Bill not found.");
 
     const btn = document.querySelector(`[data-download-bill="${CSS.escape(billId)}"]`)
         || document.querySelector("[data-view-download]");

@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/typography.css">
     <link rel="stylesheet" href="../css/admin/admin-base.css">
+    <link rel="stylesheet" href="../css/admin/admin-shell.css">
     <link rel="stylesheet" href="../css/admin/admin-sidebar.css">
     <link rel="stylesheet" href="../css/admin/admin-header.css">
     <link rel="stylesheet" href="../css/admin/admin-forms.css">
@@ -125,8 +126,23 @@
                     <p style="margin:4px 0 0;color:#5b6b7c;font-size:13px;">Customer invoice never shows original cost or profit.</p>
                 </div>
                 <div class="billing-toolbar__actions">
-                    <button type="button" class="admin-button admin-button-secondary" data-billing-new>New bill</button>
-                    <button type="button" class="admin-button admin-button-secondary" data-billing-download>Download bill</button>
+                    <button
+                    type="button"
+                    class="admin-button admin-button-secondary"
+                    data-billing-new
+                    style="color:#0b1f3a;"
+                >
+                    New bill
+                </button>
+                
+                <button
+                    type="button"
+                    class="admin-button admin-button-secondary"
+                    data-billing-download
+                    style="color:#0b1f3a;"
+                >
+                    Download bill
+                </button>
                     <button type="button" class="admin-button admin-button-primary" data-billing-save>Save bill</button>
                 </div>
             </div>
@@ -239,9 +255,9 @@
 
                     <div class="invoice-footer">
                         <div class="invoice-thanks">Thank you for your business!</div>
-                        <div class="invoice-sign">
+                        <!-- <div class="invoice-sign">
                             <div class="invoice-sign-line">Authorised Sign</div>
-                        </div>
+                        </div> -->
                     </div>
 
                     <div class="invoice-bottom-note">

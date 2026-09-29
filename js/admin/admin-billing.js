@@ -32,7 +32,7 @@ async function initBillingPage() {
 
     bindChrome();
     hydrateSettings();
-    resetBillForm();
+    await resetBillForm();
     await loadCatalog();
     renderPickerList();
 }
@@ -60,7 +60,13 @@ function bindChrome() {
         renderPickerList();
     });
 
-    document.querySelector("[data-billing-save]")?.addEventListener("click", handleSave);
+    document.querySelector("[data-billing-save]")?.addEventListener("click", () => {
+        handleSave().catch(error => {
+            console.error("Save bill error:", error);
+            setStatus(error.message || "Unable to save bill.", "error");
+            showToast(error.message || "Unable to save bill.", "error");
+        });
+    });
     document.querySelector("[data-billing-download]")?.addEventListener("click", () => {
         handleDownload().catch(error => {
             console.error("Download bill error:", error);
@@ -72,7 +78,7 @@ function bindChrome() {
         if (items.length && !window.confirm("Start a new bill? Unsaved items will be cleared.")) {
             return;
         }
-        resetBillForm();
+        resetBillForm().catch(error => console.error(error));
     });
 
     document.querySelector("[data-settings-save]")?.addEventListener("click", () => {
@@ -191,19 +197,26 @@ function applyBusinessHeader(settings) {
     setText("[data-biz-phone]", settings.phone);
 }
 
-function resetBillForm() {
+async function resetBillForm() {
     billLocked = false;
     items = [];
     setValue("[data-customer-name]", "");
     setValue("[data-customer-address]", "");
     setValue("[data-customer-phone]", "");
     setValue("[data-payment-method]", "Cash / UPI / Bank Transfer");
-    setText("[data-invoice-number]", peekNextInvoiceNumber());
     setText("[data-invoice-date]", formatDate(new Date()));
     setInputsDisabled(false);
     renderRows();
     updateTotals();
     setStatus("Ready to create a bill.", "info");
+
+    try {
+        const nextNumber = await peekNextInvoiceNumber();
+        setText("[data-invoice-number]", nextNumber);
+    } catch (error) {
+        console.warn("Could not peek next invoice number:", error);
+        setText("[data-invoice-number]", "PK-…");
+    }
 }
 
 function setInputsDisabled(disabled) {
@@ -384,7 +397,10 @@ function updateTotals() {
     return { totalAmount, totalOriginalCost, totalProfit };
 }
 
-function handleSave() {
+async function handleSave() {
+    const saveBtn = document.querySelector("[data-billing-save]");
+    const previousLabel = saveBtn?.textContent;
+
     try {
         if (billLocked) {
             throw new Error("This bill is already saved. Start a new bill to continue.");
@@ -409,7 +425,14 @@ function handleSave() {
         }
 
         const { totalAmount, totalOriginalCost, totalProfit } = updateTotals();
-        const bill = saveBill({
+
+        if (saveBtn) {
+            saveBtn.disabled = true;
+            saveBtn.textContent = "Saving…";
+        }
+        setStatus("Saving bill to Firebase…", "info");
+
+        const bill = await saveBill({
             invoiceDate: new Date().toISOString(),
             customerName,
             customerAddress,
@@ -432,15 +455,27 @@ function handleSave() {
 
         billLocked = true;
         setText("[data-invoice-number]", bill.invoiceNumber);
-        setText("[data-invoice-date]", formatDate(new Date(bill.invoiceDate || bill.createdAt)));
+        setText("[data-invoice-date]", formatDate(new Date(bill.invoiceDate || bill.createdAt || Date.now())));
         setInputsDisabled(true);
         renderRows();
         showToast(`Bill saved — ${bill.invoiceNumber}`, "success");
-        setStatus(`Bill saved successfully. Invoice: ${bill.invoiceNumber}. Tap Download bill to save the PDF.`, "success");
+        setStatus(`Bill saved to Firebase. Invoice: ${bill.invoiceNumber}. Tap Download bill for PDF.`, "success");
     } catch (error) {
         console.error("Save bill error:", error);
-        setStatus(error.message || "Unable to save bill.", "error");
-        showToast(error.message || "Unable to save bill.", "error");
+        const message = error?.code === "permission-denied"
+            ? "Permission denied. Deploy Firestore rules for bills/billingMeta (admin only)."
+            : (error.message || "Unable to save bill.");
+        setStatus(message, "error");
+        showToast(message, "error");
+        if (saveBtn && !billLocked) {
+            saveBtn.disabled = false;
+            saveBtn.textContent = previousLabel || "Save bill";
+        }
+        return;
+    }
+
+    if (saveBtn) {
+        saveBtn.textContent = previousLabel || "Save bill";
     }
 }
 
@@ -455,7 +490,8 @@ async function handleDownload() {
     if (!customerPhone) throw new Error("Customer phone is required before download.");
 
     const { totalAmount } = updateTotals();
-    const invoiceNumber = document.querySelector("[data-invoice-number]")?.textContent?.trim() || peekNextInvoiceNumber();
+    const invoiceNumber = document.querySelector("[data-invoice-number]")?.textContent?.trim()
+        || await peekNextInvoiceNumber().catch(() => "Invoice");
     const invoiceDateText = document.querySelector("[data-invoice-date]")?.textContent?.trim();
 
     const bill = {

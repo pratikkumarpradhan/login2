@@ -1,10 +1,24 @@
 /* =========================================================
    PROJECTKART
-   Local billing storage — invoices, counter, settings
+   Billing settings (local) + QR helpers
+   Bill CRUD lives in bills-db.js (Firestore)
    ========================================================= */
 
-const BILLS_KEY = "projectkart_bills_v1";
-const COUNTER_KEY = "projectkart_invoice_counter_v1";
+export {
+    buildMonthlyAnalytics,
+    deleteBill,
+    formatInvoiceNumber,
+    getAllBills,
+    getBillById,
+    getCurrentMonthStats,
+    getInvoiceCounter,
+    migrateLocalBillsIfNeeded,
+    peekNextInvoiceNumber,
+    saveBill,
+    updateBill,
+    watchBills
+} from "./bills-db.js";
+
 const SETTINGS_KEY = "projectkart_billing_settings_v1";
 
 export const DEFAULT_BILLING_SETTINGS = {
@@ -25,7 +39,7 @@ function readJSON(key, fallback) {
         if (!raw) return fallback;
         return JSON.parse(raw);
     } catch (error) {
-        console.error("Billing storage read error:", error);
+        console.error("Billing settings read error:", error);
         return fallback;
     }
 }
@@ -50,135 +64,6 @@ export function saveBillingSettings(partial = {}) {
     return next;
 }
 
-export function getInvoiceCounter() {
-    const value = Number(localStorage.getItem(COUNTER_KEY) || 0);
-    return Number.isFinite(value) && value >= 0 ? value : 0;
-}
-
-export function peekNextInvoiceNumber() {
-    return formatInvoiceNumber(getInvoiceCounter() + 1);
-}
-
-export function formatInvoiceNumber(n) {
-    const num = Math.max(1, Math.floor(Number(n) || 1));
-    return `PK-${String(num).padStart(5, "0")}`;
-}
-
-export function getAllBills() {
-    const bills = readJSON(BILLS_KEY, []);
-    return Array.isArray(bills) ? bills : [];
-}
-
-export function getBillById(id) {
-    return getAllBills().find(bill => bill.id === id) || null;
-}
-
-export function getBillByInvoiceNumber(invoiceNumber) {
-    return getAllBills().find(bill => bill.invoiceNumber === invoiceNumber) || null;
-}
-
-export function saveBill(billInput) {
-    const bills = getAllBills();
-    const counter = getInvoiceCounter() + 1;
-    const invoiceNumber = formatInvoiceNumber(counter);
-
-    if (bills.some(bill => bill.invoiceNumber === invoiceNumber)) {
-        throw new Error("Invoice number collision. Please try again.");
-    }
-
-    const bill = {
-        ...billInput,
-        id: `bill_${Date.now()}_${counter}`,
-        invoiceNumber,
-        createdAt: new Date().toISOString()
-    };
-
-    bills.unshift(bill);
-    writeJSON(BILLS_KEY, bills);
-    localStorage.setItem(COUNTER_KEY, String(counter));
-
-    return bill;
-}
-
-export function updateBill(billId, patch = {}) {
-    const bills = getAllBills();
-    const index = bills.findIndex(bill => bill.id === billId);
-    if (index < 0) {
-        throw new Error("Bill not found.");
-    }
-
-    const current = bills[index];
-    const next = {
-        ...current,
-        ...patch,
-        id: current.id,
-        invoiceNumber: current.invoiceNumber,
-        createdAt: current.createdAt,
-        updatedAt: new Date().toISOString()
-    };
-
-    bills[index] = next;
-    writeJSON(BILLS_KEY, bills);
-    return next;
-}
-
-export function deleteBill(billId) {
-    const bills = getAllBills();
-    const next = bills.filter(bill => bill.id !== billId);
-    if (next.length === bills.length) {
-        throw new Error("Bill not found.");
-    }
-    writeJSON(BILLS_KEY, next);
-    return true;
-}
-
-export function buildMonthlyAnalytics(bills = getAllBills()) {
-    const byMonth = new Map();
-
-    bills.forEach(bill => {
-        const date = new Date(bill.invoiceDate || bill.createdAt);
-        if (Number.isNaN(date.getTime())) return;
-
-        const key = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}`;
-        const label = date.toLocaleString("en-IN", { month: "short", year: "numeric" });
-        const existing = byMonth.get(key) || {
-            key,
-            label,
-            year: date.getFullYear(),
-            month: date.getMonth() + 1,
-            sales: 0,
-            profit: 0,
-            bills: 0,
-            itemsSold: 0
-        };
-
-        existing.sales += Number(bill.totalAmount) || 0;
-        existing.profit += Number(bill.totalProfit) || 0;
-        existing.bills += 1;
-        existing.itemsSold += (bill.items || []).reduce((sum, item) => sum + (Number(item.quantity) || 0), 0);
-        byMonth.set(key, existing);
-    });
-
-    return [...byMonth.values()].sort((a, b) => a.key.localeCompare(b.key));
-}
-
-export function getCurrentMonthStats(bills = getAllBills()) {
-    const now = new Date();
-    const key = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}`;
-    const monthly = buildMonthlyAnalytics(bills).find(item => item.key === key);
-
-    return monthly || {
-        key,
-        label: now.toLocaleString("en-IN", { month: "long", year: "numeric" }),
-        year: now.getFullYear(),
-        month: now.getMonth() + 1,
-        sales: 0,
-        profit: 0,
-        bills: 0,
-        itemsSold: 0
-    };
-}
-
 export function getPaymentQrSrc(settings = getBillingSettings()) {
     const data = String(settings.qrImageData || "").trim();
     if (data.startsWith("data:image")) return data;
@@ -195,7 +80,6 @@ export async function resolvePaymentQrDataUrl(settings = getBillingSettings()) {
     if (!src) return "";
     if (src.startsWith("data:image")) return src;
 
-    // Prefer the already-loaded on-screen QR if present
     const live = document.querySelector("[data-invoice-qr], [data-settings-qr-preview]");
     if (live instanceof HTMLImageElement && live.complete && live.naturalWidth > 0) {
         const liveSrc = live.currentSrc || live.src || "";
@@ -234,7 +118,6 @@ async function urlToDataUrl(src) {
         const blob = await response.blob();
         return await blobToDataUrl(blob);
     } catch (fetchError) {
-        // Fallback: load via Image then paint to canvas
         const img = await loadImage(absoluteUrl);
         return imageElementToDataUrl(img);
     }
@@ -259,7 +142,6 @@ function blobToDataUrl(blob) {
 }
 
 export function buildUpiQrPayload() {
-    // Kept for compatibility — QR is now a static PNG image, not generated.
     return "";
 }
 

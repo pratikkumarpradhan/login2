@@ -26,30 +26,47 @@ function loadPdfLibs() {
     return libsPromise;
 }
 
+/**
+ * Mount invoice off-screen but KEEP it paint-able for html2canvas.
+ * Do NOT use visibility:hidden / opacity:0 — those produce blank PDFs.
+ */
 function mountInvoice(html) {
     const host = document.createElement("div");
-    host.setAttribute("aria-hidden", "true");
+    host.setAttribute("data-invoice-pdf-host", "true");
     Object.assign(host.style, {
         position: "fixed",
-        left: "-10000px",
+        left: "0",
         top: "0",
         width: `${INVOICE_PAGE_WIDTH}px`,
         minHeight: `${INVOICE_PAGE_HEIGHT}px`,
+        margin: "0",
+        padding: "0",
         background: "#ffffff",
-        zIndex: "-1",
+        zIndex: "2147483000",
+        opacity: "1",
+        visibility: "visible",
         pointerEvents: "none",
-        overflow: "visible"
+        overflow: "visible",
+        transform: "translateX(-100vw)"
     });
     host.innerHTML = html;
     document.body.appendChild(host);
 
     const invoiceEl = host.querySelector(".invoice-sheet") || host.firstElementChild;
     if (invoiceEl) {
-        invoiceEl.style.width = `${INVOICE_PAGE_WIDTH}px`;
-        invoiceEl.style.minHeight = `${INVOICE_PAGE_HEIGHT}px`;
-        invoiceEl.style.display = "flex";
-        invoiceEl.style.flexDirection = "column";
-        invoiceEl.style.boxSizing = "border-box";
+        Object.assign(invoiceEl.style, {
+            width: `${INVOICE_PAGE_WIDTH}px`,
+            minHeight: `${INVOICE_PAGE_HEIGHT}px`,
+            maxWidth: `${INVOICE_PAGE_WIDTH}px`,
+            margin: "0",
+            display: "flex",
+            flexDirection: "column",
+            boxSizing: "border-box",
+            opacity: "1",
+            visibility: "visible",
+            transform: "none",
+            background: "#ffffff"
+        });
     }
 
     return { host, invoiceEl };
@@ -118,7 +135,7 @@ function loadImageElement(src) {
 }
 
 function waitForImage(img) {
-    if (!img.getAttribute("src")) return Promise.resolve();
+    if (!img.getAttribute("src") && !img.src) return Promise.resolve();
     if (img.complete && img.naturalWidth > 0) return Promise.resolve();
     return new Promise(resolve => {
         const done = () => resolve();
@@ -137,6 +154,18 @@ function blobToDataUrl(blob) {
     });
 }
 
+function waitFrames(count = 2) {
+    return new Promise(resolve => {
+        let left = count;
+        const tick = () => {
+            left -= 1;
+            if (left <= 0) resolve();
+            else requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+    });
+}
+
 /**
  * Download a customer invoice PDF from bill data (preferred).
  * Never includes original price / profit.
@@ -145,13 +174,13 @@ export async function downloadInvoicePdfFromBill(bill, fileName) {
     if (!bill) throw new Error("Invoice data missing.");
 
     const settings = getBillingSettings();
-    // Embed QR as data URL BEFORE html2canvas (fixes missing Scan & Pay QR in PDF)
     const qrDataUrl = await resolvePaymentQrDataUrl(settings);
     const html = buildCustomerInvoiceHTML(bill, settings, { qrDataUrl });
     const { host, invoiceEl } = mountInvoice(html);
 
     try {
-        await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+        if (!invoiceEl) throw new Error("Invoice layout failed to render.");
+        await waitFrames(2);
         await downloadInvoicePdf(invoiceEl, fileName || invoiceFileName(bill.invoiceNumber));
     } finally {
         host.remove();
@@ -167,24 +196,40 @@ export async function downloadInvoicePdf(invoiceEl, fileName = "ProjectKart-Invo
     }
 
     const { html2canvas, jsPDF } = await loadPdfLibs();
-    const needsHost = !invoiceEl.closest("[aria-hidden='true']");
+    const alreadyMounted = Boolean(invoiceEl.closest("[data-invoice-pdf-host]"));
     let host = null;
     let target = invoiceEl;
 
-    if (needsHost) {
+    if (!alreadyMounted) {
         const mounted = mountInvoice(invoiceEl.outerHTML);
         host = mounted.host;
         target = mounted.invoiceEl;
-        await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+        await waitFrames(2);
     }
 
     try {
+        if (!target) throw new Error("Invoice not found.");
+
+        // Ensure capture target is paint-able
+        target.style.opacity = "1";
+        target.style.visibility = "visible";
+        target.style.transform = "none";
+        target.style.background = "#ffffff";
+
         await inlineImages(target);
         await Promise.all([...target.querySelectorAll("img")].map(waitForImage));
-        await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+        await waitFrames(2);
 
         const captureWidth = INVOICE_PAGE_WIDTH;
-        const captureHeight = Math.max(target.scrollHeight, INVOICE_PAGE_HEIGHT);
+        const captureHeight = Math.max(
+            target.scrollHeight || 0,
+            target.offsetHeight || 0,
+            INVOICE_PAGE_HEIGHT
+        );
+
+        if (captureHeight < 100) {
+            throw new Error("Invoice height is invalid. Try again.");
+        }
 
         const canvas = await html2canvas(target, {
             scale: 2,
@@ -199,9 +244,10 @@ export async function downloadInvoicePdf(invoiceEl, fileName = "ProjectKart-Invo
             windowHeight: captureHeight,
             scrollX: 0,
             scrollY: 0,
-            onclone(clonedDoc) {
-                const cloned = clonedDoc.querySelector(".invoice-sheet");
+            onclone(clonedDoc, element) {
+                const cloned = element || clonedDoc.querySelector(".invoice-sheet");
                 if (!cloned) return;
+
                 cloned.style.width = `${captureWidth}px`;
                 cloned.style.minHeight = `${INVOICE_PAGE_HEIGHT}px`;
                 cloned.style.height = "auto";
@@ -209,6 +255,23 @@ export async function downloadInvoicePdf(invoiceEl, fileName = "ProjectKart-Invo
                 cloned.style.flexDirection = "column";
                 cloned.style.boxSizing = "border-box";
                 cloned.style.transform = "none";
+                cloned.style.opacity = "1";
+                cloned.style.visibility = "visible";
+                cloned.style.background = "#ffffff";
+                cloned.style.position = "static";
+                cloned.style.left = "auto";
+                cloned.style.top = "auto";
+
+                // Parent host in clone must also stay visible for painting
+                const clonedHost = cloned.closest("[data-invoice-pdf-host]");
+                if (clonedHost) {
+                    clonedHost.style.transform = "none";
+                    clonedHost.style.opacity = "1";
+                    clonedHost.style.visibility = "visible";
+                    clonedHost.style.left = "0";
+                    clonedHost.style.top = "0";
+                    clonedHost.style.position = "static";
+                }
 
                 cloned.querySelectorAll("th, td").forEach(cell => {
                     cell.style.verticalAlign = "middle";
@@ -221,9 +284,15 @@ export async function downloadInvoicePdf(invoiceEl, fileName = "ProjectKart-Invo
                     if (original && original.src && original.src.startsWith("data:")) {
                         img.src = original.src;
                     }
+                    img.style.opacity = "1";
+                    img.style.visibility = "visible";
                 });
             }
         });
+
+        if (!canvas.width || !canvas.height) {
+            throw new Error("PDF capture failed (empty canvas).");
+        }
 
         const imgData = canvas.toDataURL("image/jpeg", 0.97);
         const pdf = new jsPDF({
