@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Shop electronics components at ProjectKart — boards, sensors, modules and project essentials.">
+    <meta name="description"
+        content="Shop electronics components at ProjectKart — boards, sensors, modules and project essentials.">
     <meta name="theme-color" content="#07090d">
     <title>Shop Components — ProjectKart</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,27 +26,27 @@
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/responsive.css">
 </head>
+
 <body class="home-page page-shop">
 
     <div class="page-loader" id="pageLoader" aria-hidden="true">
         <div class="page-loader__inner">
-            <img
-    src="assets/images/logo1.png"
-    class="page-loader__logo"
-/>
+            <img src="assets/images/logo1.png" class="page-loader__logo" />
             <div class="page-loader__line"><span></span></div>
         </div>
     </div>
 
     <header class="site-header" id="siteHeader">
         <div class="navbar">
-            <a href="index.html" class="brand" aria-label="ProjectKart Home">
-                <img
-                src="assets/images/logo1.png"
-            
-                class="brand__logo-image"
-            />
-             </a>
+             <a href="index.html" class="brand" aria-label="ProjectKart Home">
+
+                <img src="assets/images/logo.png" class="brand__logo-circle" alt="ProjectKart logo">
+
+                <span class="brand__name">
+                    ProjectKart
+                </span>
+
+            </a>
 
             <nav class="main-navigation" aria-label="Primary navigation">
                 <a href="index.html" class="nav-link">Home</a>
@@ -64,7 +66,8 @@
                             <path d="M16 16L21 21"></path>
                         </svg>
                     </button>
-                    <input type="search" id="globalSearchInput" name="search" placeholder="Search components" autocomplete="off">
+                    <input type="search" id="globalSearchInput" name="search" placeholder="Search components"
+                        autocomplete="off">
                 </form>
 
                 <a href="account.html" class="navbar-icon-button" aria-label="Account">
@@ -82,7 +85,8 @@
                     <span class="cart-count" id="cartCount" data-cart-count>0</span>
                 </a>
 
-                <button class="mobile-menu-toggle" id="mobileMenuToggle" type="button" data-mobile-menu-button aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileMenu">
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" type="button" data-mobile-menu-button
+                    aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileMenu">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -96,13 +100,10 @@
         <aside class="mobile-menu__panel">
             <div class="mobile-menu__top">
                 <a href="index.html" class="mobile-menu__brand">
-                    <img
-                    src="assets/images/logo1.png"
-                
-                    class="brand__logo-image"
-                />
+                    <img src="assets/images/logo1.png" class="brand__logo-image" />
                 </a>
-                <button type="button" class="mobile-menu__close" id="mobileMenuClose" aria-label="Close navigation">×</button>
+                <button type="button" class="mobile-menu__close" id="mobileMenuClose"
+                    aria-label="Close navigation">×</button>
             </div>
             <nav class="mobile-navigation" aria-label="Mobile navigation">
                 <a href="index.html" class="mobile-nav-link"><span>Home</span><span>01</span></a>
@@ -170,7 +171,8 @@
                             Max price
                             <span class="shop-price-value" id="shopMaxPriceValue">₹2800</span>
                         </label>
-                        <input id="shopMaxPrice" class="shop-range" type="range" min="50" max="2800" step="10" value="2800">
+                        <input id="shopMaxPrice" class="shop-range" type="range" min="50" max="2800" step="10"
+                            value="2800">
                     </div>
 
                     <label class="shop-check">
@@ -188,10 +190,13 @@
                 <div>
                     <div class="shop-toolbar">
                         <div class="shop-count">
-                            Showing <strong id="shopShownCount">0</strong> of <span id="shopTotalCount">0</span> components
+                            Showing <strong id="shopShownCount">0</strong> of <span id="shopTotalCount">0</span>
+                            components
                         </div>
                         <div class="shop-toolbar__right">
-                            <a href="admin/product-edit.html" class="button button-primary shop-add-component shop-add-component--toolbar" data-admin-only hidden>+ Add Component</a>
+                            <a href="admin/product-edit.html"
+                                class="button button-primary shop-add-component shop-add-component--toolbar"
+                                data-admin-only hidden>+ Add Component</a>
                             <select id="shopSort" class="shop-sort-select" aria-label="Sort products">
                                 <option value="featured">Featured</option>
                                 <option value="price-low">Price: Low to High</option>
@@ -201,10 +206,17 @@
                             </select>
                             <div class="shop-view">
                                 <button type="button" class="is-active" data-shop-view="grid" aria-label="Grid view">
-                                    <svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7"></rect><rect x="13" y="4" width="7" height="7"></rect><rect x="4" y="13" width="7" height="7"></rect><rect x="13" y="13" width="7" height="7"></rect></svg>
+                                    <svg viewBox="0 0 24 24">
+                                        <rect x="4" y="4" width="7" height="7"></rect>
+                                        <rect x="13" y="4" width="7" height="7"></rect>
+                                        <rect x="4" y="13" width="7" height="7"></rect>
+                                        <rect x="13" y="13" width="7" height="7"></rect>
+                                    </svg>
                                 </button>
                                 <button type="button" data-shop-view="list" aria-label="List view">
-                                    <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+                                    <svg viewBox="0 0 24 24">
+                                        <path d="M4 7h16M4 12h16M4 17h16"></path>
+                                    </svg>
                                 </button>
                             </div>
                         </div>
@@ -225,14 +237,11 @@
             <div class="footer-main">
                 <div class="footer-brand">
                     <a href="index.html" class="footer-brand__logo">
-                        <img
-                        src="assets/images/logo1.png"
-                    
-                        class="brand__logo-image"
-                    />
+                        <img src="assets/images/logo1.png" class="brand__logo-image" />
                     </a>
                     <p class="footer-brand__tagline">Build. Create. Innovate.</p>
-                    <p class="footer-brand__description">A considered component store for people who make things real.</p>
+                    <p class="footer-brand__description">A considered component store for people who make things real.
+                    </p>
                     <div class="footer-status"><span></span>Online + offline maker hub</div>
                 </div>
                 <div class="footer-column">
@@ -263,7 +272,8 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© 2024 ProjectKart. Demo storefront — replace business details before launch.</p>
+                <p>    © 2026 ProjectKart. All rights reserved. Built for makers.
+</p>
                 <div class="footer-bottom__links">
                     <a href="#">Privacy</a>
                     <a href="#">Terms</a>
@@ -273,17 +283,11 @@
         </div>
     </footer>
 
-    <button class="scroll-top-button" id="scrollTopButton" type="button" aria-label="Scroll to top"><span>↑</span></button>
+    <button class="scroll-top-button" id="scrollTopButton" type="button"
+        aria-label="Scroll to top"><span>↑</span></button>
 
-    <a
-        href="admin/product-edit.html"
-        class="shop-fab"
-        id="shopAdminFab"
-        data-admin-only
-        data-shop-admin-fab
-        hidden
-        aria-label="Add Component"
-    >
+    <a href="admin/product-edit.html" class="shop-fab" id="shopAdminFab" data-admin-only data-shop-admin-fab hidden
+        aria-label="Add Component">
         <span class="shop-fab__icon" aria-hidden="true">+</span>
         <span class="shop-fab__label">Add Component</span>
     </a>
@@ -295,4 +299,5 @@
     <script type="module" src="js/cart.js"></script>
     <script type="module" src="js/shop.js"></script>
 </body>
+
 </html>

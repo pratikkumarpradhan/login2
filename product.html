@@ -1,17 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="description"
-        content="View detailed product information, specifications and availability on ProjectKart."
-    >
+    <meta name="description"
+        content="View detailed product information, specifications and availability on ProjectKart.">
 
     <meta name="theme-color" content="#07090d">
 
@@ -47,16 +43,7 @@
          PAGE LOADER
     ========================================================== -->
 
-    <div
-        class="page-loader"
-        id="pageLoader"
-        aria-hidden="true"
-    >
-        <div class="page-loader__inner">
-            <span class="page-loader__mark">PK</span>
-            <span class="page-loader__line"></span>
-        </div>
-    </div>
+
 
 
     <!-- =========================================================
@@ -66,11 +53,14 @@
     <header class="site-header" id="siteHeader">
         <div class="navbar">
             <a href="index.html" class="brand" aria-label="ProjectKart Home">
-                <span class="brand__mark">PK</span>
+
+                <img src="assets/images/logo.png" class="brand__logo-circle" alt="ProjectKart logo">
+
                 <span class="brand__name">
-                    <span class="brand__project">Project</span><span class="brand__kart">Kart</span>
+                    ProjectKart
                 </span>
-             </a>
+
+            </a>
 
             <nav class="main-navigation" aria-label="Primary navigation">
                 <a href="index.html" class="nav-link">Home</a>
@@ -90,7 +80,8 @@
                             <path d="M16 16L21 21"></path>
                         </svg>
                     </button>
-                    <input type="search" id="globalSearchInput" name="search" placeholder="Search components" autocomplete="off">
+                    <input type="search" id="globalSearchInput" name="search" placeholder="Search components"
+                        autocomplete="off">
                 </form>
 
                 <a href="account.html" class="navbar-icon-button" aria-label="Account">
@@ -108,7 +99,8 @@
                     <span class="cart-count" id="cartCount" data-cart-count>0</span>
                 </a>
 
-                <button class="mobile-menu-toggle" id="mobileMenuToggle" type="button" data-mobile-menu-button aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileMenu">
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" type="button" data-mobile-menu-button
+                    aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileMenu">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -127,7 +119,8 @@
                         <span class="brand__project">Project</span><span class="brand__kart">Kart</span>
                     </span>
                 </a>
-                <button type="button" class="mobile-menu__close" id="mobileMenuClose" aria-label="Close navigation">×</button>
+                <button type="button" class="mobile-menu__close" id="mobileMenuClose"
+                    aria-label="Close navigation">×</button>
             </div>
             <nav class="mobile-navigation" aria-label="Mobile navigation">
                 <a href="index.html" class="mobile-nav-link"><span>Home</span><span>01</span></a>
@@ -145,7 +138,7 @@
         </aside>
     </div>
 
-    
+
     <main id="mainContent">
 
 
@@ -177,7 +170,8 @@
                     <div class="product-gallery" data-reveal>
                         <div class="product-gallery__stage">
                             <div class="product-gallery__thumbs" id="productThumbnails">
-                                <button type="button" class="product-gallery__thumb is-active" data-image-index="0" aria-label="Product image 1">
+                                <button type="button" class="product-gallery__thumb is-active" data-image-index="0"
+                                    aria-label="Product image 1">
                                     <img src="assets/images/placeholders/product-placeholder.jpg" alt="">
                                 </button>
                             </div>
@@ -185,15 +179,12 @@
                             <div class="product-gallery__main">
                                 <div class="product-gallery__badge" id="productBadge" hidden>NEW</div>
                                 <div class="product-gallery__image-wrap">
-                                    <img
-                                        id="productMainImage"
-                                        class="product-gallery__image"
-                                        src="assets/images/placeholders/product-placeholder.jpg"
-                                        alt="Product"
-                                    >
+                                    <img id="productMainImage" class="product-gallery__image"
+                                        src="assets/images/placeholders/product-placeholder.jpg" alt="Product">
                                 </div>
-                                <span class="product-gallery__demo-label">DEMO PRODUCT IMAGE</span>
-                                <button type="button" class="product-gallery__zoom" id="productImageZoom" aria-label="Zoom product image" hidden>
+                                <!-- <span class="product-gallery__demo-label">DEMO PRODUCT IMAGE</span> -->
+                                <button type="button" class="product-gallery__zoom" id="productImageZoom"
+                                    aria-label="Zoom product image" hidden>
                                     <svg viewBox="0 0 24 24" aria-hidden="true">
                                         <circle cx="10.5" cy="10.5" r="5.5"></circle>
                                         <path d="M15 15l5 5"></path>
@@ -207,9 +198,12 @@
                     <div class="product-info" data-reveal>
                         <div class="product-info__topline">
                             <span class="product-info__category" id="productCategory">COMPONENT</span>
-                            <button type="button" class="product-wishlist-button" id="productWishlist" aria-label="Add to wishlist">
+                            <button type="button" class="product-wishlist-button" id="productWishlist"
+                                aria-label="Add to wishlist">
                                 <svg viewBox="0 0 24 24" aria-hidden="true">
-                                    <path d="M20.8 8.8c0 5-8.8 10.2-8.8 10.2S3.2 13.8 3.2 8.8A4.6 4.6 0 0 1 12 6.1a4.6 4.6 0 0 1 8.8 2.7Z"></path>
+                                    <path
+                                        d="M20.8 8.8c0 5-8.8 10.2-8.8 10.2S3.2 13.8 3.2 8.8A4.6 4.6 0 0 1 12 6.1a4.6 4.6 0 0 1 8.8 2.7Z">
+                                    </path>
                                 </svg>
                             </button>
                         </div>
@@ -238,9 +232,12 @@
 
                         <div class="product-purchase">
                             <div class="quantity-control">
-                                <button type="button" class="quantity-control__button" id="quantityMinus" aria-label="Decrease quantity">−</button>
-                                <input type="number" id="productQuantity" class="quantity-control__input" value="1" min="1" max="99" aria-label="Quantity">
-                                <button type="button" class="quantity-control__button" id="quantityPlus" aria-label="Increase quantity">+</button>
+                                <button type="button" class="quantity-control__button" id="quantityMinus"
+                                    aria-label="Decrease quantity">−</button>
+                                <input type="number" id="productQuantity" class="quantity-control__input" value="1"
+                                    min="1" max="99" aria-label="Quantity">
+                                <button type="button" class="quantity-control__button" id="quantityPlus"
+                                    aria-label="Increase quantity">+</button>
                             </div>
 
                             <button type="button" class="product-add-button" id="addToCartButton">
@@ -258,7 +255,9 @@
 
                         <button type="button" class="product-whatsapp-button" id="orderWhatsAppButton">
                             <svg viewBox="0 0 24 24" aria-hidden="true">
-                                <path d="M12 2.2A9.8 9.8 0 0 0 3.4 16.7L2 22l5.5-1.4A9.8 9.8 0 1 0 12 2.2Zm0 17.7a7.9 7.9 0 0 1-4-.1l-.3-.1-3.2.8.9-3.1-.2-.3a7.9 7.9 0 1 1 6.8 2.8Zm4.3-5.9c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.7.9-.3.2-.5.1a6.5 6.5 0 0 1-1.9-1.2 7.2 7.2 0 0 1-1.3-1.6c-.1-.2 0-.4.1-.5l.4-.4.1-.3c0-.1 0-.3-.1-.4s-.5-1.2-.7-1.7c-.2-.4-.4-.4-.5-.4h-.4c-.1 0-.4.1-.6.3s-.8.8-.8 1.9.8 2.2.9 2.3a8.6 8.6 0 0 0 3.4 2.7c.4.2.8.3 1.1.4.5.2.9.1 1.2.1.4-.1 1.4-.6 1.6-1.1s.2-1 .1-1.1-.2-.2-.4-.3Z"></path>
+                                <path
+                                    d="M12 2.2A9.8 9.8 0 0 0 3.4 16.7L2 22l5.5-1.4A9.8 9.8 0 1 0 12 2.2Zm0 17.7a7.9 7.9 0 0 1-4-.1l-.3-.1-3.2.8.9-3.1-.2-.3a7.9 7.9 0 1 1 6.8 2.8Zm4.3-5.9c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.7.9-.3.2-.5.1a6.5 6.5 0 0 1-1.9-1.2 7.2 7.2 0 0 1-1.3-1.6c-.1-.2 0-.4.1-.5l.4-.4.1-.3c0-.1 0-.3-.1-.4s-.5-1.2-.7-1.7c-.2-.4-.4-.4-.5-.4h-.4c-.1 0-.4.1-.6.3s-.8.8-.8 1.9.8 2.2.9 2.3a8.6 8.6 0 0 0 3.4 2.7c.4.2.8.3 1.1.4.5.2.9.1 1.2.1.4-.1 1.4-.6 1.6-1.1s.2-1 .1-1.1-.2-.2-.4-.3Z">
+                                </path>
                             </svg>
                             <span>Order on WhatsApp</span>
                         </button>
@@ -311,9 +310,9 @@
         </section>
 
 
-        <!-- =====================================================
+ <!--        =====================================================
              PRODUCT INFORMATION TABS
-        ====================================================== -->
+        ======================================================
 
         <section class="product-information section">
 
@@ -321,60 +320,30 @@
 
                 <div class="product-information__wrapper">
 
-                    <div
-                        class="product-tabs"
-                        role="tablist"
-                        aria-label="Product information"
-                    >
+                    <div class="product-tabs" role="tablist" aria-label="Product information">
 
-                        <button
-                            type="button"
-                            class="product-tab is-active"
-                            id="descriptionTab"
-                            data-tab="description"
-                            role="tab"
-                            aria-selected="true"
-                            aria-controls="descriptionPanel"
-                        >
+                        <button type="button" class="product-tab is-active" id="descriptionTab" data-tab="description"
+                            role="tab" aria-selected="true" aria-controls="descriptionPanel">
                             Description
                         </button>
 
-                        <button
-                            type="button"
-                            class="product-tab"
-                            id="specificationsTab"
-                            data-tab="specifications"
-                            role="tab"
-                            aria-selected="false"
-                            aria-controls="specificationsPanel"
-                        >
+                        <button type="button" class="product-tab" id="specificationsTab" data-tab="specifications"
+                            role="tab" aria-selected="false" aria-controls="specificationsPanel">
                             Specifications
                         </button>
 
-                        <button
-                            type="button"
-                            class="product-tab"
-                            id="shippingTab"
-                            data-tab="shipping"
-                            role="tab"
-                            aria-selected="false"
-                            aria-controls="shippingPanel"
-                        >
+                        <button type="button" class="product-tab" id="shippingTab" data-tab="shipping" role="tab"
+                            aria-selected="false" aria-controls="shippingPanel">
                             Shipping
                         </button>
 
                     </div>
 
 
-                    <!-- DESCRIPTION -->
+                    DESCRIPTION
 
-                    <div
-                        class="product-tab-panel is-active"
-                        id="descriptionPanel"
-                        data-panel="description"
-                        role="tabpanel"
-                        aria-labelledby="descriptionTab"
-                    >
+                    <div class="product-tab-panel is-active" id="descriptionPanel" data-panel="description"
+                        role="tabpanel" aria-labelledby="descriptionTab">
 
                         <div class="product-tab-panel__content">
 
@@ -397,16 +366,10 @@
                     </div>
 
 
-                    <!-- SPECIFICATIONS -->
+                    SPECIFICATIONS
 
-                    <div
-                        class="product-tab-panel"
-                        id="specificationsPanel"
-                        data-panel="specifications"
-                        role="tabpanel"
-                        aria-labelledby="specificationsTab"
-                        hidden
-                    >
+                    <div class="product-tab-panel" id="specificationsPanel" data-panel="specifications" role="tabpanel"
+                        aria-labelledby="specificationsTab" hidden>
 
                         <div class="product-specifications">
 
@@ -463,16 +426,10 @@
                     </div>
 
 
-                    <!-- SHIPPING -->
+                    SHIPPING
 
-                    <div
-                        class="product-tab-panel"
-                        id="shippingPanel"
-                        data-panel="shipping"
-                        role="tabpanel"
-                        aria-labelledby="shippingTab"
-                        hidden
-                    >
+                    <div class="product-tab-panel" id="shippingPanel" data-panel="shipping" role="tabpanel"
+                        aria-labelledby="shippingTab" hidden>
 
                         <div class="product-tab-panel__content">
 
@@ -490,10 +447,7 @@
                                 contact the ProjectKart team.
                             </p>
 
-                            <a
-                                href="contact.html"
-                                class="text-link"
-                            >
+                            <a href="contact.html" class="text-link">
                                 Contact ProjectKart
                                 <span>→</span>
                             </a>
@@ -506,7 +460,7 @@
 
             </div>
 
-        </section>
+        </section> -->
 
 
         <!-- =====================================================
@@ -517,10 +471,7 @@
 
             <div class="container">
 
-                <div
-                    class="section-heading section-heading--split reveal"
-                    data-reveal
-                >
+                <div class="section-heading section-heading--split reveal" data-reveal>
 
                     <div>
 
@@ -539,10 +490,7 @@
 
                     </div>
 
-                    <a
-                        href="shop.html"
-                        class="section-heading__link"
-                    >
+                    <a href="shop.html" class="section-heading__link">
                         Shop all components
                         <span>→</span>
                     </a>
@@ -550,10 +498,7 @@
                 </div>
 
 
-                <div
-                    class="product-grid product-grid--related"
-                    id="relatedProducts"
-                >
+                <div class="product-grid product-grid--related" id="relatedProducts">
 
                     <!-- JS INSERTS RELATED PRODUCTS -->
 
@@ -572,10 +517,7 @@
 
             <div class="container">
 
-                <div
-                    class="product-cta__card reveal"
-                    data-reveal
-                >
+                <div class="product-cta__card reveal" data-reveal>
 
                     <div>
 
@@ -598,20 +540,14 @@
 
                     <div class="product-cta__actions">
 
-                        <a
-                            href="project-kits.html"
-                            class="button button--primary"
-                        >
+                        <a href="project-kits.html" class="button button--primary">
                             Explore project kits
                             <span class="button__arrow">
                                 →
                             </span>
                         </a>
 
-                        <a
-                            href="contact.html"
-                            class="button button--secondary"
-                        >
+                        <a href="contact.html" class="button button--secondary">
                             Ask for help
                             <span class="button__arrow">
                                 ↗
@@ -633,33 +569,18 @@
          IMAGE ZOOM MODAL
     ========================================================== -->
 
-    <div
-        class="product-image-modal"
-        id="productImageModal"
-        aria-hidden="true"
-    >
+    <div class="product-image-modal" id="productImageModal" aria-hidden="true">
 
-        <div
-            class="product-image-modal__backdrop"
-            data-product-modal-close
-        ></div>
+        <div class="product-image-modal__backdrop" data-product-modal-close></div>
 
         <div class="product-image-modal__content">
 
-            <button
-                type="button"
-                class="product-image-modal__close"
-                id="productImageModalClose"
-                aria-label="Close image"
-            >
+            <button type="button" class="product-image-modal__close" id="productImageModalClose"
+                aria-label="Close image">
                 ×
             </button>
 
-            <img
-                id="productZoomImage"
-                src=""
-                alt="Product enlarged"
-            >
+            <img id="productZoomImage" src="" alt="Product enlarged">
 
         </div>
 
@@ -670,196 +591,64 @@
          FOOTER
     ========================================================== -->
 
-    <footer class="site-footer">
-
-        <div class="container">
-
-            <div class="site-footer__main">
-
-
-                <!-- BRAND -->
-
-                <div class="site-footer__brand">
-
-                    <a
-                        href="index.html"
-                        class="footer-brand"
-                    >
-
-                        <span class="footer-brand__logo">
-                            PK
-                        </span>
-
-                        <span class="footer-brand__name">
-                            <span>Project</span>
-                            <strong>Kart</strong>
-                        </span>
-
+    <footer class="site-footer" id="siteFooter">
+        <div class="section-container">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-brand__logo">
+                        <img src="assets/images/logo1.png" class="brand__logo-image" />
                     </a>
-
-                    <p>
-                        Build. Create. Innovate.
+                    <p class="footer-brand__tagline">Build. Create. Innovate.</p>
+                    <p class="footer-brand__description">A considered component store for people who make things real.
                     </p>
-
-                    <p>
-                        A considered component store for
-                        people who make things real.
-                    </p>
-
-                    <div class="footer-status">
-
-                        <span class="footer-status__dot"></span>
-
-                        <span>
-                            Online + offline maker hub
-                        </span>
-
-                    </div>
-
+                    <div class="footer-status"><span></span>Online + offline maker hub</div>
                 </div>
-
-
-                <!-- SHOP -->
-
-                <div class="site-footer__column">
-
-                    <span class="site-footer__heading">
-                        SHOP
-                    </span>
-
-                    <a href="category.html?category=arduino">
-                        Arduino &amp; Boards
-                    </a>
-
-                    <a href="category.html?category=sensors">
-                        Sensors
-                    </a>
-
-                    <a href="category.html?category=modules">
-                        Modules
-                    </a>
-
-                    <a href="category.html?category=batteries">
-                        Batteries
-                    </a>
-
-                    <a href="project-kits.html">
-                        Project Kits
-                    </a>
-
+                <div class="footer-column">
+                    <span class="footer-column__title">SHOP</span>
+                    <nav>
+                        <a href="shop.html?category=arduino-boards">Arduino &amp; Boards</a>
+                        <a href="shop.html?category=sensors">Sensors</a>
+                        <a href="shop.html?category=modules">Modules</a>
+                        <a href="shop.html?category=batteries-power">Batteries</a>
+                        <a href="project-kits.html">Project Kits</a>
+                    </nav>
                 </div>
-
-
-                <!-- COMPANY -->
-
-                <div class="site-footer__column">
-
-                    <span class="site-footer__heading">
-                        COMPANY
-                    </span>
-
-                    <a href="about.html">
-                        About Us
-                    </a>
-
-                    <a href="contact.html">
-                        Contact
-                    </a>
-
-                    <a href="contact.html#faq">
-                        Help &amp; FAQ
-                    </a>
-
-                    <a href="contact.html#shipping">
-                        Shipping
-                    </a>
-
-                    <a href="contact.html#returns">
-                        Returns
-                    </a>
-
+                <div class="footer-column">
+                    <span class="footer-column__title">COMPANY</span>
+                    <nav>
+                        <a href="about.html">About Us</a>
+                        <a href="contact.html">Contact</a>
+                        <a href="contact.html#faq">Help &amp; FAQ</a>
+                        <a href="contact.html#shipping">Shipping</a>
+                        <a href="contact.html#returns">Returns</a>
+                    </nav>
                 </div>
-
-
-                <!-- HELP -->
-
-                <div class="site-footer__help">
-
-                    <span class="site-footer__heading">
-                        NEED A HAND?
-                    </span>
-
-                    <h3>
-                        Tell us what you're
-                        <span>building.</span>
-                    </h3>
-
-                    <p>
-                        We'll help you find the right
-                        starting point.
-                    </p>
-
-                    <a
-                        href="contact.html"
-                        class="footer-help-link"
-                    >
-                        Get project help
-                        <span>↗</span>
-                    </a>
-
+                <div class="footer-support">
+                    <span class="footer-column__title">NEED A HAND?</span>
+                    <h3>Tell us what you're building.</h3>
+                    <p>We'll help you find the right starting point.</p>
+                    <a href="contact.html" class="footer-support__link">Get project help <span>↗</span></a>
                 </div>
-
             </div>
-
-
-            <!-- FOOTER BOTTOM -->
-
-            <div class="site-footer__bottom">
-
-                <p>
-                    © 2024 ProjectKart. Demo storefront —
-                    replace business details before launch.
-                </p>
-
-                <div class="site-footer__legal">
-
-                    <a href="#">
-                        Privacy
-                    </a>
-
-                    <a href="#">
-                        Terms
-                    </a>
-
-                    <a href="contact.html">
-                        <span>⌖</span>
-                        Visit us offline
-                    </a>
-
+            <div class="footer-bottom">
+                <p>    © 2026 ProjectKart. All rights reserved. Built for makers.
+</p>
+                <div class="footer-bottom__links">
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                    <a href="contact.html"><span class="footer-location-icon">⌖</span> Visit us offline</a>
                 </div>
-
             </div>
-
         </div>
-
     </footer>
-
 
     <!-- =========================================================
          BACK TO TOP
     ========================================================== -->
 
-    <button
-        type="button"
-        class="back-to-top"
-        id="backToTop"
-        aria-label="Back to top"
-    >
+    <button type="button" class="back-to-top" id="backToTop" aria-label="Back to top">
 
-        <svg
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-        >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M7 14l5-5 5 5"></path>
         </svg>
 
@@ -878,4 +667,5 @@
     <script type="module" src="js/cart.js"></script>
     <script type="module" src="js/product-page.js"></script>
 </body>
+
 </html>

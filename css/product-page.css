@@ -1661,14 +1661,42 @@
     display: block;
     padding: 12px 0 72px;
 }
-
 .page-product .product-detail__grid {
     display: grid;
-    grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
-    gap: clamp(28px, 4vw, 56px);
+
+    /* Gallery slightly narrower, right content gets more flexible space */
+    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+
+    gap: clamp(24px, 3vw, 42px);
     align-items: start;
 }
 
+/* ================================================================
+   PRODUCT LAYOUT — GALLERY LEFT / INFO FLEXIBLE
+================================================================ */
+
+/* ================================================================
+   PRODUCT GALLERY — MORE LEFT + LARGER MAIN IMAGE
+================================================================ */
+
+/* Shift the entire image/gallery area further to the left */
+.page-product .product-detail__grid > .product-gallery {
+    transform: translateX(-45px);
+    min-width: 0;
+}
+
+/* Make the main product image noticeably larger */
+.page-product .product-gallery__main {
+    transform: scale(1.08);
+    transform-origin: center center;
+}
+
+/* Keep right-side product information flexible */
+.page-product .product-detail__grid > .product-info {
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+}
 /* Gallery: vertical thumbs on LEFT */
 
 .product-gallery__stage {
@@ -2426,4 +2454,79 @@
         height: 56px;
         flex-basis: 56px;
     }
+}
+
+
+.product-breadcrumb-section {
+    margin-top: 70px;
+}
+
+
+/* ================================================================
+   PRODUCT GALLERY — MOVE FARTHER LEFT
+================================================================ */
+
+@media (min-width: 981px) {
+
+    .page-product .product-detail__grid > .product-gallery {
+        position: relative;
+        left: -50px;
+        width: calc(100% + 20px);
+        z-index: 2;
+    }
+
+ /* ================================================================
+   MAIN IMAGE — BIGGER + SLIGHTLY RIGHT + DOWN
+================================================================ */
+
+.page-product .product-gallery__main {
+    transform: translate(90px, 90px) scale(1.3);
+    transform-origin: center center;
+}
+
+}
+@media (min-width: 981px) {
+
+    .page-product .product-detail__grid > .product-info {
+        position: relative;
+        left: 70px;
+    }
+
+}
+
+
+
+
+/* ================================================================
+   RELATED PRODUCTS — REMOVE EXTRA TOP GAP
+================================================================ */
+
+.page-product .related-products {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+.page-product .need-more-section {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+/* Tighten gap between Related Products and Maker CTA */
+.page-product .related-products {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+/* Maker CTA — small gap from previous section */
+.page-product .product-cta {
+    margin-top: 50px !important;
+    padding-top: 0 !important;
+}
+
+/* Remove extra space above footer */
+.page-product .product-cta {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+}
+.page-product .site-footer {
+    margin-top: 50px !important;
 }
