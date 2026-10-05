@@ -7,7 +7,7 @@
 }
 
 .categories-hero {
-    padding: 64px 0 56px;
+    padding: 100px 0 56px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     background:
         radial-gradient(circle at 88% 0%, rgba(40, 120, 255, 0.16), transparent 34%),
@@ -28,9 +28,9 @@
     max-width: 780px;
     margin: 0;
     color: #fff;
-    font-size: clamp(3rem, 5.4vw, 5rem);
+    font-size: clamp(2.8rem, 2.0vw, 4.4rem);
     font-weight: 800;
-    letter-spacing: -0.065em;
+    letter-spacing: -0.015em;
     line-height: 0.94;
 }
 
