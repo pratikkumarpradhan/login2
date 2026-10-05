@@ -15,8 +15,8 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
+    
+    <link href="https://fonts.googleapis.com/css2?family=Charis+SIL:wght@400;700&display=swap" rel="stylesheet">
     <!-- =========================================================
          GLOBAL CSS
     ========================================================== -->
@@ -319,202 +319,110 @@
              HERO
         ====================================================== -->
 
-        <section class="hero-section" id="hero">
+        <section class="hero-section" id="hero" aria-label="ProjectKart hero">
 
-            <div class="hero-section__background">
-
-                <img src="assets/images/hero/home.jpeg" alt="" class="hero-section__background-image"
-                    aria-hidden="true">
-
-                <div class="hero-section__background-overlay"></div>
-
+            <!-- Background video — cinematic ambient loop (not a media player) -->
+            <div class="hero-video-background" aria-hidden="true">
+                <video
+                    class="hero-video"
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    webkit-playsinline
+                    preload="auto"
+                    disablepictureinpicture
+                    disableremoteplayback
+                    aria-hidden="true"
+                >
+                    <source src="assets/videos/hero.mp4" type="video/mp4">
+                </video>
+                <div class="hero-video-overlay"></div>
             </div>
 
+            <!-- Centered messaging -->
+            <div class="hero-content">
+                <span class="hero-eyebrow">PROJECTKART / MAKER STORE</span>
 
-            <div class="hero-section__container">
+                <h1 class="hero-title">
+                    <span>Build.</span>
+                    <span>Create.</span>
+                    <span>Innovate.</span>
+                </h1>
 
+                <p class="hero-lead">
+                    Everything you need to turn your ideas into real-world projects.
+                </p>
 
-                <!-- -------------------------------------------------
-                     HERO CONTENT
-                -------------------------------------------------- -->
-
-                <div class="hero-content">
-
-                    <div class="eyebrow hero-eyebrow">
-
-                        <span class="eyebrow__dot"></span>
-
-                        <span>
-                            MAKER-GRADE COMPONENTS, THOUGHTFULLY SOURCED
-                        </span>
-
-                    </div>
-
-
-                    <h1 class="hero-title">
-
-                        <span>Build.</span>
-
-                        <span class="hero-title__accent">
-                            Create.
-                        </span>
-
-                        <span>Innovate.</span>
-
-                    </h1>
-
-
-                    <p class="hero-lead">
-                        Everything you need to turn your ideas into
-                        real-world projects.
-                    </p>
-
-
-                    <p class="hero-description">
-                        Explore boards, sensors, modules, batteries,
-                        motors, displays and complete DIY project kits
-                        — all in one place.
-                    </p>
-
-
-                    <div class="hero-actions">
-
-                        <a href="shop.html" class="button button-primary hero-primary-button">
-
-                            <span>
-                                Shop Components
-                            </span>
-
-                            <span class="button-arrow">
-                                →
-                            </span>
-
-                        </a>
-
-
-                        <a href="project-kits.html" class="button button-secondary hero-secondary-button">
-
-                            <span>
-                                Explore Project Kits
-                            </span>
-
-                            <span class="button-arrow">
-                                ↗
-                            </span>
-
-                        </a>
-
-                    </div>
-
-
-                    <div class="hero-meta">
-
-                        <div class="hero-meta__item">
-
-                            <span class="hero-meta__status"></span>
-
-                            <span>
-                                Demo catalogue is live
-                            </span>
-
-                        </div>
-
-                        <span class="hero-meta__divider"></span>
-
-                        <div class="hero-meta__item">
-                            Online + offline ordering
-                        </div>
-
-                    </div>
-
+                <div class="hero-actions">
+                    <a href="shop.html" class="hero-button hero-button-primary">
+                        Shop Components
+                    </a>
+                    <a href="project-kits.html" class="hero-button hero-button-secondary">
+                        Explore Project Kits
+                    </a>
                 </div>
 
-
-                <!-- -------------------------------------------------
-                     HERO VISUAL
-                -------------------------------------------------- -->
-
-                <div class="hero-visual">
-
-                    <div class="hero-visual__technical-label">
-                        PROJECTKART / WORKSPACE_01
-                    </div>
-
-
-                    <div class="hero-image-frame">
-
-                        <div class="hero-image-frame__image-wrap">
-
-                            <img src="assets/images/hero/home.jpeg"
-                                alt="Electronics components and development boards arranged on a workspace"
-                                class="hero-image">
-
-                        </div>
-
-
-                        <div class="hero-image-frame__gradient"></div>
-
-
-                        <div class="hero-image-frame__caption">
-                            Build the next idea.
-                        </div>
-
-
-                        <div class="hero-ready-indicator">
-
-                            <span></span>
-
-                            READY TO BUILD
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- Floating hero information card -->
-
-                    <div class="hero-signal-card">
-
-                        <div class="hero-signal-card__icon">
-
-                            <svg viewBox="0 0 24 24" aria-hidden="true">
-
-                                <rect x="6" y="6" width="12" height="12" rx="2"></rect>
-
-                                <rect x="9" y="9" width="6" height="6" rx="1"></rect>
-
-                                <path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M18 9h3M3 15h3M18 15h3"></path>
-
-                            </svg>
-
-                        </div>
-
-
-                        <div class="hero-signal-card__content">
-
-                            <span class="hero-signal-card__label">
-                                CURATED SIGNAL
-                            </span>
-
-                            <strong>
-                                Boards · sensors · modules
-                            </strong>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
+                <p class="hero-subtext">Start building with ProjectKart.</p>
             </div>
 
+            <!-- Sliding project showcase -->
+            <div class="hero-showcase" aria-hidden="true">
+                <div class="hero-showcase-track" id="heroShowcaseTrack">
+                    <article class="hero-showcase-card" data-showcase-card>
+                        <div class="hero-showcase-card__top">
+                            <span>01</span>
+                            <span>PROJECTKART</span>
+                        </div>
+                        <img src="assets/images/hero/project-1.jpg" alt="Arduino projects" loading="eager">
+                        <div class="hero-showcase-card__title">Arduino Projects</div>
+                    </article>
 
-            <!-- Hero bottom scroll cue -->
+                    <article class="hero-showcase-card" data-showcase-card>
+                        <div class="hero-showcase-card__top">
+                            <span>02</span>
+                            <span>PROJECTKART</span>
+                        </div>
+                        <img src="assets/images/hero/project-2.jpg" alt="Robotics and IoT" loading="eager">
+                        <div class="hero-showcase-card__title">Robotics &amp; IoT</div>
+                    </article>
 
-            <button class="hero-scroll-cue" id="heroScrollCue" type="button" aria-label="Scroll down">
+                    <article class="hero-showcase-card" data-showcase-card>
+                        <div class="hero-showcase-card__top">
+                            <span>03</span>
+                            <span>PROJECTKART</span>
+                        </div>
+                        <img src="assets/images/hero/project-3.jpg" alt="Smart electronics" loading="eager">
+                        <div class="hero-showcase-card__title">Smart Electronics</div>
+                    </article>
 
-                <span>⌄</span>
+                    <article class="hero-showcase-card" data-showcase-card>
+                        <div class="hero-showcase-card__top">
+                            <span>04</span>
+                            <span>PROJECTKART</span>
+                        </div>
+                        <img src="assets/images/hero/project-4.jpg" alt="DIY project kits" loading="eager">
+                        <div class="hero-showcase-card__title">DIY Project Kits</div>
+                    </article>
 
+                    <article class="hero-showcase-card" data-showcase-card>
+                        <div class="hero-showcase-card__top">
+                            <span>05</span>
+                            <span>PROJECTKART</span>
+                        </div>
+                        <img src="assets/images/hero/project-5.jpg" alt="Sensors and modules" loading="eager">
+                        <div class="hero-showcase-card__title">Sensors &amp; Modules</div>
+                    </article>
+                </div>
+            </div>
+
+            <button
+                class="hero-scroll-cue"
+                id="heroScrollCue"
+                type="button"
+                aria-label="Scroll to explore components"
+            >
+                <span></span>
             </button>
 
         </section>

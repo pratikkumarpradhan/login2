@@ -17,16 +17,26 @@ const PLACEHOLDER_IMAGE = "assets/images/hero/home.jpeg";
 let featuredProducts = [];
 let unsubProducts = null;
 let unsubKits = null;
+let heroVideoReady = false;
 
-document.addEventListener("DOMContentLoaded", () => {
+/* Hero video is independent of Firebase/cart/loader — start ASAP */
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => {
+        setupHeroVideo();
+        initHome();
+    });
+} else {
+    setupHeroVideo();
     initHome();
-});
+}
 
 export function initHome() {
     initCart();
     hidePageLoader();
     setupHeaderState();
     setupHeroScrollCue();
+    setupHeroVideo();
+    setupHeroShowcase();
     setupScrollTop();
     setupNavbarSearch();
     setupHomeInteractions();
@@ -300,6 +310,141 @@ function setupHeroScrollCue() {
         (next || document.getElementById("mainContent"))?.scrollIntoView({
             behavior: "smooth"
         });
+    });
+}
+
+/**
+ * Cinematic muted background loop.
+ * Relies on HTML autoplay attributes — does NOT wait for user gestures.
+ * Do not call video.load() (it cancels native autoplay).
+ */
+function setupHeroVideo() {
+    const video = document.querySelector(".hero-section .hero-video");
+    if (!video || heroVideoReady) {
+        return;
+    }
+
+    heroVideoReady = true;
+
+    video.autoplay = true;
+    video.muted = true;
+    video.defaultMuted = true;
+    video.loop = true;
+    video.playsInline = true;
+    video.volume = 0;
+    video.controls = false;
+
+    video.setAttribute("autoplay", "");
+    video.setAttribute("muted", "");
+    video.setAttribute("playsinline", "");
+    video.setAttribute("webkit-playsinline", "");
+    video.setAttribute("loop", "");
+    video.removeAttribute("controls");
+    video.removeAttribute("poster");
+
+    const attemptAutoplay = () => {
+        video.muted = true;
+        video.defaultMuted = true;
+        video.volume = 0;
+
+        const promise = video.play();
+        if (promise !== undefined) {
+            promise.catch(error => {
+                console.error("ProjectKart hero video autoplay failed:", error);
+            });
+        }
+    };
+
+    attemptAutoplay();
+
+    if (video.readyState < 3) {
+        video.addEventListener("canplay", attemptAutoplay, { once: true });
+    }
+
+    video.addEventListener("playing", () => {
+        video.classList.add("is-playing");
+    }, { once: true });
+}
+
+/**
+ * Infinite cinematic showcase: one card advances every few seconds.
+ * Center card is scaled to 1; neighbors are smaller and softer.
+ */
+function setupHeroShowcase() {
+    const track = document.getElementById("heroShowcaseTrack");
+    if (!track) {
+        return;
+    }
+
+    const cards = Array.from(track.querySelectorAll("[data-showcase-card]"));
+    if (cards.length < 2) {
+        return;
+    }
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const INTERVAL_MS = 3500;
+    const STEP = 0.72; // horizontal offset in card-widths
+    let activeIndex = 0;
+    let timer = null;
+
+    function circularOffset(index, active, total) {
+        let offset = index - active;
+        const half = Math.floor(total / 2);
+        if (offset > half) {
+            offset -= total;
+        } else if (offset < -half) {
+            offset += total;
+        }
+        return offset;
+    }
+
+    function render() {
+        const total = cards.length;
+        cards.forEach((card, index) => {
+            const offset = circularOffset(index, activeIndex, total);
+            const isActive = offset === 0;
+            const abs = Math.abs(offset);
+            const visible = abs <= 2;
+            const scale = isActive ? 1 : abs === 1 ? 0.84 : 0.76;
+            const x = offset * STEP * 100;
+
+            card.classList.toggle("is-active", isActive);
+            card.classList.toggle("is-visible", visible);
+            card.style.zIndex = String(10 - abs);
+            card.style.opacity = visible ? (isActive ? "1" : abs === 1 ? "0.72" : "0.45") : "0";
+            card.style.transform = `translate(calc(-50% + ${x}%), -50%) scale(${scale})`;
+        });
+    }
+
+    function advance() {
+        activeIndex = (activeIndex + 1) % cards.length;
+        render();
+    }
+
+    function start() {
+        stop();
+        if (reduceMotion) {
+            return;
+        }
+        timer = window.setInterval(advance, INTERVAL_MS);
+    }
+
+    function stop() {
+        if (timer !== null) {
+            window.clearInterval(timer);
+            timer = null;
+        }
+    }
+
+    render();
+    start();
+
+    document.addEventListener("visibilitychange", () => {
+        if (document.hidden) {
+            stop();
+        } else {
+            start();
+        }
     });
 }
 

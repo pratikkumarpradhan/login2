@@ -433,3 +433,18 @@
     display: block;
     object-fit: contain;
 }
+
+/* =========================================================
+   POPULAR COMPONENTS — CARD HOVER
+   ========================================================= */
+
+   .product-card {
+    transition:
+        transform 220ms ease,
+        border-color 220ms ease,
+        box-shadow 220ms ease;
+}
+
+.product-card:hover {
+    border-color: rgba(70, 140, 255, 0.35);
+}

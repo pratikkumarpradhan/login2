@@ -294,11 +294,17 @@
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 28px;
     background: #0c1118;
+
+    transition:
+        transform 220ms ease,
+        border-color 220ms ease,
+        box-shadow 220ms ease;
 }
 
 .page-shop .product-card:hover {
     transform: translateY(-4px);
-    border-color: rgba(255, 255, 255, 0.14);
+    border-color: rgba(70, 140, 255, 0.35);
+
 }
 
 .page-shop .product-card__media {

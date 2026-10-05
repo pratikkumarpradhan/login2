@@ -663,8 +663,7 @@
    ================================================================ */
 
 @media (max-width: 900px) and (orientation: landscape) {
-    .hero,
-    .hero-section {
+    .hero {
         min-height: auto;
     }
 
