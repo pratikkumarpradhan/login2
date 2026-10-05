@@ -5,11 +5,32 @@
 .page-kits {
     background: #07090d;
 }
+/* ================================================================
+   PROJECTKART — PROJECT KITS HEADER
+================================================================ */
+
+.page-kits .site-header {
+    background: rgba(7, 9, 13, 0.96) !important;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
+}
+/* ================================================================
+   PROJECTKART — PROJECT KITS HERO
+================================================================ */
 
 .kits-hero {
-    padding: 56px 0 36px;
+    padding: 100px 0 28px;
     background:
-        radial-gradient(circle at 88% 0%, rgba(40, 120, 255, 0.16), transparent 34%),
+        radial-gradient(
+            circle at 88% 0%,
+            rgba(40, 120, 255, 0.16),
+            transparent 34%
+        ),
         #07090d;
 }
 
@@ -26,9 +47,9 @@
 .kits-hero h1 {
     margin: 0;
     color: #fff;
-    font-size: clamp(2.8rem, 5vw, 4.6rem);
+    font-size: clamp(2.8rem, 2.0vw, 4.4rem);
     font-weight: 800;
-    letter-spacing: -0.06em;
+    letter-spacing: -0.015em;
     line-height: 0.95;
 }
 
@@ -440,3 +461,4 @@ body.is-shop-admin .shop-fab[data-admin-only] {
         grid-template-columns: 1fr;
     }
 }
+
