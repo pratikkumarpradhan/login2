@@ -2,31 +2,76 @@
    PROJECTKART — NAVBAR
 ================================================================ */
 
+
+/* ================================================================
+   MAIN HEADER
+   Transparent over hero video at the top
+================================================================ */
+
 .site-header {
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    width: 100%;
+
     z-index: var(--z-header);
     height: var(--navbar-height);
-    background: rgba(7, 9, 13, 0.92);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
+
+    /* Completely transparent at top */
+    background: transparent;
+    border-bottom: none;
+    box-shadow: none;
+
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+
+    transition:
+        background 220ms ease,
+        border-color 220ms ease,
+        backdrop-filter 220ms ease,
+        -webkit-backdrop-filter 220ms ease,
+        box-shadow 220ms ease;
 }
+
+
+/* ================================================================
+   SCROLLED HEADER
+   Keep the existing dark / blurred navbar
+================================================================ */
 
 .site-header.is-scrolled {
     background: rgba(7, 9, 13, 0.96);
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
 }
+
+
+/* ================================================================
+   NAVBAR
+================================================================ */
 
 .navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     gap: 24px;
+
     width: min(100% - 48px, var(--container-width));
     height: 100%;
+
     margin: 0 auto;
 }
+
+
+/* ================================================================
+   COMPATIBILITY CONTAINERS
+================================================================ */
 
 .navbar .container,
 .navbar-inner,
@@ -34,20 +79,36 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     gap: 24px;
+
     width: 100%;
     height: 100%;
 }
 
+
+/* ================================================================
+   SECONDARY NAVBAR CLASS
+   Must remain transparent and must NOT create another blur layer
+================================================================ */
+
 .site-navbar {
-    position: sticky;
-    top: 0;
-    z-index: var(--z-header);
-    height: var(--navbar-height);
-    background: rgba(7, 9, 13, 0.92);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    backdrop-filter: blur(18px);
+    position: relative;
+
+    height: 100%;
+
+    background: transparent;
+    border-bottom: none;
+    box-shadow: none;
+
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
 }
+
+
+/* ================================================================
+   LOGO
+================================================================ */
 
 .navbar-logo,
 .navbar-logo-text,
@@ -58,29 +119,54 @@
 .navbar-logo {
     display: inline-flex;
     align-items: center;
+
     gap: 10px;
+
     text-decoration: none;
 }
+
+
+/* ================================================================
+   OLD / FALLBACK LOGO MARK
+================================================================ */
 
 .navbar-logo-mark {
     display: grid;
     place-items: center;
+
     width: 38px;
     height: 38px;
+
     border-radius: 12px;
-    background: linear-gradient(180deg, #3b86ff, #1768ed);
+
+    background: linear-gradient(
+        180deg,
+        #3b86ff,
+        #1768ed
+    );
+
     font-size: 13px;
     font-weight: 800;
 }
 
+
+/* ================================================================
+   NAVBAR NAVIGATION — LEGACY SELECTORS
+================================================================ */
+
 .navbar-nav a,
 .navbar-link {
     position: relative;
+
     display: inline-flex;
     align-items: center;
+
     height: var(--navbar-height);
+
     padding: 0 12px;
+
     color: #b7c2d3;
+
     font-size: 14px;
     font-weight: 500;
 }
@@ -93,41 +179,79 @@
     color: #fff;
 }
 
+
+/* ================================================================
+   LEGACY NAVBAR ACTIONS
+================================================================ */
+
 .navbar-actions {
     display: flex;
     align-items: center;
+
     gap: 10px;
 }
+
+
+/* ================================================================
+   BRAND
+================================================================ */
 
 .brand,
 .navbar__brand {
     display: inline-flex;
     align-items: center;
+
     gap: 10px;
+
     flex: 0 0 auto;
+
     color: #fff;
+
     text-decoration: none;
 }
+
+
+/* ================================================================
+   LEGACY BRAND MARK
+================================================================ */
 
 .brand__mark,
 .navbar__logo {
     display: grid;
     place-items: center;
+
     width: 38px;
     height: 38px;
+
     border-radius: 12px;
-    background: linear-gradient(180deg, #3b86ff, #1768ed);
+
+    background: linear-gradient(
+        180deg,
+        #3b86ff,
+        #1768ed
+    );
+
     color: #fff;
+
     font-size: 13px;
     font-weight: 800;
+
     letter-spacing: -0.04em;
-    box-shadow: 0 8px 18px rgba(40, 120, 255, 0.28);
+
+    box-shadow:
+        0 8px 18px rgba(40, 120, 255, 0.28);
 }
+
+
+/* ================================================================
+   BRAND NAME
+================================================================ */
 
 .brand__name,
 .navbar__brand-name {
     font-size: 16px;
     font-weight: 700;
+
     letter-spacing: -0.04em;
 }
 
@@ -139,37 +263,69 @@
 .brand__version,
 .navbar__version {
     margin-left: 2px;
+
     color: #6d7b90;
+
     font-size: 10px;
     font-weight: 600;
 }
+
+
+/* ================================================================
+   MAIN NAVIGATION
+================================================================ */
 
 .main-navigation,
 .navbar__nav {
     display: flex;
     align-items: center;
     justify-content: center;
+
     gap: 4px;
+
     flex: 1 1 auto;
 }
+
+
+/* ================================================================
+   NAV LINKS
+================================================================ */
 
 .nav-link,
 .navbar__link {
     position: relative;
+
     display: inline-flex;
     align-items: center;
+
     height: var(--navbar-height);
+
     padding: 0 12px;
+
     color: #b7c2d3;
+
     font-size: 14px;
     font-weight: 500;
+
     letter-spacing: -0.01em;
+
+    text-decoration: none;
 }
+
+
+/* ================================================================
+   NAV LINK HOVER
+================================================================ */
 
 .nav-link:hover,
 .navbar__link:hover {
     color: #fff;
 }
+
+
+/* ================================================================
+   ACTIVE NAV LINK
+================================================================ */
 
 .nav-link.active,
 .nav-link.is-active,
@@ -178,63 +334,115 @@
     color: #fff;
 }
 
+
+/* ================================================================
+   ACTIVE NAV UNDERLINE
+================================================================ */
+
 .nav-link.active::after,
 .nav-link.is-active::after,
 .navbar__link.is-active::after,
 .navbar__link[aria-current="page"]::after {
     content: "";
+
     position: absolute;
+
     left: 12px;
     right: 12px;
+
     bottom: 18px;
+
     height: 2px;
+
     border-radius: 99px;
+
     background: var(--color-primary);
 }
+
+
+/* ================================================================
+   RIGHT NAVIGATION ACTIONS
+================================================================ */
 
 .navbar__actions {
     display: flex;
     align-items: center;
+
     gap: 10px;
+
     flex: 0 0 auto;
 }
+
+
+/* ================================================================
+   SEARCH
+================================================================ */
 
 .navbar-search {
     display: flex;
     align-items: center;
+
     width: 230px;
     height: 42px;
+
     padding: 0 6px 0 12px;
+
     border: 1px solid rgba(255, 255, 255, 0.08);
+
     border-radius: 999px;
+
     background: rgba(255, 255, 255, 0.04);
 }
+
+
+/* ================================================================
+   SEARCH BUTTON
+================================================================ */
 
 .navbar-search__button {
     display: grid;
     place-items: center;
+
     width: 28px;
     height: 28px;
+
     color: #8b97ab;
 }
+
+
+/* ================================================================
+   NAVBAR ICONS
+================================================================ */
 
 .navbar-search__button svg,
 .navbar-icon-button svg {
     width: 18px;
     height: 18px;
+
     fill: none;
+
     stroke: currentColor;
     stroke-width: 1.7;
+
     stroke-linecap: round;
     stroke-linejoin: round;
 }
 
+
+/* ================================================================
+   SEARCH INPUT
+================================================================ */
+
 .navbar-search input {
     width: 100%;
     height: 100%;
+
     padding: 0 10px 0 4px;
+
     background: transparent;
+
     color: #e8eef8;
+
     font-size: 13px;
 }
 
@@ -242,61 +450,120 @@
     color: #6e7b90;
 }
 
+
+/* ================================================================
+   ACCOUNT / CART ICON BUTTON
+================================================================ */
+
 .navbar-icon-button {
     position: relative;
+
     display: grid;
     place-items: center;
+
     width: 40px;
     height: 40px;
+
     color: #d5deec;
+
     border-radius: 50%;
+
+    text-decoration: none;
 }
+
+
+/* ================================================================
+   ICON BUTTON HOVER
+================================================================ */
 
 .navbar-icon-button:hover {
     background: rgba(255, 255, 255, 0.05);
+
     color: #fff;
 }
+
+
+/* ================================================================
+   CART COUNT
+================================================================ */
 
 .navbar-cart .cart-count,
 .cart-count {
     position: absolute;
+
     top: 4px;
     right: 4px;
+
     min-width: 16px;
     height: 16px;
+
     padding: 0 4px;
+
     display: grid;
     place-items: center;
+
     border-radius: 99px;
+
     background: var(--color-primary);
+
     color: #fff;
+
     font-size: 9px;
     font-weight: 700;
 }
+
+
+/* ================================================================
+   HIDE EMPTY CART COUNT
+================================================================ */
 
 .cart-count.is-empty,
 .cart-count.hidden {
     display: none;
 }
 
+
+/* ================================================================
+   MOBILE MENU TOGGLE
+================================================================ */
+
 .mobile-menu-toggle {
     display: none;
+
     flex-direction: column;
     justify-content: center;
+
     gap: 5px;
+
     width: 40px;
     height: 40px;
+
+    background: transparent;
 }
+
+
+/* ================================================================
+   MOBILE MENU LINES
+================================================================ */
 
 .mobile-menu-toggle span {
     display: block;
+
     width: 18px;
     height: 1.5px;
+
     margin-left: auto;
+
     background: #fff;
 }
 
+
+/* ================================================================
+   RESPONSIVE
+================================================================ */
+
 @media (max-width: 1100px) {
+
     .main-navigation,
     .navbar__nav,
     .navbar-search {
@@ -305,5 +572,55 @@
 
     .mobile-menu-toggle {
         display: flex;
+    }
+}
+/* ================================================================
+   PROJECTKART BRAND — CIRCULAR LOGO + NAME
+================================================================ */
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.brand__logo-circle {
+    width: 42px;
+    height: 42px;
+
+    display: block;
+
+    object-fit: cover;
+    object-position: center;
+
+    border-radius: 50%;
+
+    flex-shrink: 0;
+}
+.brand__name {
+    display: inline-block;
+
+    color: #ffffff;
+
+    font-family: "Merriweather", Georgia, serif;
+    font-size: 1.55rem;
+    font-weight: 900;
+
+    letter-spacing: 0.1em;
+    line-height: 1;
+
+    white-space: nowrap;
+}
+@media (min-width: 1200px) {
+    .brand__logo-circle {
+        width: 55px;
+        height: 55px;
+    }
+
+    .brand__name {
+        font-size: 1.25rem;
     }
 }

@@ -15,8 +15,12 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
+
     <link href="https://fonts.googleapis.com/css2?family=Charis+SIL:wght@400;700&display=swap" rel="stylesheet">
+    <link
+    href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&display=swap"
+    rel="stylesheet"
+>
     <!-- =========================================================
          GLOBAL CSS
     ========================================================== -->
@@ -90,8 +94,11 @@
 
             <a href="index.html" class="brand" aria-label="ProjectKart Home">
 
-                <img src="assets/images/logo1.png" class="brand__logo-image" />
+                <img src="assets/images/logo.png" class="brand__logo-circle" alt="ProjectKart logo">
 
+                <span class="brand__name">
+                    ProjectKart
+                </span>
 
             </a>
 
@@ -323,18 +330,8 @@
 
             <!-- Background video — cinematic ambient loop (not a media player) -->
             <div class="hero-video-background" aria-hidden="true">
-                <video
-                    class="hero-video"
-                    autoplay
-                    muted
-                    loop
-                    playsinline
-                    webkit-playsinline
-                    preload="auto"
-                    disablepictureinpicture
-                    disableremoteplayback
-                    aria-hidden="true"
-                >
+                <video class="hero-video" autoplay muted loop playsinline webkit-playsinline preload="auto"
+                    disablepictureinpicture disableremoteplayback aria-hidden="true">
                     <source src="assets/videos/hero.mp4" type="video/mp4">
                 </video>
                 <div class="hero-video-overlay"></div>
@@ -413,15 +410,36 @@
                         <img src="assets/images/hero/project-5.jpg" alt="Sensors and modules" loading="eager">
                         <div class="hero-showcase-card__title">Sensors &amp; Modules</div>
                     </article>
+                    <article class="hero-showcase-card" data-showcase-card>
+                        <div class="hero-showcase-card__top">
+                            <span>03</span>
+                            <span>PROJECTKART</span>
+                        </div>
+                        <img src="assets/images/hero/project-3.jpg" alt="Smart electronics" loading="eager">
+                        <div class="hero-showcase-card__title">Smart Electronics</div>
+                    </article>
+
+                    <article class="hero-showcase-card" data-showcase-card>
+                        <div class="hero-showcase-card__top">
+                            <span>04</span>
+                            <span>PROJECTKART</span>
+                        </div>
+                        <img src="assets/images/hero/project-4.jpg" alt="DIY project kits" loading="eager">
+                        <div class="hero-showcase-card__title">DIY Project Kits</div>
+                    </article>
+
+                    <article class="hero-showcase-card" data-showcase-card>
+                        <div class="hero-showcase-card__top">
+                            <span>05</span>
+                            <span>PROJECTKART</span>
+                        </div>
+                        <img src="assets/images/hero/project-5.jpg" alt="Sensors and modules" loading="eager">
+                        <div class="hero-showcase-card__title">Sensors &amp; Modules</div>
+                    </article>
                 </div>
             </div>
 
-            <button
-                class="hero-scroll-cue"
-                id="heroScrollCue"
-                type="button"
-                aria-label="Scroll to explore components"
-            >
+            <button class="hero-scroll-cue" id="heroScrollCue" type="button" aria-label="Scroll to explore components">
                 <span></span>
             </button>
 
