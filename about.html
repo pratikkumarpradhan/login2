@@ -4,13 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <meta name="description"
-        content="About ProjectKart — an electronics and project-components hub for people who learn, prototype and build.">
+        content="About ProjectKart — an online electronics and project-components hub for students, makers, hobbyists and creators who learn, prototype and build.">
+
     <meta name="theme-color" content="#07090d">
+
     <title>About — ProjectKart</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/base.css">
@@ -27,265 +35,848 @@
 
 <body class="home-page page-about">
 
+    <!-- ============================================================
+         PAGE LOADER
+    ============================================================= -->
     <div class="page-loader" id="pageLoader" aria-hidden="true">
         <div class="page-loader__inner">
-            <img src="assets/images/logo1.png" class="page-loader__logo" />
-            <div class="page-loader__line"><span></span></div>
+            <img src="assets/images/logo1.png" class="page-loader__logo" alt="ProjectKart">
+            <div class="page-loader__line">
+                <span></span>
+            </div>
         </div>
     </div>
 
+
+    <!-- ============================================================
+         HEADER
+    ============================================================= -->
     <header class="site-header" id="siteHeader">
+
         <div class="navbar">
+
             <a href="index.html" class="brand" aria-label="ProjectKart Home">
 
-                <img src="assets/images/logo.png" class="brand__logo-circle" alt="ProjectKart logo">
+                <img src="assets/images/logo.png"
+                    class="brand__logo-circle"
+                    alt="ProjectKart logo">
 
                 <span class="brand__name">
                     ProjectKart
                 </span>
 
             </a>
+
+
             <nav class="main-navigation" aria-label="Primary navigation">
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="shop.html" class="nav-link">Shop</a>
-                <a href="categories.html" class="nav-link">Categories</a>
-                <a href="project-kits.html" class="nav-link">Project Kits</a>
-                <!-- <a href="shop.html?deal=true" class="nav-link">Deals</a> -->
-                <a href="about.html" class="nav-link active" aria-current="page">About</a>
-                <!-- <a href="contact.html" class="nav-link">Contact</a> -->
+
+                <a href="index.html" class="nav-link">
+                    Home
+                </a>
+
+                <a href="shop.html" class="nav-link">
+                    Shop
+                </a>
+
+                <a href="categories.html" class="nav-link">
+                    Categories
+                </a>
+
+                <a href="project-kits.html" class="nav-link">
+                    Project Kits
+                </a>
+
+                <!--
+                <a href="shop.html?deal=true" class="nav-link">
+                    Deals
+                </a>
+                -->
+
+                <a href="about.html"
+                    class="nav-link active"
+                    aria-current="page">
+                    About
+                </a>
+
+                <!--
+                <a href="contact.html" class="nav-link">
+                    Contact
+                </a>
+                -->
+
             </nav>
+
+
             <div class="navbar__actions">
-                <form class="navbar-search" id="navbarSearch" role="search">
-                    <button type="submit" class="navbar-search__button" aria-label="Search">
+
+                <!-- SEARCH -->
+                <form class="navbar-search"
+                    id="navbarSearch"
+                    role="search">
+
+                    <button type="submit"
+                        class="navbar-search__button"
+                        aria-label="Search">
+
                         <svg viewBox="0 0 24 24" aria-hidden="true">
-                            <circle cx="11" cy="11" r="6.5"></circle>
-                            <path d="M16 16L21 21"></path>
+                            <circle cx="11"
+                                cy="11"
+                                r="6.5">
+                            </circle>
+
+                            <path d="M16 16L21 21">
+                            </path>
                         </svg>
+
                     </button>
-                    <input type="search" id="globalSearchInput" name="search" placeholder="Search components"
+
+                    <input type="search"
+                        id="globalSearchInput"
+                        name="search"
+                        placeholder="Search components"
                         autocomplete="off">
+
                 </form>
-                <a href="account.html" class="navbar-icon-button" aria-label="Account">
+
+
+                <!-- ACCOUNT -->
+                <a href="account.html"
+                    class="navbar-icon-button"
+                    aria-label="Account">
+
                     <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <circle cx="12" cy="8" r="3.2"></circle>
-                        <path d="M5.5 20c.8-3.3 3-5 6.5-5s5.7 1.7 6.5 5"></path>
+
+                        <circle cx="12"
+                            cy="8"
+                            r="3.2">
+                        </circle>
+
+                        <path d="M5.5 20c.8-3.3 3-5 6.5-5s5.7 1.7 6.5 5">
+                        </path>
+
                     </svg>
+
                 </a>
-                <a href="cart.html" class="navbar-icon-button navbar-cart" aria-label="Shopping cart">
+
+
+                <!-- CART -->
+                <a href="cart.html"
+                    class="navbar-icon-button navbar-cart"
+                    aria-label="Shopping cart">
+
                     <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M5 8.5h14l-1 11H6l-1-11Z"></path>
-                        <path d="M8.5 9V6.8a3.5 3.5 0 0 1 7 0V9"></path>
+
+                        <path d="M5 8.5h14l-1 11H6l-1-11Z">
+                        </path>
+
+                        <path d="M8.5 9V6.8a3.5 3.5 0 0 1 7 0V9">
+                        </path>
+
                     </svg>
-                    <span class="cart-count" id="cartCount" data-cart-count>0</span>
+
+                    <span class="cart-count"
+                        id="cartCount"
+                        data-cart-count>
+                        0
+                    </span>
+
                 </a>
-                <button class="mobile-menu-toggle" id="mobileMenuToggle" type="button" data-mobile-menu-button
-                    aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileMenu">
-                    <span></span><span></span><span></span>
+
+
+                <!-- MOBILE MENU BUTTON -->
+                <button class="mobile-menu-toggle"
+                    id="mobileMenuToggle"
+                    type="button"
+                    data-mobile-menu-button
+                    aria-label="Open navigation menu"
+                    aria-expanded="false"
+                    aria-controls="mobileMenu">
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
                 </button>
+
             </div>
+
         </div>
+
     </header>
 
-    <div class="mobile-menu" id="mobileMenu" data-mobile-menu aria-hidden="true">
+
+    <!-- ============================================================
+         MOBILE MENU
+    ============================================================= -->
+    <div class="mobile-menu"
+        id="mobileMenu"
+        data-mobile-menu
+        aria-hidden="true">
+
         <div class="mobile-menu__backdrop"></div>
+
         <aside class="mobile-menu__panel">
+
             <div class="mobile-menu__top">
-                <a href="index.html" class="mobile-menu__brand">
-                    <img src="assets/images/logo1.png" class="brand__logo-image" /> </a>
-                <button type="button" class="mobile-menu__close" id="mobileMenuClose"
-                    aria-label="Close navigation">×</button>
+
+                <a href="index.html"
+                    class="mobile-menu__brand">
+
+                    <img src="assets/images/logo1.png"
+                        class="brand__logo-image"
+                        alt="ProjectKart">
+
+                </a>
+
+                <button type="button"
+                    class="mobile-menu__close"
+                    id="mobileMenuClose"
+                    aria-label="Close navigation">
+                    ×
+                </button>
+
             </div>
-            <nav class="mobile-navigation" aria-label="Mobile navigation">
-                <a href="index.html" class="mobile-nav-link"><span>Home</span><span>01</span></a>
-                <a href="shop.html" class="mobile-nav-link"><span>Shop</span><span>02</span></a>
-                <a href="categories.html" class="mobile-nav-link"><span>Categories</span><span>03</span></a>
-                <a href="project-kits.html" class="mobile-nav-link"><span>Project Kits</span><span>04</span></a>
-                <!-- <a href="shop.html?deal=true" class="mobile-nav-link"><span>Deals</span><span>05</span></a> -->
-                <a href="about.html" class="mobile-nav-link active"><span>About</span><span>05</span></a>
-                <!-- <a href="contact.html" class="mobile-nav-link"><span>Contact</span><span>07</span></a> -->
+
+
+            <nav class="mobile-navigation"
+                aria-label="Mobile navigation">
+
+                <a href="index.html"
+                    class="mobile-nav-link">
+
+                    <span>Home</span>
+                    <span>01</span>
+
+                </a>
+
+                <a href="shop.html"
+                    class="mobile-nav-link">
+
+                    <span>Shop</span>
+                    <span>02</span>
+
+                </a>
+
+                <a href="categories.html"
+                    class="mobile-nav-link">
+
+                    <span>Categories</span>
+                    <span>03</span>
+
+                </a>
+
+                <a href="project-kits.html"
+                    class="mobile-nav-link">
+
+                    <span>Project Kits</span>
+                    <span>04</span>
+
+                </a>
+
+                <!--
+                <a href="shop.html?deal=true"
+                    class="mobile-nav-link">
+
+                    <span>Deals</span>
+                    <span>05</span>
+
+                </a>
+                -->
+
+                <a href="about.html"
+                    class="mobile-nav-link active">
+
+                    <span>About</span>
+                    <span>05</span>
+
+                </a>
+
+                <!--
+                <a href="contact.html"
+                    class="mobile-nav-link">
+
+                    <span>Contact</span>
+                    <span>07</span>
+
+                </a>
+                -->
+
             </nav>
+
+
             <div class="mobile-menu__bottom">
-                <a href="account.html">Account</a>
-                <a href="cart.html">Cart <span id="mobileCartCount" data-cart-count>0</span></a>
+
+                <a href="account.html">
+                    Account
+                </a>
+
+                <a href="cart.html">
+                    Cart
+                    <span id="mobileCartCount"
+                        data-cart-count>
+                        0
+                    </span>
+                </a>
+
             </div>
+
         </aside>
+
     </div>
 
+
+    <!-- ============================================================
+         MAIN CONTENT
+    ============================================================= -->
     <main>
+
+
+        <!-- ========================================================
+             HERO
+        ========================================================= -->
         <section class="about-hero">
+
             <div class="section-container">
-                <span class="about-hero__eyebrow">THE MAKER HUB</span>
-                <h1>Powering ideas into<br>projects</h1>
-                <p>ProjectKart is an electronics and project-components business for people who learn, prototype and
-                    build.</p>
+
+                <span class="about-hero__eyebrow">
+                    THE MAKER HUB
+                </span>
+
+                <h1>
+                    Powering ideas into<br>
+                    projects
+                </h1>
+
+                <p>
+                    ProjectKart is an online electronics and project-components
+                    business for students, makers, hobbyists and creators who
+                    learn, prototype and build.
+                </p>
+
             </div>
+
         </section>
 
-        <section class="about-story">
-            <div class="section-container about-story__grid">
-                <div>
-                    <span class="about-story__eyebrow">A WORK IN PROGRESS, BY DESIGN</span>
-                    <h2>A considered starting point for every build.</h2>
-                </div>
-                <div class="about-story__copy">
-                    <p>ProjectKart serves students, engineers, makers, hobbyists, robotics enthusiasts, developers and
-                        DIY creators with the components behind their ideas.</p>
-                    <p>We are building the experience across both online and offline sales — making it easy to discover
-                        parts online, then contact the store directly when a project needs a little more context.</p>
-                    <div class="about-note">
-                        <strong>Business story:</strong> From Ideas to Real Projects ⚡
 
-                        ProjectKart was created with one simple goal — to make project components easier to find, easier
+
+        <!-- ========================================================
+             STORY
+        ========================================================= -->
+        <section class="about-story">
+
+            <div class="section-container about-story__grid">
+
+
+                <!-- LEFT CONTENT -->
+                <div>
+
+                    <span class="about-story__eyebrow">
+                        A WORK IN PROGRESS, BY DESIGN
+                    </span>
+
+                    <h2>
+                        A considered starting point for every build.
+                    </h2>
+
+                </div>
+
+
+                <!-- RIGHT CONTENT -->
+                <div class="about-story__copy">
+
+                    <p>
+                        ProjectKart serves students, engineers, makers,
+                        hobbyists, robotics enthusiasts, developers and
+                        DIY creators with the components behind their ideas.
+                    </p>
+
+                    <p>
+                        ProjectKart is currently operated from home, serving
+                        customers online. We make it easy to discover the
+                        components you need and contact us directly whenever
+                        your project needs a little more guidance.
+                    </p>
+
+
+                    <!-- BUSINESS STORY -->
+                    <div class="about-note">
+
+                        <strong>
+                            Business story:
+                        </strong>
+
+                        From Ideas to Real Projects ⚡
+
+                        ProjectKart was created with one simple goal —
+                        to make project components easier to find, easier
                         to understand, and easier to get.
 
-                        Whether you're a student building your first Arduino project, a hobbyist experimenting with
-                        electronics, or a maker bringing a new idea to life, ProjectKart brings the essential components
-                        you need together in one place.
+                        Whether you're a student building your first Arduino
+                        project, a hobbyist experimenting with electronics,
+                        or a maker bringing a new idea to life, ProjectKart
+                        brings the essential components you need together
+                        in one place.
 
-                        From Arduino boards and sensors to batteries, modules, wires, and other electronics components —
+                        From Arduino boards and sensors to batteries,
+                        modules, wires, and other electronics components —
                         we're here to help turn your ideas into something real.
 
                         Think it. Build it. ProjectKart it.
+
                     </div>
+
                 </div>
+
+            </div>
+
         </section>
 
+
+
+        <!-- ========================================================
+             VALUES
+        ========================================================= -->
         <section class="about-values">
+
             <div class="section-container">
+
                 <div class="about-values__grid">
+
+
+                    <!-- MISSION -->
                     <article class="about-value">
+
                         <div class="about-value__icon">
-                            <svg viewBox="0 0 24 24" aria-hidden="true">
-                                <circle cx="12" cy="12" r="8"></circle>
-                                <path d="m8.5 12 2.2 2.2 4.8-5"></path>
+
+                            <svg viewBox="0 0 24 24"
+                                aria-hidden="true">
+
+                                <circle cx="12"
+                                    cy="12"
+                                    r="8">
+                                </circle>
+
+                                <path d="m8.5 12 2.2 2.2 4.8-5">
+                                </path>
+
                             </svg>
+
                         </div>
-                        <h3>Mission</h3>
-                        <p>Make the path from idea to first prototype feel clear.</p>
+
+                        <h3>
+                            Mission
+                        </h3>
+
+                        <p>
+                            Make the path from idea to first prototype
+                            feel clear.
+                        </p>
+
                     </article>
+
+
+
+                    <!-- COMMUNITY -->
                     <article class="about-value">
+
                         <div class="about-value__icon">
-                            <svg viewBox="0 0 24 24" aria-hidden="true">
+
+                            <svg viewBox="0 0 24 24"
+                                aria-hidden="true">
+
                                 <path
                                     d="M20.8 8.8c0 5-8.8 10.2-8.8 10.2S3.2 13.8 3.2 8.8A4.6 4.6 0 0 1 12 6.1a4.6 4.6 0 0 1 8.8 2.7Z">
                                 </path>
+
                             </svg>
+
                         </div>
-                        <h3>Community</h3>
-                        <p>Support learners and experienced makers alike.</p>
+
+                        <h3>
+                            Community
+                        </h3>
+
+                        <p>
+                            Support learners and experienced makers alike.
+                        </p>
+
                     </article>
+
+
+
+                    <!-- ONLINE -->
                     <article class="about-value">
+
                         <div class="about-value__icon">
-                            <svg viewBox="0 0 24 24" aria-hidden="true">
-                                <path d="M5 12.5a9 9 0 0 1 14 0"></path>
-                                <path d="M8.2 15.2a5.2 5.2 0 0 1 7.6 0"></path>
-                                <circle cx="12" cy="18" r="1.1"></circle>
+
+                            <svg viewBox="0 0 24 24"
+                                aria-hidden="true">
+
+                                <path d="M5 12.5a9 9 0 0 1 14 0">
+                                </path>
+
+                                <path d="M8.2 15.2a5.2 5.2 0 0 1 7.6 0">
+                                </path>
+
+                                <circle cx="12"
+                                    cy="18"
+                                    r="1.1">
+                                </circle>
+
                             </svg>
+
                         </div>
-                        <h3>Online + Offline</h3>
-                        <p>Discover digitally, then connect with the physical store.</p>
+
+                        <h3>
+                            Online First
+                        </h3>
+
+                        <p>
+                            Browse components online and connect with us
+                            directly for your project needs.
+                        </p>
+
                     </article>
+
+
+
+                    <!-- SUPPORT -->
                     <article class="about-value">
+
                         <div class="about-value__icon">
-                            <svg viewBox="0 0 24 24" aria-hidden="true">
-                                <path d="M4 10.5 12 4l8 6.5V20H4v-9.5Z"></path>
-                                <path d="M9 20v-6h6v6"></path>
+
+                            <svg viewBox="0 0 24 24"
+                                aria-hidden="true">
+
+                                <path d="M4 10.5 12 4l8 6.5V20H4v-9.5Z">
+                                </path>
+
+                                <path d="M9 20v-6h6v6">
+                                </path>
+
                             </svg>
+
                         </div>
-                        <h3>Your details</h3>
-                        <p>Add address, hours, phone and founder information here.</p>
+
+                        <h3>
+                            Direct Support
+                        </h3>
+
+                        <p>
+                            Get in touch directly for component enquiries,
+                            project requirements and assistance.
+                        </p>
+
                     </article>
+
+
                 </div>
+
             </div>
+
         </section>
 
+
+
+        <!-- ========================================================
+             PROJECTKART INFORMATION + CTA
+        ========================================================= -->
         <section class="about-bottom">
+
             <div class="section-container about-bottom__grid">
+
+
+                <!-- INFORMATION -->
                 <div class="about-store">
-                    <span class="about-store__eyebrow">STORE INFORMATION</span>
+
+                    <span class="about-store__eyebrow">
+                        PROJECTKART INFORMATION
+                    </span>
+
                     <dl>
+
                         <div>
-                            <dt>Address</dt>
-                            <dd>Near Bidyut Bakery & Chai Bari ,Kshudiramnagar</dd>
+
+                            <dt>
+                                Based in
+                            </dt>
+
+                            <dd>
+                                Near Bidyut Bakery &amp; Chai Bari,
+                                Kshudiramnagar
+                            </dd>
+
                         </div>
+
+
                         <div>
-                            <dt>Phone / WhatsApp</dt>
-                            <dd>9434693252, 9432908449</dd>
+
+                            <dt>
+                                Phone / WhatsApp
+                            </dt>
+
+                            <dd>
+                                9434693252, 9432908449
+                            </dd>
+
                         </div>
+
+
                         <div>
-                            <dt>Business hours</dt>
-                            <dd>Available 24/7</dd>
+
+                            <dt>
+                                Availability
+                            </dt>
+
+                            <dd>
+                                Online — Available 24/7
+                            </dd>
+
                         </div>
+
                     </dl>
+
                 </div>
+
+
+
+                <!-- CTA -->
                 <div class="about-cta">
-                    <span class="about-cta__eyebrow">MAKE YOUR NEXT MOVE</span>
-                    <h2>Start with the parts.</h2>
-                    <p>Browse the demo catalogue or tell us what you're making.</p>
-                    <a href="shop.html">Explore the shop →</a>
+
+                    <span class="about-cta__eyebrow">
+                        MAKE YOUR NEXT MOVE
+                    </span>
+
+                    <h2>
+                        Start with the parts.
+                    </h2>
+
+                    <p>
+                        Browse our components or tell us what you're
+                        building. We're here to help you get started.
+                    </p>
+
+                    <a href="shop.html">
+                        Explore the shop →
+                    </a>
+
                 </div>
+
+
             </div>
+
         </section>
+
     </main>
 
+
+
+    <!-- ============================================================
+         FOOTER
+    ============================================================= -->
     <footer class="site-footer" id="siteFooter">
+
         <div class="section-container">
+
             <div class="footer-main">
+
+
+                <!-- FOOTER BRAND -->
                 <div class="footer-brand">
-                    <a href="index.html" class="footer-brand__logo">
-                        <img src="assets/images/logo1.png" class="brand__logo-image" /> </a>
-                    <p class="footer-brand__tagline">Build. Create. Innovate.</p>
-                    <p class="footer-brand__description">A considered component store for people who make things real.
+
+                    <a href="index.html"
+                        class="footer-brand__logo">
+
+                        <img src="assets/images/logo1.png"
+                            class="brand__logo-image"
+                            alt="ProjectKart">
+
+                    </a>
+
+                    <p class="footer-brand__tagline">
+                        Build. Create. Innovate.
                     </p>
-                    <div class="footer-status"><span></span>Online + offline maker hub</div>
+
+                    <p class="footer-brand__description">
+                        A considered online component store for people
+                        who make things real.
+                    </p>
+
+                    <div class="footer-status">
+                        <span></span>
+                        Online electronics &amp; project components
+                    </div>
+
                 </div>
+
+
+
+                <!-- SHOP -->
                 <div class="footer-column">
-                    <span class="footer-column__title">SHOP</span>
+
+                    <span class="footer-column__title">
+                        SHOP
+                    </span>
+
                     <nav>
-                        <a href="category.html?category=arduino-boards">Arduino &amp; Boards</a>
-                        <a href="category.html?category=sensors">Sensors</a>
-                        <a href="category.html?category=modules">Modules</a>
-                        <a href="category.html?category=batteries-power">Batteries</a>
-                        <a href="project-kits.html">Project Kits</a>
+
+                        <a href="category.html?category=arduino-boards">
+                            Arduino &amp; Boards
+                        </a>
+
+                        <a href="category.html?category=sensors">
+                            Sensors
+                        </a>
+
+                        <a href="category.html?category=modules">
+                            Modules
+                        </a>
+
+                        <a href="category.html?category=batteries-power">
+                            Batteries
+                        </a>
+
+                        <a href="project-kits.html">
+                            Project Kits
+                        </a>
+
                     </nav>
+
                 </div>
+
+
+
+                <!-- COMPANY -->
                 <div class="footer-column">
-                    <span class="footer-column__title">COMPANY</span>
+
+                    <span class="footer-column__title">
+                        COMPANY
+                    </span>
+
                     <nav>
-                        <a href="about.html">About Us</a>
-                        <a href="contact.html">Contact</a>
-                        <a href="contact.html#faq">Help &amp; FAQ</a>
-                        <a href="contact.html#shipping">Shipping</a>
-                        <a href="contact.html#returns">Returns</a>
+
+                        <a href="about.html">
+                            About Us
+                        </a>
+
+                        <a href="contact.html">
+                            Contact
+                        </a>
+
+                        <a href="contact.html#faq">
+                            Help &amp; FAQ
+                        </a>
+
+                        <a href="contact.html#shipping">
+                            Shipping
+                        </a>
+
+                        <a href="contact.html#returns">
+                            Returns
+                        </a>
+
                     </nav>
+
                 </div>
+
+
+
+                <!-- SUPPORT -->
                 <div class="footer-support">
-                    <span class="footer-column__title">NEED A HAND?</span>
-                    <h3>Tell us what you're building.</h3>
-                    <p>We'll help you find the right starting point.</p>
-                    <a href="contact.html" class="footer-support__link">Get project help <span>↗</span></a>
+
+                    <span class="footer-column__title">
+                        NEED A HAND?
+                    </span>
+
+                    <h3>
+                        Tell us what you're building.
+                    </h3>
+
+                    <p>
+                        We'll help you find the right starting point.
+                    </p>
+
+                    <a href="contact.html"
+                        class="footer-support__link">
+
+                        Get project help
+                        <span>↗</span>
+
+                    </a>
+
                 </div>
+
+
             </div>
+
+
+
+            <!-- FOOTER BOTTOM -->
             <div class="footer-bottom">
-                <p> © 2026 ProjectKart. All rights reserved. Built for makers.
+
+                <p>
+                    © 2026 ProjectKart. All rights reserved.
+                    Built for makers.
                 </p>
+
                 <div class="footer-bottom__links">
-                    <a href="#">Privacy</a>
-                    <a href="#">Terms</a>
-                    <a href="contact.html"><span class="footer-location-icon">⌖</span> Visit us offline</a>
+
+                    <a href="#">
+                        Privacy
+                    </a>
+
+                    <a href="#">
+                        Terms
+                    </a>
+
+                    <a href="contact.html">
+                        <span class="footer-location-icon">
+                            ⌖
+                        </span>
+                        Our location
+                    </a>
+
                 </div>
+
             </div>
+
         </div>
+
     </footer>
 
-    <button class="scroll-top-button" id="scrollTopButton" type="button"
-        aria-label="Scroll to top"><span>↑</span></button>
-    <div class="toast-container" id="toastContainer" aria-live="polite"></div>
 
+
+    <!-- ============================================================
+         FLOATING SCROLL TOP
+    ============================================================= -->
+    <button class="scroll-top-button"
+        id="scrollTopButton"
+        type="button"
+        aria-label="Scroll to top">
+
+        <span>
+            ↑
+        </span>
+
+    </button>
+
+
+    <!-- TOAST -->
+    <div class="toast-container"
+        id="toastContainer"
+        aria-live="polite">
+    </div>
+
+
+
+    <!-- ============================================================
+         SCRIPTS
+    ============================================================= -->
     <script type="module" src="js/page.js"></script>
     <script type="module" src="js/navbar.js"></script>
     <script type="module" src="js/cart.js"></script>
     <script type="module" src="js/about.js"></script>
+
 </body>
 
 </html>
