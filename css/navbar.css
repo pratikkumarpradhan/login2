@@ -624,3 +624,25 @@
         font-size: 1.25rem;
     }
 }
+
+/* ================================================================
+   PROJECTKART — ACTIVE NAVBAR UNDERLINE
+   Works with .navbar-nav a.active
+================================================================ */
+
+.navbar-nav a.active {
+    position: relative;
+    color: #fff;
+}
+
+.navbar-nav a.active::after {
+    content: "";
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: 18px;
+    height: 2px;
+    border-radius: 99px;
+    background: var(--color-primary);
+    opacity: 1;
+}

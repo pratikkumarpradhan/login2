@@ -1954,7 +1954,7 @@
     font-size: 14px;
     font-weight: 700;
     text-align: center;
-    -moz-appearance: textfield;
+    /* -moz-appearance: textfield; */
 }
 
 .page-product .quantity-control__input::-webkit-outer-spin-button,

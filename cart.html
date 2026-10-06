@@ -1,175 +1,270 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Shopping Cart | ProjectKart</title>
-    <meta
-        name="description"
-        content="Review your ProjectKart shopping cart and continue to checkout."
-    >
+
+    <meta name="description" content="Review your ProjectKart shopping cart and continue to checkout.">
+
+    <!-- =========================================================
+         GLOBAL STYLES
+    ========================================================== -->
 
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/typography.css">
+
+    <!-- Navbar -->
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/mobile-menu.css">
+
+    <!-- Components -->
     <link rel="stylesheet" href="css/buttons.css">
     <link rel="stylesheet" href="css/forms.css">
+
+    <!-- Cart -->
     <link rel="stylesheet" href="css/cart.css">
+
+    <!-- Other -->
     <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/responsive.css">
+
 </head>
 
-<body>
+
+<body class="page-cart">
+
 
     <!-- =========================================================
-         NAVBAR
+         HEADER
     ========================================================== -->
+
     <header class="site-header">
 
-        <nav class="navbar container">
+        <nav class="navbar">
 
-            <a
-                href="index.html"
-                class="navbar-brand"
-                aria-label="ProjectKart Home"
-            >
-                <span class="navbar-brand-mark">PK</span>
-
-                <span class="navbar-brand-text">
-                    <strong>ProjectKart</strong>
-                    <small>Build. Create. Innovate.</small>
-                </span>
-            </a>
+            <div class="container navbar-inner">
 
 
-            <div class="navbar-links">
+                <!-- =================================================
+                     LOGO
+                ================================================== -->
 
-                <a href="index.html">Home</a>
-                <a href="shop.html">Shop</a>
-                <a href="categories.html">Categories</a>
-                <a href="project-kits.html">Project Kits</a>
-                <a href="about.html">About</a>
-                <a href="contact.html">Contact</a>
+                <a href="index.html" class="brand" aria-label="ProjectKart Home">
 
-            </div>
+                    <img src="assets/images/logo.png" class="brand__logo-circle" alt="ProjectKart logo">
 
-
-            <div class="navbar-actions">
-
-                <form
-                    class="navbar-search"
-                    data-search-form
-                >
-
-                    <span class="navbar-search-icon">
-                        ⌕
-                    </span>
-
-                    <input
-                        type="search"
-                        placeholder="Search components..."
-                        aria-label="Search products"
-                        data-search-input
-                        autocomplete="off"
-                    >
-
-                    <div
-                        class="navbar-search-results"
-                        data-search-results
-                        hidden
-                    ></div>
-
-                </form>
-
-
-                <a
-                    href="account.html"
-                    class="navbar-account"
-                    aria-label="My account"
-                >
-                    <span class="navbar-action-icon">
-                        ◯
-                    </span>
-                </a>
-
-
-                <a
-                    href="cart.html"
-                    class="navbar-cart active"
-                    aria-label="Shopping cart"
-                >
-
-                    <span class="navbar-action-icon">
-                        🛒
-                    </span>
-
-                    <span
-                        class="cart-count"
-                        data-cart-count
-                    >
-                        0
+                    <span class="brand__name">
+                        ProjectKart
                     </span>
 
                 </a>
 
 
-                <button
-                    type="button"
-                    class="menu-toggle"
-                    data-menu-toggle
-                    aria-label="Open menu"
-                    aria-expanded="false"
-                >
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
+                <!-- =================================================
+                     DESKTOP NAVIGATION
+                ================================================== -->
+
+                <div class="navbar-nav">
+
+                    <a href="index.html">
+                        Home
+                    </a>
+
+                    <a href="shop.html">
+                        Shop
+                    </a>
+
+                    <a href="categories.html">
+                        Categories
+                    </a>
+
+                    <a href="project-kits.html">
+                        Project Kits
+                    </a>
+
+                    <a href="about.html">
+                        About
+                    </a>
+
+                    <a href="contact.html">
+                        Contact
+                    </a>
+
+                </div>
+
+
+                <!-- =================================================
+                     NAVBAR ACTIONS
+                ================================================== -->
+
+                <div class="navbar-actions">
+
+
+                    <!-- Search -->
+
+                    <form class="navbar-search" data-search-form autocomplete="off">
+
+                        <span class="navbar-search-icon">
+
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+
+                                <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8" />
+
+                                <path d="M16.5 16.5L21 21" stroke="currentColor" stroke-width="1.8"
+                                    stroke-linecap="round" />
+
+                            </svg>
+
+                        </span>
+
+
+                        <input type="search" placeholder="Search products..." aria-label="Search products"
+                            data-search-input>
+
+
+                        <div class="navbar-search-results" data-search-results></div>
+
+                    </form>
+
+
+                    <!-- =================================================
+                         ACCOUNT
+                    ================================================== -->
+
+                    <div class="navbar-account">
+
+                        <button type="button" class="navbar-icon-button" data-account-toggle aria-label="Account"
+                            aria-expanded="false">
+
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+
+                                <circle cx="12" cy="8" r="3.5" stroke="currentColor" stroke-width="1.7" />
+
+                                <path d="M5 20C5.7 16.8 8.2 15 12 15C15.8 15 18.3 16.8 19 20" stroke="currentColor"
+                                    stroke-width="1.7" stroke-linecap="round" />
+
+                            </svg>
+
+                        </button>
+
+
+                        <!-- <div class="navbar-account-dropdown" data-account-dropdown>
+
+                            <div class="navbar-account-user" data-navbar-user>
+
+                                <strong>
+                                    My Account
+                                </strong>
+
+                                <span data-navbar-user-email>
+                                    Sign in to your account
+                                </span>
+
+                            </div>
+
+
+                            <div class="navbar-account-links">
+
+                                <a href="account.html">
+                                    My Account
+                                </a>
+
+                                <a href="cart.html">
+                                    My Cart
+                                </a>
+
+                                <a href="login.html" data-navbar-login>
+                                    Login
+                                </a>
+
+                                <button type="button" data-navbar-logout hidden>
+                                    Logout
+                                </button>
+
+                            </div>
+
+                        </div> -->
+
+                    </div>
+
+
+                    <!-- =================================================
+                         CART
+                    ================================================== -->
+
+                    <a href="cart.html" class="navbar-cart active" aria-label="Shopping cart">
+
+                        <svg width="21" height="21" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            aria-hidden="true">
+
+                            <path d="M3 4H5L7.2 15.2C7.4 16.2 8.3 17 9.4 17H18.2C19.2 17 20.1 16.3 20.4 15.3L22 9H6"
+                                stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+                                stroke-linejoin="round" />
+
+                            <circle cx="9" cy="20" r="1.2" fill="currentColor" />
+
+                            <circle cx="18" cy="20" r="1.2" fill="currentColor" />
+
+                        </svg>
+
+
+                        <span class="navbar-cart-count" data-cart-count>
+                            0
+                        </span>
+
+                    </a>
+
+
+                    <!-- =================================================
+                         MOBILE MENU BUTTON
+                    ================================================== -->
+
+                    <button type="button" class="navbar-menu-toggle" data-menu-toggle aria-label="Open menu"
+                        aria-expanded="false">
+
+                        <span></span>
+                        <span></span>
+                        <span></span>
+
+                    </button>
+
+                </div>
 
             </div>
 
         </nav>
 
 
-        <!-- =====================================================
+        <!-- =========================================================
              MOBILE MENU
-        ====================================================== -->
-        <div
-            class="mobile-menu"
-            data-mobile-menu
-        >
+        ========================================================== -->
+
+        <div class="mobile-menu" data-mobile-menu>
 
             <div class="mobile-menu-header">
 
-                <a
-                    href="index.html"
-                    class="navbar-brand"
-                >
 
-                    <span class="navbar-brand-mark">
-                        PK
-                    </span>
+                <a href="index.html" class="brand mobile-brand" aria-label="ProjectKart Home">
 
-                    <span class="navbar-brand-text">
-                        <strong>ProjectKart</strong>
-                        <small>Build. Create. Innovate.</small>
+                    <img src="assets/images/logo.png" class="brand__logo-circle" alt="ProjectKart logo">
+
+                    <span class="brand__name">
+                        ProjectKart
                     </span>
 
                 </a>
 
 
-                <button
-                    type="button"
-                    class="mobile-menu-close"
-                    data-menu-close
-                    aria-label="Close menu"
-                >
-                    ×
+                <button type="button" class="mobile-menu-close" data-menu-close aria-label="Close menu">
+                    &times;
                 </button>
 
             </div>
@@ -177,39 +272,65 @@
 
             <div class="mobile-menu-links">
 
-                <a href="index.html">Home</a>
-                <a href="shop.html">Shop</a>
-                <a href="categories.html">Categories</a>
-                <a href="project-kits.html">Project Kits</a>
-                <a href="about.html">About</a>
-                <a href="contact.html">Contact</a>
-                <a href="account.html">My Account</a>
-                <a href="cart.html">Cart</a>
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="shop.html">
+                    Shop
+                </a>
+
+                <a href="categories.html">
+                    Categories
+                </a>
+
+                <a href="project-kits.html">
+                    Project Kits
+                </a>
+
+                <a href="about.html">
+                    About
+                </a>
+
+                <a href="contact.html">
+                    Contact
+                </a>
+
+                <a href="account.html">
+                    My Account
+                </a>
+
+                <a href="cart.html" class="active">
+                    Cart
+                </a>
 
             </div>
 
         </div>
 
 
-        <div
-            class="mobile-menu-overlay"
-            data-mobile-overlay
-        ></div>
+        <div class="mobile-menu-overlay" data-mobile-overlay></div>
 
     </header>
 
 
+
     <!-- =========================================================
-         CART PAGE
+         MAIN CART PAGE
     ========================================================== -->
+
     <main class="cart-page">
 
         <div class="container">
 
-            <!-- Page heading -->
+
+            <!-- =====================================================
+                 CART PAGE HEADER
+            ====================================================== -->
+
             <section class="cart-heading">
 
-                <div>
+                <div class="cart-heading__content">
 
                     <span class="section-eyebrow">
                         YOUR CART
@@ -226,24 +347,24 @@
 
                 </div>
 
-                <a
-                    href="shop.html"
-                    class="button button-secondary"
-                >
-                    Continue shopping
-                </a>
+
+                <div class="cart-heading__action">
+
+                    <a href="shop.html" class="button button-secondary">
+                        Continue shopping
+                    </a>
+
+                </div>
 
             </section>
 
 
-            <!-- =================================================
+
+            <!-- =====================================================
                  EMPTY CART
-            ================================================== -->
-            <section
-                class="cart-empty"
-                data-cart-empty
-                hidden
-            >
+            ====================================================== -->
+
+            <section class="cart-empty" data-cart-empty hidden>
 
                 <div class="cart-empty-icon">
                     🛒
@@ -258,43 +379,41 @@
                     Explore our components and start building.
                 </p>
 
-                <a
-                    href="shop.html"
-                    class="button button-primary"
-                >
+                <a href="shop.html" class="button button-primary">
                     Explore products
                 </a>
 
             </section>
 
 
-            <!-- =================================================
+
+            <!-- =====================================================
                  CART CONTENT
-            ================================================== -->
-            <section
-                class="cart-content"
-                data-cart-content
-            >
+            ====================================================== -->
+
+            <section class="cart-content" data-cart-content>
 
                 <div class="cart-layout">
 
 
-                    <!-- =============================================
+                    <!-- =================================================
                          CART ITEMS
-                    ============================================== -->
+                    ================================================== -->
+
                     <div class="cart-items-column">
+
+
+                        <!-- Items Header -->
 
                         <div class="cart-items-header">
 
-                            <div>
+                            <div class="cart-items-header__info">
 
                                 <h2>
                                     Your items
                                 </h2>
 
-                                <span
-                                    data-cart-item-count
-                                >
+                                <span data-cart-item-count>
                                     0 items
                                 </span>
 
@@ -302,43 +421,42 @@
 
 
                             <div class="cart-items-header-actions">
+
                                 <label class="cart-select-all">
-                                    <input
-                                        type="checkbox"
-                                        data-cart-select-all
-                                        checked
-                                    >
-                                    <span>Select all</span>
+
+                                    <input type="checkbox" data-cart-select-all checked>
+
+                                    <span>
+                                        Select all
+                                    </span>
+
                                 </label>
 
-                                <button
-                                    type="button"
-                                    class="cart-clear-button"
-                                    data-cart-clear
-                                >
+
+                                <button type="button" class="cart-clear-button" data-cart-clear>
                                     Clear cart
                                 </button>
+
                             </div>
 
                         </div>
 
 
-                        <div
-                            class="cart-items"
-                            data-cart-items
-                        >
+                        <!-- Cart Items -->
 
-                            <!-- Cart items are rendered by cart.js -->
+                        <div class="cart-items" data-cart-items>
+
+                            <!--
+                                Cart items are generated
+                                dynamically by cart.js.
+                            -->
 
                         </div>
 
 
                         <!-- Loading -->
-                        <div
-                            class="cart-loading"
-                            data-cart-loading
-                            hidden
-                        >
+
+                        <div class="cart-loading" data-cart-loading hidden>
 
                             <div class="loading-spinner"></div>
 
@@ -351,12 +469,17 @@
                     </div>
 
 
-                    <!-- =============================================
+
+                    <!-- =================================================
                          ORDER SUMMARY
-                    ============================================== -->
+                    ================================================== -->
+
                     <aside class="cart-summary">
 
                         <div class="cart-summary-card">
+
+
+                            <!-- Summary Header -->
 
                             <div class="cart-summary-header">
 
@@ -372,15 +495,14 @@
 
 
                             <!-- Subtotal -->
+
                             <div class="cart-summary-row">
 
                                 <span>
                                     Subtotal
                                 </span>
 
-                                <strong
-                                    data-cart-subtotal
-                                >
+                                <strong data-cart-subtotal>
                                     ₹0.00
                                 </strong>
 
@@ -388,63 +510,63 @@
 
 
                             <!-- Shipping -->
+
                             <div class="cart-summary-row">
 
                                 <span>
                                     Shipping
                                 </span>
 
-                                <strong
-                                    data-cart-shipping
-                                >
-                                    Calculated at checkout
+                                <strong data-cart-shipping>
+                                    Free
                                 </strong>
 
                             </div>
 
 
                             <!-- Divider -->
+
                             <div class="cart-summary-divider"></div>
 
 
                             <!-- Total -->
+
                             <div class="cart-summary-total">
 
                                 <span>
                                     Total
                                 </span>
 
-                                <strong
-                                    data-cart-total
-                                >
+                                <strong data-cart-total>
                                     ₹0.00
                                 </strong>
 
                             </div>
 
 
-                            <!-- Checkout -->
-                            <button
-                                type="button"
-                                class="button button-primary button-full cart-whatsapp-button"
-                                data-cart-whatsapp
-                            >
+                            <!-- WhatsApp Order -->
+
+                            <button type="button" class="button button-primary button-full cart-whatsapp-button"
+                                data-cart-whatsapp>
                                 Order Selected on WhatsApp
                             </button>
 
+
                             <p class="cart-whatsapp-hint" data-cart-whatsapp-hint>
-                                Select items above, then open WhatsApp with a pre-filled order.
+                                Select items above, then open WhatsApp
+                                with a pre-filled order.
                             </p>
 
-                            <a
-                                href="shop.html"
-                                class="button button-secondary button-full"
-                            >
+
+                            <!-- Continue Shopping -->
+
+                            <a href="shop.html" class="button button-secondary button-full">
                                 Continue shopping
                             </a>
 
 
-                            <!-- Secure checkout -->
+                            <!-- Secure Note -->
+
                             <div class="cart-secure-note">
 
                                 <span>
@@ -460,19 +582,34 @@
                         </div>
 
 
-                        <!-- Payment information -->
+                        <!-- =================================================
+                             PAYMENT INFORMATION
+                        ================================================== -->
+
                         <div class="cart-payment-info">
 
                             <span>
                                 Secure payment
                             </span>
 
+
                             <div class="cart-payment-icons">
 
-                                <span>UPI</span>
-                                <span>VISA</span>
-                                <span>MC</span>
-                                <span>RuPay</span>
+                                <span>
+                                    UPI
+                                </span>
+
+                                <span>
+                                    VISA
+                                </span>
+
+                                <span>
+                                    MC
+                                </span>
+
+                                <span>
+                                    RuPay
+                                </span>
 
                             </div>
 
@@ -485,10 +622,15 @@
             </section>
 
 
-            <!-- =================================================
+
+            <!-- =====================================================
                  TRUST FEATURES
-            ================================================== -->
+            ====================================================== -->
+
             <section class="cart-features">
+
+
+                <!-- Feature 1 -->
 
                 <div class="cart-feature">
 
@@ -497,17 +639,22 @@
                     </div>
 
                     <div>
+
                         <strong>
                             Quality components
                         </strong>
 
                         <p>
-                            Carefully selected products for your projects.
+                            Carefully selected products for
+                            your projects.
                         </p>
+
                     </div>
 
                 </div>
 
+
+                <!-- Feature 2 -->
 
                 <div class="cart-feature">
 
@@ -516,17 +663,22 @@
                     </div>
 
                     <div>
+
                         <strong>
                             Project-ready
                         </strong>
 
                         <p>
-                            Components for students, makers and creators.
+                            Components for students, makers
+                            and creators.
                         </p>
+
                     </div>
 
                 </div>
 
+
+                <!-- Feature 3 -->
 
                 <div class="cart-feature">
 
@@ -535,13 +687,16 @@
                     </div>
 
                     <div>
+
                         <strong>
                             Support
                         </strong>
 
                         <p>
-                            Need help? Get in touch with our team.
+                            Need help? Get in touch with
+                            our team.
                         </p>
+
                     </div>
 
                 </div>
@@ -553,29 +708,30 @@
     </main>
 
 
+
     <!-- =========================================================
          FOOTER
     ========================================================== -->
+
     <footer class="site-footer">
 
         <div class="container">
 
             <div class="footer-main">
 
+
+                <!-- Brand -->
+
                 <div class="footer-brand">
 
-                    <a
-                        href="index.html"
-                        class="navbar-brand"
-                    >
+                    <a href="index.html" class="navbar-logo">
 
-                        <span class="navbar-brand-mark">
-                            PK
+                        <span class="navbar-logo-mark">
+                            P
                         </span>
 
-                        <span class="navbar-brand-text">
-                            <strong>ProjectKart</strong>
-                            <small>Build. Create. Innovate.</small>
+                        <span class="navbar-logo-text">
+                            Project<span>Kart</span>
                         </span>
 
                     </a>
@@ -589,9 +745,13 @@
                 </div>
 
 
+                <!-- Shop -->
+
                 <div class="footer-column">
 
-                    <h3>Shop</h3>
+                    <h3>
+                        Shop
+                    </h3>
 
                     <a href="shop.html">
                         All Products
@@ -608,9 +768,13 @@
                 </div>
 
 
+                <!-- Company -->
+
                 <div class="footer-column">
 
-                    <h3>Company</h3>
+                    <h3>
+                        Company
+                    </h3>
 
                     <a href="about.html">
                         About Us
@@ -623,9 +787,13 @@
                 </div>
 
 
+                <!-- Account -->
+
                 <div class="footer-column">
 
-                    <h3>Account</h3>
+                    <h3>
+                        Account
+                    </h3>
 
                     <a href="login.html">
                         Sign In
@@ -648,16 +816,18 @@
             </div>
 
 
+            <!-- Footer Bottom -->
+
             <div class="footer-bottom">
 
                 <p>
-                    ©
+                    &copy;
                     <span data-current-year></span>
                     ProjectKart. All rights reserved.
                 </p>
 
                 <p>
-                    Built for makers, students & creators.
+                    Built for makers, students &amp; creators.
                 </p>
 
             </div>
@@ -667,24 +837,40 @@
     </footer>
 
 
+
+    <!-- =========================================================
+         TOAST
+    ========================================================== -->
+
+    <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+
+
     <!-- =========================================================
          SCRIPTS
     ========================================================== -->
-    <div class="toast-container" id="toastContainer" aria-live="polite"></div>
 
     <script type="module" src="js/page.js"></script>
+
     <script type="module" src="js/navbar.js"></script>
+
     <script type="module" src="js/cart.js"></script>
 
+
     <script>
+
         const yearElement =
             document.querySelector("[data-current-year]");
 
         if (yearElement) {
+
             yearElement.textContent =
                 new Date().getFullYear();
+
         }
+
     </script>
 
 </body>
+
 </html>

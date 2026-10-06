@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>My Account | ProjectKart</title>
-    <meta
-        name="description"
-        content="Manage your ProjectKart account, profile, addresses and orders."
-    >
+    <meta name="description" content="Manage your ProjectKart account, profile, addresses and orders.">
 
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/reset.css">
@@ -33,16 +31,14 @@
 
         <nav class="navbar container">
 
-            <a
-                href="index.html"
-                class="navbar-brand"
-                aria-label="ProjectKart Home"
-            >
-            <img
-            src="assets/images/logo1.png"
-        
-            class="brand__logo-image"
-        />
+            <a href="index.html" class="brand" aria-label="ProjectKart Home">
+
+                <img src="assets/images/logo.png" class="brand__logo-circle" alt="ProjectKart logo">
+
+                <span class="brand__name">
+                    ProjectKart
+                </span>
+
             </a>
 
 
@@ -52,7 +48,7 @@
                 <a href="categories.html">Categories</a>
                 <a href="project-kits.html">Project Kits</a>
                 <a href="about.html">About</a>
-                <!-- <a href="contact.html">Contact</a> -->
+                <a href="contact.html">Contact</a>
             </div>
 
 
@@ -62,49 +58,26 @@
 
                     <span class="navbar-search-icon">⌕</span>
 
-                    <input
-                        type="search"
-                        placeholder="Search components..."
-                        aria-label="Search products"
-                        data-search-input
-                        autocomplete="off"
-                    >
+                    <input type="search" placeholder="Search components..." aria-label="Search products"
+                        data-search-input autocomplete="off">
 
-                    <div
-                        class="navbar-search-results"
-                        data-search-results
-                        hidden
-                    ></div>
+                    <div class="navbar-search-results" data-search-results hidden></div>
 
                 </form>
 
 
-                <a
-                    href="account.html"
-                    class="navbar-account active"
-                    aria-label="My account"
-                >
+                <a href="account.html" class="navbar-account active" aria-label="My account">
                     <span class="navbar-action-icon">◯</span>
                 </a>
 
 
-                <a
-                    href="cart.html"
-                    class="navbar-cart"
-                    aria-label="Shopping cart"
-                >
+                <a href="cart.html" class="navbar-cart" aria-label="Shopping cart">
                     <span class="navbar-action-icon">🛒</span>
                     <span class="cart-count" data-cart-count>0</span>
                 </a>
 
 
-                <button
-                    type="button"
-                    class="menu-toggle"
-                    data-menu-toggle
-                    aria-label="Open menu"
-                    aria-expanded="false"
-                >
+                <button type="button" class="menu-toggle" data-menu-toggle aria-label="Open menu" aria-expanded="false">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -131,12 +104,7 @@
 
                 </a>
 
-                <button
-                    type="button"
-                    class="mobile-menu-close"
-                    data-menu-close
-                    aria-label="Close menu"
-                >
+                <button type="button" class="mobile-menu-close" data-menu-close aria-label="Close menu">
                     ×
                 </button>
 
@@ -150,7 +118,7 @@
                 <a href="categories.html">Categories</a>
                 <a href="project-kits.html">Project Kits</a>
                 <a href="about.html">About</a>
-                <!-- <a href="contact.html">Contact</a> -->
+                <a href="contact.html">Contact</a>
                 <a href="account.html">My Account</a>
                 <a href="cart.html">Cart</a>
 
@@ -159,10 +127,7 @@
         </div>
 
 
-        <div
-            class="mobile-menu-overlay"
-            data-mobile-overlay
-        ></div>
+        <div class="mobile-menu-overlay" data-mobile-overlay></div>
 
     </header>
 
@@ -180,12 +145,7 @@
                     <h1>Welcome back<span data-account-name></span></h1>
                     <p>Manage your profile, orders and account details.</p>
                 </div>
-                <button
-                    type="button"
-                    class="button button-secondary"
-                    data-logout-button
-                    data-logout
-                >
+                <button type="button" class="button button-secondary" data-logout-button data-logout>
                     Sign out
                 </button>
             </section>
@@ -240,11 +200,7 @@
                     <!-- =================================================
                          PROFILE
                     ================================================== -->
-                    <section
-                        class="account-section"
-                        id="profile"
-                        data-account-section="profile"
-                    >
+                    <section class="account-section" id="profile" data-account-section="profile">
 
                         <div class="account-section-header">
                             <div>
@@ -258,44 +214,55 @@
                             <div class="account-form-grid">
                                 <div class="form-group">
                                     <label for="profile-first-name">First name</label>
-                                    <input type="text" id="profile-first-name" name="firstName" autocomplete="given-name" data-profile-first-name>
+                                    <input type="text" id="profile-first-name" name="firstName"
+                                        autocomplete="given-name" data-profile-first-name>
                                 </div>
                                 <div class="form-group">
                                     <label for="profile-last-name">Last name</label>
-                                    <input type="text" id="profile-last-name" name="lastName" autocomplete="family-name" data-profile-last-name>
+                                    <input type="text" id="profile-last-name" name="lastName" autocomplete="family-name"
+                                        data-profile-last-name>
                                 </div>
                                 <div class="form-group account-form-full">
                                     <label for="profile-name">Display name</label>
-                                    <input type="text" id="profile-name" name="name" placeholder="Your full name" autocomplete="name" data-profile-name readonly>
+                                    <input type="text" id="profile-name" name="name" placeholder="Your full name"
+                                        autocomplete="name" data-profile-name readonly>
                                 </div>
                                 <div class="form-group">
                                     <label for="profile-email">Email address</label>
-                                    <input type="email" id="profile-email" name="email" placeholder="you@example.com" autocomplete="email" data-profile-email readonly>
-                                    <small class="form-help">Managed through your login. It cannot be changed here.</small>
+                                    <input type="email" id="profile-email" name="email" placeholder="you@example.com"
+                                        autocomplete="email" data-profile-email readonly>
+                                    <small class="form-help">Managed through your login. It cannot be changed
+                                        here.</small>
                                 </div>
                                 <div class="form-group">
                                     <label for="profile-phone">Phone number</label>
-                                    <input type="tel" id="profile-phone" name="phone" placeholder="+91 XXXXX XXXXX" autocomplete="tel" data-profile-phone>
+                                    <input type="tel" id="profile-phone" name="phone" placeholder="+91 XXXXX XXXXX"
+                                        autocomplete="tel" data-profile-phone>
                                 </div>
                                 <div class="form-group account-form-full">
                                     <label for="profile-address">Address</label>
-                                    <textarea id="profile-address" name="address" rows="3" placeholder="Street address" autocomplete="street-address" data-profile-address></textarea>
+                                    <textarea id="profile-address" name="address" rows="3" placeholder="Street address"
+                                        autocomplete="street-address" data-profile-address></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="profile-city">City</label>
-                                    <input type="text" id="profile-city" name="city" autocomplete="address-level2" data-profile-city>
+                                    <input type="text" id="profile-city" name="city" autocomplete="address-level2"
+                                        data-profile-city>
                                 </div>
                                 <div class="form-group">
                                     <label for="profile-state">State</label>
-                                    <input type="text" id="profile-state" name="state" autocomplete="address-level1" data-profile-state>
+                                    <input type="text" id="profile-state" name="state" autocomplete="address-level1"
+                                        data-profile-state>
                                 </div>
                                 <div class="form-group">
                                     <label for="profile-postal">PIN / Postal code</label>
-                                    <input type="text" id="profile-postal" name="postalCode" autocomplete="postal-code" data-profile-postal>
+                                    <input type="text" id="profile-postal" name="postalCode" autocomplete="postal-code"
+                                        data-profile-postal>
                                 </div>
                                 <div class="form-group">
                                     <label for="profile-country">Country</label>
-                                    <input type="text" id="profile-country" name="country" autocomplete="country-name" data-profile-country>
+                                    <input type="text" id="profile-country" name="country" autocomplete="country-name"
+                                        data-profile-country>
                                 </div>
                             </div>
 
@@ -314,12 +281,7 @@
                     <!-- =================================================
                          ORDERS
                     ================================================== -->
-                    <section
-                        class="account-section"
-                        id="orders"
-                        data-account-section="orders"
-                        hidden
-                    >
+                    <section class="account-section" id="orders" data-account-section="orders" hidden>
 
                         <div class="account-section-header">
 
@@ -340,10 +302,7 @@
                         </div>
 
 
-                        <div
-                            class="account-orders"
-                            data-account-orders
-                        >
+                        <div class="account-orders" data-account-orders>
 
                             <div class="account-loading">
                                 Loading your orders...
@@ -357,12 +316,7 @@
                     <!-- =================================================
                          ADDRESS
                     ================================================== -->
-                    <section
-                        class="account-section"
-                        id="address"
-                        data-account-section="address"
-                        hidden
-                    >
+                    <section class="account-section" id="address" data-account-section="address" hidden>
 
                         <div class="account-section-header">
 
@@ -401,11 +355,7 @@
 
                             </div>
 
-                            <button
-                                type="button"
-                                class="button button-secondary button-small"
-                                data-edit-address
-                            >
+                            <button type="button" class="button button-secondary button-small" data-edit-address>
                                 Edit
                             </button>
 
@@ -434,15 +384,8 @@
 
                 <div class="footer-brand">
 
-                    <a
-                        href="index.html"
-                        class="navbar-brand"
-                    >
-                    <img
-                    src="assets/images/logo1.png"
-                
-                    class="brand__logo-image"
-                />
+                    <a href="index.html" class="navbar-brand">
+                        <img src="assets/images/logo1.png" class="brand__logo-image" />
                     </a>
 
                     <p>
@@ -525,4 +468,5 @@
     </script>
 
 </body>
+
 </html>

@@ -46,7 +46,7 @@
 .contact-hero {
     position: relative;
 
-    padding: 112px 0 86px;
+    padding: 112px 0 40px;
 
     overflow: hidden;
 
@@ -163,7 +163,7 @@
 ================================================================ */
 
 .contact-section {
-    padding: 86px 0 110px;
+    padding: 30px 0 100px;
 
     background: var(--contact-bg);
 }
